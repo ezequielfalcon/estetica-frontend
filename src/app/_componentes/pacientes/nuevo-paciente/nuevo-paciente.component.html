@@ -1,0 +1,68 @@
+<div class="center-form">
+  <form name="nuevoPac" (ngSubmit)="crear()">
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <md-icon>chrome_reader_mode</md-icon>
+          Nueva Paciente
+        </md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <table cellspacing="0"><tr>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Nombre" name="nombre" [(ngModel)]="nuevoPac.nombre" #nombre="ngModel" required>
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Apellido" name="apellido" [(ngModel)]="nuevoPac.apellido" #apellido="ngModel">
+            </md-input-container>
+          </td>
+        </tr></table>
+        <table cellspacing="0" class="tablaUsuarios"><tr>
+          <td>
+            <md-select placeholder="Obra Social" [(ngModel)]="nuevoPac.id_os" name="os" required>
+              <md-option *ngFor="let osSelect of obras" [value]="osSelect.id">
+                {{osSelect.nombre}}
+              </md-option>
+            </md-select>
+          </td>
+        </tr></table>
+        <table cellspacing="0" class="tablaUsuarios"><tr>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Documento" name="documento" [(ngModel)]="nuevoPac.documento" #documento="ngModel" required>
+            </md-input-container>
+            <md-input-container>
+              <input mdInput type="date" placeholder="Nacimiento" name="fechaNac" [(ngModel)]="nuevoPac.fechaNac" #fechaNac="ngModel" required>
+            </md-input-container>
+          </td>
+        </tr></table>
+        <table cellspacing="0" class="tablaUsuarios"><tr>
+          <td>
+            <md-input-container>
+              <input mdInput type="tel" placeholder="Teléfono" name="tel" [(ngModel)]="nuevoPac.tel" #tel="ngModel">
+            </md-input-container>
+            <md-input-container>
+              <input mdInput type="email" placeholder="Correo electrónico" name="email" [(ngModel)]="nuevoPac.email" #email="ngModel">
+            </md-input-container>
+          </td>
+        </tr></table>
+        <table cellspacing="0" class="tablaUsuarios"><tr>
+          <td>
+            <md-select placeholder="Sexo" [(ngModel)]="nuevoPac.sexo" name="sexo">
+              <md-option *ngFor="let sex of sexos" [value]="sex.valor">
+                {{sex.nombre}}
+              </md-option>
+            </md-select>
+          </td>
+        </tr></table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button type="submit"><md-icon>archive</md-icon>Guardar</button>
+        <button md-button type="button" (click)="cancelar()"><md-icon>clear</md-icon>Cancelar</button>
+      </md-card-actions>
+    </md-card>
+  </form>
+</div>

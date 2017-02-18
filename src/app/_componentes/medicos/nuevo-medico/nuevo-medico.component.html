@@ -1,0 +1,41 @@
+<div class="center-form">
+  <form name="nuevoMedico" (ngSubmit)="crear()">
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <md-icon>local_hospital</md-icon>
+          Nuevo Médico
+        </md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <table cellspacing="0"><tr>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Nombre" name="nombre" [(ngModel)]="nuevoMedico.nombre" #nombre="ngModel" required>
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Apellido" name="apellido" [(ngModel)]="nuevoMedico.apellido" #apellido="ngModel">
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Correo electrónico" name="mail" [(ngModel)]="nuevoMedico.mail" #mail="ngModel" required>
+            </md-input-container>
+          </td>
+        </tr>
+        <tr><td><md-input-container>
+          <input mdInput placeholder="Color" [(colorPicker)]="nuevoMedico.color"
+                 [style.background]="nuevoMedico.color"
+                 [value]="nuevoMedico.color" required name="color" [(ngModel)]="nuevoMedico.color" #color="ngModel" id="color">
+        </md-input-container></td>
+        </tr></table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button type="submit"><md-icon>archive</md-icon>Guardar</button>
+        <button md-button (click)="cancelar()"><md-icon>clear</md-icon>Cancelar</button>
+      </md-card-actions>
+    </md-card>
+  </form>
+</div>

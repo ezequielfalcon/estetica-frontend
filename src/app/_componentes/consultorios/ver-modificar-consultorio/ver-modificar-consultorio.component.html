@@ -1,0 +1,29 @@
+<div class="center-form">
+  <form name="verConsul" (ngSubmit)="modificar()">
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <md-icon>business_center</md-icon>
+          Consultorio
+        </md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <md-input-container>
+          <input mdInput [disabled]="!edicion" placeholder="ID" name="id" [(ngModel)]="model.id" #id="ngModel" id="id">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput [disabled]="!edicion" placeholder="Nombre..." required name="nombre" [(ngModel)]="model.nombre" #nombre="ngModel" id="nombre">
+        </md-input-container>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button (click)="editar(true)" *ngIf="!edicion" type="button"><md-icon>create</md-icon>Modificar</button>
+        <button *ngIf="edicion" md-button type="submit"><md-icon>archive</md-icon>Guardar</button>
+        <button md-button type="button" *ngIf="!edicion" [routerLink]="['/configuracion/consultorios']"><md-icon>undo</md-icon>Volver</button>
+        <button md-button (click)="editar(false)" type="button" *ngIf="edicion"><md-icon>clear</md-icon>Cancelar</button>
+        <div class="botones-derecha">
+          <button md-button type="button" (click)="borrar()"><md-icon>remove_circle</md-icon>Borrar</button>
+        </div>
+      </md-card-actions>
+    </md-card>
+  </form>
+</div>

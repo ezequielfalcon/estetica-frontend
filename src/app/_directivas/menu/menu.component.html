@@ -1,0 +1,28 @@
+<md-toolbar color="primary">
+  CONDES - Consultorios Dermatológicos y Centro de Estética
+    <button class="derecha-menu" md-icon-button [mdMenuTriggerFor]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+</md-toolbar>
+<md-menu #menu="mdMenu">
+  <button md-menu-item [routerLink]="['/']">
+    <md-icon>home</md-icon>
+    <span>Inicio</span>
+  </button>
+  <button md-menu-item [routerLink]="['/agenda']">
+    <md-icon>reorder</md-icon>
+    <span>Agenda</span>
+  </button>
+  <button md-menu-item [routerLink]="['/pacientes']">
+    <md-icon>people</md-icon>
+    <span>Pacientes</span>
+  </button>
+  <button md-menu-item [routerLink]="['/configuracion']">
+    <md-icon>build</md-icon>
+    <span>Configuración</span>
+  </button>
+  <button md-menu-item [routerLink]="['/login']">
+    <md-icon>exit_to_app</md-icon>
+    <span>Salir</span>
+  </button>
+</md-menu>

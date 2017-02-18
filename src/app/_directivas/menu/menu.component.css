@@ -1,0 +1,10 @@
+.derecha-menu{
+  right: auto;
+  float: right;
+  position: fixed;
+}
+
+.derecha-menu-2{
+  right: auto;
+  float: right;
+}

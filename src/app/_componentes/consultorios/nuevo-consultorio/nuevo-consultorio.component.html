@@ -1,0 +1,24 @@
+<div class="center-form">
+  <form name="nuevoConsul" (ngSubmit)="crear()">
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <md-icon>business_center</md-icon>
+          Nuevo Consultorio
+        </md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <md-input-container>
+          <input mdInput placeholder="ID..." required name="id" [(ngModel)]="nuevoConsul.id" #id="ngModel">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="Nombre..." required name="nombre" [(ngModel)]="nuevoConsul.nombre" #nombre="ngModel">
+        </md-input-container>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button type="submit"><md-icon>archive</md-icon>Guardar</button>
+        <button md-button (click)="cancelar()"><md-icon>clear</md-icon>Cancelar</button>
+      </md-card-actions>
+    </md-card>
+  </form>
+</div>

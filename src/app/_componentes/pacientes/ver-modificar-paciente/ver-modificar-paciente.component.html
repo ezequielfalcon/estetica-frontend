@@ -1,0 +1,80 @@
+<div class="center-form">
+  <form name="nuevoPac" (ngSubmit)="modificar()">
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <md-icon>person</md-icon>
+          Paciente
+        </md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <table cellspacing="0"><tr>
+          <td>
+            <md-input-container>
+              <input mdInput disabled placeholder="ID" name="id" [(ngModel)]="pac.id" #id="ngModel" required>
+            </md-input-container>
+          </td>
+        </tr></table>
+        <table cellspacing="0"><tr>
+          <td>
+            <md-input-container>
+              <input mdInput [disabled]="!edicion" placeholder="Nombre" name="nombre" [(ngModel)]="pac.nombre" #nombre="ngModel" required>
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput [disabled]="!edicion" placeholder="Apellido" name="apellido" [(ngModel)]="pac.apellido" #apellido="ngModel">
+            </md-input-container>
+          </td>
+        </tr></table>
+        <table cellspacing="0" class="tablaUsuarios"><tr>
+          <td>
+            <md-select [disabled]="!edicion" placeholder="Obra Social" [(ngModel)]="pac.id_os" name="os" required>
+              <md-option *ngFor="let osSelect of obras" [value]="osSelect.id">
+                {{osSelect.nombre}}
+              </md-option>
+            </md-select>
+          </td>
+        </tr></table>
+        <table cellspacing="0" class="tablaUsuarios"><tr>
+          <td>
+            <md-input-container>
+              <input mdInput [disabled]="!edicion" placeholder="Documento" name="documento" [(ngModel)]="pac.documento" #documento="ngModel" required>
+            </md-input-container>
+            <md-input-container>
+              <input mdInput [disabled]="!edicion" type="date" placeholder="Nacimiento" name="fechaNac" [(ngModel)]="pac.fecha_nacimiento" #fechaNac="ngModel" required>
+            </md-input-container>
+          </td>
+        </tr></table>
+        <table cellspacing="0" class="tablaUsuarios"><tr>
+          <td>
+            <md-input-container>
+              <input mdInput [disabled]="!edicion" type="tel" placeholder="Teléfono" name="tel" [(ngModel)]="pac.telefono" #tel="ngModel">
+            </md-input-container>
+            <md-input-container>
+              <input mdInput [disabled]="!edicion" type="email" placeholder="Correo electrónico" name="email" [(ngModel)]="pac.mail" #email="ngModel">
+            </md-input-container>
+          </td>
+        </tr></table>
+        <table cellspacing="0" class="tablaUsuarios"><tr>
+          <td>
+            <md-select [disabled]="!edicion" placeholder="Sexo" [(ngModel)]="pac.sexo" name="sexo">
+              <md-option *ngFor="let sex of sexos" [value]="sex.valor">
+                {{sex.nombre}}
+              </md-option>
+            </md-select>
+          </td>
+        </tr></table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button (click)="editar(true)" *ngIf="!edicion" type="button"><md-icon>create</md-icon>Modificar</button>
+        <button *ngIf="edicion" md-button type="submit"><md-icon>archive</md-icon>Guardar</button>
+        <button md-button type="button" *ngIf="!edicion" [routerLink]="['/pacientes']"><md-icon>undo</md-icon>Volver</button>
+        <button md-button (click)="editar(false)" type="button" *ngIf="edicion"><md-icon>clear</md-icon>Cancelar</button>
+        <div class="botones-derecha">
+          <button md-button type="button" (click)="borrar()"><md-icon>remove_circle</md-icon>Borrar</button>
+        </div>
+      </md-card-actions>
+    </md-card>
+  </form>
+</div>

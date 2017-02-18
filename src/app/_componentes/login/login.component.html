@@ -1,0 +1,16 @@
+<div class="center-login">
+  <form name="loginForm" (ngSubmit)="login()">
+    <md-card>
+      <md-input-container>
+        <input mdInput [disabled]="loading" placeholder="Usuario" maxlength="50" required name="username" [(ngModel)]="model.username" #username="ngModel">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [disabled]="loading" type="password" placeholder="Contraseña" maxlength="50" required name="password" [(ngModel)]="model.password" #password="ngModel">
+      </md-input-container>
+      <button md-raised-button [disabled]="loading" color="primary">Iniciar sesión</button>
+      <md-progress-bar *ngIf="loading" mode="indeterminate"></md-progress-bar>
+    </md-card>
+  </form>
+
+</div>
+

@@ -1,1 +1,105 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
+.center-login {
+  margin: auto;
+  width: 50%;
+}
+.center {
+  margin: auto;
+  width: 90%;
+}
+.center-form {
+  margin: auto;
+  width: 80%;
+}
+
+
+@media only screen and (min-width: 768px){
+  .center-login {
+    margin: auto;
+    width: 20%;
+  }
+  .center {
+    margin: auto;
+    width: 60%;
+  }
+  .center-form {
+    margin: auto;
+    width: 40%;
+  }
+}
+
+.boton-add{
+  float: right;
+  margin-top: 1%;
+}
+
+.botones-derecha {
+  right: auto;
+  float: right;
+}
+
+.clickVer {
+  cursor: pointer;
+}
+
+.app-input-icon {
+  font-size: 16px;
+}
+
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+md-toolbar-row {
+  justify-content: space-between;
+}
+
+p {
+  margin: 16px;
+}
+
+[md-raised-button] {
+  width: 100%;
+}
+
+md-grid-list {
+  max-width: 1403px;
+  margin: 16px;
+}
+
+md-sidenav-layout {
+  height: 100vh;
+}
+
+md-sidenav {
+  width: 320px;
+}
+
+.icon-20 {
+  font-size: 20px;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-icon-button {
+  box-shadow: none;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: none;
+  font-weight: normal;
+  height: auto;
+  line-height: inherit;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+}
