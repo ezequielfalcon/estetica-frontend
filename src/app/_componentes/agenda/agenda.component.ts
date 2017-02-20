@@ -7,6 +7,8 @@ import {SpinnerService} from "../../_servicios/spinner.service";
 import {NotificationsService} from "angular2-notifications";
 import {TurnosService} from "../../_servicios/datos/turnos.service";
 import {Turno} from "../../_modelos/turno";
+import {DomSanitizer} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-agenda',
@@ -20,21 +22,17 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private medicosService: MedicosService,
     private spinner: SpinnerService,
     private notificationSerivce: NotificationsService,
-    private turnosService: TurnosService
+    private turnosService: TurnosService,
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) { }
 
   medicos: Medico[] = [];
   consultorios: Consultorio[] = [];
   turnos: Turno[] = [];
   configuracion: any = {};
-  estadoTurnos: string[][] = [""][""];
 
   ngOnInit() {
-    for (let i:number = 0; i < 5; i++){
-      for(let x:number = 0; x < 37; x++){
-        this.estadoTurnos[i][x] = "Vacío";
-      }
-    }
     this.cargarConsuls();
     this.cargarMedicos();
     this.traerConfigTurnos();
@@ -92,21 +90,16 @@ export class AgendaComponent implements OnInit, OnDestroy {
     });
   }
 
-  llenarMatrizTurnos(turnosDbObjeto: Turno[]){
-    for (let turnoDb of turnosDbObjeto){
-      let medicoTurnoDb = turnoDb.id_medico;
-      let medicoTurnoObject: Medico;
-      for (let medicosDb of this.medicos){
-        if (medicosDb.id == medicoTurnoDb){
-          medicoTurnoObject = medicosDb;
-        }
-      }
+  clickCeldaTurno(consultorioId, turnoId: number){
+    if (this.celdaTurnoValor(consultorioId, turnoId) == "Vacío"){
+      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.configuracion.fechaActual])
+    }
+    else{
 
-      //this.estadoTurnos[turnoDb.id_consultorio][turnoDb.id_turno] =
     }
   }
 
-  celdaTurno(consultorioId, turnoId: number){
+  celdaTurnoValor(consultorioId, turnoId: number){
     for (let turno of this.turnos){
       if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId){
         for (let medico of this.medicos){
@@ -117,6 +110,19 @@ export class AgendaComponent implements OnInit, OnDestroy {
       }
     }
     return "Vacío";
+  }
+
+  celdaTurnoColor(consultorioId, turnoId: number){
+    for (let turno of this.turnos){
+      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId){
+        for (let medico of this.medicos){
+          if (medico.id == turno.id_medico){
+            return medico.color;
+          }
+        }
+      }
+    }
+    return "";
   }
 
   traerTurnos(fecha: string){

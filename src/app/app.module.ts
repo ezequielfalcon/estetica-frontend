@@ -35,6 +35,7 @@ import { VerModificarConsultorioComponent } from './_componentes/consultorios/ve
 import { AgendaComponent } from './_componentes/agenda/agenda.component';
 import {TurnosService} from "./_servicios/datos/turnos.service";
 import {ColorPickerModule} from "angular2-color-picker";
+import { NuevoTurnoComponent } from './_componentes/agenda/nuevo-turno/nuevo-turno.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {ColorPickerModule} from "angular2-color-picker";
     ConsultoriosComponent,
     NuevoConsultorioComponent,
     VerModificarConsultorioComponent,
-    AgendaComponent
+    AgendaComponent,
+    NuevoTurnoComponent
   ],
   imports: [
     BrowserModule,

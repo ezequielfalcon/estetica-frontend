@@ -14,6 +14,7 @@ import {ConfiguracionComponent} from "./_componentes/configuracion/configuracion
 import {NuevoConsultorioComponent} from "./_componentes/consultorios/nuevo-consultorio/nuevo-consultorio.component";
 import {VerModificarConsultorioComponent} from "./_componentes/consultorios/ver-modificar-consultorio/ver-modificar-consultorio.component";
 import {AgendaComponent} from "./_componentes/agenda/agenda.component";
+import {NuevoTurnoComponent} from "./_componentes/agenda/nuevo-turno/nuevo-turno.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'nuevo-consultorio', component: NuevoConsultorioComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion/:id', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'nuevo-turno/:consultorio/:turno/:fecha', component: NuevoTurnoComponent, canActivate: [AuthGuard] },
 
   { path: '*', redirectTo: '' }
 ];

@@ -1,0 +1,40 @@
+<div class="center-form">
+  <form name="nuevoTurno" (ngSubmit)="crear()">
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <md-icon>receipt</md-icon>
+          Nuevo Turno
+        </md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <table cellspacing="0" class="tablaUsuarios">
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput disabled placeholder="Fecha" [(ngModel)]="nuevoTurno.fechaTurno" name="fecha" #fecha="ngModel">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput disabled placeholder="Horario" [(ngModel)]="nuevoTurno.turnoString" name="turnoString" #turnoString="ngModel">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput disabled placeholder="Consultorio" [(ngModel)]="nuevoTurno.consultorioId" name="consultorioId" #consultorioId="ngModel">
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+
+          </tr>
+        </table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button type="submit"><md-icon>archive</md-icon>Crear</button>
+        <button md-button type="button" (click)="cancelar()"><md-icon>clear</md-icon>Cancelar</button>
+      </md-card-actions>
+    </md-card>
+  </form>
+</div>
