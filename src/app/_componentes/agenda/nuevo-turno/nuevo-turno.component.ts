@@ -43,6 +43,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.nuevoTurno.turnoId = params["turno"];
       this.nuevoTurno.turnoString = NuevoTurnoComponent.turnoStringHora(this.nuevoTurno.turnoId);
       this.nuevoTurno.fechaTurno = params["fecha"];
+      this.nuevoTurno.costoTurno = 0;
     });
     this.cargarMedicos();
     this.cargarPacientes();
