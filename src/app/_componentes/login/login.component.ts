@@ -41,10 +41,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.loginService.login(this.model.username, this.model.password)
       .subscribe(
-        data => {
+        () => {
           this.notificationSerivce.success('OK', 'Sesión iniciada!');
           this.loading = false;
-          console.log("redirigiendo");
           this.router.navigate([this.returnUrl]);
         },
         error => {
