@@ -39,6 +39,7 @@ import { DialogoPacientesComponent } from './_directivas/dialogo-pacientes/dialo
 import {DialogoPacientesService} from "./_servicios/dialogos/dialogo-pacientes.service";
 import { DialogoMedicosComponent } from './_directivas/dialogo-medicos/dialogo-medicos.component';
 import {DialogoMedicosService} from "./_servicios/dialogos/dialogo-medicos.service";
+import {ColorPickerModule} from "ng2-color-picker";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import {DialogoMedicosService} from "./_servicios/dialogos/dialogo-medicos.servi
     HttpModule,
     MaterialModule,
     routing,
-    SimpleNotificationsModule
+    SimpleNotificationsModule,
+    ColorPickerModule
   ],
   exports: [
     DialogoComponent,

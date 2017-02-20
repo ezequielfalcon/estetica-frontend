@@ -5,6 +5,7 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 import {NotificationsService} from "angular2-notifications";
 import {MedicosService} from "../../../_servicios/datos/medicos.service";
 import {Medico} from "../../../_modelos/medico";
+import {IColorPickerConfiguration} from "ng2-color-picker";
 
 @Component({
   selector: 'app-ver-modificar-medico',
@@ -12,6 +13,8 @@ import {Medico} from "../../../_modelos/medico";
   styleUrls: ['./ver-modificar-medico.component.css']
 })
 export class VerModificarMedicoComponent implements OnInit, OnDestroy {
+
+  public configColores: IColorPickerConfiguration;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +24,23 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
     private viewContainerRef: ViewContainerRef,
     private spinner: SpinnerService,
     private medicService: MedicosService
-  ) { }
+  ) {
+    this.configColores = {
+      width: 25,
+      height: 25,
+      borderRadius: 4,
+      availableColors: [
+        '#33cccc',
+        '#99cc99',
+        '#cc99cc',
+        '#fabf8f',
+        '#bfbfbf',
+        '#6699ff',
+        '#ff6666',
+        '#ffcc66'
+      ]
+    };
+    }
 
   medico: Medico;
   model: any = {};

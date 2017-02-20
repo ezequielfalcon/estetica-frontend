@@ -3,6 +3,7 @@ import {NotificationsService} from "angular2-notifications";
 import {Router, ActivatedRoute} from "@angular/router";
 import {SpinnerService} from "../../../_servicios/spinner.service";
 import {MedicosService} from "../../../_servicios/datos/medicos.service";
+import {IColorPickerConfiguration} from "ng2-color-picker";
 
 @Component({
   selector: 'app-nuevo-medico',
@@ -11,13 +12,31 @@ import {MedicosService} from "../../../_servicios/datos/medicos.service";
 })
 export class NuevoMedicoComponent implements OnInit, OnDestroy {
 
+  public configColores: IColorPickerConfiguration;
+
   constructor(
     private medicosService: MedicosService,
     private notif: NotificationsService,
     private router: Router,
     private route: ActivatedRoute,
     private spinner: SpinnerService
-  ) { }
+  ) {
+    this.configColores = {
+      width: 25,
+      height: 25,
+      borderRadius: 4,
+      availableColors: [
+        '#33cccc',
+        '#99cc99',
+        '#cc99cc',
+        '#fabf8f',
+        '#bfbfbf',
+        '#6699ff',
+        '#ff6666',
+        '#ffcc66'
+      ]
+    };
+  }
 
   returnUrl: string;
   nuevoMedico: any = {};
