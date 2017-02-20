@@ -46,9 +46,6 @@
             <textarea mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones"></textarea>
           </md-input-container>
           <md-slide-toggle ([ngModel])="nuevoTurno.entreturno">Es entre-turno</md-slide-toggle>
-          <md-input-container>
-            <input mdInput placeholder="Costo" name="costoInput" #costoInput="ngModel" ([ngModel])="nuevoTurno.costo">
-          </md-input-container>
         </p>
       </md-card-content>
       <md-card-actions>

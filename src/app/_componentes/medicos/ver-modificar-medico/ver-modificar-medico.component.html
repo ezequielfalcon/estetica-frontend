@@ -21,7 +21,7 @@
           <input mdInput [disabled]="!edicion" placeholder="Correo electrónico..." required name="mail" [(ngModel)]="model.mail" #mail="ngModel" id="mail">
         </md-input-container>
         <md-input-container>
-          <input mdInput [disabled]="!edicion" placeholder="Color" [(colorPicker)]="model.color"
+          <input mdInput [disabled]="!edicion" placeholder="Color"
                  [style.background]="model.color"
                  [value]="model.color" required name="color" [(ngModel)]="model.color" #color="ngModel" id="color">
         </md-input-container>

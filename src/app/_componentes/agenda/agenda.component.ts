@@ -7,7 +7,6 @@ import {SpinnerService} from "../../_servicios/spinner.service";
 import {NotificationsService} from "angular2-notifications";
 import {TurnosService} from "../../_servicios/datos/turnos.service";
 import {Turno} from "../../_modelos/turno";
-import {DomSanitizer} from "@angular/platform-browser";
 import {Router} from "@angular/router";
 
 @Component({
@@ -23,7 +22,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private spinner: SpinnerService,
     private notificationSerivce: NotificationsService,
     private turnosService: TurnosService,
-    private sanitizer: DomSanitizer,
     private router: Router
   ) { }
 

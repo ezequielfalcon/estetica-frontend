@@ -34,7 +34,6 @@ import { NuevoConsultorioComponent } from './_componentes/consultorios/nuevo-con
 import { VerModificarConsultorioComponent } from './_componentes/consultorios/ver-modificar-consultorio/ver-modificar-consultorio.component';
 import { AgendaComponent } from './_componentes/agenda/agenda.component';
 import {TurnosService} from "./_servicios/datos/turnos.service";
-import {ColorPickerModule} from "angular2-color-picker";
 import { NuevoTurnoComponent } from './_componentes/agenda/nuevo-turno/nuevo-turno.component';
 import { DialogoPacientesComponent } from './_directivas/dialogo-pacientes/dialogo-pacientes.component';
 import {DialogoPacientesService} from "./_servicios/dialogos/dialogo-pacientes.service";
@@ -75,8 +74,7 @@ import {DialogoMedicosService} from "./_servicios/dialogos/dialogo-medicos.servi
     HttpModule,
     MaterialModule,
     routing,
-    SimpleNotificationsModule,
-    ColorPickerModule
+    SimpleNotificationsModule
   ],
   exports: [
     DialogoComponent,
