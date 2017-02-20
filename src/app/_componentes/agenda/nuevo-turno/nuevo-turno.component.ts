@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewContainerRef} from '@angular/core';
 import {TurnosService} from "../../../_servicios/datos/turnos.service";
 import {NotificationsService} from "angular2-notifications";
 import {SpinnerService} from "../../../_servicios/spinner.service";
@@ -7,6 +7,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Medico} from "../../../_modelos/medico";
 import {PacientesService} from "../../../_servicios/datos/pacientes.service";
 import {Paciente} from "../../../_modelos/paciente";
+import {DialogoPacientesService} from "../../../_servicios/dialogos/dialogo-pacientes.service";
 
 @Component({
   selector: 'app-nuevo-turno',
@@ -22,11 +23,14 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     private notificationSerivce: NotificationsService,
     private turnosService: TurnosService,
     private pacientesService: PacientesService,
-    private router: Router
+    private router: Router,
+    private viewContainerRef: ViewContainerRef,
+    private dialogoPacientes: DialogoPacientesService
   ) { }
 
   medicos: Medico[] = [];
   pacientes: Paciente[] = [];
+  pacienteSeleccionado: Paciente;
   nuevoTurno: any = {};
   returnUrl: string;
 
@@ -74,6 +78,18 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
 
   cancelar(){
     this.router.navigate([this.returnUrl]);
+  }
+
+  seleccionarPaciente(){
+    this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
+      .subscribe(pacienteSeleccionado => {
+        for (let paciente of this.pacientes){
+          if (paciente.id == pacienteSeleccionado){
+            this.pacienteSeleccionado = paciente;
+            console.log(this.pacienteSeleccionado);
+          }
+        }
+      });
   }
 
   static turnoStringHora(turnoId: string){

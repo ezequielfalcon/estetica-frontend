@@ -1,0 +1,29 @@
+  <md-card>
+    <md-card-header>
+      <md-card-title>
+        <md-icon>people</md-icon>
+        Pacientes
+      </md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <md-input-container>
+        <input mdInput #input placeholder="Nombre..." [(ngModel)]="search">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput #input placeholder="Apellido..." [(ngModel)]="searchApe">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput #input placeholder="Documento..." [(ngModel)]="searchDni">
+      </md-input-container>
+    </md-card-content>
+    <md-divider></md-divider>
+    <md-card-content>
+      <md-list>
+        <md-list-item class="clickVer" *ngFor="let paciente of pacientes | filterBy: {nombre: search, apellido:searchApe, documento: searchDni}">
+          <md-icon md-list-avatar (click)="dialogRef.close(paciente.id)">person</md-icon>
+          <h4 md-line (click)="dialogRef.close(paciente.id)">{{paciente.nombre + ' ' + paciente.apellido}}</h4>
+          <p md-line (click)="dialogRef.close(paciente.id)">{{'Documento: ' + paciente.documento}}</p>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>

@@ -36,6 +36,8 @@ import { AgendaComponent } from './_componentes/agenda/agenda.component';
 import {TurnosService} from "./_servicios/datos/turnos.service";
 import {ColorPickerModule} from "angular2-color-picker";
 import { NuevoTurnoComponent } from './_componentes/agenda/nuevo-turno/nuevo-turno.component';
+import { DialogoPacientesComponent } from './_directivas/dialogo-pacientes/dialogo-pacientes.component';
+import {DialogoPacientesService} from "./_servicios/dialogos/dialogo-pacientes.service";
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { NuevoTurnoComponent } from './_componentes/agenda/nuevo-turno/nuevo-tur
     NuevoConsultorioComponent,
     VerModificarConsultorioComponent,
     AgendaComponent,
-    NuevoTurnoComponent
+    NuevoTurnoComponent,
+    DialogoPacientesComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,10 @@ import { NuevoTurnoComponent } from './_componentes/agenda/nuevo-turno/nuevo-tur
     SimpleNotificationsModule,
     ColorPickerModule
   ],
-  exports: [DialogoComponent] ,
+  exports: [
+    DialogoComponent,
+    DialogoPacientesComponent
+  ] ,
   providers: [
     LoginService,
     HttpAuthService,
@@ -85,9 +91,13 @@ import { NuevoTurnoComponent } from './_componentes/agenda/nuevo-turno/nuevo-tur
     MedicosService,
     ConsultoriosService,
     NotificationsService,
-    TurnosService
+    TurnosService,
+    DialogoPacientesService
   ],
-  entryComponents: [DialogoComponent] ,
+  entryComponents: [
+    DialogoComponent,
+    DialogoPacientesComponent
+  ] ,
   bootstrap: [AppComponent]
 })
 export class AppModule { }
