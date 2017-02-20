@@ -33,11 +33,26 @@
                 <input mdInput class="clickVer" disabled placeholder="Paciente" [(ngModel)]="pacienteSeleccionado.nombre + ' ' + pacienteSeleccionado.apellido" name="pacienteSel" #pacienteSel="ngModel">
               </md-input-container>
             </td>
+            <td>
+              <button md-raised-button type="button" *ngIf="!medicoSelecionado" (click)="seleccionarMedico()">Seleccionar médico</button>
+              <md-input-container *ngIf="medicoSelecionado" (click)="seleccionarMedico()" class="clickVer">
+                <input mdInput class="clickVer" disabled placeholder="Medico" [(ngModel)]="medicoSelecionado.nombre + ' ' + medicoSelecionado.apellido" name="medicoSel" #medicoSel="ngModel">
+              </md-input-container>
+            </td>
           </tr>
         </table>
+        <p>
+          <md-input-container style="width: 100%">
+            <textarea mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones"></textarea>
+          </md-input-container>
+          <md-slide-toggle ([ngModel])="nuevoTurno.entreturno">Es entre-turno</md-slide-toggle>
+          <md-input-container>
+            <input mdInput placeholder="Costo" name="costoInput" #costoInput="ngModel" ([ngModel])="nuevoTurno.costo">
+          </md-input-container>
+        </p>
       </md-card-content>
       <md-card-actions>
-        <button md-button type="submit"><md-icon>archive</md-icon>Crear</button>
+        <button md-button type="submit"><md-icon>receipt</md-icon>Crear</button>
         <button md-button type="button" (click)="cancelar()"><md-icon>clear</md-icon>Cancelar</button>
       </md-card-actions>
     </md-card>

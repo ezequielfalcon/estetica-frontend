@@ -8,6 +8,7 @@ import {Medico} from "../../../_modelos/medico";
 import {PacientesService} from "../../../_servicios/datos/pacientes.service";
 import {Paciente} from "../../../_modelos/paciente";
 import {DialogoPacientesService} from "../../../_servicios/dialogos/dialogo-pacientes.service";
+import {DialogoMedicosService} from "../../../_servicios/dialogos/dialogo-medicos.service";
 
 @Component({
   selector: 'app-nuevo-turno',
@@ -25,12 +26,14 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     private pacientesService: PacientesService,
     private router: Router,
     private viewContainerRef: ViewContainerRef,
-    private dialogoPacientes: DialogoPacientesService
+    private dialogoPacientes: DialogoPacientesService,
+    private dialogoMedicos: DialogoMedicosService
   ) { }
 
   medicos: Medico[] = [];
   pacientes: Paciente[] = [];
   pacienteSeleccionado: Paciente;
+  medicoSelecionado: Medico;
   nuevoTurno: any = {};
   returnUrl: string;
 
@@ -86,7 +89,17 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
         for (let paciente of this.pacientes){
           if (paciente.id == pacienteSeleccionado){
             this.pacienteSeleccionado = paciente;
-            console.log(this.pacienteSeleccionado);
+          }
+        }
+      });
+  }
+
+  seleccionarMedico(){
+    this.dialogoMedicos.seleccionarMedico(this.viewContainerRef)
+      .subscribe(medicoSeleccionado => {
+        for (let medico of this.medicos){
+          if (medico.id == medicoSeleccionado){
+            this.medicoSelecionado = medico;
           }
         }
       });
