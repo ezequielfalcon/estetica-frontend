@@ -1,3 +1,18 @@
-<p>
-  tratamientos works!
-</p>
+<div class="center">
+  <md-card>
+    <div class="boton-add">
+      <a md-fab [routerLink]="['/nuevo-tratamiento']"><md-icon>add</md-icon></a>
+    </div>
+    <md-divider></md-divider>
+    <md-card-content>
+      <md-list>
+        <md-list-item *ngFor="let tratamiento of tratamientos">
+          <md-icon md-list-avatar>work</md-icon>
+          <h4 md-line>{{tratamiento.nombre}}</h4>
+          <p md-line>{{'ID: ' + tratamiento.id}}</p>
+          <p md-line>{{'Costo: ' + tratamiento.costo}}</p>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>
+</div>

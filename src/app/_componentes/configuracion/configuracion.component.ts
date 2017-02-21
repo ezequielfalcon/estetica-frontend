@@ -26,6 +26,9 @@ export class ConfiguracionComponent implements OnInit {
       case 'consultorios':
         this.indiceTab = 2;
         break;
+      case 'tratamientos':
+        this.indiceTab = 3;
+        break;
       default:
         this.indiceTab = 0;
     }
