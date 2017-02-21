@@ -40,4 +40,8 @@ export class TratamientosComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.spinner.start();
   }
+
+  detalles(id: number){
+    this.router.navigate(['/tratamientos/' + id]);
+  }
 }

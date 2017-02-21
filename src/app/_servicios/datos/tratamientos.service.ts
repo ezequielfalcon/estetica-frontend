@@ -26,7 +26,7 @@ export class TratamientosService {
     let body = new URLSearchParams();
     body.set('nombre', nombre);
     body.set('costo', costo);
-    return this.http.post('/tratamientos/' +id, body).map((response: Response) => response.json());
+    return this.http.put('/tratamientos/' +id, body).map((response: Response) => response.json());
   }
 
   del(id: number){
