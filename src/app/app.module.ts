@@ -39,6 +39,7 @@ import {DialogoMedicosService} from "./_servicios/dialogos/dialogo-medicos.servi
 import {ColorPickerModule} from "ng2-color-picker";
 import { TratamientosComponent } from './_componentes/tratamientos/tratamientos.component';
 import {TratamientosService} from "./_servicios/datos/tratamientos.service";
+import { NuevoTratamientoComponent } from './_componentes/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {TratamientosService} from "./_servicios/datos/tratamientos.service";
     NuevoTurnoComponent,
     DialogoPacientesComponent,
     DialogoMedicosComponent,
-    TratamientosComponent
+    TratamientosComponent,
+    NuevoTratamientoComponent
   ],
   imports: [
     BrowserModule,

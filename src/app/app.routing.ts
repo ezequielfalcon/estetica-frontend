@@ -13,6 +13,7 @@ import {VerModificarMedicoComponent} from "./_componentes/medicos/ver-modificar-
 import {ConfiguracionComponent} from "./_componentes/configuracion/configuracion.component";
 import {AgendaComponent} from "./_componentes/agenda/agenda.component";
 import {NuevoTurnoComponent} from "./_componentes/agenda/nuevo-turno/nuevo-turno.component";
+import {NuevoTratamientoComponent} from "./_componentes/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   { path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion/:id', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'nuevo-turno/:consultorio/:turno/:fecha', component: NuevoTurnoComponent, canActivate: [AuthGuard] },
+  { path: 'nuevo-tratamiento', component: NuevoTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
 
   { path: '*', redirectTo: '' }
 ];
