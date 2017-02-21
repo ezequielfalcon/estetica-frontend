@@ -40,6 +40,8 @@ import {DialogoPacientesService} from "./_servicios/dialogos/dialogo-pacientes.s
 import { DialogoMedicosComponent } from './_directivas/dialogo-medicos/dialogo-medicos.component';
 import {DialogoMedicosService} from "./_servicios/dialogos/dialogo-medicos.service";
 import {ColorPickerModule} from "ng2-color-picker";
+import { TratamientosComponent } from './_componentes/tratamientos/tratamientos.component';
+import {TratamientosService} from "./_servicios/datos/tratamientos.service";
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import {ColorPickerModule} from "ng2-color-picker";
     AgendaComponent,
     NuevoTurnoComponent,
     DialogoPacientesComponent,
-    DialogoMedicosComponent
+    DialogoMedicosComponent,
+    TratamientosComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ import {ColorPickerModule} from "ng2-color-picker";
     NotificationsService,
     TurnosService,
     DialogoPacientesService,
-    DialogoMedicosService
+    DialogoMedicosService,
+    TratamientosService
   ],
   entryComponents: [
     DialogoComponent,
