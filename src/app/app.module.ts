@@ -28,10 +28,7 @@ import { NuevoMedicoComponent } from './_componentes/medicos/nuevo-medico/nuevo-
 import { VerModificarMedicoComponent } from './_componentes/medicos/ver-modificar-medico/ver-modificar-medico.component';
 import { ConfiguracionComponent } from './_componentes/configuracion/configuracion.component';
 import { UsuariosComponent } from './_componentes/usuarios/usuarios.component';
-import { ConsultoriosComponent } from './_componentes/consultorios/consultorios.component';
 import {ConsultoriosService} from "./_servicios/datos/consultorios.service";
-import { NuevoConsultorioComponent } from './_componentes/consultorios/nuevo-consultorio/nuevo-consultorio.component';
-import { VerModificarConsultorioComponent } from './_componentes/consultorios/ver-modificar-consultorio/ver-modificar-consultorio.component';
 import { AgendaComponent } from './_componentes/agenda/agenda.component';
 import {TurnosService} from "./_servicios/datos/turnos.service";
 import { NuevoTurnoComponent } from './_componentes/agenda/nuevo-turno/nuevo-turno.component';
@@ -63,9 +60,6 @@ import {TratamientosService} from "./_servicios/datos/tratamientos.service";
     VerModificarMedicoComponent,
     ConfiguracionComponent,
     UsuariosComponent,
-    ConsultoriosComponent,
-    NuevoConsultorioComponent,
-    VerModificarConsultorioComponent,
     AgendaComponent,
     NuevoTurnoComponent,
     DialogoPacientesComponent,
