@@ -12,12 +12,11 @@ import {Tratamiento} from "../../_modelos/tratamiento";
 })
 export class TratamientosComponent implements OnInit, OnDestroy {
 
-  constructor(
-    private notificationService: NotificationsService,
-    private router: Router,
-    private spinner: SpinnerService,
-    private tratamientosService: TratamientosService
-  ) { }
+  constructor(private notificationService: NotificationsService,
+              private router: Router,
+              private spinner: SpinnerService,
+              private tratamientosService: TratamientosService) {
+  }
 
   tratamientos: Tratamiento[] = [];
 
@@ -25,8 +24,11 @@ export class TratamientosComponent implements OnInit, OnDestroy {
     this.cargarTratamientos();
   }
 
-  cargarTratamientos(){
-    this.tratamientosService.getAll().subscribe(tratamientosDb => { this.tratamientos = tratamientosDb; this.spinner.stop() }, error => {
+  cargarTratamientos() {
+    this.tratamientosService.getAll().subscribe(tratamientosDb => {
+      this.tratamientos = tratamientosDb;
+      this.spinner.stop()
+    }, error => {
       const body = error.json();
       const err = body.error || JSON.stringify(body);
       let mensajeError = JSON.parse(err);
@@ -35,8 +37,7 @@ export class TratamientosComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.spinner.start();
   }
-
 }

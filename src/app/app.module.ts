@@ -38,8 +38,8 @@ import { DialogoMedicosComponent } from './_directivas/dialogo-medicos/dialogo-m
 import {DialogoMedicosService} from "./_servicios/dialogos/dialogo-medicos.service";
 import {ColorPickerModule} from "ng2-color-picker";
 import { TratamientosComponent } from './_componentes/tratamientos/tratamientos.component';
+import {NuevoTratamientoComponent} from "./_componentes/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component";
 import {TratamientosService} from "./_servicios/datos/tratamientos.service";
-import { NuevoTratamientoComponent } from './_componentes/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component';
 
 @NgModule({
   declarations: [
