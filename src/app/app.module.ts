@@ -40,6 +40,7 @@ import {ColorPickerModule} from "ng2-color-picker";
 import { TratamientosComponent } from './_componentes/tratamientos/tratamientos.component';
 import {NuevoTratamientoComponent} from "./_componentes/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component";
 import {TratamientosService} from "./_servicios/datos/tratamientos.service";
+import { VerModificarTratamientoComponent } from './_componentes/tratamientos/ver-modificar-tratamiento/ver-modificar-tratamiento.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import {TratamientosService} from "./_servicios/datos/tratamientos.service";
     DialogoPacientesComponent,
     DialogoMedicosComponent,
     TratamientosComponent,
-    NuevoTratamientoComponent
+    NuevoTratamientoComponent,
+    VerModificarTratamientoComponent
   ],
   imports: [
     BrowserModule,
