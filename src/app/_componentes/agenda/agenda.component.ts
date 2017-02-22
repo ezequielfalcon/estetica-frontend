@@ -99,7 +99,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
   celdaTurnoValor(consultorioId, turnoId: number){
     for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId){
+      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == false){
         for (let medico of this.medicos){
           if (medico.id == turno.id_medico){
             return medico.apellido;
@@ -112,7 +112,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
   celdaTurnoColor(consultorioId, turnoId: number){
     for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId){
+      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId  && turno.entreturno == false){
         for (let medico of this.medicos){
           if (medico.id == turno.id_medico){
             return medico.color;

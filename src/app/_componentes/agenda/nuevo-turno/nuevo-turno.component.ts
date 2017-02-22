@@ -43,7 +43,6 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
   tratamientoSeleccionado: Tratamiento;
   nuevoTurno: any = {};
   returnUrl: string;
-  entreturno: boolean = false;
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -138,13 +137,13 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
   }
 
   crear(){
-    console.log(this.nuevoTurno.entreturno);
+    console.log(this.nuevoTurno.entreTurnoBool);
     this.spinner.start();
     this.turnosService.nuevoTurno(this.nuevoTurno.turnoId,
       this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
       this.medicoSelecionado.id, this.tratamientoSeleccionado.id,
       this.nuevoTurno.observaciones, this.nuevoTurno.costoTurno,
-      this.nuevoTurno.fechaTurno, this.entreturno).subscribe(() => {
+      this.nuevoTurno.fechaTurno, this.nuevoTurno.entreTurnoBool).subscribe(() => {
         this.notificationSerivce.success("OK", "Nuevo turno creado!");
         this.router.navigate([this.returnUrl]);
     }, error => {

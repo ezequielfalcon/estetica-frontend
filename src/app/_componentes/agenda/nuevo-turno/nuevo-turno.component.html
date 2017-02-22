@@ -58,7 +58,7 @@
           <md-input-container style="width: 100%">
             <textarea mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones"></textarea>
           </md-input-container>
-          <md-checkbox ([ngModel])="entreturno">Es entre-turno</md-checkbox>
+          <md-checkbox ([ngModel])="nuevoTurno.entreTurnoBool">Es entre-turno</md-checkbox>
         </p>
       </md-card-content>
       <md-card-actions>
