@@ -42,6 +42,12 @@
           </tr>
           <tr>
             <td>
+              <button md-raised-button type="button" *ngIf="!tratamientoSeleccionado" (click)="seleccionarTratamiento()">Seleccionar tratamiento</button>
+              <md-input-container *ngIf="tratamientoSeleccionado" (click)="seleccionarTratamiento()" class="clickVer">
+                <input mdInput class="clickVer" disabled placeholder="Tratamiento" [(ngModel)]="tratamientoSeleccionado.nombre" name="tratamientoSel" #tratamientoSel="ngModel">
+              </md-input-container>
+            </td>
+            <td>
               <md-input-container>
                 <input mdInput type="number" placeholder="Costo" [(ngModel)]="nuevoTurno.costoTurno" name="costoTurno" #costoTurno="ngModel">
               </md-input-container>
@@ -52,7 +58,7 @@
           <md-input-container style="width: 100%">
             <textarea mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones"></textarea>
           </md-input-container>
-          <md-slide-toggle ([ngModel])="nuevoTurno.entreturno">Es entre-turno</md-slide-toggle>
+          <md-checkbox ([ngModel])="entreturno">Es entre-turno</md-checkbox>
         </p>
       </md-card-content>
       <md-card-actions>

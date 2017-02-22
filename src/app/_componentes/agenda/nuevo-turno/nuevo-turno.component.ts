@@ -9,6 +9,9 @@ import {PacientesService} from "../../../_servicios/datos/pacientes.service";
 import {Paciente} from "../../../_modelos/paciente";
 import {DialogoPacientesService} from "../../../_servicios/dialogos/dialogo-pacientes.service";
 import {DialogoMedicosService} from "../../../_servicios/dialogos/dialogo-medicos.service";
+import {Tratamiento} from "../../../_modelos/tratamiento";
+import {TratamientosService} from "../../../_servicios/datos/tratamientos.service";
+import {DialogoTratamientosService} from "../../../_servicios/dialogos/dialogo-tratamientos.service";
 
 @Component({
   selector: 'app-nuevo-turno',
@@ -27,15 +30,20 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     private router: Router,
     private viewContainerRef: ViewContainerRef,
     private dialogoPacientes: DialogoPacientesService,
-    private dialogoMedicos: DialogoMedicosService
+    private dialogoMedicos: DialogoMedicosService,
+    private tratamientosService: TratamientosService,
+    private dialogoTratamientos: DialogoTratamientosService
   ) { }
 
   medicos: Medico[] = [];
   pacientes: Paciente[] = [];
+  tratamientos: Tratamiento[] = [];
   pacienteSeleccionado: Paciente;
   medicoSelecionado: Medico;
+  tratamientoSeleccionado: Tratamiento;
   nuevoTurno: any = {};
   returnUrl: string;
+  entreturno: boolean = false;
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -47,6 +55,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     });
     this.cargarMedicos();
     this.cargarPacientes();
+    this.cargarTratamientos();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/agenda';
   }
 
@@ -73,6 +82,17 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       let mensajeError = JSON.parse(err);
       this.notificationSerivce.error('Error', mensajeError.mensaje);
       this.spinner.stop();
+    });
+  }
+
+  cargarTratamientos() {
+    this.tratamientosService.getAll().subscribe(tratamientosDb => {
+      this.tratamientos = tratamientosDb;
+    }, error => {
+      const body = error.json();
+      const err = body.error || JSON.stringify(body);
+      let mensajeError = JSON.parse(err);
+      this.notificationSerivce.error('Error', mensajeError.mensaje);
     });
   }
 
@@ -104,6 +124,36 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
           }
         }
       });
+  }
+
+  seleccionarTratamiento(){
+    this.dialogoTratamientos.seleccionarTratamiento(this.viewContainerRef)
+      .subscribe(tratamientoSeleccionadoDb => {
+        for (let tratamiento of this.tratamientos){
+          if (tratamiento.id == tratamientoSeleccionadoDb){
+            this.tratamientoSeleccionado = tratamiento;
+          }
+        }
+      });
+  }
+
+  crear(){
+    console.log(this.nuevoTurno.entreturno);
+    this.spinner.start();
+    this.turnosService.nuevoTurno(this.nuevoTurno.turnoId,
+      this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
+      this.medicoSelecionado.id, this.tratamientoSeleccionado.id,
+      this.nuevoTurno.observaciones, this.nuevoTurno.costoTurno,
+      this.nuevoTurno.fechaTurno, this.entreturno).subscribe(() => {
+        this.notificationSerivce.success("OK", "Nuevo turno creado!");
+        this.router.navigate([this.returnUrl]);
+    }, error => {
+      const body = error.json();
+      const err = body.error || JSON.stringify(body);
+      let mensajeError = JSON.parse(err);
+      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      this.spinner.stop();
+    });
   }
 
   static turnoStringHora(turnoId: string){
