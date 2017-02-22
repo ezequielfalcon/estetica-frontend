@@ -3,6 +3,7 @@ import {Paciente} from "../../_modelos/paciente";
 import {PacientesService} from "../../_servicios/datos/pacientes.service";
 import {NotificationsService} from "angular2-notifications";
 import {MdDialogRef} from "@angular/material";
+import {SpinnerService} from "../../_servicios/spinner.service";
 
 @Component({
   selector: 'app-dialogo-pacientes',
@@ -15,8 +16,11 @@ export class DialogoPacientesComponent implements OnInit {
     private ref: ChangeDetectorRef,
     private pacientesService: PacientesService,
     private notificationSerivce: NotificationsService,
-    public dialogRef: MdDialogRef<DialogoPacientesComponent>
-  ) { }
+    public dialogRef: MdDialogRef<DialogoPacientesComponent>,
+    private spinner: SpinnerService
+  ) {
+    this.spinner.start();
+  }
 
   pacientes: Paciente[] = [];
   search: string = "";
@@ -31,11 +35,13 @@ export class DialogoPacientesComponent implements OnInit {
   private cargarPacientes(){
     this.pacientesService.getAll().subscribe(pacientesDb => {
       this.pacientes = pacientesDb;
+      this.spinner.stop();
     }, error => {
       const body = error.json();
       const err = body.error || JSON.stringify(body);
       let mensajeError = JSON.parse(err);
       this.notificationSerivce.error('Error', mensajeError.mensaje);
+      this.spinner.stop();
     });
   }
 
