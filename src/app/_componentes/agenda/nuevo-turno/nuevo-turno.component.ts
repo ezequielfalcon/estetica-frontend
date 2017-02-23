@@ -105,6 +105,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
   }
 
   seleccionarPaciente(){
+    this.spinner.start();
     this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
       .subscribe(pacienteSeleccionado => {
         for (let paciente of this.pacientes){
@@ -116,6 +117,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
   }
 
   seleccionarMedico(){
+    this.spinner.start();
     this.dialogoMedicos.seleccionarMedico(this.viewContainerRef)
       .subscribe(medicoSeleccionado => {
         for (let medico of this.medicos){
@@ -127,6 +129,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
   }
 
   agregarTratamiento(){
+    this.spinner.start();
     this.dialogoTratamientos.seleccionarTratamiento(this.viewContainerRef)
       .subscribe(tratamientoSeleccionadoDb => {
         for (let tratamiento of this.tratamientos){
