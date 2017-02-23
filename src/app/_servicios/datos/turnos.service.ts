@@ -22,14 +22,13 @@ export class TurnosService {
       + '/' + +turno + '/' + fecha).map((response: Response) => response.json().datos);
   }
 
-  nuevoTurno(turnoId:number , pacienteId:number, consultorioId:number, medicoId:number, tratamientoId: number,
+  nuevoTurno(turnoId:number , pacienteId:number, consultorioId:number, medicoId:number,
              obs, costo, fecha:string, entreturno: boolean){
     let body = new URLSearchParams();
     body.set('id_turno', ""+turnoId);
     body.set('id_paciente', ""+pacienteId);
     body.set('id_consultorio', ""+consultorioId);
     body.set('id_medico', ""+medicoId);
-    body.set('id_tratamiento', ""+tratamientoId);
     body.set('observaciones', obs);
     body.set('costo', costo);
     body.set('fecha', fecha);

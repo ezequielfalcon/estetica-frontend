@@ -141,7 +141,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     this.spinner.start();
     this.turnosService.nuevoTurno(this.nuevoTurno.turnoId,
       this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
-      this.medicoSelecionado.id, this.tratamientoSeleccionado.id,
+      this.medicoSelecionado.id,
       this.nuevoTurno.observaciones, this.nuevoTurno.costoTurno,
       this.nuevoTurno.fechaTurno, this.nuevoTurno.entreTurnoBool).subscribe(() => {
         this.notificationSerivce.success("OK", "Nuevo turno creado!");
