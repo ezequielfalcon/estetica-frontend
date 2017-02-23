@@ -43,6 +43,8 @@ import {TratamientosService} from "./_servicios/datos/tratamientos.service";
 import { VerModificarTratamientoComponent } from './_componentes/tratamientos/ver-modificar-tratamiento/ver-modificar-tratamiento.component';
 import { DialogoTratamientosComponent } from './_directivas/dialogo-tratamientos/dialogo-tratamientos.component';
 import {DialogoTratamientosService} from "./_servicios/dialogos/dialogo-tratamientos.service";
+import { DialogoTurnoComponent } from './_directivas/dialogo-turno/dialogo-turno.component';
+import {DialogoTurnoService} from "./_servicios/dialogos/dialogo-turno.service";
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import {DialogoTratamientosService} from "./_servicios/dialogos/dialogo-tratamie
     TratamientosComponent,
     NuevoTratamientoComponent,
     VerModificarTratamientoComponent,
-    DialogoTratamientosComponent
+    DialogoTratamientosComponent,
+    DialogoTurnoComponent
   ],
   imports: [
     BrowserModule,
@@ -104,13 +107,15 @@ import {DialogoTratamientosService} from "./_servicios/dialogos/dialogo-tratamie
     DialogoPacientesService,
     DialogoMedicosService,
     TratamientosService,
-    DialogoTratamientosService
+    DialogoTratamientosService,
+    DialogoTurnoService
   ],
   entryComponents: [
     DialogoComponent,
     DialogoPacientesComponent,
     DialogoMedicosComponent,
-    DialogoTratamientosComponent
+    DialogoTratamientosComponent,
+    DialogoTurnoComponent
   ] ,
   bootstrap: [AppComponent]
 })
