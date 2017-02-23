@@ -3,6 +3,7 @@ import {Medico} from "../../_modelos/medico";
 import {NotificationsService} from "angular2-notifications";
 import {MedicosService} from "../../_servicios/datos/medicos.service";
 import {MdDialogRef} from "@angular/material";
+import {SpinnerService} from "../../_servicios/spinner.service";
 
 @Component({
   selector: 'app-dialogo-medicos',
@@ -15,8 +16,11 @@ export class DialogoMedicosComponent implements OnInit {
     private medicosService: MedicosService,
     private notificationSerivce: NotificationsService,
     private ref: ChangeDetectorRef,
-    public dialogRef: MdDialogRef<DialogoMedicosComponent>
-  ) { }
+    public dialogRef: MdDialogRef<DialogoMedicosComponent>,
+    private spinner: SpinnerService
+  ) {
+    this.spinner.start();
+  }
 
   medicos: Medico[] = [];
   search: string = "";
@@ -30,11 +34,13 @@ export class DialogoMedicosComponent implements OnInit {
   cargarMedicos(){
     this.medicosService.getAll().subscribe(medicosDb => {
       this.medicos = medicosDb;
+      this.spinner.stop();
     }, error => {
       const body = error.json();
       const err = body.error || JSON.stringify(body);
       let mensajeError = JSON.parse(err);
       this.notificationSerivce.error('Error', mensajeError.mensaje);
+      this.spinner.stop();
     });
   }
 
