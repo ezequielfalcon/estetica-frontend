@@ -42,24 +42,25 @@
           </tr>
           <tr>
             <td>
-              <button md-raised-button type="button" *ngIf="!tratamientoSeleccionado" (click)="seleccionarTratamiento()">Seleccionar tratamiento</button>
-              <md-input-container *ngIf="tratamientoSeleccionado" (click)="seleccionarTratamiento()" class="clickVer">
-                <input mdInput class="clickVer" disabled placeholder="Tratamiento" [(ngModel)]="tratamientoSeleccionado.nombre" name="tratamientoSel" #tratamientoSel="ngModel">
-              </md-input-container>
-            </td>
-            <td>
               <md-input-container>
                 <input mdInput type="number" placeholder="Costo" [(ngModel)]="nuevoTurno.costoTurno" name="costoTurno" #costoTurno="ngModel">
               </md-input-container>
             </td>
           </tr>
         </table>
-        <p>
           <md-input-container style="width: 100%">
             <textarea mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones"></textarea>
           </md-input-container>
           <md-checkbox ([ngModel])="nuevoTurno.entreTurnoBool">Es entre-turno</md-checkbox>
-        </p>
+        <br>
+          <button md-raised-button type="button" (click)="agregarTratamiento()">Agregar tratamiento</button>
+          <h3>Tratamientos:</h3>
+          <md-chip-list class="mat-chip-list-stacked">
+            <md-chip *ngFor="let tratamientoChip of tratamientosSeleccionados"
+                     color="primary" selected="true">
+              {{tratamientoChip.nombre}}
+            </md-chip>
+          </md-chip-list>
       </md-card-content>
       <md-card-actions>
         <button md-button type="submit"><md-icon>receipt</md-icon>Crear</button>

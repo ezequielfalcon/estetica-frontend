@@ -33,7 +33,14 @@ export class TurnosService {
     body.set('costo', costo);
     body.set('fecha', fecha);
     body.set('entreturno', ""+entreturno);
-    return this.http.post('/nuevo-turno', body).map((response: Response) => response.json());
+    return this.http.post('/nuevo-turno', body).map((response: Response) => response.json().id);
+  }
+
+  agregarTratamiento(agendaId: number, tratamientoId: number){
+    let body = new URLSearchParams();
+    body.set('id_agenda', ""+agendaId);
+    body.set('id_tratamiento', ""+tratamientoId);
+    return this.http.post('/agregar-tratamiento', body).map((response: Response) => response.json());
   }
 
 }

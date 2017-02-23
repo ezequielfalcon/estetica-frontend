@@ -40,7 +40,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
   tratamientos: Tratamiento[] = [];
   pacienteSeleccionado: Paciente;
   medicoSelecionado: Medico;
-  tratamientoSeleccionado: Tratamiento;
+  tratamientosSeleccionados: Tratamiento[] = [];
   nuevoTurno: any = {};
   returnUrl: string;
 
@@ -51,6 +51,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.nuevoTurno.turnoString = NuevoTurnoComponent.turnoStringHora(this.nuevoTurno.turnoId);
       this.nuevoTurno.fechaTurno = params["fecha"];
       this.nuevoTurno.costoTurno = 0;
+      this.nuevoTurno.entreTurnoBool = false;
     });
     this.cargarMedicos();
     this.cargarPacientes();
@@ -125,26 +126,42 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       });
   }
 
-  seleccionarTratamiento(){
+  agregarTratamiento(){
     this.dialogoTratamientos.seleccionarTratamiento(this.viewContainerRef)
       .subscribe(tratamientoSeleccionadoDb => {
         for (let tratamiento of this.tratamientos){
           if (tratamiento.id == tratamientoSeleccionadoDb){
-            this.tratamientoSeleccionado = tratamiento;
+            for (let tratamientosAgregados of this.tratamientosSeleccionados){
+              if (tratamientosAgregados.id == tratamientoSeleccionadoDb) {
+                this.notificationSerivce.alert("Advertencia", "Ya agregó ese tratamiento a al turno!");
+                return;
+              }
+            }
+            this.tratamientosSeleccionados.push(tratamiento);
           }
         }
       });
   }
 
   crear(){
-    console.log(this.nuevoTurno.entreTurnoBool);
     this.spinner.start();
     this.turnosService.nuevoTurno(this.nuevoTurno.turnoId,
       this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
       this.medicoSelecionado.id,
       this.nuevoTurno.observaciones, this.nuevoTurno.costoTurno,
-      this.nuevoTurno.fechaTurno, this.nuevoTurno.entreTurnoBool).subscribe(() => {
-        this.notificationSerivce.success("OK", "Nuevo turno creado!");
+      this.nuevoTurno.fechaTurno, this.nuevoTurno.entreTurnoBool).subscribe((agendaId) => {
+        for (let tratamientosSeleccionadosList of this.tratamientosSeleccionados){
+          this.turnosService.agregarTratamiento(agendaId, tratamientosSeleccionadosList.id).subscribe(() => {
+          }, error => {
+            const body = error.json();
+            const err = body.error || JSON.stringify(body);
+            let mensajeError = JSON.parse(err);
+            this.notificationSerivce.error('Error', mensajeError.mensaje);
+            this.spinner.stop();
+            return;
+          });
+        }
+      this.notificationSerivce.success("OK", "Nuevo turno creado con ID: " + agendaId);
         this.router.navigate([this.returnUrl]);
     }, error => {
       const body = error.json();
