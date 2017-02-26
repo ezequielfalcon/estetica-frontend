@@ -104,6 +104,11 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
   clickCeldaTurno(consultorioId, turnoId: number){
     if (this.celdaTurnoValor(consultorioId, turnoId) == "Vacío"){
+      if (this.fechaTurnos < AgendaComponent.fechaHoy())
+      {
+        this.notificationSerivce.error("Error", "Está intentando reservar un turno para una fecha anterior a la actual!");
+        return;
+      }
       this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.configuracion.fechaActual])
     }
     else{

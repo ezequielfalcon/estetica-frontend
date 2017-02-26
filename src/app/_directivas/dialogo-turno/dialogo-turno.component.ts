@@ -43,7 +43,7 @@ export class DialogoTurnoComponent implements OnInit {
         this.turno = turnoDb;
         this.traerPaciente(this.turno.id_paciente);
         this.traerMedico(this.turno.id_medico);
-        this.traerTratamientos(this.turno.id);
+        this.cargarTratamientosAgenda(this.turno.id);
       }, error => {
         const body = error.json();
         const err = body.error || JSON.stringify(body);
@@ -75,10 +75,10 @@ export class DialogoTurnoComponent implements OnInit {
     });
   }
 
-  traerTratamientos(agendaId: number) {
+  cargarTratamientosAgenda(agendaId: number) {
     this.tratamientosService.traerAgenda(agendaId).subscribe(tratamientosDb => {
       this.tratamientos = tratamientosDb;
-      this.spinner.stop()
+      this.spinner.stop();
     }, error => {
       const body = error.json();
       const err = body.error || JSON.stringify(body);

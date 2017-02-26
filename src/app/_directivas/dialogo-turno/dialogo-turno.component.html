@@ -19,7 +19,9 @@
       <div *ngIf="tratamientos.length > 0">
         <h3>Tratamientos</h3>
         <md-chip-list>
-          <md-chip *ngFor="let tratamiento of tratamientos">{{tratamiento.nombre}}</md-chip>
+          <md-chip *ngFor="let tratamiento of tratamientos" color="primary" selected="true">
+            {{tratamiento.nombre}}
+          </md-chip>
         </md-chip-list>
       </div>
 
