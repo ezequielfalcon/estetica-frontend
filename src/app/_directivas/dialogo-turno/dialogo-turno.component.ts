@@ -32,7 +32,7 @@ export class DialogoTurnoComponent implements OnInit {
   public turnoId: number;
   public fecha: string;
 
-  turno: Turno;
+  turno: any = {};
   paciente: any = {};
   medico: any = {};
   tratamientos: Tratamiento[] = [];
