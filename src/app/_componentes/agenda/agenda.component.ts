@@ -43,7 +43,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.suscripcionFecha = this.route.params.subscribe(params => {
-      this.fechaTurnos = params['id'] || AgendaComponent.fechaHoy();
+      this.fechaTurnos = params['fecha'] || AgendaComponent.fechaHoy();
       this.cargarConsuls();
       this.cargarMedicos();
       this.traerConfigTurnos();
@@ -152,7 +152,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
 
   cambiarFecha(fecha:string){
-    this.router.navigate(['/agenda/' + fecha]);
+    this.router.navigate(['/redir-agenda/' + fecha]);
   }
 
 }

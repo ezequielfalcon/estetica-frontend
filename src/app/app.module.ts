@@ -45,6 +45,7 @@ import { DialogoTratamientosComponent } from './_directivas/dialogo-tratamientos
 import {DialogoTratamientosService} from "./_servicios/dialogos/dialogo-tratamientos.service";
 import { DialogoTurnoComponent } from './_directivas/dialogo-turno/dialogo-turno.component';
 import {DialogoTurnoService} from "./_servicios/dialogos/dialogo-turno.service";
+import { RedirAgendaComponent } from './_componentes/agenda/redir-agenda/redir-agenda.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import {DialogoTurnoService} from "./_servicios/dialogos/dialogo-turno.service";
     NuevoTratamientoComponent,
     VerModificarTratamientoComponent,
     DialogoTratamientosComponent,
-    DialogoTurnoComponent
+    DialogoTurnoComponent,
+    RedirAgendaComponent
   ],
   imports: [
     BrowserModule,

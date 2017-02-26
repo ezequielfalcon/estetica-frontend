@@ -15,12 +15,14 @@ import {AgendaComponent} from "./_componentes/agenda/agenda.component";
 import {NuevoTurnoComponent} from "./_componentes/agenda/nuevo-turno/nuevo-turno.component";
 import {NuevoTratamientoComponent} from "./_componentes/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component";
 import {VerModificarTratamientoComponent} from "./_componentes/tratamientos/ver-modificar-tratamiento/ver-modificar-tratamiento.component";
+import {RedirAgendaComponent} from "./_componentes/agenda/redir-agenda/redir-agenda.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
-  { path: 'agenda/:id', component: AgendaComponent, canActivate: [AuthGuard] },
+  { path: 'agenda/:fecha', component: AgendaComponent, canActivate: [AuthGuard] },
+  { path: 'redir-agenda/:fecha', component: RedirAgendaComponent, canActivate: [AuthGuard] },
   { path: 'pacientes', component: PacientesComponent, canActivate: [AuthGuard]},
   { path: 'pacientes/:id', component: VerModificarPacienteComponent, canActivate: [AuthGuard] } ,
   { path: 'medicos/:id', component: VerModificarMedicoComponent, canActivate: [AuthGuard, AdminGuard] } ,
