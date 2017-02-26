@@ -20,6 +20,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
+  { path: 'agenda/:id', component: AgendaComponent, canActivate: [AuthGuard] },
   { path: 'pacientes', component: PacientesComponent, canActivate: [AuthGuard]},
   { path: 'pacientes/:id', component: VerModificarPacienteComponent, canActivate: [AuthGuard] } ,
   { path: 'medicos/:id', component: VerModificarMedicoComponent, canActivate: [AuthGuard, AdminGuard] } ,

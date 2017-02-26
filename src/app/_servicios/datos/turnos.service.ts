@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpAuthService} from "../http-auth.service";
 import {Response, URLSearchParams} from "@angular/http";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class TurnosService {
@@ -9,12 +10,18 @@ export class TurnosService {
     private http: HttpAuthService
   ) { }
 
+
+
   traerConfig(){
     return this.http.get('/configuracion-turnos').map((response: Response) => response.json().datos);
   }
 
-  traerTurnos(fecha: string){
-    return this.http.get('/turnos/' + fecha).map((response: Response) => response.json().datos);
+  traerTurnos(fecha: string, pararPolling){
+    return Observable.interval(5000).flatMap(() => {
+      return this.http.get('/turnos/' + fecha).map((response: Response) => response.json().datos)
+        .takeUntil(pararPolling);
+    });
+
   }
 
   traerTurno(consultorio, turno: number, fecha: string){

@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, OnDestroy, ViewContainerRef, Input} from '@angular/core';
+  Component, OnInit, OnDestroy, ViewContainerRef} from '@angular/core';
 import {ConsultoriosService} from "../../_servicios/datos/consultorios.service";
 import {MedicosService} from "../../_servicios/datos/medicos.service";
 import {Medico} from "../../_modelos/medico";
@@ -8,8 +8,9 @@ import {SpinnerService} from "../../_servicios/spinner.service";
 import {NotificationsService} from "angular2-notifications";
 import {TurnosService} from "../../_servicios/datos/turnos.service";
 import {Turno} from "../../_modelos/turno";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {DialogoTurnoService} from "../../_servicios/dialogos/dialogo-turno.service";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-agenda',
@@ -17,6 +18,8 @@ import {DialogoTurnoService} from "../../_servicios/dialogos/dialogo-turno.servi
   styleUrls: ['./agenda.component.css']
 })
 export class AgendaComponent implements OnInit, OnDestroy {
+
+  pararActualizarTurnos;
 
   constructor(
     private consultoriosService: ConsultoriosService,
@@ -26,23 +29,32 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private turnosService: TurnosService,
     private router: Router,
     private viewContainerRef: ViewContainerRef,
-    private dialogoTurno: DialogoTurnoService
-  ) { }
+    private dialogoTurno: DialogoTurnoService,
+    private route: ActivatedRoute
+  ) { this.pararActualizarTurnos = new Subject(); }
 
   medicos: Medico[] = [];
   consultorios: Consultorio[] = [];
   turnos: Turno[] = [];
   configuracion: any = {};
-  fechaTurnos: string = AgendaComponent.fechaHoy();
+  fechaTurnos: string;
+  suscripcionTurnos;
+  suscripcionFecha: any;
 
   ngOnInit() {
-    this.cargarConsuls();
-    this.cargarMedicos();
-    this.traerConfigTurnos();
-    this.traerTurnos(AgendaComponent.fechaHoy());
+    this.suscripcionFecha = this.route.params.subscribe(params => {
+      this.fechaTurnos = params['id'] || AgendaComponent.fechaHoy();
+      this.cargarConsuls();
+      this.cargarMedicos();
+      this.traerConfigTurnos();
+      this.traerTurnos(this.fechaTurnos);
+    });
   }
 
   ngOnDestroy(){
+    this.pararActualizarTurnos = true;
+    this.suscripcionTurnos.unsubscribe();
+    this.suscripcionFecha.unsubscribe();
     this.spinner.start();
   }
 
@@ -56,7 +68,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
       const err = body.error || JSON.stringify(body);
       let mensajeError = JSON.parse(err);
       this.notificationSerivce.error('Error', mensajeError.mensaje);
-      this.spinner.stop();
     });
   }
 
@@ -70,7 +81,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
   cargarConsuls(){
     this.consultoriosService.getAll().subscribe(consulsDb => {
       this.consultorios = consulsDb;
-      this.spinner.stop();
     }, error => {
       const body = error.json();
       const err = body.error || JSON.stringify(body);
@@ -83,7 +93,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
   cargarMedicos(){
     this.medicosService.getAll().subscribe(medicosDb => {
       this.medicos = medicosDb;
-      this.spinner.stop();
     }, error => {
       const body = error.json();
       const err = body.error || JSON.stringify(body);
@@ -130,8 +139,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
 
   traerTurnos(fecha: string){
-    this.spinner.start();
-    this.turnosService.traerTurnos(fecha).subscribe(turnosDb => {
+    this.suscripcionTurnos = this.turnosService.traerTurnos(fecha, this.pararActualizarTurnos).subscribe(turnosDb => {
       this.turnos = turnosDb;
       this.spinner.stop();
     }, error => {
@@ -141,6 +149,10 @@ export class AgendaComponent implements OnInit, OnDestroy {
       this.notificationSerivce.error('Error', mensajeError.mensaje);
       this.spinner.stop();
     });
+  }
+
+  cambiarFecha(fecha:string){
+    this.router.navigate(['/agenda/' + fecha]);
   }
 
 }
