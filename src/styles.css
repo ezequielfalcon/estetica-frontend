@@ -13,6 +13,11 @@
   width: 80%;
 }
 
+.center-agenda{
+  margin: auto;
+  max-width: 98%;
+}
+
 
   th, td{
     padding: 5px;
@@ -31,6 +36,10 @@
   .center-form {
     margin: auto;
     width: 40%;
+  }
+  .center-agenda{
+    margin: auto;
+    max-width: 90%;
   }
 }
 
