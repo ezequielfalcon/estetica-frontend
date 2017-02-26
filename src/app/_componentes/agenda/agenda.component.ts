@@ -1,4 +1,5 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, ViewContainerRef, Input} from '@angular/core';
 import {ConsultoriosService} from "../../_servicios/datos/consultorios.service";
 import {MedicosService} from "../../_servicios/datos/medicos.service";
 import {Medico} from "../../_modelos/medico";
@@ -8,6 +9,7 @@ import {NotificationsService} from "angular2-notifications";
 import {TurnosService} from "../../_servicios/datos/turnos.service";
 import {Turno} from "../../_modelos/turno";
 import {Router} from "@angular/router";
+import {DialogoTurnoService} from "../../_servicios/dialogos/dialogo-turno.service";
 
 @Component({
   selector: 'app-agenda',
@@ -22,13 +24,16 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private spinner: SpinnerService,
     private notificationSerivce: NotificationsService,
     private turnosService: TurnosService,
-    private router: Router
+    private router: Router,
+    private viewContainerRef: ViewContainerRef,
+    private dialogoTurno: DialogoTurnoService
   ) { }
 
   medicos: Medico[] = [];
   consultorios: Consultorio[] = [];
   turnos: Turno[] = [];
   configuracion: any = {};
+  fechaTurnos: string = AgendaComponent.fechaHoy();
 
   ngOnInit() {
     this.cargarConsuls();
@@ -93,7 +98,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
       this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.configuracion.fechaActual])
     }
     else{
-
+      this.spinner.start();
+      this.dialogoTurno.verTurno(this.configuracion.fechaActual, consultorioId, turnoId, this.viewContainerRef);
     }
   }
 
@@ -124,8 +130,10 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
 
   traerTurnos(fecha: string){
+    this.spinner.start();
     this.turnosService.traerTurnos(fecha).subscribe(turnosDb => {
       this.turnos = turnosDb;
+      this.spinner.stop();
     }, error => {
       const body = error.json();
       const err = body.error || JSON.stringify(body);

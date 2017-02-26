@@ -69,7 +69,7 @@
       <md-card-actions>
         <button md-button (click)="editar(true)" *ngIf="!edicion" type="button"><md-icon>create</md-icon>Modificar</button>
         <button *ngIf="edicion" md-button type="submit"><md-icon>archive</md-icon>Guardar</button>
-        <button md-button type="button" *ngIf="!edicion" [routerLink]="['/pacientes']"><md-icon>undo</md-icon>Volver</button>
+        <button md-button type="button" *ngIf="!edicion" [routerLink]="[returnUrl]"><md-icon>undo</md-icon>Volver</button>
         <button md-button (click)="editar(false)" type="button" *ngIf="edicion"><md-icon>clear</md-icon>Cancelar</button>
         <div class="botones-derecha">
           <button md-button type="button" (click)="borrar()"><md-icon>remove_circle</md-icon>Borrar</button>

@@ -18,8 +18,8 @@ export class TurnosService {
   }
 
   traerTurno(consultorio, turno: number, fecha: string){
-    return this.http.get('/turnos/' + +consultorio
-      + '/' + +turno + '/' + fecha).map((response: Response) => response.json().datos);
+    return this.http.get('/turnos/' + fecha
+      + '/' + consultorio + '/' + turno).map((response: Response) => response.json().datos);
   }
 
   nuevoTurno(turnoId:number , pacienteId:number, consultorioId:number, medicoId:number,

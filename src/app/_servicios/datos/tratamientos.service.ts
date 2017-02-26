@@ -15,6 +15,10 @@ export class TratamientosService {
     return this.http.get('/tratamientos/' + id).map((response: Response) => response.json().datos);
   }
 
+  traerAgenda(id_agenda: number){
+    return this.http.get('/tratamientos-agenda/' + id_agenda).map((response: Response) => response.json().datos);
+  }
+
   post(nombre, costo: string){
     let body = new URLSearchParams();
     body.set('nombre', nombre);

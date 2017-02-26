@@ -45,6 +45,8 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
   medico: Medico;
   model: any = {};
   edicion: boolean = false;
+  returnUrl: string;
+
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.medicService.getById(+params['id']))
@@ -59,10 +61,15 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
         this.notificationService.error('Error', mensajeError.mensaje);
         this.spinner.stop();
       });
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/configuracion/medicos';
   }
 
   ngOnDestroy(){
     this.spinner.start();
+  }
+
+  volver(){
+    this.router.navigate([this.returnUrl]);
   }
 
   modificar(){

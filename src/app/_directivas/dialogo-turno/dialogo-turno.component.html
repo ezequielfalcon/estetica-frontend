@@ -1,3 +1,28 @@
-<p>
-  dialogo-turno works!
-</p>
+<md-card>
+  <md-card-header>
+    <md-card-title>
+      <h2>Turno para {{fecha}}</h2>
+    </md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <md-list>
+      <md-list-item class="clickVer"  *ngIf="medico.id" (click)="detallesMedico(medico.id)">
+        <md-icon md-list-avatar>local_hospital</md-icon>
+        <h4 md-line>Médico:</h4>
+        <p md-line>{{medico.nombre + ' ' + medico.apellido}}</p>
+      </md-list-item>
+      <md-list-item class="clickVer" *ngIf="paciente.id" (click)="detallesPaciente(paciente.id)">
+        <md-icon md-list-avatar>person</md-icon>
+        <h4 md-line>Paciente:</h4>
+        <p md-line>{{paciente.nombre + ' ' + paciente.apellido}}</p>
+      </md-list-item>
+      <div *ngIf="tratamientos.length > 0">
+        <h3>Tratamientos</h3>
+        <md-chip-list>
+          <md-chip *ngFor="let tratamiento of tratamientos">{{tratamiento.nombre}}</md-chip>
+        </md-chip-list>
+      </div>
+
+    </md-list>
+  </md-card-content>
+</md-card>
