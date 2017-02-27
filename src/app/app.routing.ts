@@ -32,7 +32,7 @@ const appRoutes: Routes = [
   { path: 'nuevo-medico', component: NuevoMedicoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion/:id', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'nuevo-turno/:consultorio/:turno/:fecha', component: NuevoTurnoComponent, canActivate: [AuthGuard] },
+  { path: 'nuevo-turno/:consultorio/:turno/:fecha/:entreturno', component: NuevoTurnoComponent, canActivate: [AuthGuard] },
   { path: 'nuevo-tratamiento', component: NuevoTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'tratamientos/:id', component: VerModificarTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
 

@@ -30,11 +30,11 @@
         </tr>
         <tr style="height: 7px">
           <td></td>
-          <td [style.background]="entreturno(1,1)"></td>
-          <td [style.background]="entreturno(2,1)"></td>
-          <td [style.background]="entreturno(3,1)"></td>
-          <td [style.background]="entreturno(4,1)"></td>
-          <td [style.background]="entreturno(5,1)"></td>
+          <td class="clickVer" [style.background]="entreturno(1,1)" (click)="clickEntreturno(1,1)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,1)" (click)="clickEntreturno(2,1)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,1)" (click)="clickEntreturno(3,1)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,1)" (click)="clickEntreturno(4,1)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,1)" (click)="clickEntreturno(5,1)"></td>
         </tr>
         <tr>
           <td>09:20</td>
@@ -44,6 +44,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,2)" [style.background]="celdaTurnoColor(4,2)">{{celdaTurnoValor(4,2)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,2)" [style.background]="celdaTurnoColor(5,2)">{{celdaTurnoValor(5,2)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,2)" (click)="clickEntreturno(1,2)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,2)" (click)="clickEntreturno(2,2)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,2)" (click)="clickEntreturno(3,2)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,2)" (click)="clickEntreturno(4,2)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,2)" (click)="clickEntreturno(5,2)"></td>
+        </tr>
         <tr>
           <td>09:40</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,3)" [style.background]="celdaTurnoColor(1,3)">{{celdaTurnoValor(1,3)}}</button></td>
@@ -51,6 +59,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,3)" [style.background]="celdaTurnoColor(3,3)">{{celdaTurnoValor(3,3)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,3)" [style.background]="celdaTurnoColor(4,3)">{{celdaTurnoValor(4,3)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,3)" [style.background]="celdaTurnoColor(5,3)">{{celdaTurnoValor(5,3)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,3)" (click)="clickEntreturno(1,3)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,3)" (click)="clickEntreturno(2,3)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,3)" (click)="clickEntreturno(3,3)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,3)" (click)="clickEntreturno(4,3)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,3)" (click)="clickEntreturno(5,3)"></td>
         </tr>
         <tr>
           <td>10:00</td>
@@ -60,6 +76,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,4)" [style.background]="celdaTurnoColor(4,4)">{{celdaTurnoValor(4,4)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,4)" [style.background]="celdaTurnoColor(5,4)">{{celdaTurnoValor(5,4)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,4)" (click)="clickEntreturno(1,4)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,4)" (click)="clickEntreturno(2,4)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,4)" (click)="clickEntreturno(3,4)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,4)" (click)="clickEntreturno(4,4)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,4)" (click)="clickEntreturno(5,4)"></td>
+        </tr>
         <tr>
           <td>10:20</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,5)" [style.background]="celdaTurnoColor(1,5)">{{celdaTurnoValor(1,5)}}</button></td>
@@ -67,6 +91,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,5)" [style.background]="celdaTurnoColor(3,5)">{{celdaTurnoValor(3,5)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,5)" [style.background]="celdaTurnoColor(4,5)">{{celdaTurnoValor(4,5)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,5)" [style.background]="celdaTurnoColor(5,5)">{{celdaTurnoValor(5,5)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,5)" (click)="clickEntreturno(1,5)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,5)" (click)="clickEntreturno(2,5)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,5)" (click)="clickEntreturno(3,5)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,5)" (click)="clickEntreturno(4,5)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,5)" (click)="clickEntreturno(5,5)"></td>
         </tr>
         <tr>
           <td>10:40</td>
@@ -76,6 +108,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,6)" [style.background]="celdaTurnoColor(4,6)">{{celdaTurnoValor(4,6)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,6)" [style.background]="celdaTurnoColor(5,6)">{{celdaTurnoValor(5,6)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,6)" (click)="clickEntreturno(1,6)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,6)" (click)="clickEntreturno(2,6)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,6)" (click)="clickEntreturno(3,6)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,6)" (click)="clickEntreturno(4,6)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,6)" (click)="clickEntreturno(5,6)"></td>
+        </tr>
         <tr>
           <td>11:00</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,7)" [style.background]="celdaTurnoColor(1,7)">{{celdaTurnoValor(1,7)}}</button></td>
@@ -83,6 +123,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,7)" [style.background]="celdaTurnoColor(3,7)">{{celdaTurnoValor(3,7)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,7)" [style.background]="celdaTurnoColor(4,7)">{{celdaTurnoValor(4,7)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,7)" [style.background]="celdaTurnoColor(5,7)">{{celdaTurnoValor(5,7)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,7)" (click)="clickEntreturno(1,7)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,7)" (click)="clickEntreturno(2,7)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,7)" (click)="clickEntreturno(3,7)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,7)" (click)="clickEntreturno(4,7)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,7)" (click)="clickEntreturno(5,7)"></td>
         </tr>
         <tr>
           <td>11:20</td>
@@ -92,6 +140,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,8)" [style.background]="celdaTurnoColor(4,8)">{{celdaTurnoValor(4,8)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,8)" [style.background]="celdaTurnoColor(5,8)">{{celdaTurnoValor(5,8)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,8)" (click)="clickEntreturno(1,8)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,8)" (click)="clickEntreturno(2,8)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,8)" (click)="clickEntreturno(3,8)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,8)" (click)="clickEntreturno(4,8)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,8)" (click)="clickEntreturno(5,8)"></td>
+        </tr>
         <tr>
           <td>11:40</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,9)" [style.background]="celdaTurnoColor(1,9)">{{celdaTurnoValor(1,9)}}</button></td>
@@ -99,6 +155,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,9)" [style.background]="celdaTurnoColor(3,9)">{{celdaTurnoValor(3,9)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,9)" [style.background]="celdaTurnoColor(4,9)">{{celdaTurnoValor(4,9)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,9)" [style.background]="celdaTurnoColor(5,9)">{{celdaTurnoValor(5,9)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,9)" (click)="clickEntreturno(1,9)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,9)" (click)="clickEntreturno(2,9)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,9)" (click)="clickEntreturno(3,9)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,9)" (click)="clickEntreturno(4,9)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,9)" (click)="clickEntreturno(5,9)"></td>
         </tr>
         <tr>
           <td>12:00</td>
@@ -108,6 +172,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,10)" [style.background]="celdaTurnoColor(4,10)">{{celdaTurnoValor(4,10)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,10)" [style.background]="celdaTurnoColor(5,10)">{{celdaTurnoValor(5,10)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,10)" (click)="clickEntreturno(1,10)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,10)" (click)="clickEntreturno(2,10)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,10)" (click)="clickEntreturno(3,10)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,10)" (click)="clickEntreturno(4,10)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,10)" (click)="clickEntreturno(5,10)"></td>
+        </tr>
         <tr>
           <td>12:20</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,11)" [style.background]="celdaTurnoColor(1,11)">{{celdaTurnoValor(1,11)}}</button></td>
@@ -115,6 +187,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,11)" [style.background]="celdaTurnoColor(3,11)">{{celdaTurnoValor(3,11)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,11)" [style.background]="celdaTurnoColor(4,11)">{{celdaTurnoValor(4,11)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,11)" [style.background]="celdaTurnoColor(5,11)">{{celdaTurnoValor(5,11)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,11)" (click)="clickEntreturno(1,11)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,11)" (click)="clickEntreturno(2,11)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,11)" (click)="clickEntreturno(3,11)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,11)" (click)="clickEntreturno(4,11)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,11)" (click)="clickEntreturno(5,11)"></td>
         </tr>
         <tr>
           <td>12:40</td>
@@ -124,6 +204,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,12)" [style.background]="celdaTurnoColor(4,12)">{{celdaTurnoValor(4,12)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,12)" [style.background]="celdaTurnoColor(5,12)">{{celdaTurnoValor(5,12)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,12)" (click)="clickEntreturno(1,12)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,12)" (click)="clickEntreturno(2,12)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,12)" (click)="clickEntreturno(3,12)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,12)" (click)="clickEntreturno(4,12)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,12)" (click)="clickEntreturno(5,12)"></td>
+        </tr>
         <tr>
           <td>13:00</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,13)" [style.background]="celdaTurnoColor(1,13)">{{celdaTurnoValor(1,13)}}</button></td>
@@ -131,6 +219,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,13)" [style.background]="celdaTurnoColor(3,13)">{{celdaTurnoValor(3,13)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,13)" [style.background]="celdaTurnoColor(4,13)">{{celdaTurnoValor(4,13)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,13)" [style.background]="celdaTurnoColor(5,13)">{{celdaTurnoValor(5,13)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,13)" (click)="clickEntreturno(1,13)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,13)" (click)="clickEntreturno(2,13)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,13)" (click)="clickEntreturno(3,13)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,13)" (click)="clickEntreturno(4,13)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,13)" (click)="clickEntreturno(5,13)"></td>
         </tr>
         <tr>
           <td>13:20</td>
@@ -140,6 +236,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,14)" [style.background]="celdaTurnoColor(4,14)">{{celdaTurnoValor(4,14)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,14)" [style.background]="celdaTurnoColor(5,14)">{{celdaTurnoValor(5,14)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,14)" (click)="clickEntreturno(1,14)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,14)" (click)="clickEntreturno(2,14)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,14)" (click)="clickEntreturno(3,14)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,14)" (click)="clickEntreturno(4,14)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,14)" (click)="clickEntreturno(5,14)"></td>
+        </tr>
         <tr>
           <td>13:40</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,15)" [style.background]="celdaTurnoColor(1,15)">{{celdaTurnoValor(1,15)}}</button></td>
@@ -147,6 +251,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,15)" [style.background]="celdaTurnoColor(3,15)">{{celdaTurnoValor(3,15)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,15)" [style.background]="celdaTurnoColor(4,15)">{{celdaTurnoValor(4,15)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,15)" [style.background]="celdaTurnoColor(5,15)">{{celdaTurnoValor(5,15)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,15)" (click)="clickEntreturno(1,15)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,15)" (click)="clickEntreturno(2,15)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,15)" (click)="clickEntreturno(3,15)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,15)" (click)="clickEntreturno(4,15)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,15)" (click)="clickEntreturno(5,15)"></td>
         </tr>
         <tr>
           <td>14:00</td>
@@ -156,6 +268,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,16)" [style.background]="celdaTurnoColor(4,16)">{{celdaTurnoValor(4,16)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,16)" [style.background]="celdaTurnoColor(5,16)">{{celdaTurnoValor(5,16)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,16)" (click)="clickEntreturno(1,16)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,16)" (click)="clickEntreturno(2,16)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,16)" (click)="clickEntreturno(3,16)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,16)" (click)="clickEntreturno(4,16)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,16)" (click)="clickEntreturno(5,16)"></td>
+        </tr>
         <tr>
           <td>14:20</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,17)" [style.background]="celdaTurnoColor(1,17)">{{celdaTurnoValor(1,17)}}</button></td>
@@ -163,6 +283,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,17)" [style.background]="celdaTurnoColor(3,17)">{{celdaTurnoValor(3,17)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,17)" [style.background]="celdaTurnoColor(4,17)">{{celdaTurnoValor(4,17)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,17)" [style.background]="celdaTurnoColor(5,17)">{{celdaTurnoValor(5,17)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,17)" (click)="clickEntreturno(1,17)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,17)" (click)="clickEntreturno(2,17)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,17)" (click)="clickEntreturno(3,17)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,17)" (click)="clickEntreturno(4,17)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,17)" (click)="clickEntreturno(5,17)"></td>
         </tr>
         <tr>
           <td>14:40</td>
@@ -172,6 +300,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,18)" [style.background]="celdaTurnoColor(4,18)">{{celdaTurnoValor(4,18)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,18)" [style.background]="celdaTurnoColor(5,18)">{{celdaTurnoValor(5,18)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,18)" (click)="clickEntreturno(1,18)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,18)" (click)="clickEntreturno(2,18)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,18)" (click)="clickEntreturno(3,18)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,18)" (click)="clickEntreturno(4,18)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,18)" (click)="clickEntreturno(5,18)"></td>
+        </tr>
         <tr>
           <td>15:00</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,19)" [style.background]="celdaTurnoColor(1,19)">{{celdaTurnoValor(1,19)}}</button></td>
@@ -179,6 +315,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,19)" [style.background]="celdaTurnoColor(3,19)">{{celdaTurnoValor(3,19)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,19)" [style.background]="celdaTurnoColor(4,19)">{{celdaTurnoValor(4,19)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,19)" [style.background]="celdaTurnoColor(5,19)">{{celdaTurnoValor(5,19)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,19)" (click)="clickEntreturno(1,19)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,19)" (click)="clickEntreturno(2,19)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,19)" (click)="clickEntreturno(3,19)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,19)" (click)="clickEntreturno(4,19)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,19)" (click)="clickEntreturno(5,19)"></td>
         </tr>
         <tr>
           <td>15:20</td>
@@ -188,6 +332,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,20)" [style.background]="celdaTurnoColor(4,20)">{{celdaTurnoValor(4,20)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,20)" [style.background]="celdaTurnoColor(5,20)">{{celdaTurnoValor(5,20)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,20)" (click)="clickEntreturno(1,20)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,20)" (click)="clickEntreturno(2,20)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,20)" (click)="clickEntreturno(3,20)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,20)" (click)="clickEntreturno(4,20)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,20)" (click)="clickEntreturno(5,20)"></td>
+        </tr>
         <tr>
           <td>15:40</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,21)" [style.background]="celdaTurnoColor(1,21)">{{celdaTurnoValor(1,21)}}</button></td>
@@ -195,6 +347,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,21)" [style.background]="celdaTurnoColor(3,21)">{{celdaTurnoValor(3,21)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,21)" [style.background]="celdaTurnoColor(4,21)">{{celdaTurnoValor(4,21)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,21)" [style.background]="celdaTurnoColor(5,21)">{{celdaTurnoValor(5,21)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,21)" (click)="clickEntreturno(1,21)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,21)" (click)="clickEntreturno(2,21)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,21)" (click)="clickEntreturno(3,21)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,21)" (click)="clickEntreturno(4,21)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,21)" (click)="clickEntreturno(5,21)"></td>
         </tr>
         <tr>
           <td>16:00</td>
@@ -204,6 +364,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,22)" [style.background]="celdaTurnoColor(4,22)">{{celdaTurnoValor(4,22)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,22)" [style.background]="celdaTurnoColor(5,22)">{{celdaTurnoValor(5,22)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,22)" (click)="clickEntreturno(1,22)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,22)" (click)="clickEntreturno(2,22)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,22)" (click)="clickEntreturno(3,22)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,22)" (click)="clickEntreturno(4,22)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,22)" (click)="clickEntreturno(5,22)"></td>
+        </tr>
         <tr>
           <td>16:20</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,23)" [style.background]="celdaTurnoColor(1,23)">{{celdaTurnoValor(1,23)}}</button></td>
@@ -211,6 +379,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,23)" [style.background]="celdaTurnoColor(3,23)">{{celdaTurnoValor(3,23)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,23)" [style.background]="celdaTurnoColor(4,23)">{{celdaTurnoValor(4,23)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,23)" [style.background]="celdaTurnoColor(5,23)">{{celdaTurnoValor(5,23)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,23)" (click)="clickEntreturno(1,23)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,23)" (click)="clickEntreturno(2,23)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,23)" (click)="clickEntreturno(3,23)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,23)" (click)="clickEntreturno(4,23)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,23)" (click)="clickEntreturno(5,23)"></td>
         </tr>
         <tr>
           <td>16:40</td>
@@ -220,6 +396,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,24)" [style.background]="celdaTurnoColor(4,24)">{{celdaTurnoValor(4,24)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,24)" [style.background]="celdaTurnoColor(5,24)">{{celdaTurnoValor(5,24)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,24)" (click)="clickEntreturno(1,24)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,24)" (click)="clickEntreturno(2,24)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,24)" (click)="clickEntreturno(3,24)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,24)" (click)="clickEntreturno(4,24)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,24)" (click)="clickEntreturno(5,24)"></td>
+        </tr>
         <tr>
           <td>17:00</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,25)" [style.background]="celdaTurnoColor(1,25)">{{celdaTurnoValor(1,25)}}</button></td>
@@ -227,6 +411,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,25)" [style.background]="celdaTurnoColor(3,25)">{{celdaTurnoValor(3,25)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,25)" [style.background]="celdaTurnoColor(4,25)">{{celdaTurnoValor(4,25)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,25)" [style.background]="celdaTurnoColor(5,25)">{{celdaTurnoValor(5,25)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,25)" (click)="clickEntreturno(1,25)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,25)" (click)="clickEntreturno(2,25)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,25)" (click)="clickEntreturno(3,25)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,25)" (click)="clickEntreturno(4,25)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,25)" (click)="clickEntreturno(5,25)"></td>
         </tr>
         <tr>
           <td>17:20</td>
@@ -236,6 +428,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,26)" [style.background]="celdaTurnoColor(4,26)">{{celdaTurnoValor(4,26)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,26)" [style.background]="celdaTurnoColor(5,26)">{{celdaTurnoValor(5,26)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,26)" (click)="clickEntreturno(1,26)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,26)" (click)="clickEntreturno(2,26)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,26)" (click)="clickEntreturno(3,26)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,26)" (click)="clickEntreturno(4,26)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,26)" (click)="clickEntreturno(5,26)"></td>
+        </tr>
         <tr>
           <td>17:40</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,27)" [style.background]="celdaTurnoColor(1,27)">{{celdaTurnoValor(1,27)}}</button></td>
@@ -243,6 +443,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,27)" [style.background]="celdaTurnoColor(3,27)">{{celdaTurnoValor(3,27)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,27)" [style.background]="celdaTurnoColor(4,27)">{{celdaTurnoValor(4,27)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,27)" [style.background]="celdaTurnoColor(5,27)">{{celdaTurnoValor(5,27)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,27)" (click)="clickEntreturno(1,27)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,27)" (click)="clickEntreturno(2,27)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,27)" (click)="clickEntreturno(3,27)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,27)" (click)="clickEntreturno(4,27)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,27)" (click)="clickEntreturno(5,27)"></td>
         </tr>
         <tr>
           <td>18:00</td>
@@ -252,6 +460,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,28)" [style.background]="celdaTurnoColor(4,28)">{{celdaTurnoValor(4,28)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,28)" [style.background]="celdaTurnoColor(5,28)">{{celdaTurnoValor(5,28)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,28)" (click)="clickEntreturno(1,28)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,28)" (click)="clickEntreturno(2,28)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,28)" (click)="clickEntreturno(3,28)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,28)" (click)="clickEntreturno(4,28)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,28)" (click)="clickEntreturno(5,28)"></td>
+        </tr>
         <tr>
           <td>18:20</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,29)" [style.background]="celdaTurnoColor(1,29)">{{celdaTurnoValor(1,29)}}</button></td>
@@ -259,6 +475,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,29)" [style.background]="celdaTurnoColor(3,29)">{{celdaTurnoValor(3,29)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,29)" [style.background]="celdaTurnoColor(4,29)">{{celdaTurnoValor(4,29)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,29)" [style.background]="celdaTurnoColor(5,29)">{{celdaTurnoValor(5,29)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,29)" (click)="clickEntreturno(1,29)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,29)" (click)="clickEntreturno(2,29)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,29)" (click)="clickEntreturno(3,29)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,29)" (click)="clickEntreturno(4,29)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,29)" (click)="clickEntreturno(5,29)"></td>
         </tr>
         <tr>
           <td>18:40</td>
@@ -268,6 +492,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,30)" [style.background]="celdaTurnoColor(4,30)">{{celdaTurnoValor(4,30)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,30)" [style.background]="celdaTurnoColor(5,30)">{{celdaTurnoValor(5,30)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,30)" (click)="clickEntreturno(1,30)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,30)" (click)="clickEntreturno(2,30)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,30)" (click)="clickEntreturno(3,30)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,30)" (click)="clickEntreturno(4,30)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,30)" (click)="clickEntreturno(5,30)"></td>
+        </tr>
         <tr>
           <td>19:00</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,31)" [style.background]="celdaTurnoColor(1,31)">{{celdaTurnoValor(1,31)}}</button></td>
@@ -275,6 +507,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,31)" [style.background]="celdaTurnoColor(3,31)">{{celdaTurnoValor(3,31)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,31)" [style.background]="celdaTurnoColor(4,31)">{{celdaTurnoValor(4,31)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,31)" [style.background]="celdaTurnoColor(5,31)">{{celdaTurnoValor(5,31)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,31)" (click)="clickEntreturno(1,31)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,31)" (click)="clickEntreturno(2,31)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,31)" (click)="clickEntreturno(3,31)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,31)" (click)="clickEntreturno(4,31)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,31)" (click)="clickEntreturno(5,31)"></td>
         </tr>
         <tr>
           <td>19:20</td>
@@ -284,6 +524,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,32)" [style.background]="celdaTurnoColor(4,32)">{{celdaTurnoValor(4,32)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,32)" [style.background]="celdaTurnoColor(5,32)">{{celdaTurnoValor(5,32)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,32)" (click)="clickEntreturno(1,32)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,32)" (click)="clickEntreturno(2,32)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,32)" (click)="clickEntreturno(3,32)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,32)" (click)="clickEntreturno(4,32)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,32)" (click)="clickEntreturno(5,32)"></td>
+        </tr>
         <tr>
           <td>19:40</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,33)" [style.background]="celdaTurnoColor(1,33)">{{celdaTurnoValor(1,33)}}</button></td>
@@ -291,6 +539,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,33)" [style.background]="celdaTurnoColor(3,33)">{{celdaTurnoValor(3,33)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,33)" [style.background]="celdaTurnoColor(4,33)">{{celdaTurnoValor(4,33)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,33)" [style.background]="celdaTurnoColor(5,33)">{{celdaTurnoValor(5,33)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,33)" (click)="clickEntreturno(1,33)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,33)" (click)="clickEntreturno(2,33)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,33)" (click)="clickEntreturno(3,33)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,33)" (click)="clickEntreturno(4,33)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,33)" (click)="clickEntreturno(5,33)"></td>
         </tr>
         <tr>
           <td>20:00</td>
@@ -300,6 +556,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,34)" [style.background]="celdaTurnoColor(4,34)">{{celdaTurnoValor(4,34)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,34)" [style.background]="celdaTurnoColor(5,34)">{{celdaTurnoValor(5,34)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,34)" (click)="clickEntreturno(1,34)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,34)" (click)="clickEntreturno(2,34)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,34)" (click)="clickEntreturno(3,34)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,34)" (click)="clickEntreturno(4,34)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,34)" (click)="clickEntreturno(5,34)"></td>
+        </tr>
         <tr>
           <td>20:20</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,35)" [style.background]="celdaTurnoColor(1,35)">{{celdaTurnoValor(1,35)}}</button></td>
@@ -307,6 +571,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,35)" [style.background]="celdaTurnoColor(3,35)">{{celdaTurnoValor(3,35)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,35)" [style.background]="celdaTurnoColor(4,35)">{{celdaTurnoValor(4,35)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,35)" [style.background]="celdaTurnoColor(5,35)">{{celdaTurnoValor(5,35)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,35)" (click)="clickEntreturno(1,35)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,35)" (click)="clickEntreturno(2,35)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,35)" (click)="clickEntreturno(3,35)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,35)" (click)="clickEntreturno(4,35)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,35)" (click)="clickEntreturno(5,35)"></td>
         </tr>
         <tr>
           <td>20:40</td>
@@ -316,6 +588,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,36)" [style.background]="celdaTurnoColor(4,36)">{{celdaTurnoValor(4,36)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,36)" [style.background]="celdaTurnoColor(5,36)">{{celdaTurnoValor(5,36)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,36)" (click)="clickEntreturno(1,36)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,36)" (click)="clickEntreturno(2,36)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,36)" (click)="clickEntreturno(3,36)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,36)" (click)="clickEntreturno(4,36)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,36)" (click)="clickEntreturno(5,36)"></td>
+        </tr>
         <tr>
           <td>21:00</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,37)" [style.background]="celdaTurnoColor(1,37)">{{celdaTurnoValor(1,37)}}</button></td>
@@ -323,6 +603,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(3,37)" [style.background]="celdaTurnoColor(3,37)">{{celdaTurnoValor(3,37)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,37)" [style.background]="celdaTurnoColor(4,37)">{{celdaTurnoValor(4,37)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,37)" [style.background]="celdaTurnoColor(5,37)">{{celdaTurnoValor(5,37)}}</button></td>
+        </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td class="clickVer" [style.background]="entreturno(1,37)" (click)="clickEntreturno(1,37)"></td>
+          <td class="clickVer" [style.background]="entreturno(2,37)" (click)="clickEntreturno(2,37)"></td>
+          <td class="clickVer" [style.background]="entreturno(3,37)" (click)="clickEntreturno(3,37)"></td>
+          <td class="clickVer" [style.background]="entreturno(4,37)" (click)="clickEntreturno(4,37)"></td>
+          <td class="clickVer" [style.background]="entreturno(5,37)" (click)="clickEntreturno(5,37)"></td>
         </tr>
       </table>
     </md-card-content>

@@ -30,7 +30,7 @@ export class HttpAuthService {
     return this.http.get(this.urlPrefix + url, {
       headers: headers
     }).catch(error => {
-      if (error.status = 401){
+      if (error.status == 401){
         this.notif.error("Error","Sesión expirada!");
         this.router.navigate(['/login']);
       }
@@ -44,7 +44,7 @@ export class HttpAuthService {
     return this.http.post(this.urlPrefix + url, data, {
       headers: headers
     }).catch(error => {
-      if (error.status = 401){
+      if (error.status == 401){
         this.notif.error("Error","Sesión expirada!");
         this.router.navigate(['/login']);
       }
@@ -58,7 +58,7 @@ export class HttpAuthService {
     return this.http.put(this.urlPrefix + url, data, {
       headers: headers
     }).catch(error => {
-      if (error.status = 401){
+      if (error.status == 401){
         this.notif.error("Error","Sesión expirada!");
         this.router.navigate(['/login']);
       }
@@ -72,7 +72,7 @@ export class HttpAuthService {
     return this.http.delete(this.urlPrefix + url, {
       headers: headers
     }).catch(error => {
-      if (error.status = 401){
+      if (error.status == 401){
         this.notif.error("Error","Sesión expirada!");
         this.router.navigate(['/login']);
       }

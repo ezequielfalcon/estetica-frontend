@@ -117,17 +117,45 @@ export class AgendaComponent implements OnInit, OnDestroy {
         this.notificationSerivce.error("Error", "Está intentando reservar un turno para una fecha anterior a la actual!");
         return;
       }
-      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.configuracion.fechaActual])
+      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.configuracion.fechaActual + '/' + false])
     }
     else{
       this.spinner.start();
-      this.dialogoTurno.verTurno(this.configuracion.fechaActual, consultorioId, turnoId, this.viewContainerRef);
+      this.dialogoTurno.verTurno(this.configuracion.fechaActual, consultorioId, turnoId, false, this.viewContainerRef);
     }
+  }
+
+  clickEntreturno(consultorioId, turnoId: number){
+    if (this.celdaEntreTurnoValor(consultorioId, turnoId) == "Vacío"){
+      if (this.fechaTurnos < AgendaComponent.fechaHoy())
+      {
+        this.notificationSerivce.error("Error", "Está intentando reservar un entreturno para una fecha anterior a la actual!");
+        return;
+      }
+      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.configuracion.fechaActual + '/' + true])
+    }
+    else{
+      this.spinner.start();
+      this.dialogoTurno.verTurno(this.configuracion.fechaActual, consultorioId, turnoId, true, this.viewContainerRef);
+    }
+  }
+
+  celdaEntreTurnoValor(consultorioId, turnoId: number){
+    for (let turno of this.turnos){
+      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == true){
+        for (let medico of this.medicos){
+          if (medico.id == turno.id_medico){
+            return medico.apellido;
+          }
+        }
+      }
+    }
+    return "Vacío";
   }
 
   celdaTurnoValor(consultorioId, turnoId: number){
     for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId){
+      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == false){
         for (let medico of this.medicos){
           if (medico.id == turno.id_medico){
             return medico.apellido;
@@ -140,7 +168,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
   celdaTurnoColor(consultorioId, turnoId: number){
     for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId){
+      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == false){
         for (let medico of this.medicos){
           if (medico.id == turno.id_medico){
             return medico.color;

@@ -24,9 +24,9 @@ export class TurnosService {
 
   }
 
-  traerTurno(consultorio, turno: number, fecha: string){
+  traerTurno(consultorio, turno: number, fecha: string, entreturno: boolean){
     return this.http.get('/turnos/' + fecha
-      + '/' + consultorio + '/' + turno).map((response: Response) => response.json().datos);
+      + '/' + consultorio + '/' + turno + '/' + entreturno).map((response: Response) => response.json().datos);
   }
 
   nuevoTurno(turnoId:number , pacienteId:number, consultorioId:number, medicoId:number,

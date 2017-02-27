@@ -7,7 +7,7 @@ export class DialogoTurnoService {
 
   constructor(private dialog: MdDialog) { }
 
-  verTurno(fecha: string, consultorioId: number, turnoId: number, viewContainerRef: ViewContainerRef){
+  verTurno(fecha: string, consultorioId: number, turnoId: number, entreturno: boolean, viewContainerRef: ViewContainerRef){
 
     let dialogRef: MdDialogRef<DialogoTurnoComponent>;
     let config = new MdDialogConfig();
@@ -16,6 +16,7 @@ export class DialogoTurnoService {
     dialogRef.componentInstance.fecha = fecha;
     dialogRef.componentInstance.consultorioId = consultorioId;
     dialogRef.componentInstance.turnoId = turnoId;
+    dialogRef.componentInstance.entreturno = entreturno;
     return dialogRef.afterClosed();
   }
 

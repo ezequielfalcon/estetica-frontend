@@ -31,6 +31,7 @@ export class DialogoTurnoComponent implements OnInit {
   public consultorioId: number;
   public turnoId: number;
   public fecha: string;
+  public entreturno: boolean;
 
   turno: any = {};
   paciente: any = {};
@@ -38,7 +39,7 @@ export class DialogoTurnoComponent implements OnInit {
   tratamientos: Tratamiento[] = [];
 
   ngOnInit() {
-    this.turnosService.traerTurno(this.consultorioId, this.turnoId, this.fecha).subscribe(
+    this.turnosService.traerTurno(this.consultorioId, this.turnoId, this.fecha, this.entreturno).subscribe(
       turnoDb => {
         this.turno = turnoDb;
         this.traerPaciente(this.turno.id_paciente);

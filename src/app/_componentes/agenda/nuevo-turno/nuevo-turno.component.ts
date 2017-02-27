@@ -43,6 +43,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
   tratamientosSeleccionados: Tratamiento[] = [];
   nuevoTurno: any = {};
   returnUrl: string;
+  entreturno: boolean;
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -51,7 +52,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.nuevoTurno.turnoString = NuevoTurnoComponent.turnoStringHora(this.nuevoTurno.turnoId);
       this.nuevoTurno.fechaTurno = params["fecha"];
       this.nuevoTurno.costoTurno = 0;
-      this.nuevoTurno.entreTurnoBool = false;
+      this.entreturno = params["entreturno"];
     });
     this.cargarMedicos();
     this.cargarPacientes();
@@ -152,7 +153,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
       this.medicoSelecionado.id,
       this.nuevoTurno.observaciones, this.nuevoTurno.costoTurno,
-      this.nuevoTurno.fechaTurno, this.nuevoTurno.entreTurnoBool).subscribe((agendaId) => {
+      this.nuevoTurno.fechaTurno, this.entreturno).subscribe((agendaId) => {
         for (let tratamientosSeleccionadosList of this.tratamientosSeleccionados){
           this.turnosService.agregarTratamiento(agendaId, tratamientosSeleccionadosList.id).subscribe(() => {
           }, error => {
