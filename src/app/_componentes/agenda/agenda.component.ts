@@ -102,6 +102,14 @@ export class AgendaComponent implements OnInit, OnDestroy {
     });
   }
 
+  entreturno(consultorioId, turnoId: number){
+    for (let turno of this.turnos){
+      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == true){
+        return this.celdaTurnoColor(consultorioId, turnoId);
+      }
+    }
+  }
+
   clickCeldaTurno(consultorioId, turnoId: number){
     if (this.celdaTurnoValor(consultorioId, turnoId) == "Vacío"){
       if (this.fechaTurnos < AgendaComponent.fechaHoy())
@@ -119,7 +127,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
   celdaTurnoValor(consultorioId, turnoId: number){
     for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == false){
+      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId){
         for (let medico of this.medicos){
           if (medico.id == turno.id_medico){
             return medico.apellido;
@@ -132,7 +140,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
   celdaTurnoColor(consultorioId, turnoId: number){
     for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId  && turno.entreturno == false){
+      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId){
         for (let medico of this.medicos){
           if (medico.id == turno.id_medico){
             return medico.color;

@@ -51,7 +51,6 @@
           <md-input-container style="width: 100%">
             <textarea mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones"></textarea>
           </md-input-container>
-          <md-checkbox ([ngModel])="nuevoTurno.entreTurnoBool">Es entre-turno</md-checkbox>
         <br>
           <button md-raised-button type="button" (click)="agregarTratamiento()">Agregar tratamiento</button>
           <h3>Tratamientos:</h3>

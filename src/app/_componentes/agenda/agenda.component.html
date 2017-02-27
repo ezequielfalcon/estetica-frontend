@@ -28,6 +28,14 @@
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(4,1)" [style.background]="celdaTurnoColor(4,1)">{{celdaTurnoValor(4,1)}}</button></td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(5,1)" [style.background]="celdaTurnoColor(5,1)">{{celdaTurnoValor(5,1)}}</button></td>
         </tr>
+        <tr style="height: 7px">
+          <td></td>
+          <td [style.background]="entreturno(1,1)"></td>
+          <td [style.background]="entreturno(2,1)"></td>
+          <td [style.background]="entreturno(3,1)"></td>
+          <td [style.background]="entreturno(4,1)"></td>
+          <td [style.background]="entreturno(5,1)"></td>
+        </tr>
         <tr>
           <td>09:20</td>
           <td class="clickVer"><button md-raised-button (click)="clickCeldaTurno(1,2)" [style.background]="celdaTurnoColor(1,2)">{{celdaTurnoValor(1,2)}}</button></td>
