@@ -1,3 +1,25 @@
-<p>
-  usuarios works!
-</p>
+<div class="center">
+  <md-card>
+    <md-card-header>
+      <md-card-title>
+        <md-icon>people</md-icon>
+        Usuarios
+      </md-card-title>
+    </md-card-header>
+    <div class="boton-add">
+      <a md-fab [routerLink]="['/nuevo-usuario']"><md-icon>add</md-icon></a>
+    </div>
+    <md-card-content>
+    </md-card-content>
+    <md-divider></md-divider>
+    <md-card-content>
+      <md-list>
+        <md-list-item class="clickVer" *ngFor="let usuario of usuarios">
+          <md-icon md-list-avatar>person</md-icon>
+          <h4 md-line>{{usuario.nombre}}</h4>
+          <p md-line>{{'Rol: ' + usuario.rol}}</p>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>
+</div>

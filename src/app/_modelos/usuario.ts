@@ -3,5 +3,5 @@
  */
 export class Usuario {
   nombre: string;
-  id_rol: number;
+  rol: string;
 }

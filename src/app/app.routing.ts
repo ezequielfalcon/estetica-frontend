@@ -16,6 +16,7 @@ import {NuevoTurnoComponent} from "./_componentes/agenda/nuevo-turno/nuevo-turno
 import {NuevoTratamientoComponent} from "./_componentes/configuracion/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component";
 import {VerModificarTratamientoComponent} from "./_componentes/configuracion/tratamientos/ver-modificar-tratamiento/ver-modificar-tratamiento.component";
 import {RedirAgendaComponent} from "./_componentes/agenda/redir-agenda/redir-agenda.component";
+import {NuevoUsuarioComponent} from "./_componentes/configuracion/usuarios/nuevo-usuario/nuevo-usuario.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -27,11 +28,12 @@ const appRoutes: Routes = [
   { path: 'pacientes/:id', component: VerModificarPacienteComponent, canActivate: [AuthGuard] } ,
   { path: 'medicos/:id', component: VerModificarMedicoComponent, canActivate: [AuthGuard, AdminGuard] } ,
   { path: 'obras-sociales/:id', component: VerModificarObraSocial, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'nueva-obra-social', component: NuevaObraSocialComponent, canActivate: [AuthGuard] },
+  { path: 'nueva-obra-social', component: NuevaObraSocialComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'nuevo-paciente', component: NuevoPacienteComponent, canActivate: [AuthGuard] },
   { path: 'nuevo-medico', component: NuevoMedicoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion/:id', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'nuevo-usuario', component: NuevoUsuarioComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'nuevo-turno/:consultorio/:turno/:fecha/:entreturno', component: NuevoTurnoComponent, canActivate: [AuthGuard] },
   { path: 'nuevo-tratamiento', component: NuevoTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'tratamientos/:id', component: VerModificarTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },

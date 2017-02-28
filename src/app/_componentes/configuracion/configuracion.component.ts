@@ -26,6 +26,9 @@ export class ConfiguracionComponent implements OnInit {
       case 'tratamientos':
         this.indiceTab = 2;
         break;
+      case 'usuarios':
+        this.indiceTab = 3;
+        break;
       default:
         this.indiceTab = 0;
     }

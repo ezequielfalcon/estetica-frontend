@@ -46,6 +46,9 @@ import {DialogoTratamientosService} from "./_servicios/dialogos/dialogo-tratamie
 import { DialogoTurnoComponent } from './_directivas/dialogo-turno/dialogo-turno.component';
 import {DialogoTurnoService} from "./_servicios/dialogos/dialogo-turno.service";
 import { RedirAgendaComponent } from './_componentes/agenda/redir-agenda/redir-agenda.component';
+import {UsuariosService} from "./_servicios/datos/usuarios.service";
+import { NuevoUsuarioComponent } from './_componentes/configuracion/usuarios/nuevo-usuario/nuevo-usuario.component';
+import { TurnosComponent } from './_componentes/turnos/turnos.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,9 @@ import { RedirAgendaComponent } from './_componentes/agenda/redir-agenda/redir-a
     VerModificarTratamientoComponent,
     DialogoTratamientosComponent,
     DialogoTurnoComponent,
-    RedirAgendaComponent
+    RedirAgendaComponent,
+    NuevoUsuarioComponent,
+    TurnosComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +115,8 @@ import { RedirAgendaComponent } from './_componentes/agenda/redir-agenda/redir-a
     DialogoMedicosService,
     TratamientosService,
     DialogoTratamientosService,
-    DialogoTurnoService
+    DialogoTurnoService,
+    UsuariosService
   ],
   entryComponents: [
     DialogoComponent,
