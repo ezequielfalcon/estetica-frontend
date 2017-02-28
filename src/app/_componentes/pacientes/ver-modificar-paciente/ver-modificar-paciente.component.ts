@@ -51,7 +51,7 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
         this.notif.error('Error', mensajeError.mensaje);
         this.spinner.stop();
       });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/medicos';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/pacientes';
   }
 
   ngOnDestroy(){
