@@ -3,10 +3,10 @@
  */
 import {Component, OnInit, ChangeDetectorRef, OnDestroy} from "@angular/core";
 import {NotificationsService} from "angular2-notifications";
-import { ObraSocial } from '../../_modelos/index';
-import {ObrasSocialesService} from "../../_servicios/datos/obras-sociales.service";
 import {Router} from "@angular/router";
-import {SpinnerService} from "../../_servicios/spinner.service";
+import {ObrasSocialesService} from "../../../_servicios/datos/obras-sociales.service";
+import {SpinnerService} from "../../../_servicios/spinner.service";
+import {ObraSocial} from "../../../_modelos/obra_social";
 
 @Component({
   selector: 'obra-social',

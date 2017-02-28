@@ -1,14 +1,14 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NotificationsService} from "angular2-notifications";
 import {Router, ActivatedRoute} from "@angular/router";
-import {SpinnerService} from "../../../_servicios/spinner.service";
-import {MedicosService} from "../../../_servicios/datos/medicos.service";
 import {IColorPickerConfiguration} from "ng2-color-picker";
+import {MedicosService} from "../../../../_servicios/datos/medicos.service";
+import {SpinnerService} from "../../../../_servicios/spinner.service";
 
 @Component({
   selector: 'app-nuevo-medico',
-  templateUrl: './nuevo-medico.component.html',
-  styleUrls: ['./nuevo-medico.component.css']
+  templateUrl: 'nuevo-medico.component.html',
+  styleUrls: ['nuevo-medico.component.css']
 })
 export class NuevoMedicoComponent implements OnInit, OnDestroy {
 
@@ -27,13 +27,21 @@ export class NuevoMedicoComponent implements OnInit, OnDestroy {
       borderRadius: 4,
       availableColors: [
         '#33cccc',
+        '#0000FF',
         '#99cc99',
+        '#239B56',
+        '#00796B',
         '#cc99cc',
+        '#EBDEF0',
         '#fabf8f',
+        '#E59866',
         '#bfbfbf',
+        '#5D6D7E',
         '#6699ff',
         '#ff6666',
-        '#ffcc66'
+        '#ffcc66',
+        '#F1C40F',
+        '#E91E63'
       ]
     };
   }

@@ -1,14 +1,14 @@
 import {Component, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
-import {SpinnerService} from "../../_servicios/spinner.service";
 import {Router} from "@angular/router";
 import {NotificationsService} from "angular2-notifications";
-import {MedicosService} from "../../_servicios/datos/medicos.service";
-import {Medico} from "../../_modelos/medico";
+import {MedicosService} from "../../../_servicios/datos/medicos.service";
+import {SpinnerService} from "../../../_servicios/spinner.service";
+import {Medico} from "../../../_modelos/medico";
 
 @Component({
   selector: 'app-medicos',
-  templateUrl: './medicos.component.html',
-  styleUrls: ['./medicos.component.css']
+  templateUrl: 'medicos.component.html',
+  styleUrls: ['medicos.component.css']
 })
 export class MedicosComponent implements OnInit, OnDestroy {
 

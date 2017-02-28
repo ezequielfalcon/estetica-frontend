@@ -8,13 +8,13 @@ import { LoginComponent, HomeComponent, PacientesComponent, NuevaObraSocialCompo
 import {NuevoPacienteComponent} from "./_componentes/pacientes/nuevo-paciente/nuevo-paciente.component";
 import {VerModificarPacienteComponent} from "./_componentes/pacientes/ver-modificar-paciente/ver-modificar-paciente.component";
 import {AdminGuard} from "./_guards/admin.guard";
-import {NuevoMedicoComponent} from "./_componentes/medicos/nuevo-medico/nuevo-medico.component";
-import {VerModificarMedicoComponent} from "./_componentes/medicos/ver-modificar-medico/ver-modificar-medico.component";
+import {NuevoMedicoComponent} from "./_componentes/configuracion/medicos/nuevo-medico/nuevo-medico.component";
+import {VerModificarMedicoComponent} from "./_componentes/configuracion/medicos/ver-modificar-medico/ver-modificar-medico.component";
 import {ConfiguracionComponent} from "./_componentes/configuracion/configuracion.component";
 import {AgendaComponent} from "./_componentes/agenda/agenda.component";
 import {NuevoTurnoComponent} from "./_componentes/agenda/nuevo-turno/nuevo-turno.component";
-import {NuevoTratamientoComponent} from "./_componentes/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component";
-import {VerModificarTratamientoComponent} from "./_componentes/tratamientos/ver-modificar-tratamiento/ver-modificar-tratamiento.component";
+import {NuevoTratamientoComponent} from "./_componentes/configuracion/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component";
+import {VerModificarTratamientoComponent} from "./_componentes/configuracion/tratamientos/ver-modificar-tratamiento/ver-modificar-tratamiento.component";
 import {RedirAgendaComponent} from "./_componentes/agenda/redir-agenda/redir-agenda.component";
 
 const appRoutes: Routes = [

@@ -1,13 +1,13 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NotificationsService} from "angular2-notifications";
 import {Router, ActivatedRoute} from "@angular/router";
-import {SpinnerService} from "../../../_servicios/spinner.service";
-import {TratamientosService} from "../../../_servicios/datos/tratamientos.service";
+import {TratamientosService} from "../../../../_servicios/datos/tratamientos.service";
+import {SpinnerService} from "../../../../_servicios/spinner.service";
 
 @Component({
   selector: 'app-nuevo-tratamiento',
-  templateUrl: './nuevo-tratamiento.component.html',
-  styleUrls: ['./nuevo-tratamiento.component.css']
+  templateUrl: 'nuevo-tratamiento.component.html',
+  styleUrls: ['nuevo-tratamiento.component.css']
 })
 export class NuevoTratamientoComponent implements OnInit, OnDestroy {
 

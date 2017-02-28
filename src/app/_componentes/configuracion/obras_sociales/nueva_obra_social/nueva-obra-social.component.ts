@@ -2,10 +2,10 @@
  * Created by falco on 27/1/2017.
  */
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {ObrasSocialesService} from "../../../_servicios/datos/obras-sociales.service";
 import {NotificationsService} from "angular2-notifications";
 import {Router, ActivatedRoute} from "@angular/router";
-import {SpinnerService} from "../../../_servicios/spinner.service";
+import {ObrasSocialesService} from "../../../../_servicios/datos/obras-sociales.service";
+import {SpinnerService} from "../../../../_servicios/spinner.service";
 
 @Component({
   selector: 'nueva-os',

@@ -1,15 +1,15 @@
 import {Component, OnInit, ViewContainerRef, OnDestroy} from '@angular/core';
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {NotificationsService} from "angular2-notifications";
-import {ConfirmService} from "../../../_servicios/confirm.service";
-import {SpinnerService} from "../../../_servicios/spinner.service";
-import {TratamientosService} from "../../../_servicios/datos/tratamientos.service";
-import {Tratamiento} from "../../../_modelos/tratamiento";
+import {ConfirmService} from "../../../../_servicios/confirm.service";
+import {SpinnerService} from "../../../../_servicios/spinner.service";
+import {TratamientosService} from "../../../../_servicios/datos/tratamientos.service";
+import {Tratamiento} from "../../../../_modelos/tratamiento";
 
 @Component({
   selector: 'app-ver-modificar-tratamiento',
-  templateUrl: './ver-modificar-tratamiento.component.html',
-  styleUrls: ['./ver-modificar-tratamiento.component.css']
+  templateUrl: 'ver-modificar-tratamiento.component.html',
+  styleUrls: ['ver-modificar-tratamiento.component.css']
 })
 export class VerModificarTratamientoComponent implements OnInit, OnDestroy {
 

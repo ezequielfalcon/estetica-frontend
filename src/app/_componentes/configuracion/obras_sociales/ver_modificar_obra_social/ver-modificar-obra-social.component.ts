@@ -2,13 +2,13 @@
  * Created by falco on 27/1/2017.
  */
 import {Component, OnInit, ViewContainerRef, OnDestroy} from "@angular/core";
-import {ObrasSocialesService} from "../../../_servicios/datos/obras-sociales.service";
-import {ObraSocial} from "../../../_modelos/obra_social";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import 'rxjs/add/operator/switchMap';
 import {NotificationsService} from "angular2-notifications";
-import {ConfirmService} from "../../../_servicios/confirm.service";
-import {SpinnerService} from "../../../_servicios/spinner.service";
+import {ObraSocial} from "../../../../_modelos/obra_social";
+import {ObrasSocialesService} from "../../../../_servicios/datos/obras-sociales.service";
+import {ConfirmService} from "../../../../_servicios/confirm.service";
+import {SpinnerService} from "../../../../_servicios/spinner.service";
 
 @Component({
   selector: 'ver-os',

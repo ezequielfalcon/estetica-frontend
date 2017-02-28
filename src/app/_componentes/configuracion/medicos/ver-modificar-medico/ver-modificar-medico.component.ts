@@ -1,16 +1,16 @@
 import {Component, OnInit, ViewContainerRef, OnDestroy} from '@angular/core';
-import {SpinnerService} from "../../../_servicios/spinner.service";
-import {ConfirmService} from "../../../_servicios/confirm.service";
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {NotificationsService} from "angular2-notifications";
-import {MedicosService} from "../../../_servicios/datos/medicos.service";
-import {Medico} from "../../../_modelos/medico";
 import {IColorPickerConfiguration} from "ng2-color-picker";
+import {ConfirmService} from "../../../../_servicios/confirm.service";
+import {SpinnerService} from "../../../../_servicios/spinner.service";
+import {MedicosService} from "../../../../_servicios/datos/medicos.service";
+import {Medico} from "../../../../_modelos/medico";
 
 @Component({
   selector: 'app-ver-modificar-medico',
-  templateUrl: './ver-modificar-medico.component.html',
-  styleUrls: ['./ver-modificar-medico.component.css']
+  templateUrl: 'ver-modificar-medico.component.html',
+  styleUrls: ['ver-modificar-medico.component.css']
 })
 export class VerModificarMedicoComponent implements OnInit, OnDestroy {
 
@@ -31,13 +31,21 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
       borderRadius: 4,
       availableColors: [
         '#33cccc',
+        '#0000FF',
         '#99cc99',
+        '#239B56',
+        '#00796B',
         '#cc99cc',
+        '#EBDEF0',
         '#fabf8f',
+        '#E59866',
         '#bfbfbf',
+        '#5D6D7E',
         '#6699ff',
         '#ff6666',
-        '#ffcc66'
+        '#ffcc66',
+        '#F1C40F',
+        '#E91E63'
       ]
     };
     }
