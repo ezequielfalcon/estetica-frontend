@@ -2,6 +2,6 @@
  * Created by eze on 25/01/17.
  */
 export class Usuario {
-  username: string;
-  password: string;
+  nombre: string;
+  id_rol: number;
 }
