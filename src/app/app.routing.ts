@@ -17,9 +17,10 @@ import {NuevoTratamientoComponent} from "./_componentes/configuracion/tratamient
 import {VerModificarTratamientoComponent} from "./_componentes/configuracion/tratamientos/ver-modificar-tratamiento/ver-modificar-tratamiento.component";
 import {RedirAgendaComponent} from "./_componentes/agenda/redir-agenda/redir-agenda.component";
 import {NuevoUsuarioComponent} from "./_componentes/configuracion/usuarios/nuevo-usuario/nuevo-usuario.component";
+import {TurnosComponent} from "./_componentes/turnos/turnos.component";
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: TurnosComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
   { path: 'agenda/:fecha', component: AgendaComponent, canActivate: [AuthGuard] },

@@ -29,6 +29,10 @@ export class TurnosService {
       + '/' + consultorio + '/' + turno + '/' + entreturno).map((response: Response) => response.json().datos);
   }
 
+  traerTurnosPorMedico(medicoId: number, fecha: string){
+    return this.http.get('/turnos/' + fecha + '/' + medicoId).map((response: Response) => response.json().datos);
+  }
+
   nuevoTurno(turnoId:number , pacienteId:number, consultorioId:number, medicoId:number,
              obs, costo, fecha:string, entreturno: boolean){
     let body = new URLSearchParams();

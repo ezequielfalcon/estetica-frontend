@@ -1,3 +1,22 @@
-<p>
-  turnos works!
-</p>
+<div class="center">
+  <md-card>
+    <md-card-header>
+      <md-card-title><h3>Turnos por médico</h3></md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <md-select ([ngModel])="medicoSeleccionado" name="medicoSeleccionado" (change)="medicoSeleccionadoList(medicoSeleccionado)">
+        <md-option *ngFor="let medico of medicos" [value]="medico.id" [style.background]="medico.color">
+          {{medico.nombre + ' ' + medico.apellido}}
+        </md-option>
+      </md-select>
+      <md-divider></md-divider>
+      <md-list *ngIf="medicoSeleccionado">
+        <md-list-item *ngFor="let turno of turnosMedico">
+          <md-icon md-list-avatar>receipt</md-icon>
+          <h4 md-line>Horario: {{turnoStringHora(turno.id_turno)}}</h4>
+          <p md-line>Consultorio: {{turno.id_consultorio}}</p>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>
+</div>
