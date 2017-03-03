@@ -11,6 +11,7 @@ import {Turno} from "../../_modelos/turno";
 import {Router, ActivatedRoute} from "@angular/router";
 import {DialogoTurnoService} from "../../_servicios/dialogos/dialogo-turno.service";
 import {Subject} from "rxjs";
+import {TurnoResumen} from "../../_modelos/turno-resumen";
 
 @Component({
   selector: 'app-agenda',
@@ -22,8 +23,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
   pararActualizarTurnos;
 
   constructor(
-    private consultoriosService: ConsultoriosService,
-    private medicosService: MedicosService,
     private spinner: SpinnerService,
     private notificationSerivce: NotificationsService,
     private turnosService: TurnosService,
@@ -33,10 +32,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) { this.pararActualizarTurnos = new Subject(); }
 
-  medicos: Medico[] = [];
-  consultorios: Consultorio[] = [];
-  turnos: Turno[] = [];
-  configuracion: any = {};
+  turnos: TurnoResumen[] = [];
   fechaTurnos: string;
   suscripcionTurnos;
   suscripcionFecha: any;
@@ -44,9 +40,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.suscripcionFecha = this.route.params.subscribe(params => {
       this.fechaTurnos = params['fecha'] || AgendaComponent.fechaHoy();
-      this.cargarConsuls();
-      this.cargarMedicos();
-      this.traerConfigTurnos();
       this.traerTurnos(this.fechaTurnos);
     });
   }
@@ -58,19 +51,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
     this.spinner.start();
   }
 
-  traerConfigTurnos(){
-    this.turnosService.traerConfig().subscribe(configDb => {
-      this.configuracion = configDb;
-      this.configuracion.fecha = this.configuracion.fecha.substr(0, 10);
-      this.configuracion.fechaActual = AgendaComponent.fechaHoy();
-    }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
-    });
-  }
-
   private static fechaHoy(){
     let fechaObject = new Date();
     let mesString = (fechaObject.getMonth() + 1) < 10 ? "0" + (fechaObject.getMonth() +1).toString() : (fechaObject.getMonth() + 1).toString();
@@ -78,38 +58,10 @@ export class AgendaComponent implements OnInit, OnDestroy {
     return fechaObject.getFullYear() + "-" + mesString + "-" + diaString;
   }
 
-  cargarConsuls(){
-    this.consultoriosService.getAll().subscribe(consulsDb => {
-      this.consultorios = consulsDb;
-    }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
-      this.spinner.stop();
-    });
-  }
-
-  cargarMedicos(){
-    this.medicosService.getAll().subscribe(medicosDb => {
-      this.medicos = medicosDb;
-    }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
-      this.spinner.stop();
-    });
-  }
-
   entreturno(consultorioId, turnoId: number){
-    for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == true){
-        for (let medico of this.medicos){
-          if (medico.id == turno.id_medico){
-            return medico.color;
-          }
-        }
+    for (let turnoDb of this.turnos){
+      if (turnoDb.turno == turnoId && turnoDb.consultorio == consultorioId && turnoDb.entreturno == true){
+        return turnoDb.color;
       }
     }
   }
@@ -121,11 +73,11 @@ export class AgendaComponent implements OnInit, OnDestroy {
         this.notificationSerivce.error("Error", "Está intentando reservar un turno para una fecha anterior a la actual!");
         return;
       }
-      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.configuracion.fechaActual + '/' + false])
+      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.fechaTurnos + '/' + false])
     }
     else{
       this.spinner.start();
-      this.dialogoTurno.verTurno(this.configuracion.fechaActual, consultorioId, turnoId, false, this.viewContainerRef);
+      this.dialogoTurno.verTurno(this.fechaTurnos, consultorioId, turnoId, false, this.viewContainerRef);
     }
   }
 
@@ -136,60 +88,48 @@ export class AgendaComponent implements OnInit, OnDestroy {
         this.notificationSerivce.error("Error", "Está intentando reservar un entreturno para una fecha anterior a la actual!");
         return;
       }
-      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.configuracion.fechaActual + '/' + true])
+      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.fechaTurnos + '/' + true])
     }
     else{
       this.spinner.start();
-      this.dialogoTurno.verTurno(this.configuracion.fechaActual, consultorioId, turnoId, true, this.viewContainerRef);
+      this.dialogoTurno.verTurno(this.fechaTurnos, consultorioId, turnoId, true, this.viewContainerRef);
     }
   }
 
   celdaEntreTurnoValor(consultorioId, turnoId: number){
-    for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == true){
-        for (let medico of this.medicos){
-          if (medico.id == turno.id_medico){
-            return medico.apellido;
-          }
-        }
+    for (let turnoDb of this.turnos){
+      if (turnoDb.turno == turnoId && turnoDb.consultorio == consultorioId && turnoDb.entreturno == true){
+        return turnoDb.apellido;
       }
     }
     return "Vacío";
   }
 
   celdaTurnoValor(consultorioId, turnoId: number){
-    for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == false){
-        for (let medico of this.medicos){
-          if (medico.id == turno.id_medico){
-            return medico.apellido;
-          }
-        }
+    for (let turnoDb of this.turnos){
+      if (turnoDb.turno == turnoId && turnoDb.consultorio == consultorioId && turnoDb.entreturno == false){
+        return turnoDb.apellido
       }
     }
     return "Vacío";
   }
 
   celdaTurnoColor(consultorioId, turnoId: number){
-    for (let turno of this.turnos){
-      if (turno.id_turno == turnoId && turno.id_consultorio == consultorioId && turno.entreturno == false){
-        for (let medico of this.medicos){
-          if (medico.id == turno.id_medico){
-            return medico.color;
-          }
-        }
+    for (let turnoDb of this.turnos){
+      if (turnoDb.turno == turnoId && turnoDb.consultorio == consultorioId && turnoDb.entreturno == false){
+        return turnoDb.color;
       }
     }
     return "";
   }
 
   traerTurnos(fecha: string){
-    this.suscripcionTurnos = this.turnosService.traerTurnos(fecha, this.pararActualizarTurnos).subscribe(turnosDb => {
+    this.suscripcionTurnos = this.turnosService.traerTurnosResumido(fecha, this.pararActualizarTurnos).subscribe(turnosDb => {
       this.turnos = turnosDb;
+      console.log(this.turnos);
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
+      const err = error.error || JSON.stringify(error);
       let mensajeError = JSON.parse(err);
       this.notificationSerivce.error('Error', mensajeError.mensaje);
       this.spinner.stop();

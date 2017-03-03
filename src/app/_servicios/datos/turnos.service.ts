@@ -21,7 +21,13 @@ export class TurnosService {
       return this.http.get('/turnos/' + fecha).map((response: Response) => response.json().datos)
         .takeUntil(pararPolling);
     });
+  }
 
+  traerTurnosResumido(fecha: string, pararPolling){
+    return Observable.interval(5000).flatMap(() => {
+      return this.http.get('/agenda/' + fecha).map((response: Response) => response.json().datos)
+        .takeUntil(pararPolling);
+    });
   }
 
   traerTurno(consultorio, turno: number, fecha: string, entreturno: boolean){
