@@ -41,10 +41,8 @@ export class NuevoTratamientoComponent implements OnInit, OnDestroy {
       this.notif.success('OK', 'Tratamiento creado!');
       this.router.navigate([this.returnUrl]);
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notif.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notif.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }

@@ -14,7 +14,7 @@ import {TurnosService} from "../../_servicios/datos/turnos.service";
 export class TurnosComponent implements OnInit, OnDestroy {
 
   constructor(
-    private notificationsService: NotificationsService,
+    private notificationService: NotificationsService,
     private spinner: SpinnerService,
     private medicosService: MedicosService,
     private turnosService: TurnosService
@@ -37,10 +37,8 @@ export class TurnosComponent implements OnInit, OnDestroy {
       this.medicos = medicosDb;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationsService.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
     });
   }
 
@@ -50,10 +48,8 @@ export class TurnosComponent implements OnInit, OnDestroy {
       this.turnosMedico = turnosDb;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationsService.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }

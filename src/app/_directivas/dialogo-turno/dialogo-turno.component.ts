@@ -2,7 +2,6 @@ import {Component, OnInit, state} from '@angular/core';
 import {NotificationsService} from "angular2-notifications";
 import {MdDialogRef} from "@angular/material";
 import {SpinnerService} from "../../_servicios/spinner.service";
-import {Turno} from "../../_modelos/turno";
 import {Tratamiento} from "../../_modelos/tratamiento";
 import {PacientesService} from "../../_servicios/datos/pacientes.service";
 import {MedicosService} from "../../_servicios/datos/medicos.service";
@@ -18,7 +17,7 @@ import {Router} from "@angular/router";
 export class DialogoTurnoComponent implements OnInit {
 
   constructor(
-    private notificationSerivce: NotificationsService,
+    private notificationService: NotificationsService,
     public dialogRef: MdDialogRef<DialogoTurnoComponent>,
     private pacientesService: PacientesService,
     private spinner: SpinnerService,
@@ -46,10 +45,8 @@ export class DialogoTurnoComponent implements OnInit {
         this.traerMedico(this.turno.id_medico);
         this.cargarTratamientosAgenda(this.turno.id);
       }, error => {
-        const body = error.json();
-        const err = body.error || JSON.stringify(body);
-        let mensajeError = JSON.parse(err);
-        this.notificationSerivce.error('Error', mensajeError.mensaje);
+        let body = JSON.parse(error._body);
+        this.notificationService.error('Error', body.mensaje);
       }
     );
   }
@@ -58,10 +55,8 @@ export class DialogoTurnoComponent implements OnInit {
     this.pacientesService.getById(pacienteId).subscribe(pacienteDb => {
       this.paciente = pacienteDb;
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
     });
   }
 
@@ -69,10 +64,8 @@ export class DialogoTurnoComponent implements OnInit {
     this.medicosService.getById(medicoId).subscribe(medicoDb => {
       this.medico = medicoDb;
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
     });
   }
 
@@ -81,10 +74,8 @@ export class DialogoTurnoComponent implements OnInit {
       this.tratamientos = tratamientosDb;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }

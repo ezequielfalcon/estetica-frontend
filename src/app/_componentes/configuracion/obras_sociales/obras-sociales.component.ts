@@ -38,11 +38,13 @@ export class ObrasSocialesComponent implements OnInit, OnDestroy {
   }
 
   private cargarObras(){
-    this.obrasSocialesService.getAll().subscribe(obrasDb => { this.obras = obrasDb; this.spinner.stop() }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationService.error('Error', mensajeError.mensaje);
+    this.obrasSocialesService.getAll().subscribe(obrasDb =>
+    {
+      this.obras = obrasDb; this.spinner.stop()
+    }, error =>
+    {
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
     this.cargando = false;

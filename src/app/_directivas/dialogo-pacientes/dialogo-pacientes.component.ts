@@ -15,7 +15,7 @@ export class DialogoPacientesComponent implements OnInit {
   constructor(
     private ref: ChangeDetectorRef,
     private pacientesService: PacientesService,
-    private notificationSerivce: NotificationsService,
+    private notificationService: NotificationsService,
     public dialogRef: MdDialogRef<DialogoPacientesComponent>,
     private spinner: SpinnerService
   ) {
@@ -37,10 +37,8 @@ export class DialogoPacientesComponent implements OnInit {
       this.pacientes = pacientesDb;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }

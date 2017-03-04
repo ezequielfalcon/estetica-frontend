@@ -32,10 +32,8 @@ export class VerModificarTratamientoComponent implements OnInit, OnDestroy {
         this.tratamiento = trat;
         this.spinner.stop();
       }, error => {
-        const body = error.json();
-        const err = body.error || JSON.stringify(body);
-        let mensajeError = JSON.parse(err);
-        this.notificationService.error('Error', mensajeError.mensaje);
+        let body = JSON.parse(error._body);
+        this.notificationService.error('Error', body.mensaje);
         this.spinner.stop();
       });
   }
@@ -47,10 +45,8 @@ export class VerModificarTratamientoComponent implements OnInit, OnDestroy {
       this.edicion = false;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationService.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
       this.edicion = false;
       this.spinner.stop();
     });
@@ -64,10 +60,8 @@ export class VerModificarTratamientoComponent implements OnInit, OnDestroy {
           this.notificationService.success('OK', 'Tratamiento eliminado!');
           this.router.navigate(['/configuracion/tratamientos']);
         }, error => {
-          const body = error.json();
-          const err = body.error || JSON.stringify(body);
-          let mensajeError = JSON.parse(err);
-          this.notificationService.error('Error', mensajeError.mensaje);
+          let body = JSON.parse(error._body);
+          this.notificationService.error('Error', body.mensaje);
         })
       }
     });

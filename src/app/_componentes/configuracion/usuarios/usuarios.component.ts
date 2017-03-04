@@ -11,7 +11,7 @@ import {UsuariosService} from "../../../_servicios/datos/usuarios.service";
 export class UsuariosComponent implements OnInit {
 
   constructor(
-    private notificationsService: NotificationsService,
+    private notificationService: NotificationsService,
     private usuariosService: UsuariosService
   ) { }
 
@@ -25,10 +25,8 @@ export class UsuariosComponent implements OnInit {
     this.usuariosService.traerUsuarios().subscribe(usuariosDb => {
       this.usuarios = usuariosDb;
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationsService.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
     });
   }
 

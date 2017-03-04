@@ -65,10 +65,8 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.medicos = medicosDb;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }
@@ -78,8 +76,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.pacientes = pacientesDb;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
+      const err = error.error || JSON.stringify(error);
       let mensajeError = JSON.parse(err);
       this.notificationSerivce.error('Error', mensajeError.mensaje);
       this.spinner.stop();
@@ -90,8 +87,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     this.tratamientosService.getAll().subscribe(tratamientosDb => {
       this.tratamientos = tratamientosDb;
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
+      const err = error.error || JSON.stringify(error);
       let mensajeError = JSON.parse(err);
       this.notificationSerivce.error('Error', mensajeError.mensaje);
     });
@@ -149,6 +145,9 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
 
   crear(){
     this.spinner.start();
+    if (!this.nuevoTurno.observaciones){
+      this.nuevoTurno.observaciones = " ";
+    }
     this.turnosService.nuevoTurno(this.nuevoTurno.turnoId,
       this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
       this.medicoSelecionado.id,
@@ -157,8 +156,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
         for (let tratamientosSeleccionadosList of this.tratamientosSeleccionados){
           this.turnosService.agregarTratamiento(agendaId, tratamientosSeleccionadosList.id).subscribe(() => {
           }, error => {
-            const body = error.json();
-            const err = body.error || JSON.stringify(body);
+            const err = error.error || JSON.stringify(error);
             let mensajeError = JSON.parse(err);
             this.notificationSerivce.error('Error', mensajeError.mensaje);
             this.spinner.stop();
@@ -168,8 +166,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.notificationSerivce.success("OK", "Nuevo turno creado con ID: " + agendaId);
         this.router.navigate([this.returnUrl]);
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
+      const err = error.error || JSON.stringify(error);
       let mensajeError = JSON.parse(err);
       this.notificationSerivce.error('Error', mensajeError.mensaje);
       this.spinner.stop();

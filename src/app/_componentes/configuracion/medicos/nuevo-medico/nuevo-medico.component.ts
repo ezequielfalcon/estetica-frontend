@@ -69,10 +69,8 @@ export class NuevoMedicoComponent implements OnInit, OnDestroy {
       this.notif.success('OK', 'Médico creado con ID ' + nuevoM.id);
       this.router.navigate([this.returnUrl]);
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notif.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notif.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }

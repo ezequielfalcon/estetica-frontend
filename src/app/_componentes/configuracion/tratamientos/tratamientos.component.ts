@@ -29,10 +29,8 @@ export class TratamientosComponent implements OnInit, OnDestroy {
       this.tratamientos = tratamientosDb;
       this.spinner.stop()
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationService.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }

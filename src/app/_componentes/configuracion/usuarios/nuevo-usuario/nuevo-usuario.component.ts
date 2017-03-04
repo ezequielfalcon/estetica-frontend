@@ -13,7 +13,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class NuevoUsuarioComponent implements OnInit {
 
   constructor(
-    private notificationsService: NotificationsService,
+    private notificationService: NotificationsService,
     private usuariosService: UsuariosService,
     private spinner: SpinnerService,
     private route: ActivatedRoute,
@@ -34,10 +34,8 @@ export class NuevoUsuarioComponent implements OnInit {
       this.roles = rolesDb;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationsService.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
     });
   }
 
@@ -48,13 +46,13 @@ export class NuevoUsuarioComponent implements OnInit {
   crear(){
     this.spinner.start();
     if (this.nuevoUsuario.pass1 != this.nuevoUsuario.pass2){
-      this.notificationsService.alert("Error","Las contraseñas deben coincidir!");
+      this.notificationService.alert("Error","Las contraseñas deben coincidir!");
       this.spinner.stop();
     }
     else{
       this.usuariosService.crearUsuario(this.nuevoUsuario.nombre, this.nuevoUsuario.pass1, this.nuevoUsuario.rol)
         .subscribe(() => {
-        this.notificationsService.success("OK","Usuario creado!");
+        this.notificationService.success("OK","Usuario creado!");
         this.router.navigate([this.returnUrl]);
       });
     }

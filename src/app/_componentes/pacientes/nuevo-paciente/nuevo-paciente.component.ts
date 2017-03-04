@@ -44,10 +44,8 @@ export class NuevoPacienteComponent implements OnInit, OnDestroy {
 
   cargarObras(){
     this.os.getAll().subscribe(obrasDb => { this.obras = obrasDb; this.spinner.stop() }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notif.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notif.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }
@@ -59,10 +57,8 @@ export class NuevoPacienteComponent implements OnInit, OnDestroy {
         this.notif.success('OK', 'Paciente creado con ID ' + nuevoP.id);
         this.router.navigate([this.returnUrl]);
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notif.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notif.error('Error', body.mensaje);
     });
   }
 

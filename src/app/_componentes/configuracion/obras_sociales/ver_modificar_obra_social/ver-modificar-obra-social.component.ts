@@ -39,10 +39,8 @@ export class VerModificarObraSocial implements OnInit, OnDestroy {
       this.model = os;
       this.spinner.stop();
     }, error => {
-        const body = error.json();
-        const err = body.error || JSON.stringify(body);
-        let mensajeError = JSON.parse(err);
-        this.notificationService.error('Error', mensajeError.mensaje);
+        let body = JSON.parse(error._body);
+        this.notificationService.error('Error', body.mensaje);
         this.spinner.stop();
       });
   }
@@ -58,10 +56,8 @@ export class VerModificarObraSocial implements OnInit, OnDestroy {
       this.edicion = false;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationService.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
       this.edicion = false;
       this.spinner.stop();
     });
@@ -75,10 +71,8 @@ export class VerModificarObraSocial implements OnInit, OnDestroy {
           this.notificationService.success('OK', 'Obra social eliminada!');
           this.router.navigate(['/configuracion/obras-sociales']);
         }, error => {
-          const body = error.json();
-          const err = body.error || JSON.stringify(body);
-          let mensajeError = JSON.parse(err);
-          this.notificationService.error('Error', mensajeError.mensaje);
+          let body = JSON.parse(error._body);
+          this.notificationService.error('Error', body.mensaje);
         })
       }
     });

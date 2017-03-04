@@ -39,10 +39,8 @@ export class NuevaObraSocialComponent implements OnInit, OnDestroy {
       this.notificaciones.success('OK', 'Obra social creada con ID ' + res.id);
       this.router.navigate([this.returnUrl]);
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificaciones.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificaciones.error('Error', body.mensaje);
       this.spinner.stop();
     } );
   }

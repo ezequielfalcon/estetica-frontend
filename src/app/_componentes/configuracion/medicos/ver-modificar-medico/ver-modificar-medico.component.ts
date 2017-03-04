@@ -63,10 +63,8 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
         this.model = med;
         this.spinner.stop();
       }, error => {
-        const body = error.json();
-        const err = body.error || JSON.stringify(body);
-        let mensajeError = JSON.parse(err);
-        this.notificationService.error('Error', mensajeError.mensaje);
+        let body = JSON.parse(error._body);
+        this.notificationService.error('Error', body.mensaje);
         this.spinner.stop();
       });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/configuracion/medicos';
@@ -87,10 +85,8 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
       this.edicion = false;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationService.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
       this.edicion = false;
       this.spinner.stop();
     });
@@ -104,10 +100,8 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
           this.notificationService.success('OK', 'Medico eliminado!');
           this.router.navigate(['/configuracion/medicos']);
         }, error => {
-          const body = error.json();
-          const err = body.error || JSON.stringify(body);
-          let mensajeError = JSON.parse(err);
-          this.notificationService.error('Error', mensajeError.mensaje);
+          let body = JSON.parse(error._body);
+          this.notificationService.error('Error', body.mensaje);
         })
       }
     });

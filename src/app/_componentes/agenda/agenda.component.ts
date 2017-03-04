@@ -128,10 +128,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
       this.turnos = turnosDb;
       this.spinner.stop();
     }, error => {
-      const body = error.json();
-      const err = body.error || JSON.stringify(body);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }
