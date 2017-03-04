@@ -17,7 +17,7 @@ export class TurnosService {
   }
 
   traerTurnos(fecha: string, pararPolling){
-    return Observable.interval(5000).flatMap(() => {
+    return Observable.interval(10000).flatMap(() => {
       return this.http.get('/turnos/' + fecha).map((response: Response) => response.json().datos)
         .takeUntil(pararPolling);
     });

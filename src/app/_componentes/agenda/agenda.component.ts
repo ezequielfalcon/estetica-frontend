@@ -40,7 +40,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.suscripcionFecha = this.route.params.subscribe(params => {
       this.fechaTurnos = params['fecha'] || AgendaComponent.fechaHoy();
-      this.traerTurnos(this.fechaTurnos);
+      this.traerTurnosResumen(this.fechaTurnos);
     });
   }
 
@@ -59,9 +59,9 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
 
   entreturno(consultorioId, turnoId: number){
-    for (let turnoDb of this.turnos){
-      if (turnoDb.turno == turnoId && turnoDb.consultorio == consultorioId && turnoDb.entreturno == true){
-        return turnoDb.color;
+    for (let turno of this.turnos){
+      if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == true){
+        return turno.color;
       }
     }
   }
@@ -97,39 +97,39 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
 
   celdaEntreTurnoValor(consultorioId, turnoId: number){
-    for (let turnoDb of this.turnos){
-      if (turnoDb.turno == turnoId && turnoDb.consultorio == consultorioId && turnoDb.entreturno == true){
-        return turnoDb.apellido;
+    for (let turno of this.turnos){
+      if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == true){
+        return turno.apellido;
       }
     }
     return "Vacío";
   }
 
   celdaTurnoValor(consultorioId, turnoId: number){
-    for (let turnoDb of this.turnos){
-      if (turnoDb.turno == turnoId && turnoDb.consultorio == consultorioId && turnoDb.entreturno == false){
-        return turnoDb.apellido
+    for (let turno of this.turnos){
+      if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == false){
+        return turno.apellido;
       }
     }
     return "Vacío";
   }
 
   celdaTurnoColor(consultorioId, turnoId: number){
-    for (let turnoDb of this.turnos){
-      if (turnoDb.turno == turnoId && turnoDb.consultorio == consultorioId && turnoDb.entreturno == false){
-        return turnoDb.color;
+    for (let turno of this.turnos){
+      if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == false){
+        return turno.color;
       }
     }
     return "";
   }
 
-  traerTurnos(fecha: string){
+  traerTurnosResumen(fecha: string){
     this.suscripcionTurnos = this.turnosService.traerTurnosResumido(fecha, this.pararActualizarTurnos).subscribe(turnosDb => {
       this.turnos = turnosDb;
-      console.log(this.turnos);
       this.spinner.stop();
     }, error => {
-      const err = error.error || JSON.stringify(error);
+      const body = error.json();
+      const err = body.error || JSON.stringify(body);
       let mensajeError = JSON.parse(err);
       this.notificationSerivce.error('Error', mensajeError.mensaje);
       this.spinner.stop();
