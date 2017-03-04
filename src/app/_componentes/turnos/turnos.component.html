@@ -4,7 +4,7 @@
       <md-card-title><h3>Turnos por médico</h3></md-card-title>
     </md-card-header>
     <md-card-content>
-      <md-select ([ngModel])="medicoSeleccionado" name="medicoSeleccionado" (change)="medicoSeleccionadoList(medicoSeleccionado)">
+      <md-select ([ngModel])="medicoSeleccionado" name="medicoSeleccionado">
         <md-option *ngFor="let medico of medicos" [value]="medico.id" [style.background]="medico.color">
           {{medico.nombre + ' ' + medico.apellido}}
         </md-option>
@@ -17,6 +17,8 @@
           <p md-line>Consultorio: {{turno.id_consultorio}}</p>
         </md-list-item>
       </md-list>
+      <md-divider></md-divider>
+      <h3>Bienvenido</h3>
     </md-card-content>
   </md-card>
 </div>
