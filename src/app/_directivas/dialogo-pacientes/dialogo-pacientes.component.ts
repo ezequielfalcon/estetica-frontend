@@ -4,6 +4,7 @@ import {PacientesService} from "../../_servicios/datos/pacientes.service";
 import {NotificationsService} from "angular2-notifications";
 import {MdDialogRef} from "@angular/material";
 import {SpinnerService} from "../../_servicios/spinner.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dialogo-pacientes',
@@ -17,7 +18,8 @@ export class DialogoPacientesComponent implements OnInit {
     private pacientesService: PacientesService,
     private notificationService: NotificationsService,
     public dialogRef: MdDialogRef<DialogoPacientesComponent>,
-    private spinner: SpinnerService
+    private spinner: SpinnerService,
+    private router: Router
   ) {
     this.spinner.start();
   }
@@ -37,6 +39,10 @@ export class DialogoPacientesComponent implements OnInit {
       this.pacientes = pacientesDb;
       this.spinner.stop();
     }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();

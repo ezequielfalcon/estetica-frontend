@@ -39,6 +39,10 @@ export class NuevaObraSocialComponent implements OnInit, OnDestroy {
       this.notificaciones.success('OK', 'Obra social creada con ID ' + res.id);
       this.router.navigate([this.returnUrl]);
     }, error => {
+      if (error.status == 401){
+        this.notificaciones.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificaciones.error('Error', body.mensaje);
       this.spinner.stop();

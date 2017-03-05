@@ -65,6 +65,10 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.medicos = medicosDb;
       this.spinner.stop();
     }, error => {
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationSerivce.error('Error', body.mensaje);
       this.spinner.stop();
@@ -76,9 +80,12 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.pacientes = pacientesDb;
       this.spinner.stop();
     }, error => {
-      const err = error.error || JSON.stringify(error);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }
@@ -87,9 +94,12 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     this.tratamientosService.getAll().subscribe(tratamientosDb => {
       this.tratamientos = tratamientosDb;
     }, error => {
-      const err = error.error || JSON.stringify(error);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
     });
   }
 
@@ -156,9 +166,12 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
         for (let tratamientosSeleccionadosList of this.tratamientosSeleccionados){
           this.turnosService.agregarTratamiento(agendaId, tratamientosSeleccionadosList.id).subscribe(() => {
           }, error => {
-            const err = error.error || JSON.stringify(error);
-            let mensajeError = JSON.parse(err);
-            this.notificationSerivce.error('Error', mensajeError.mensaje);
+            if (error.status == 401){
+              this.notificationSerivce.error("Error","Sesión expirada!");
+              this.router.navigate(['/login']);
+            }
+            let body = JSON.parse(error._body);
+            this.notificationSerivce.error('Error', body.mensaje);
             this.spinner.stop();
             return;
           });
@@ -166,9 +179,12 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.notificationSerivce.success("OK", "Nuevo turno creado con ID: " + agendaId);
         this.router.navigate([this.returnUrl]);
     }, error => {
-      const err = error.error || JSON.stringify(error);
-      let mensajeError = JSON.parse(err);
-      this.notificationSerivce.error('Error', mensajeError.mensaje);
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }

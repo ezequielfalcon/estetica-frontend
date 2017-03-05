@@ -45,6 +45,10 @@ export class DialogoTurnoComponent implements OnInit {
         this.traerMedico(this.turno.id_medico);
         this.cargarTratamientosAgenda(this.turno.id);
       }, error => {
+        if (error.status == 401){
+          this.notificationService.error("Error","Sesión expirada!");
+          this.router.navigate(['/login']);
+        }
         let body = JSON.parse(error._body);
         this.notificationService.error('Error', body.mensaje);
       }
@@ -55,6 +59,10 @@ export class DialogoTurnoComponent implements OnInit {
     this.pacientesService.getById(pacienteId).subscribe(pacienteDb => {
       this.paciente = pacienteDb;
     }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
     });
@@ -64,6 +72,10 @@ export class DialogoTurnoComponent implements OnInit {
     this.medicosService.getById(medicoId).subscribe(medicoDb => {
       this.medico = medicoDb;
     }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
     });
@@ -74,6 +86,10 @@ export class DialogoTurnoComponent implements OnInit {
       this.tratamientos = tratamientosDb;
       this.spinner.stop();
     }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();

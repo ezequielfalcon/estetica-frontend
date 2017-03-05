@@ -41,6 +41,10 @@ export class NuevoTratamientoComponent implements OnInit, OnDestroy {
       this.notif.success('OK', 'Tratamiento creado!');
       this.router.navigate([this.returnUrl]);
     }, error => {
+      if (error.status == 401){
+        this.notif.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notif.error('Error', body.mensaje);
       this.spinner.stop();

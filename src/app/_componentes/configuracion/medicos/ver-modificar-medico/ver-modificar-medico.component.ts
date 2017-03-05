@@ -63,6 +63,10 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
         this.model = med;
         this.spinner.stop();
       }, error => {
+        if (error.status == 401){
+          this.notificationService.error("Error","Sesión expirada!");
+          this.router.navigate(['/login']);
+        }
         let body = JSON.parse(error._body);
         this.notificationService.error('Error', body.mensaje);
         this.spinner.stop();
@@ -85,6 +89,10 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
       this.edicion = false;
       this.spinner.stop();
     }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
       this.edicion = false;
@@ -100,6 +108,10 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
           this.notificationService.success('OK', 'Medico eliminado!');
           this.router.navigate(['/configuracion/medicos']);
         }, error => {
+          if (error.status == 401){
+            this.notificationService.error("Error","Sesión expirada!");
+            this.router.navigate(['/login']);
+          }
           let body = JSON.parse(error._body);
           this.notificationService.error('Error', body.mensaje);
         })

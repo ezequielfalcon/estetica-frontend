@@ -34,6 +34,10 @@ export class NuevoUsuarioComponent implements OnInit {
       this.roles = rolesDb;
       this.spinner.stop();
     }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
     });

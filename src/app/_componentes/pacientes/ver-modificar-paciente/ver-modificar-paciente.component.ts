@@ -45,10 +45,12 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
       this.pac.fecha_nacimiento = pachiente.fecha_nacimiento.substr(0,10);
       this.spinner.stop();
       }, error => {
-        const body = error.json();
-        const err = body.error || JSON.stringify(body);
-        let mensajeError = JSON.parse(err);
-        this.notif.error('Error', mensajeError.mensaje);
+        if (error.status == 401){
+          this.notif.error("Error","Sesión expirada!");
+          this.router.navigate(['/login']);
+        }
+        let body = JSON.parse(error._body);
+        this.notif.error('Error', body.mensaje);
         this.spinner.stop();
       });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/pacientes';
@@ -60,6 +62,10 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
 
   cargarObras(){
     this.os.getAll().subscribe(obrasDb => { this.obras = obrasDb }, error => {
+      if (error.status == 401){
+        this.notif.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notif.error('Error', body.mensaje);
       this.spinner.stop();
@@ -77,6 +83,10 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
       this.notif.success('OK', 'Paciente modificado!');
       this.edicion = false;
     }, error => {
+      if (error.status == 401){
+        this.notif.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notif.error('Error', body.mensaje);
       this.edicion = false;
@@ -91,6 +101,10 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
           this.notif.success('OK', 'Paciente eliminado!');
           this.router.navigate(['/medicos']);
         }, error => {
+          if (error.status == 401){
+            this.notif.error("Error","Sesión expirada!");
+            this.router.navigate(['/login']);
+          }
           let body = JSON.parse(error._body);
           this.notif.error('Error', body.mensaje);
         });

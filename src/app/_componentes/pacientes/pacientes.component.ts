@@ -17,7 +17,7 @@ import {SpinnerService} from "../../_servicios/spinner.service";
 export class PacientesComponent implements OnInit, OnDestroy {
   constructor (
     private pacientesService: PacientesService,
-    private notificationSerivce: NotificationsService,
+    private notificationService: NotificationsService,
     private ref: ChangeDetectorRef,
     private router: Router,
     private spinner: SpinnerService
@@ -43,8 +43,12 @@ export class PacientesComponent implements OnInit, OnDestroy {
       this.pacientes = pacientesDb;
       this.spinner.stop();
     }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
-      this.notificationSerivce.error('Error', body.mensaje);
+      this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }

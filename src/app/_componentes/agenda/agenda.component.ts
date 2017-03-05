@@ -128,6 +128,10 @@ export class AgendaComponent implements OnInit, OnDestroy {
       this.turnos = turnosDb;
       this.spinner.stop();
     }, error => {
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationSerivce.error('Error', body.mensaje);
       this.spinner.stop();

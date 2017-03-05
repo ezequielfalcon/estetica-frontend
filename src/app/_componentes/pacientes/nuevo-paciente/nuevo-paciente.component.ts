@@ -44,6 +44,10 @@ export class NuevoPacienteComponent implements OnInit, OnDestroy {
 
   cargarObras(){
     this.os.getAll().subscribe(obrasDb => { this.obras = obrasDb; this.spinner.stop() }, error => {
+      if (error.status == 401){
+        this.notif.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notif.error('Error', body.mensaje);
       this.spinner.stop();
@@ -57,6 +61,10 @@ export class NuevoPacienteComponent implements OnInit, OnDestroy {
         this.notif.success('OK', 'Paciente creado con ID ' + nuevoP.id);
         this.router.navigate([this.returnUrl]);
     }, error => {
+      if (error.status == 401){
+        this.notif.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notif.error('Error', body.mensaje);
     });

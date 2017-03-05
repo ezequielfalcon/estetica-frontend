@@ -5,6 +5,7 @@ import {MedicosService} from "../../_servicios/datos/medicos.service";
 import {Medico} from "../../_modelos/medico";
 import {Turno} from "../../_modelos/turno";
 import {TurnosService} from "../../_servicios/datos/turnos.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-turnos',
@@ -17,7 +18,8 @@ export class TurnosComponent implements OnInit, OnDestroy {
     private notificationService: NotificationsService,
     private spinner: SpinnerService,
     private medicosService: MedicosService,
-    private turnosService: TurnosService
+    private turnosService: TurnosService,
+    private router: Router
   ) { }
 
   medicos: Medico[] = [];
@@ -37,6 +39,10 @@ export class TurnosComponent implements OnInit, OnDestroy {
       this.medicos = medicosDb;
       this.spinner.stop();
     }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
     });
@@ -48,6 +54,10 @@ export class TurnosComponent implements OnInit, OnDestroy {
       this.turnosMedico = turnosDb;
       this.spinner.stop();
     }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
       let body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
