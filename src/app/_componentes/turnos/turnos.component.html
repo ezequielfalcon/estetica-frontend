@@ -4,21 +4,25 @@
       <md-card-title><h3>Turnos por médico</h3></md-card-title>
     </md-card-header>
     <md-card-content>
-      <md-select ([ngModel])="medicoSeleccionado" name="medicoSeleccionado">
-        <md-option *ngFor="let medico of medicos" [value]="medico.id" [style.background]="medico.color">
+      <md-select ([ngModel])="medicoSeleccionado" name="medicoSeleccionado" style="width: 100px">
+        <md-option *ngFor="let medico of medicos" [value]="medico" [style.background]="medico.color"
+                   (click)="medicoSeleccionadoList(medico.id)">
           {{medico.nombre + ' ' + medico.apellido}}
         </md-option>
       </md-select>
       <md-divider></md-divider>
-      <md-list *ngIf="medicoSeleccionado">
-        <md-list-item *ngFor="let turno of turnosMedico">
-          <md-icon md-list-avatar>receipt</md-icon>
-          <h4 md-line>Horario: {{turnoStringHora(turno.id_turno)}}</h4>
-          <p md-line>Consultorio: {{turno.id_consultorio}}</p>
-        </md-list-item>
-      </md-list>
+      <table width="100%">
+        <tr>
+          <th>Horario</th><th>Consultorio</th><th>Paciente</th><th>Entreturno</th>
+        </tr>
+        <tr *ngFor="let turno of turnosMedico">
+          <td>{{turnoStringHora(turno.id_turno)}}</td>
+          <td>{{turno.id_consultorio}}</td>
+          <td>{{turno.paciente}}</td>
+          <td><md-checkbox disabled [checked]="turno.entreturno == true"></md-checkbox></td>
+        </tr>
+      </table>
       <md-divider></md-divider>
-      <h3>Bienvenido</h3>
     </md-card-content>
   </md-card>
 </div>

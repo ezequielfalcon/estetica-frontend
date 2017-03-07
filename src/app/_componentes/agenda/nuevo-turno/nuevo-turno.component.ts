@@ -148,6 +148,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
               }
             }
             this.tratamientosSeleccionados.push(tratamiento);
+            this.nuevoTurno.costoTurno = this.nuevoTurno.costoTurno + +tratamiento.costo;
           }
         }
       });

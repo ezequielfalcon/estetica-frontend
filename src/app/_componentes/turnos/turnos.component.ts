@@ -6,6 +6,7 @@ import {Medico} from "../../_modelos/medico";
 import {Turno} from "../../_modelos/turno";
 import {TurnosService} from "../../_servicios/datos/turnos.service";
 import {Router} from "@angular/router";
+import {TurnoResumenMedico} from "../../_modelos/turno-resumen-medico";
 
 @Component({
   selector: 'app-turnos',
@@ -24,7 +25,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
 
   medicos: Medico[] = [];
   medicoSeleccionado: number;
-  turnosMedico: Turno[] = [];
+  turnosMedico: TurnoResumenMedico[] = [];
 
   ngOnInit() {
     this.cargarMedicos();
@@ -71,9 +72,10 @@ export class TurnosComponent implements OnInit, OnDestroy {
     return fechaObject.getFullYear() + "-" + mesString + "-" + diaString;
   }
 
-  static turnoStringHora(turnoId: string){
+  turnoStringHora(turnoId: string){
     let turnoString: string;
-    switch (turnoId){
+    let turnoIdString = ""+turnoId;
+    switch (turnoIdString){
       case "1":
         turnoString = "09:00";
         break;
