@@ -55,9 +55,12 @@ export class NuevoPacienteComponent implements OnInit, OnDestroy {
   }
 
   crear(){
+    if (!this.nuevoPac.obvservaciones) this.nuevoPac.obvservaciones = " ";
     this.pacientesService.post(this.nuevoPac.nombre, this.nuevoPac.apellido,
       this.nuevoPac.documento, this.nuevoPac.tel, this.nuevoPac.email,
-      this.nuevoPac.fechaNac, this.nuevoPac.sexo, this.nuevoPac.id_os ).subscribe(nuevoP => {
+      this.nuevoPac.fechaNac, this.nuevoPac.sexo, this.nuevoPac.id_os,
+      this.nuevoPac.numero_os, this.nuevoPac.domicilio, this.nuevoPac.obvservaciones )
+      .subscribe(nuevoP => {
         this.notif.success('OK', 'Paciente creado con ID ' + nuevoP.id);
         this.router.navigate([this.returnUrl]);
     }, error => {

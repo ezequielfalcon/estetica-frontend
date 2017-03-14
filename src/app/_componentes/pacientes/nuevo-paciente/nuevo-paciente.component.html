@@ -57,7 +57,25 @@
               </md-option>
             </md-select>
           </td>
-        </tr></table>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Número de OS" name="numos" [(ngModel)]="nuevoPac.numero_os" #numos="ngModel" required>
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Domicilio" name="domicilio" [(ngModel)]="nuevoPac.domicilio" #domicilio="ngModel" required>
+            </md-input-container>
+          </td>
+        </tr>
+          <tr>
+            <md-input-container>
+              <input mdInput placeholder="Observaciones" name="observaciones" [(ngModel)]="nuevoPac.obvservaciones" #observaciones="ngModel">
+            </md-input-container>
+          </tr>
+        </table>
       </md-card-content>
       <md-card-actions>
         <button md-button type="submit"><md-icon>archive</md-icon>Guardar</button>

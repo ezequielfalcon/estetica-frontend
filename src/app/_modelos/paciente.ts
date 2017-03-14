@@ -11,4 +11,8 @@ export class Paciente {
   mail: string;
   sexo: string;
   id_os: number;
+  numero_os: string;
+  domicilio: string;
+  obvservaciones: string;
+  fecha_alta: string;
 }
