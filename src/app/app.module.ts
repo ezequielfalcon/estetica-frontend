@@ -49,6 +49,7 @@ import { RedirAgendaComponent } from './_componentes/agenda/redir-agenda/redir-a
 import {UsuariosService} from "./_servicios/datos/usuarios.service";
 import { NuevoUsuarioComponent } from './_componentes/configuracion/usuarios/nuevo-usuario/nuevo-usuario.component';
 import { TurnosComponent } from './_componentes/turnos/turnos.component';
+import { LiquidacionesComponent } from './_componentes/liquidaciones/liquidaciones.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { TurnosComponent } from './_componentes/turnos/turnos.component';
     DialogoTurnoComponent,
     RedirAgendaComponent,
     NuevoUsuarioComponent,
-    TurnosComponent
+    TurnosComponent,
+    LiquidacionesComponent
   ],
   imports: [
     BrowserModule,
