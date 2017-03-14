@@ -18,6 +18,7 @@ import {VerModificarTratamientoComponent} from "./_componentes/configuracion/tra
 import {RedirAgendaComponent} from "./_componentes/agenda/redir-agenda/redir-agenda.component";
 import {NuevoUsuarioComponent} from "./_componentes/configuracion/usuarios/nuevo-usuario/nuevo-usuario.component";
 import {TurnosComponent} from "./_componentes/turnos/turnos.component";
+import {LiquidacionesComponent} from "./_componentes/liquidaciones/liquidaciones.component";
 
 const appRoutes: Routes = [
   { path: '', component: TurnosComponent, canActivate: [AuthGuard] },
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
   { path: 'nuevo-turno/:consultorio/:turno/:fecha/:entreturno', component: NuevoTurnoComponent, canActivate: [AuthGuard] },
   { path: 'nuevo-tratamiento', component: NuevoTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'tratamientos/:id', component: VerModificarTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'liquidaciones', component: LiquidacionesComponent, canActivate: [AuthGuard] },
 
   { path: '*', redirectTo: '' }
 ];

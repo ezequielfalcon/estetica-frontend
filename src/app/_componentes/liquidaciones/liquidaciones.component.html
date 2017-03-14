@@ -1,3 +1,32 @@
-<p>
-  liquidaciones works!
-</p>
+<div class="center">
+  <md-card>
+    <md-card-header>
+      <md-card-title>
+        <h3>Liquidaciones a Médicos</h3>
+      </md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <table>
+        <tr>
+          <td>
+            <md-select ([ngModel])="medicoSeleccionado" name="medicoSeleccionado" style="width: 100px">
+              <md-option *ngFor="let medico of medicos" [value]="medico" [style.background]="medico.color"
+                         (click)="medicoSeleccionadoList(medico.id)">
+                {{medico.nombre + ' ' + medico.apellido}}
+              </md-option>
+            </md-select>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Fecha" type="date" name="fechaActual" [(ngModel)]="fechaTurnos" #fechaActual="ngModel">
+            </md-input-container>
+          </td>
+        </tr>
+      </table>
+      <md-divider></md-divider>
+      <table width="100%">
+
+      </table>
+    </md-card-content>
+  </md-card>
+</div>
