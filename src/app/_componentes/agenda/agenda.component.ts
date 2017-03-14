@@ -1,13 +1,8 @@
 import {
   Component, OnInit, OnDestroy, ViewContainerRef} from '@angular/core';
-import {ConsultoriosService} from "../../_servicios/datos/consultorios.service";
-import {MedicosService} from "../../_servicios/datos/medicos.service";
-import {Medico} from "../../_modelos/medico";
-import {Consultorio} from "../../_modelos/consultorio";
 import {SpinnerService} from "../../_servicios/spinner.service";
 import {NotificationsService} from "angular2-notifications";
 import {TurnosService} from "../../_servicios/datos/turnos.service";
-import {Turno} from "../../_modelos/turno";
 import {Router, ActivatedRoute} from "@angular/router";
 import {DialogoTurnoService} from "../../_servicios/dialogos/dialogo-turno.service";
 import {Subject} from "rxjs";
