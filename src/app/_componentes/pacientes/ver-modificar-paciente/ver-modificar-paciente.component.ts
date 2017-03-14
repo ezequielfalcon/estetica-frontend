@@ -42,8 +42,8 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
     this.route.params.switchMap((params: Params) => this.pacientesService.getById(+params['id']))
       .subscribe((pachiente: Paciente) => {
       this.pac = pachiente;
-      this.pac.fecha_nacimiento = pachiente.fecha_nacimiento.substr(0,10);
-      this.pac.fecha_alta = pachiente.fecha_alta.substr(0,10);
+      if (pachiente.fecha_nacimiento) this.pac.fecha_nacimiento = pachiente.fecha_nacimiento.substr(0,10);
+      if (pachiente.fecha_alta) this.pac.fecha_alta = pachiente.fecha_alta.substr(0,10);
       this.spinner.stop();
       }, error => {
         if (error.status == 401){
