@@ -43,6 +43,7 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
       .subscribe((pachiente: Paciente) => {
       this.pac = pachiente;
       this.pac.fecha_nacimiento = pachiente.fecha_nacimiento.substr(0,10);
+      this.pac.fecha_alta = pachiente.fecha_alta.substr(0,10);
       this.spinner.stop();
       }, error => {
         if (error.status == 401){
@@ -79,7 +80,8 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
   modificar(){
     this.pacientesService.put(this.pac.id, this.pac.nombre, this.pac.apellido,
       this.pac.documento, this.pac.telefono, this.pac.mail, this.pac.fecha_nacimiento,
-      this.pac.sexo, this.pac.id_os).subscribe(() => {
+      this.pac.sexo, this.pac.id_os, this.pac.numero_os, this.pac.domicilio, this.pac.obvservaciones)
+      .subscribe(() => {
       this.notif.success('OK', 'Paciente modificado!');
       this.edicion = false;
     }, error => {

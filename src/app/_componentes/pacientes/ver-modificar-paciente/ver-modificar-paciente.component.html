@@ -64,7 +64,27 @@
               </md-option>
             </md-select>
           </td>
-        </tr></table>
+        </tr>
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput [disabled]="!edicion" placeholder="Numero OS" name="numero_os" [(ngModel)]="pac.numero_os" #numero_os="ngModel">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput [disabled]="!edicion" placeholder="Domicilio" name="domicilio" [(ngModel)]="pac.domicilio" #domicilio="ngModel">
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input-container>
+                <textarea mdInput [disabled]="!edicion" placeholder="Observaciones" name="obvservaciones" [(ngModel)]="pac.obvservaciones" #obvservaciones="ngModel">
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
       </md-card-content>
       <md-card-actions>
         <button md-button (click)="editar(true)" *ngIf="!edicion" type="button"><md-icon>create</md-icon>Modificar</button>
