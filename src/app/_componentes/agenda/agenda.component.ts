@@ -97,7 +97,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
         return turno.apellido;
       }
     }
-    return "Vacío";
+    return "";
   }
 
   celdaTurnoValor(consultorioId, turnoId: number){
@@ -106,7 +106,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
         return turno.apellido;
       }
     }
-    return "Vacío";
+    return "";
   }
 
   celdaTurnoColor(consultorioId, turnoId: number){
