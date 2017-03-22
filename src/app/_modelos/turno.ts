@@ -13,4 +13,5 @@ export class Turno {
   id_turno: number;
   fecha: string;
   entreturno: boolean;
+  presente: boolean;
 }

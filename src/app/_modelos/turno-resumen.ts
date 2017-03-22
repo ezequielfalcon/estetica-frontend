@@ -8,4 +8,5 @@ export class TurnoResumen {
   entreturno: boolean;
   color: string;
   apellido: string;
+  presente: boolean;
 }
