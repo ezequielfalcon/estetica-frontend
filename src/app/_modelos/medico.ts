@@ -6,5 +6,4 @@ export class Medico {
   nombre: string;
   apellido: string;
   mail: string;
-  color: string;
 }

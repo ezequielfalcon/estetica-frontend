@@ -6,7 +6,6 @@ export class TurnoResumen {
   turno: number;
   usuario: string;
   entreturno: boolean;
-  color: string;
   apellido: string;
   presente: boolean;
 }
