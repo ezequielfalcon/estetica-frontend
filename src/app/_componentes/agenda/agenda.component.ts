@@ -56,13 +56,13 @@ export class AgendaComponent implements OnInit, OnDestroy {
   entreturno(consultorioId, turnoId: number){
     for (let turno of this.turnos){
       if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == true){
-        return turno.color;
+        return "#0006e1";
       }
     }
   }
 
   clickCeldaTurno(consultorioId, turnoId: number){
-    if (this.celdaTurnoValor(consultorioId, turnoId) == "Vacío"){
+    if (this.celdaTurnoValor(consultorioId, turnoId) == "-"){
       if (this.fechaTurnos < AgendaComponent.fechaHoy())
       {
         this.notificationSerivce.error("Error", "Está intentando reservar un turno para una fecha anterior a la actual!");
@@ -77,7 +77,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
 
   clickEntreturno(consultorioId, turnoId: number){
-    if (this.celdaEntreTurnoValor(consultorioId, turnoId) == "Vacío"){
+    if (this.celdaEntreTurnoValor(consultorioId, turnoId) == "-"){
       if (this.fechaTurnos < AgendaComponent.fechaHoy())
       {
         this.notificationSerivce.error("Error", "Está intentando reservar un entreturno para una fecha anterior a la actual!");
@@ -97,7 +97,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
         return turno.apellido;
       }
     }
-    return "";
+    return "-";
   }
 
   celdaTurnoValor(consultorioId, turnoId: number){
@@ -106,13 +106,13 @@ export class AgendaComponent implements OnInit, OnDestroy {
         return turno.apellido;
       }
     }
-    return "";
+    return "-";
   }
 
   celdaTurnoColor(consultorioId, turnoId: number){
     for (let turno of this.turnos){
       if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == false){
-        return turno.color;
+        return "#0006e1";
       }
     }
     return "";
