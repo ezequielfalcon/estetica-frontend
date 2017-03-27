@@ -56,7 +56,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   entreturno(consultorioId, turnoId: number){
     for (let turno of this.turnos){
       if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == true){
-        return "#0006e1";
+        return "#0043b4";
       }
     }
   }
@@ -112,7 +112,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   celdaTurnoColor(consultorioId, turnoId: number){
     for (let turno of this.turnos){
       if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == false){
-        return "#0006e1";
+        return "#0043b4";
       }
     }
     return "";
