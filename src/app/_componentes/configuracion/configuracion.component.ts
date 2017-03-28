@@ -23,11 +23,11 @@ export class ConfiguracionComponent implements OnInit {
       case 'medicos':
         this.indiceTab = 1;
         break;
-      case 'tratamientos':
-        this.indiceTab = 2;
-        break;
+      /*case 'tratamientos':
+        this.indiceTab = x;
+        break;*/
       case 'usuarios':
-        this.indiceTab = 3;
+        this.indiceTab = 2;
         break;
       default:
         this.indiceTab = 0;
