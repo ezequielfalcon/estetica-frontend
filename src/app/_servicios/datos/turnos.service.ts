@@ -60,9 +60,10 @@ export class TurnosService {
     return this.http.post('/agregar-tratamiento', body).map((response: Response) => response.json());
   }
 
-  confirmarPresencia(agendaId: number){
+  confirmarPresencia(agendaId: number, presencia: boolean){
     let body = new URLSearchParams();
     body.set("id_agenda", ""+agendaId);
+    body.set("presente", ""+presencia);
     return this.http.post('/turno-presente', body).map((response: Response) => response.json());
   }
 

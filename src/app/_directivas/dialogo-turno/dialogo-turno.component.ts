@@ -117,8 +117,8 @@ export class DialogoTurnoComponent implements OnInit {
       this.notificationService.alert('Advertencia', 'No puede confirmar presencia de un turno distinto al día de hoy!');
       this.spinner.stop();
     }
-    else if (this.turno.presente == false){
-      this.turnosService.confirmarPresencia(this.turno.id).subscribe(() => {
+    else {
+      this.turnosService.confirmarPresencia(this.turno.id, !this.turno.presente).subscribe(() => {
         this.cargarTurno();
         this.spinner.stop();
       }, error => {
