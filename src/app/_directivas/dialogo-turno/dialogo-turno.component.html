@@ -46,7 +46,7 @@
       </tr>
       <tr>
         <td>
-          <md-checkbox [checked]="turno.presente">Paciente asistió</md-checkbox>
+          <md-checkbox class="clickVer" [checked]="turno.presente" (click)="pacientePresente()">Paciente asistió</md-checkbox>
         </td>
       </tr>
     </table>

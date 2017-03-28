@@ -38,9 +38,14 @@ export class DialogoTurnoComponent implements OnInit {
   tratamientos: Tratamiento[] = [];
 
   ngOnInit() {
+    this.cargarTurno();
+  }
+
+  cargarTurno(){
     this.turnosService.traerTurno(this.consultorioId, this.turnoId, this.fecha, this.entreturno).subscribe(
       turnoDb => {
         this.turno = turnoDb;
+        this.turno.fecha = turnoDb.fecha.substr(0,10);
         this.traerPaciente(this.turno.id_paciente);
         this.traerMedico(this.turno.id_medico);
         this.cargarTratamientosAgenda(this.turno.id);
@@ -104,6 +109,35 @@ export class DialogoTurnoComponent implements OnInit {
   detallesPaciente(id: number){
     this.dialogRef.close();
     this.router.navigate(['/pacientes/' + id], { queryParams: { returnUrl: '/agenda' }});
+  }
+
+  pacientePresente(){
+    this.spinner.start();
+    if (this.turno.fecha < DialogoTurnoComponent.fechaHoy() || this.turno.fecha > DialogoTurnoComponent.fechaHoy()){
+      this.notificationService.alert('Advertencia', 'No puede confirmar presencia de un turno distinto al día de hoy!');
+      this.spinner.stop();
+    }
+    else if (this.turno.presente == false){
+      this.turnosService.confirmarPresencia(this.turno.id).subscribe(() => {
+        this.cargarTurno();
+        this.spinner.stop();
+      }, error => {
+        if (error.status == 401){
+          this.notificationService.error("Error","Sesión expirada!");
+          this.router.navigate(['/login']);
+        }
+        let body = JSON.parse(error._body);
+        this.notificationService.error('Error', body.mensaje);
+        this.spinner.stop();
+      });
+    }
+  }
+
+  private static fechaHoy(){
+    let fechaObject = new Date();
+    let mesString = (fechaObject.getMonth() + 1) < 10 ? "0" + (fechaObject.getMonth() +1).toString() : (fechaObject.getMonth() + 1).toString();
+    let diaString = fechaObject.getDate() < 10 ? "0" + fechaObject.getDate().toString() : fechaObject.getDate().toString();
+    return fechaObject.getFullYear() + "-" + mesString + "-" + diaString;
   }
 
 }
