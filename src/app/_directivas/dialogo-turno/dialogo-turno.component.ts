@@ -36,6 +36,7 @@ export class DialogoTurnoComponent implements OnInit {
   paciente: any = {};
   medico: any = {};
   tratamientos: Tratamiento[] = [];
+  edicion: boolean = false;
 
   ngOnInit() {
     this.cargarTurno();
@@ -111,6 +112,10 @@ export class DialogoTurnoComponent implements OnInit {
     this.router.navigate(['/pacientes/' + id], { queryParams: { returnUrl: '/agenda' }});
   }
 
+  editarTurno(){
+    this.edicion = true;
+  }
+
   pacientePresente(){
     this.spinner.start();
     if (this.turno.fecha < DialogoTurnoComponent.fechaHoy() || this.turno.fecha > DialogoTurnoComponent.fechaHoy()){
@@ -119,8 +124,9 @@ export class DialogoTurnoComponent implements OnInit {
     }
     else {
       this.turnosService.confirmarPresencia(this.turno.id, !this.turno.presente).subscribe(() => {
-        this.cargarTurno();
+        this.edicion = false;
         this.spinner.stop();
+        this.dialogRef.close();
       }, error => {
         if (error.status == 401){
           this.notificationService.error("Error","Sesión expirada!");

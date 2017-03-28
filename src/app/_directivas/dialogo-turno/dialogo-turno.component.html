@@ -46,7 +46,10 @@
       </tr>
       <tr>
         <td>
-          <md-checkbox class="clickVer" [checked]="turno.presente" (click)="pacientePresente()">Paciente asistió</md-checkbox>
+          <md-checkbox [checked]="turno.presente" (click)="editarTurno()">Paciente asistió</md-checkbox>
+        </td>
+        <td>
+          <button md-raised-button *ngIf="edicion" (click)="pacientePresente()">Guardar cambio</button>
         </td>
       </tr>
     </table>
