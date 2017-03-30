@@ -36,7 +36,6 @@ import { DialogoPacientesComponent } from './_directivas/dialogo-pacientes/dialo
 import {DialogoPacientesService} from "./_servicios/dialogos/dialogo-pacientes.service";
 import { DialogoMedicosComponent } from './_directivas/dialogo-medicos/dialogo-medicos.component';
 import {DialogoMedicosService} from "./_servicios/dialogos/dialogo-medicos.service";
-import {ColorPickerModule} from "ng2-color-picker";
 import { TratamientosComponent } from './_componentes/configuracion/tratamientos/tratamientos.component';
 import {NuevoTratamientoComponent} from "./_componentes/configuracion/tratamientos/nuevo-tratamiento/nuevo-tratamiento.component";
 import {TratamientosService} from "./_servicios/datos/tratamientos.service";
@@ -91,8 +90,7 @@ import { LiquidacionesComponent } from './_componentes/liquidaciones/liquidacion
     HttpModule,
     MaterialModule,
     routing,
-    SimpleNotificationsModule,
-    ColorPickerModule
+    SimpleNotificationsModule
   ],
   exports: [
     DialogoComponent,

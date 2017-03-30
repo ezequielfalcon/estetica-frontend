@@ -17,21 +17,19 @@ export class MedicosService {
     return this.http.get('/medicos/' + id).map((response: Response) => response.json().datos);
   }
 
-  post(nombre, apellido, mail, color: string){
+  post(nombre, apellido, mail){
     let body = new URLSearchParams();
     body.set('nombre', nombre);
     body.set('apellido', apellido);
     body.set('mail', mail);
-    body.set("color", color);
     return this.http.post('/medicos', body).map((response: Response) => response.json());
   }
 
-  put(id: number, nombre, apellido, mail, color: string){
+  put(id: number, nombre, apellido, mail){
     let body = new URLSearchParams();
     body.set('nombre', nombre);
     body.set('apellido', apellido);
     body.set('mail', mail);
-    body.set("color", color);
     return this.http.put('/medicos/' +id, body).map((response: Response) => response.json());
   }
 

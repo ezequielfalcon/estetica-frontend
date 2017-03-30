@@ -12,7 +12,6 @@ import {SpinnerService} from "../../../../_servicios/spinner.service";
 })
 export class NuevoMedicoComponent implements OnInit, OnDestroy {
 
-  public configColores: IColorPickerConfiguration;
 
   constructor(
     private medicosService: MedicosService,
@@ -21,29 +20,6 @@ export class NuevoMedicoComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private spinner: SpinnerService
   ) {
-    this.configColores = {
-      width: 25,
-      height: 25,
-      borderRadius: 4,
-      availableColors: [
-        '#33cccc',
-        '#0000FF',
-        '#99cc99',
-        '#239B56',
-        '#00796B',
-        '#cc99cc',
-        '#EBDEF0',
-        '#fabf8f',
-        '#E59866',
-        '#bfbfbf',
-        '#5D6D7E',
-        '#6699ff',
-        '#ff6666',
-        '#ffcc66',
-        '#F1C40F',
-        '#E91E63'
-      ]
-    };
   }
 
   returnUrl: string;
@@ -65,7 +41,7 @@ export class NuevoMedicoComponent implements OnInit, OnDestroy {
   crear(){
     this.spinner.start();
     this.medicosService.post(this.nuevoMedico.nombre, this.nuevoMedico.apellido,
-      this.nuevoMedico.mail, this.nuevoMedico.color).subscribe(nuevoM => {
+      this.nuevoMedico.mail).subscribe(nuevoM => {
       this.notif.success('OK', 'Médico creado con ID ' + nuevoM.id);
       this.router.navigate([this.returnUrl]);
     }, error => {

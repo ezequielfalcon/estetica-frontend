@@ -14,7 +14,6 @@ import {Medico} from "../../../../_modelos/medico";
 })
 export class VerModificarMedicoComponent implements OnInit, OnDestroy {
 
-  public configColores: IColorPickerConfiguration;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,29 +24,6 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
     private spinner: SpinnerService,
     private medicService: MedicosService
   ) {
-    this.configColores = {
-      width: 25,
-      height: 25,
-      borderRadius: 4,
-      availableColors: [
-        '#33cccc',
-        '#0000FF',
-        '#99cc99',
-        '#239B56',
-        '#00796B',
-        '#cc99cc',
-        '#EBDEF0',
-        '#fabf8f',
-        '#E59866',
-        '#bfbfbf',
-        '#5D6D7E',
-        '#6699ff',
-        '#ff6666',
-        '#ffcc66',
-        '#F1C40F',
-        '#E91E63'
-      ]
-    };
     }
 
   medico: Medico;
@@ -84,7 +60,7 @@ export class VerModificarMedicoComponent implements OnInit, OnDestroy {
 
   modificar(){
     this.spinner.start();
-    this.medicService.put(this.model.id, this.model.nombre, this.model.apellido, this.model.mail, this.model.color).subscribe(() => {
+    this.medicService.put(this.model.id, this.model.nombre, this.model.apellido, this.model.mail).subscribe(() => {
       this.notificationService.success('OK', 'Médico modificado!');
       this.edicion = false;
       this.spinner.stop();
