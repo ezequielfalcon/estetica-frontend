@@ -14,4 +14,6 @@ export class Turno {
   fecha: string;
   entreturno: boolean;
   presente: boolean;
+  atendido: boolean;
+  hora_llegada: string;
 }

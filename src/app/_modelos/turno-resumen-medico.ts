@@ -7,4 +7,6 @@ export class TurnoResumenMedico {
   id_consultorio: number;
   id_turno: number;
   entreturno: boolean;
+  atendido: boolean;
+  hora_llegada: string;
 }
