@@ -49,6 +49,9 @@ import {UsuariosService} from "./_servicios/datos/usuarios.service";
 import { NuevoUsuarioComponent } from './_componentes/configuracion/usuarios/nuevo-usuario/nuevo-usuario.component';
 import { TurnosComponent } from './_componentes/turnos/turnos.component';
 import { LiquidacionesComponent } from './_componentes/liquidaciones/liquidaciones.component';
+import { MedicoHomeComponent } from './_componentes/medico-home/medico-home.component';
+import {MedicoGuard} from "./_guards/medico.guard";
+import {EsMedicoGuard} from "./_guards/es-medico.guard";
 
 @NgModule({
   declarations: [
@@ -82,7 +85,8 @@ import { LiquidacionesComponent } from './_componentes/liquidaciones/liquidacion
     RedirAgendaComponent,
     NuevoUsuarioComponent,
     TurnosComponent,
-    LiquidacionesComponent
+    LiquidacionesComponent,
+    MedicoHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +120,9 @@ import { LiquidacionesComponent } from './_componentes/liquidaciones/liquidacion
     TratamientosService,
     DialogoTratamientosService,
     DialogoTurnoService,
-    UsuariosService
+    UsuariosService,
+    MedicoGuard,
+    EsMedicoGuard
   ],
   entryComponents: [
     DialogoComponent,

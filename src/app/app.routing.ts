@@ -19,27 +19,31 @@ import {RedirAgendaComponent} from "./_componentes/agenda/redir-agenda/redir-age
 import {NuevoUsuarioComponent} from "./_componentes/configuracion/usuarios/nuevo-usuario/nuevo-usuario.component";
 import {TurnosComponent} from "./_componentes/turnos/turnos.component";
 import {LiquidacionesComponent} from "./_componentes/liquidaciones/liquidaciones.component";
+import {MedicoHomeComponent} from "./_componentes/medico-home/medico-home.component";
+import {MedicoGuard} from "./_guards/medico.guard";
+import {EsMedicoGuard} from "./_guards/es-medico.guard";
 
 const appRoutes: Routes = [
-  { path: '', component: TurnosComponent, canActivate: [AuthGuard] },
+  { path: '', component: TurnosComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
-  { path: 'agenda/:fecha', component: AgendaComponent, canActivate: [AuthGuard] },
-  { path: 'redir-agenda/:fecha', component: RedirAgendaComponent, canActivate: [AuthGuard] },
-  { path: 'pacientes', component: PacientesComponent, canActivate: [AuthGuard]},
-  { path: 'pacientes/:id', component: VerModificarPacienteComponent, canActivate: [AuthGuard] } ,
+  { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard, MedicoGuard] },
+  { path: 'agenda/:fecha', component: AgendaComponent, canActivate: [AuthGuard, MedicoGuard] },
+  { path: 'redir-agenda/:fecha', component: RedirAgendaComponent, canActivate: [AuthGuard, MedicoGuard] },
+  { path: 'pacientes', component: PacientesComponent, canActivate: [AuthGuard, MedicoGuard]},
+  { path: 'pacientes/:id', component: VerModificarPacienteComponent, canActivate: [AuthGuard, MedicoGuard] } ,
   { path: 'medicos/:id', component: VerModificarMedicoComponent, canActivate: [AuthGuard, AdminGuard] } ,
   { path: 'obras-sociales/:id', component: VerModificarObraSocial, canActivate: [AuthGuard, AdminGuard] },
   { path: 'nueva-obra-social', component: NuevaObraSocialComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'nuevo-paciente', component: NuevoPacienteComponent, canActivate: [AuthGuard] },
+  { path: 'nuevo-paciente', component: NuevoPacienteComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'nuevo-medico', component: NuevoMedicoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion/:id', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'nuevo-usuario', component: NuevoUsuarioComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'nuevo-turno/:consultorio/:turno/:fecha/:entreturno', component: NuevoTurnoComponent, canActivate: [AuthGuard] },
+  { path: 'nuevo-turno/:consultorio/:turno/:fecha/:entreturno', component: NuevoTurnoComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'nuevo-tratamiento', component: NuevoTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'tratamientos/:id', component: VerModificarTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'liquidaciones', component: LiquidacionesComponent, canActivate: [AuthGuard] },
+  { path: 'liquidaciones', component: LiquidacionesComponent, canActivate: [AuthGuard, MedicoGuard] },
+  { path: 'medicos', component: MedicoHomeComponent, canActivate:[AuthGuard, EsMedicoGuard] },
 
   { path: '*', redirectTo: '' }
 ];

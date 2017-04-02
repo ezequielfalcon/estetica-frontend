@@ -1,7 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NotificationsService} from "angular2-notifications";
 import {Router, ActivatedRoute} from "@angular/router";
-import {IColorPickerConfiguration} from "ng2-color-picker";
 import {MedicosService} from "../../../../_servicios/datos/medicos.service";
 import {SpinnerService} from "../../../../_servicios/spinner.service";
 
@@ -49,7 +48,7 @@ export class NuevoMedicoComponent implements OnInit, OnDestroy {
         this.notif.error("Error","Sesión expirada!");
         this.router.navigate(['/login']);
       }
-      let body = JSON.parse(error._body);
+      const body = JSON.parse(error._body);
       this.notif.error('Error', body.mensaje);
       this.spinner.stop();
     });

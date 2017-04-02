@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewContainerRef, OnDestroy} from '@angular/core';
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {NotificationsService} from "angular2-notifications";
-import {IColorPickerConfiguration} from "ng2-color-picker";
 import {ConfirmService} from "../../../../_servicios/confirm.service";
 import {SpinnerService} from "../../../../_servicios/spinner.service";
 import {MedicosService} from "../../../../_servicios/datos/medicos.service";
