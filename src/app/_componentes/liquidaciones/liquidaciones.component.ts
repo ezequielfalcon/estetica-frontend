@@ -5,6 +5,7 @@ import {MedicosService} from "../../_servicios/datos/medicos.service";
 import {SpinnerService} from "../../_servicios/spinner.service";
 import {NotificationsService} from "angular2-notifications";
 import {Medico} from "../../_modelos/medico";
+import {TurnoResumen} from "../../_modelos/turno-resumen";
 
 @Component({
   selector: 'app-liquidaciones',
@@ -23,8 +24,10 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   medicos: Medico[] = [];
   medicoSeleccionado: number;
   fechaTurnos: string;
+  turnosMedico: TurnoResumen[] = [];
 
   ngOnInit() {
+    this.fechaTurnos = LiquidacionesComponent.fechaHoy();
     this.cargarMedicos();
   }
 
@@ -55,6 +58,8 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
 
   medicoSeleccionadoList(medicoId: number){
     this.spinner.start();
+    console.log(medicoId);
+    this.spinner.stop();
   }
 
 }
