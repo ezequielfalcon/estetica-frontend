@@ -25,7 +25,13 @@
       </table>
       <md-divider></md-divider>
       <table width="100%">
-
+        <tr>
+          <th>Paciente</th><th>Consultorio</th><th>Turno</th><th>Costo</th>
+        </tr>
+        <tr *ngFor="let turnoMedico of turnosMedico">
+          <td>turnoMedico.paciente</td><td>turnoMedico.id_consultorio</td>
+          <td>turnoMedico.id_turno</td><td>turnoMedico.costo</td>
+        </tr>
       </table>
     </md-card-content>
   </md-card>

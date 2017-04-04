@@ -9,4 +9,5 @@ export class TurnoResumenMedico {
   entreturno: boolean;
   atendido: boolean;
   hora_llegada: string;
+  costo: string;
 }

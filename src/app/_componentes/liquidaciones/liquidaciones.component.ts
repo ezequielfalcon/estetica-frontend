@@ -5,7 +5,7 @@ import {MedicosService} from "../../_servicios/datos/medicos.service";
 import {SpinnerService} from "../../_servicios/spinner.service";
 import {NotificationsService} from "angular2-notifications";
 import {Medico} from "../../_modelos/medico";
-import {TurnoResumen} from "../../_modelos/turno-resumen";
+import {TurnoResumenMedico} from "../../_modelos/turno-resumen-medico";
 
 @Component({
   selector: 'app-liquidaciones',
@@ -18,13 +18,14 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     private notificationService: NotificationsService,
     private spinner: SpinnerService,
     private medicosService: MedicosService,
-    private router: Router
+    private router: Router,
+    private turnosService: TurnosService
   ) { }
 
   medicos: Medico[] = [];
   medicoSeleccionado: number;
   fechaTurnos: string;
-  turnosMedico: TurnoResumen[] = [];
+  turnosMedico: TurnoResumenMedico[] = [];
 
   ngOnInit() {
     this.fechaTurnos = LiquidacionesComponent.fechaHoy();
@@ -58,8 +59,22 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
 
   medicoSeleccionadoList(medicoId: number){
     this.spinner.start();
-    console.log(medicoId);
-    this.spinner.stop();
+    this.cargarTurnos(medicoId, this.fechaTurnos);
+  }
+
+  cargarTurnos(medicoId, fecha){
+    this.turnosService.traerTurnosPorMedico(medicoId, fecha).subscribe(turnosDb => {
+      this.turnosMedico = turnosDb;
+      this.spinner.stop();
+    }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
   }
 
 }
