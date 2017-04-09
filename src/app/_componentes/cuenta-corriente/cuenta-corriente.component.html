@@ -7,14 +7,32 @@
       <label *ngIf="!pacienteSeleccionado"><h4>Seleccione el Paciente:</h4></label>
       <button md-raised-button *ngIf="!pacienteSeleccionado" type="button" (click)="seleccionarPaciente()">Seleccionar Paciente</button>
       <div *ngIf="pacienteSeleccionado">
-        <h3>{{paciente.nombre + " " + paciente.apellido}}</h3>
-        <h5>{{"DNI: " + paciente.documento}}</h5>
+        <md-grid-list cols="2" rowHeight="20px">
+          <md-grid-tile>
+            <h3>{{paciente.nombre + " " + paciente.apellido}}</h3>
+          </md-grid-tile>
+          <md-grid-tile rows="2">
+            <button md-raised-button (click)="otroPaciente()">Elejir otro paciente</button>
+          </md-grid-tile>
+          <md-grid-tile>
+            <h5>{{"DNI: " + paciente.documento}}</h5>
+          </md-grid-tile>
+        </md-grid-list>
         <md-divider style="padding: 5px;"></md-divider>
-        <md-list>
-          <md-list-item *ngFor="let cuenta of cuentaCorriente">
-
-          </md-list-item>
-        </md-list>
+        <table width="100%">
+          <tr>
+            <th>Fecha</th><th>Concepto</th><th>Monto</th>
+          </tr>
+          <tr *ngFor="let cuenta of cuentaCorriente">
+            <td>{{cuenta.fecha.substr(0,10)}}</td><td>{{cuenta.concepto}}</td><td>{{cuenta.monto}}</td>
+          </tr>
+        </table>
+        <md-divider style="padding: 5px;"></md-divider>
+        <h3>Saldo:</h3>
+        <md-chip-list>
+          <md-chip color="{{saldoColor()}}" selected="true">{{saldo()}}</md-chip>
+        </md-chip-list>
+        <h3></h3>
       </div>
     </md-card-content>
   </md-card>

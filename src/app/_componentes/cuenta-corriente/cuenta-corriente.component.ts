@@ -37,6 +37,25 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
     this.spinner.start();
   }
 
+  otroPaciente(){
+    this.pacienteSeleccionado = false;
+    this.seleccionarPaciente();
+  }
+
+  saldo(){
+    let montos:number = 0;
+    for(let cuenta of this.cuentaCorriente){
+      montos = montos + +cuenta.monto;
+    }
+    return montos;
+  }
+
+  saldoColor(){
+    let color = "accent";
+    if (this.saldo() > 0) color = "warn";
+    return color;
+  }
+
   seleccionarPaciente(){
     this.spinner.start();
     this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
@@ -48,6 +67,7 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
             this.pacienteSeleccionado = true;
             this.cteCtaService.traerCuenta(this.paciente.id).subscribe(cuentasDb => {
               this.cuentaCorriente = cuentasDb;
+              this.spinner.stop();
             }, error => {
               if (error.status == 401){
                 this.notificationSerivce.error("Error","Sesión expirada!");
