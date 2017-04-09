@@ -56,6 +56,10 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
     return color;
   }
 
+  nuevoMovimiento(){
+
+  }
+
   seleccionarPaciente(){
     this.spinner.start();
     this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)

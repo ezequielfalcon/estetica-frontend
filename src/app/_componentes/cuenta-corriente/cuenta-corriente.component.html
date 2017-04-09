@@ -32,7 +32,9 @@
         <md-chip-list>
           <md-chip color="{{saldoColor()}}" selected="true">{{saldo()}}</md-chip>
         </md-chip-list>
-        <h3></h3>
+        <div class="boton-add">
+          <a md-fab (click)="nuevoMovimiento()"><md-icon>add</md-icon></a>
+        </div>
       </div>
     </md-card-content>
   </md-card>
