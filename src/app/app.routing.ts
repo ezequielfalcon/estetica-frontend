@@ -22,6 +22,7 @@ import {LiquidacionesComponent} from "./_componentes/liquidaciones/liquidaciones
 import {MedicoHomeComponent} from "./_componentes/medico-home/medico-home.component";
 import {MedicoGuard} from "./_guards/medico.guard";
 import {EsMedicoGuard} from "./_guards/es-medico.guard";
+import {CuentaCorrienteComponent} from "./_componentes/cuenta-corriente/cuenta-corriente.component";
 
 const appRoutes: Routes = [
   { path: '', component: TurnosComponent, canActivate: [AuthGuard, MedicoGuard] },
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
   { path: 'tratamientos/:id', component: VerModificarTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'liquidaciones', component: LiquidacionesComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'medicos', component: MedicoHomeComponent, canActivate:[AuthGuard, EsMedicoGuard] },
+  { path: 'cuenta-corriente', component: CuentaCorrienteComponent, canActivate: [AuthGuard, MedicoGuard] },
 
   { path: '*', redirectTo: '' }
 ];
