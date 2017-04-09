@@ -23,16 +23,55 @@
           </td>
         </tr>
       </table>
-      <md-divider></md-divider>
+      <label><h4>Adicionales</h4></label>
+      <md-input-container>
+        <input mdInput type="text" placeholder="Hora" name="horaAdicional" [(ngModel)]="adicional.hora" #horaAdicional="ngModel">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput type="text" placeholder="Paciente" name="pacienteAdicional" [(ngModel)]="adicional.paciente" #pacienteAdicional="ngModel">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Costo" type="number" name="adicionalTurno" [(ngModel)]="adicional.adicional" #adicionalTurno="ngModel">
+      </md-input-container>
+      <button md-raised-button type="button" (click)="agregarAdicional()">Agregar</button>
+      <md-divider style="padding: 5px;"></md-divider>
+      <table width="100%">
+        <tr>
+          <th>Adicional</th><th>Paciente</th><th>Hora</th>
+        </tr>
+        <tr *ngFor="let adicionalesTurno of adicionales">
+          <td>{{adicionalesTurno.adicional}}</td><td>{{adicionalesTurno.paciente}}</td><td>{{adicionalesTurno.hora}}</td>
+        </tr>
+      </table>
+      <md-divider style="padding: 5px;"></md-divider>
+      <label><h4>Turnos</h4></label>
       <table width="100%">
         <tr>
           <th>Paciente</th><th>Consultorio</th><th>Turno</th><th>Costo</th>
         </tr>
         <tr *ngFor="let turnoMedico of turnosMedico">
-          <td>turnoMedico.paciente</td><td>turnoMedico.id_consultorio</td>
-          <td>turnoMedico.id_turno</td><td>turnoMedico.costo</td>
+          <td>{{turnoMedico.paciente}}</td><td>{{turnoMedico.id_consultorio}}</td>
+          <td>{{turnoStringHora(turnoMedico.id_turno)}}</td><td>{{turnoMedico.costo}}</td>
         </tr>
       </table>
+      <md-divider style="padding: 5px;"></md-divider>
+      <md-list>
+        <md-list-item>
+          <md-icon md-list-avatar>subject</md-icon>
+          <h4 md-line>Sub-total Turnos: </h4>
+          <p md-line>{{subtotalTurnos()}}</p>
+        </md-list-item>
+        <md-list-item>
+          <md-icon md-list-avatar>add_shopping_cart</md-icon>
+          <h4 md-line>Sub-total Adicionales: </h4>
+          <p md-line>{{subtotalAdicionales()}}</p>
+        </md-list-item>
+        <md-list-item>
+          <md-icon md-list-avatar>monetization_on</md-icon>
+          <h3 md-line>Total: </h3>
+          <p md-line>{{total()}}</p>
+        </md-list-item>
+      </md-list>
     </md-card-content>
   </md-card>
 </div>
