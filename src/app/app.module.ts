@@ -52,6 +52,7 @@ import { LiquidacionesComponent } from './_componentes/liquidaciones/liquidacion
 import { MedicoHomeComponent } from './_componentes/medico-home/medico-home.component';
 import {MedicoGuard} from "./_guards/medico.guard";
 import {EsMedicoGuard} from "./_guards/es-medico.guard";
+import { CuentaCorrienteComponent } from './_componentes/cuenta-corriente/cuenta-corriente.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import {EsMedicoGuard} from "./_guards/es-medico.guard";
     NuevoUsuarioComponent,
     TurnosComponent,
     LiquidacionesComponent,
-    MedicoHomeComponent
+    MedicoHomeComponent,
+    CuentaCorrienteComponent
   ],
   imports: [
     BrowserModule,
