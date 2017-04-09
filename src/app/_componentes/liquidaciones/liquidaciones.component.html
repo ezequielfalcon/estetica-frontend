@@ -28,7 +28,7 @@
         <input mdInput type="text" placeholder="Hora" name="horaAdicional" [(ngModel)]="adicional.hora" #horaAdicional="ngModel">
       </md-input-container>
       <md-input-container>
-        <input mdInput type="text" placeholder="Paciente" name="pacienteAdicional" [(ngModel)]="adicional.paciente" #pacienteAdicional="ngModel">
+        <input mdInput type="text" placeholder="Paciente" name="pacienteAdicional" [(ngModel)]="adicional.paciente">
       </md-input-container>
       <md-input-container>
         <input mdInput placeholder="Costo" type="number" name="adicionalTurno" [(ngModel)]="adicional.adicional" #adicionalTurno="ngModel">
@@ -69,7 +69,7 @@
         <md-list-item>
           <md-icon md-list-avatar>monetization_on</md-icon>
           <h3 md-line>Total: </h3>
-          <p md-line>{{total()}}</p>
+          <p md-line>{{subtotalAdicionales() + subtotalTurnos()}}</p>
         </md-list-item>
       </md-list>
     </md-card-content>

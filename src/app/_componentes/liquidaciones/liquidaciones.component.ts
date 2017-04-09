@@ -21,7 +21,8 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     private medicosService: MedicosService,
     private router: Router,
     private turnosService: TurnosService
-  ) { }
+  ) {
+  }
 
   medicos: Medico[] = [];
   medicoSeleccionado: number;
@@ -102,10 +103,6 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       monto = monto + +adicional.adicional;
     }
     return monto;
-  }
-
-  total(){
-    return this.subtotalTurnos() + this.subtotalAdicionales();
   }
 
   turnoStringHora(turnoId: number) {
