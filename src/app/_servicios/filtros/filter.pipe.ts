@@ -12,7 +12,7 @@ export class FilterByPipe implements PipeTransform {
   private filterByString(filter) {
     filter = filter.toLowerCase();
     return value => {
-      return !filter || value.toLowerCase().indexOf(filter) !== -1;
+      return !filter || value.toLowerCase().startsWith(filter);
     }
   }
 
