@@ -54,6 +54,8 @@ import {MedicoGuard} from "./_guards/medico.guard";
 import {EsMedicoGuard} from "./_guards/es-medico.guard";
 import { CuentaCorrienteComponent } from './_componentes/cuenta-corriente/cuenta-corriente.component';
 import {CuentaCorrienteService} from "./_servicios/datos/cuenta-corriente.service";
+import { DialogoCtacteComponent } from './_directivas/dialogo-ctacte/dialogo-ctacte.component';
+import {DialogoCtacteService} from "./_servicios/dialogos/dialogo-ctacte.service";
 
 @NgModule({
   declarations: [
@@ -89,7 +91,8 @@ import {CuentaCorrienteService} from "./_servicios/datos/cuenta-corriente.servic
     TurnosComponent,
     LiquidacionesComponent,
     MedicoHomeComponent,
-    CuentaCorrienteComponent
+    CuentaCorrienteComponent,
+    DialogoCtacteComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +106,8 @@ import {CuentaCorrienteService} from "./_servicios/datos/cuenta-corriente.servic
     DialogoComponent,
     DialogoPacientesComponent,
     DialogoMedicosComponent,
-    DialogoTratamientosComponent
+    DialogoTratamientosComponent,
+    DialogoCtacteComponent
   ] ,
   providers: [
     LoginService,
@@ -126,14 +130,16 @@ import {CuentaCorrienteService} from "./_servicios/datos/cuenta-corriente.servic
     UsuariosService,
     MedicoGuard,
     EsMedicoGuard,
-    CuentaCorrienteService
+    CuentaCorrienteService,
+    DialogoCtacteService
   ],
   entryComponents: [
     DialogoComponent,
     DialogoPacientesComponent,
     DialogoMedicosComponent,
     DialogoTratamientosComponent,
-    DialogoTurnoComponent
+    DialogoTurnoComponent,
+    DialogoCtacteComponent
   ] ,
   bootstrap: [AppComponent]
 })

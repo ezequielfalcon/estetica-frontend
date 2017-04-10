@@ -60,6 +60,21 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
 
   }
 
+  traerCtaCte(pacienteId: number){
+    this.cteCtaService.traerCuenta(pacienteId).subscribe(cuentasDb => {
+      this.cuentaCorriente = cuentasDb;
+      this.spinner.stop();
+    }, error => {
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
+  }
+
   seleccionarPaciente(){
     this.spinner.start();
     this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
@@ -69,19 +84,7 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
           this.pacientesService.getById(pacienteSeleccionado).subscribe(pacienteDb => {
             this.paciente = pacienteDb;
             this.pacienteSeleccionado = true;
-            this.cteCtaService.traerCuenta(this.paciente.id).subscribe(cuentasDb => {
-              this.cuentaCorriente = cuentasDb;
-              this.spinner.stop();
-            }, error => {
-              if (error.status == 401){
-                this.notificationSerivce.error("Error","Sesión expirada!");
-                this.router.navigate(['/login']);
-              }
-              let body = JSON.parse(error._body);
-              this.notificationSerivce.error('Error', body.mensaje);
-              this.spinner.stop();
-              return;
-            });
+            this.traerCtaCte(this.paciente.id);
           }, error => {
             if (error.status == 401){
               this.notificationSerivce.error("Error","Sesión expirada!");
