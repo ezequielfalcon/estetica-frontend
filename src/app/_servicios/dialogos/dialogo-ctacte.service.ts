@@ -8,7 +8,7 @@ export class DialogoCtacteService {
 
   constructor(private dialog: MdDialog) { }
 
-  nuevoMovimiento(viewContainerRef: ViewContainerRef) : Observable<boolean> {
+  public nuevoMovimiento(viewContainerRef: ViewContainerRef) : Observable<boolean> {
     let dialogRef: MdDialogRef<DialogoCtacteComponent>;
     let config = new MdDialogConfig();
     config.viewContainerRef = viewContainerRef;

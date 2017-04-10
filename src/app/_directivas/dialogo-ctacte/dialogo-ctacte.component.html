@@ -1,3 +1,13 @@
-<p>
-  dialogo-ctacte works!
-</p>
+<h1 md-dialog-title>Nuevo movimiento</h1>
+<div md-dialog-content>
+  <md-input-container>
+    <textarea mdInput placeholder="Concepto" required [(ngModel)]="nuevoMovimiento.concepto"></textarea>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="Monto" type="number" required [(ngModel)]="nuevoMovimiento.monto">
+  </md-input-container>
+</div>
+<div md-dialog-actions>
+  <button md-button type="button" (click)="dialogRef.close(true)"><md-icon>archive</md-icon>Guardar</button>
+  <button md-button type="button" (click)="dialogRef.close()"><md-icon>clear</md-icon>Cancelar</button>
+</div>

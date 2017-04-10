@@ -7,6 +7,7 @@ import {SpinnerService} from "../../_servicios/spinner.service";
 import {PacientesService} from "../../_servicios/datos/pacientes.service";
 import {NotificationsService} from "angular2-notifications";
 import {Router} from "@angular/router";
+import {DialogoCtacteService} from "../../_servicios/dialogos/dialogo-ctacte.service";
 
 @Component({
   selector: 'app-cuenta-corriente',
@@ -22,7 +23,8 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
     private pacientesService: PacientesService,
     private notificationSerivce: NotificationsService,
     private router: Router,
-    private cteCtaService: CuentaCorrienteService
+    private cteCtaService: CuentaCorrienteService,
+    private dialogoCtaCteService: DialogoCtacteService
   ) { }
 
   cuentaCorriente: CuentaCorriente[] = [];
@@ -57,7 +59,7 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
   }
 
   nuevoMovimiento(){
-
+    this.dialogoCtaCteService.nuevoMovimiento(this.viewContainerRef);
   }
 
   traerCtaCte(pacienteId: number){
