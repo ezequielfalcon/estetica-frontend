@@ -82,11 +82,13 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   }
 
   agregarAdicional(){
-    let nuevoAdicional = new AdicionalTurno;
-    nuevoAdicional.adicional = this.adicional.adicional;
-    nuevoAdicional.paciente = this.adicional.paciente;
-    nuevoAdicional.hora = this.adicional.hora;
-    this.adicionales.push(nuevoAdicional);
+    if (this.adicional.adicional && this.adicional.paciente && this.adicional.hora){
+      let nuevoAdicional = new AdicionalTurno;
+      nuevoAdicional.adicional = this.adicional.adicional;
+      nuevoAdicional.paciente = this.adicional.paciente;
+      nuevoAdicional.hora = this.adicional.hora;
+      this.adicionales.push(nuevoAdicional);
+    }
   }
 
   subtotalTurnos(){
