@@ -59,7 +59,9 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
   }
 
   nuevoMovimiento(){
-    this.dialogoCtaCteService.nuevoMovimiento(this.viewContainerRef);
+    this.dialogoCtaCteService.nuevoMovimiento(this.viewContainerRef, this.paciente.id).subscribe(() => {
+      this.traerCtaCte(this.paciente.id);
+    });
   }
 
   traerCtaCte(pacienteId: number){
