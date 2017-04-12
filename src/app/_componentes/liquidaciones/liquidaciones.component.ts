@@ -113,7 +113,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       case 1:
         turnoString = "09:00";
         break;
-      case 1:
+      case 2:
         turnoString = "09:20";
         break;
       case 3:
