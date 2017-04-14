@@ -19,6 +19,14 @@ export class PacientesService {
     return this.http.get('/pacientes/' + id).map((response: Response) => response.json().datos);
   }
 
+  buscar(nombre: string, apellido: string, documento: string){
+    let body = new URLSearchParams();
+    body.set('nombre', nombre);
+    body.set('apellido', apellido);
+    body.set('documento', documento);
+    return this.http.post('/buscar-pacientes', body).map((response: Response) => response.json().datos);
+  }
+
   post(nombre, apellido, documento, telefono, mail, fecha, sexo: string,
        id_os: number, numero_os, domicilio, observaciones){
     let body = new URLSearchParams();
