@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import {SimpleNotificationsModule, NotificationsService} from "angular2-notifications";
@@ -100,7 +100,8 @@ import {DialogoCtacteService} from "./_servicios/dialogos/dialogo-ctacte.service
     HttpModule,
     MaterialModule,
     routing,
-    SimpleNotificationsModule
+    SimpleNotificationsModule,
+    ReactiveFormsModule
   ],
   exports: [
     DialogoComponent,
