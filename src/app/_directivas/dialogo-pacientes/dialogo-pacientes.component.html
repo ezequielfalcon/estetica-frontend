@@ -1,3 +1,4 @@
+<md-dialog-content>
   <md-card>
     <md-card-header>
       <md-card-title>
@@ -7,19 +8,19 @@
     </md-card-header>
     <md-card-content>
       <md-input-container>
-        <input mdInput #input placeholder="Nombre..." [(ngModel)]="search">
+        <input mdInput placeholder="Nombre..." [formControl]="nom">
       </md-input-container>
       <md-input-container>
-        <input mdInput #input placeholder="Apellido..." [(ngModel)]="searchApe">
+        <input mdInput placeholder="Apellido..." [formControl]="ape">
       </md-input-container>
       <md-input-container>
-        <input mdInput #input placeholder="Documento..." [(ngModel)]="searchDni">
+        <input mdInput placeholder="Documento..." [formControl]="dni">
       </md-input-container>
     </md-card-content>
     <md-divider></md-divider>
     <md-card-content>
       <md-list>
-        <md-list-item class="clickVer" *ngFor="let paciente of pacientes | filterBy: {nombre: search, apellido:searchApe, documento: searchDni}">
+        <md-list-item class="clickVer" *ngFor="let paciente of pacientes">
           <md-icon md-list-avatar (click)="dialogRef.close(paciente.id)">person</md-icon>
           <h4 md-line (click)="dialogRef.close(paciente.id)">{{paciente.nombre + ' ' + paciente.apellido}}</h4>
           <p md-line (click)="dialogRef.close(paciente.id)">{{'Documento: ' + paciente.documento}}</p>
@@ -27,3 +28,5 @@
       </md-list>
     </md-card-content>
   </md-card>
+</md-dialog-content>
+

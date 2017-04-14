@@ -5,6 +5,7 @@ import {NotificationsService} from "angular2-notifications";
 import {MdDialogRef} from "@angular/material";
 import {SpinnerService} from "../../_servicios/spinner.service";
 import {Router} from "@angular/router";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-dialogo-pacientes',
@@ -12,6 +13,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./dialogo-pacientes.component.css']
 })
 export class DialogoPacientesComponent implements OnInit {
+
+  nom = new FormControl();
+  ape = new FormControl();
+  dni = new FormControl();
 
   constructor(
     private ref: ChangeDetectorRef,
@@ -22,16 +27,47 @@ export class DialogoPacientesComponent implements OnInit {
     private router: Router
   ) {
     this.spinner.start();
+    this.nom.valueChanges.debounceTime(400).distinctUntilChanged()
+      .subscribe((valor) => {
+        this.seachNom = valor;
+        this.busqueda();
+      });
+    this.ape.valueChanges.debounceTime(400).distinctUntilChanged()
+      .subscribe((valor) => {
+        this.searchApe = valor;
+        this.busqueda();
+      });
+    this.dni.valueChanges.debounceTime(400).distinctUntilChanged()
+      .subscribe((valor) => {
+        this.searchDni = valor;
+        this.busqueda();
+      });
   }
 
   pacientes: Paciente[] = [];
-  search: string = "";
-  searchDni: string = "";
-  searchApe: string = "";
+  seachNom = "";
+  searchApe = "";
+  searchDni = "";
 
   ngOnInit() {
     this.cargarPacientes();
     this.ref.markForCheck();
+  }
+
+  busqueda(){
+    this.spinner.start();
+    this.pacientesService.buscar(this.seachNom, this.searchApe, this.searchDni).subscribe(pacientesDb => {
+      this.pacientes = pacientesDb;
+      this.spinner.stop();
+    }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
   }
 
   private cargarPacientes(){
