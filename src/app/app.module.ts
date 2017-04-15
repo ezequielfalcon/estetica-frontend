@@ -56,6 +56,7 @@ import { CuentaCorrienteComponent } from './_componentes/cuenta-corriente/cuenta
 import {CuentaCorrienteService} from "./_servicios/datos/cuenta-corriente.service";
 import { DialogoCtacteComponent } from './_directivas/dialogo-ctacte/dialogo-ctacte.component';
 import {DialogoCtacteService} from "./_servicios/dialogos/dialogo-ctacte.service";
+import {SubsistemaMedicosService} from "./_servicios/datos/subsistema-medicos.service";
 
 @NgModule({
   declarations: [
@@ -132,7 +133,8 @@ import {DialogoCtacteService} from "./_servicios/dialogos/dialogo-ctacte.service
     MedicoGuard,
     EsMedicoGuard,
     CuentaCorrienteService,
-    DialogoCtacteService
+    DialogoCtacteService,
+    SubsistemaMedicosService
   ],
   entryComponents: [
     DialogoComponent,
