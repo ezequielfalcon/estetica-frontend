@@ -47,7 +47,7 @@ const appRoutes: Routes = [
   { path: 'medicos', component: MedicoHomeComponent, canActivate:[AuthGuard, EsMedicoGuard] },
   { path: 'cuenta-corriente', component: CuentaCorrienteComponent, canActivate: [AuthGuard, MedicoGuard] },
 
-  { path: '*', redirectTo: '' }
+  { path: '*', redirectTo: '/agenda' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

@@ -5,10 +5,6 @@
     </button>
 </md-toolbar>
 <md-menu #menu="mdMenu">
-  <!--<button md-menu-item [routerLink]="['/']">
-    <md-icon>receipt</md-icon>
-    <span>Turnos</span>
-  </button>-->
   <button md-menu-item [routerLink]="['/agenda']">
     <md-icon>reorder</md-icon>
     <span>Agenda</span>
@@ -29,6 +25,11 @@
     <md-icon>build</md-icon>
     <span>Configuración</span>
   </button>
+  <button md-menu-item [routerLink]="['/medicos']">
+    <md-icon>local_hospital</md-icon>
+    <span>Turnos</span>
+  </button>
+  <md-divider style="padding: 1px;"></md-divider>
   <button md-menu-item [routerLink]="['/login']">
     <md-icon>exit_to_app</md-icon>
     <span>Salir</span>

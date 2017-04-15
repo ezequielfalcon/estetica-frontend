@@ -35,8 +35,6 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     private dialogoTratamientos: DialogoTratamientosService
   ) { }
 
-  medicos: Medico[] = [];
-  pacientes: Paciente[] = [];
   tratamientos: Tratamiento[] = [];
   pacienteSeleccionado: Paciente;
   medicoSelecionado: Medico;
@@ -54,15 +52,13 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       this.nuevoTurno.costoTurno = 0;
       this.entreturno = params["entreturno"];
     });
-    this.cargarMedicos();
-    this.cargarPacientes();
     this.cargarTratamientos();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/agenda';
   }
 
-  cargarMedicos(){
-    this.medicosService.getAll().subscribe(medicosDb => {
-      this.medicos = medicosDb;
+  cargarMedico(medicoId){
+    this.medicosService.getById(medicoId).subscribe(medicoDb => {
+      this.medicoSelecionado = medicoDb;
       this.spinner.stop();
     }, error => {
       if (error.status == 401){
@@ -75,9 +71,9 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     });
   }
 
-  private cargarPacientes(){
-    this.pacientesService.getAll().subscribe(pacientesDb => {
-      this.pacientes = pacientesDb;
+  cargarPaciente(pacienteId){
+    this.pacientesService.getById(pacienteId).subscribe(pacienteDb => {
+      this.pacienteSeleccionado = pacienteDb;
       this.spinner.stop();
     }, error => {
       if (error.status == 401){
@@ -93,6 +89,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
   cargarTratamientos() {
     this.tratamientosService.getAll().subscribe(tratamientosDb => {
       this.tratamientos = tratamientosDb;
+      this.spinner.stop();
     }, error => {
       if (error.status == 401){
         this.notificationSerivce.error("Error","Sesión expirada!");
@@ -115,11 +112,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     this.spinner.start();
     this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
       .subscribe(pacienteSeleccionado => {
-        for (let paciente of this.pacientes){
-          if (paciente.id == pacienteSeleccionado){
-            this.pacienteSeleccionado = paciente;
-          }
-        }
+        this.cargarPaciente(pacienteSeleccionado);
       });
   }
 
@@ -127,11 +120,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     this.spinner.start();
     this.dialogoMedicos.seleccionarMedico(this.viewContainerRef)
       .subscribe(medicoSeleccionado => {
-        for (let medico of this.medicos){
-          if (medico.id == medicoSeleccionado){
-            this.medicoSelecionado = medico;
-          }
-        }
+        this.cargarMedico(medicoSeleccionado);
       });
   }
 
