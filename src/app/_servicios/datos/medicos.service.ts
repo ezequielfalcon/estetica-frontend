@@ -17,11 +17,13 @@ export class MedicosService {
     return this.http.get('/medicos/' + id).map((response: Response) => response.json().datos);
   }
 
-  post(nombre, apellido, mail){
+  post(nombre, apellido, mail, usuario, clave){
     let body = new URLSearchParams();
     body.set('nombre', nombre);
     body.set('apellido', apellido);
     body.set('mail', mail);
+    body.set('usuario', usuario);
+    body.set('clave', clave);
     return this.http.post('/medicos', body).map((response: Response) => response.json());
   }
 

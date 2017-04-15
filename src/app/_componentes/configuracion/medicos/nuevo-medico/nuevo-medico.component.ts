@@ -39,8 +39,13 @@ export class NuevoMedicoComponent implements OnInit, OnDestroy {
 
   crear(){
     this.spinner.start();
+    if (this.nuevoMedico.clave != this.nuevoMedico.clave2){
+      this.spinner.stop();
+      this.notif.error("Error", "Las contraseñas no coinciden");
+      return;
+    }
     this.medicosService.post(this.nuevoMedico.nombre, this.nuevoMedico.apellido,
-      this.nuevoMedico.mail).subscribe(nuevoM => {
+      this.nuevoMedico.mail, this.nuevoMedico.usuario, this.nuevoMedico.clave).subscribe(nuevoM => {
       this.notif.success('OK', 'Médico creado con ID ' + nuevoM.id);
       this.router.navigate([this.returnUrl]);
     }, error => {

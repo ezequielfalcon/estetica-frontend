@@ -25,6 +25,27 @@
             </md-input-container>
           </td>
         </tr></table>
+        <md-divider style="padding: 2px;"></md-divider>
+        <h3>Usuario y contraseña del médico:</h3>
+        <table width="100%">
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput placeholder="Usuario..." name="usuario" [(ngModel)]="nuevoMedico.usuario" #usuario="ngModel" required>
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput placeholder="Contraseña..." type="password" name="clave" [(ngModel)]="nuevoMedico.clave" #clave="ngModel" required>
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput placeholder="Repita contraseña..." type="password" name="clave2" [(ngModel)]="nuevoMedico.clave2" #clave2="ngModel" required>
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
       </md-card-content>
       <md-card-actions>
         <button md-button type="submit"><md-icon>archive</md-icon>Guardar</button>
