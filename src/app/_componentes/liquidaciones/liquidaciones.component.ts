@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewContainerRef} from '@angular/core';
 import {Router} from "@angular/router";
 import {TurnosService} from "../../_servicios/datos/turnos.service";
 import {MedicosService} from "../../_servicios/datos/medicos.service";
@@ -7,6 +7,7 @@ import {NotificationsService} from "angular2-notifications";
 import {Medico} from "../../_modelos/medico";
 import {TurnoResumenMedico} from "../../_modelos/turno-resumen-medico";
 import {AdicionalTurno} from "../../_modelos/adicional-turno";
+import {DialogoMedicosService} from "../../_servicios/dialogos/dialogo-medicos.service";
 
 @Component({
   selector: 'app-liquidaciones',
@@ -20,38 +21,27 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     private spinner: SpinnerService,
     private medicosService: MedicosService,
     private router: Router,
-    private turnosService: TurnosService
+    private dialogoMedicos: DialogoMedicosService,
+    private turnosService: TurnosService,
+    private viewContainerRef: ViewContainerRef,
   ) {
   }
 
-  medicos: Medico[] = [];
-  medicoSeleccionado: number;
+  medicoSeleccionado: Medico;
+  medicoSeleccionadoBool: boolean = false;
   fechaTurnos: string;
   turnosMedico: TurnoResumenMedico[] = [];
   adicionales: AdicionalTurno[] = [];
   adicional: any = {};
+  descuentos: number = 0;
 
   ngOnInit() {
     this.fechaTurnos = LiquidacionesComponent.fechaHoy();
-    this.cargarMedicos();
+    this.spinner.stop();
   }
 
   ngOnDestroy(){
     this.spinner.start();
-  }
-
-  cargarMedicos(){
-    this.medicosService.getAll().subscribe(medicosDb => {
-      this.medicos = medicosDb;
-      this.spinner.stop();
-    }, error => {
-      if (error.status == 401){
-        this.notificationService.error("Error","Sesión expirada!");
-        this.router.navigate(['/login']);
-      }
-      let body = JSON.parse(error._body);
-      this.notificationService.error('Error', body.mensaje);
-    });
   }
 
   private static fechaHoy(){
@@ -61,9 +51,49 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     return fechaObject.getFullYear() + "-" + mesString + "-" + diaString;
   }
 
-  medicoSeleccionadoList(medicoId: number){
+  seleccionarMedico(){
     this.spinner.start();
-    this.cargarTurnos(medicoId, this.fechaTurnos);
+    this.dialogoMedicos.seleccionarMedico(this.viewContainerRef)
+      .subscribe(medicoSeleccionado => {
+        if (medicoSeleccionado){
+          this.spinner.start();
+          this.cargarMedico(medicoSeleccionado);
+          this.cargarTurnos(medicoSeleccionado, this.fechaTurnos);
+        }
+      }, error => {
+        if (error.status == 401){
+          this.notificationService.error("Error","Sesión expirada!");
+          this.router.navigate(['/login']);
+        }
+        let body = JSON.parse(error._body);
+        this.notificationService.error('Error', body.mensaje);
+        this.spinner.stop();
+      });
+  }
+
+  otroMedico(){
+    this.medicoSeleccionadoBool = false;
+    this.seleccionarMedico();
+  }
+
+  cambiarFecha(){
+    this.spinner.start();
+    this.cargarTurnos(this.medicoSeleccionado.id, this.fechaTurnos);
+  }
+
+  cargarMedico(medicoId){
+    this.medicosService.getById(medicoId).subscribe(medicoDb => {
+      this.medicoSeleccionado = medicoDb;
+      this.medicoSeleccionadoBool = true;
+    }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
   }
 
   cargarTurnos(medicoId, fecha){
@@ -83,11 +113,21 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
 
   agregarAdicional(){
     if (this.adicional.adicional && this.adicional.paciente && this.adicional.hora){
+      if (this.adicional.adicional < 0.1){
+        this.notificationService.alert("Alerta", "Ingrese un monto mayor a 0.");
+        return;
+      }
       let nuevoAdicional = new AdicionalTurno;
       nuevoAdicional.adicional = this.adicional.adicional;
       nuevoAdicional.paciente = this.adicional.paciente;
       nuevoAdicional.hora = this.adicional.hora;
       this.adicionales.push(nuevoAdicional);
+      this.adicional.adicional = "";
+      this.adicional.paciente = "";
+      this.adicional.hora = "";
+    }
+    else{
+      this.notificationService.alert("Advertencia", "Complete todos los campos para agregar un adicional.")
     }
   }
 
