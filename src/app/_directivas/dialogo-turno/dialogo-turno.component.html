@@ -1,58 +1,66 @@
-<md-card>
-  <md-card-header>
-    <md-card-title>
-      <h2>Turno para {{fecha}}</h2>
-    </md-card-title>
-    <md-card-subtitle *ngIf="entreturno == true">
-      Entreturno
-    </md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
-    <table>
-      <tr>
-        <td>
-          <md-list>
-            <md-list-item class="clickVer"  *ngIf="medico.id" (click)="detallesMedico(medico.id)">
-              <md-icon md-list-avatar>local_hospital</md-icon>
-              <h4 md-line>Médico:</h4>
-              <p md-line>{{medico.nombre + ' ' + medico.apellido}}</p>
-            </md-list-item>
-            <md-list-item class="clickVer" *ngIf="paciente.id" (click)="detallesPaciente(paciente.id)">
-              <md-icon md-list-avatar>person</md-icon>
-              <h4 md-line>Paciente:</h4>
-              <p md-line>{{paciente.nombre + ' ' + paciente.apellido}}</p>
-            </md-list-item>
-          </md-list>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div *ngIf="tratamientos.length > 0">
-            <h3>Tratamientos</h3>
-            <md-chip-list>
-              <md-chip *ngFor="let tratamiento of tratamientos" color="primary" selected="true">
-                {{tratamiento.nombre}}
-              </md-chip>
-            </md-chip-list>
-          </div>
-        </td>
-        <td>
-          <div *ngIf="turno">
-            <h4>Observaciones: </h4><p style="display:inline">{{turno.obvservaciones}}</p>
-            <h4>Reservado por: </h4><p style="display:inline">{{turno.usuario}}</p>
-            <h4>Costo total:</h4><p style="display:inline">{{turno.costo}}</p>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <md-checkbox [checked]="turno.presente" (click)="editarTurno()">Paciente asistió</md-checkbox>
-        </td>
-        <td>
-          <button md-raised-button *ngIf="edicion" (click)="pacientePresente()">Guardar cambio</button>
-        </td>
-      </tr>
-    </table>
+<md-dialog-content>
+  <md-card>
+    <md-card-header>
+      <md-card-title>
+        <h2>Turno para {{fecha}}</h2>
+      </md-card-title>
+      <md-card-subtitle *ngIf="entreturno == true">
+        Entreturno
+      </md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <table>
+        <tr>
+          <td>
+            <md-list>
+              <md-list-item class="clickVer"  *ngIf="medico.id" (click)="detallesMedico(medico.id)">
+                <md-icon md-list-avatar>local_hospital</md-icon>
+                <h4 md-line>Médico:</h4>
+                <p md-line>{{medico.nombre + ' ' + medico.apellido}}</p>
+              </md-list-item>
+              <md-list-item class="clickVer" *ngIf="paciente.id" (click)="detallesPaciente(paciente.id)">
+                <md-icon md-list-avatar>person</md-icon>
+                <h4 md-line>Paciente:</h4>
+                <p md-line>{{paciente.nombre + ' ' + paciente.apellido}}</p>
+              </md-list-item>
+            </md-list>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div *ngIf="tratamientos.length > 0">
+              <h3>Tratamientos</h3>
+              <md-chip-list>
+                <md-chip *ngFor="let tratamiento of tratamientos" color="primary" selected="true">
+                  {{tratamiento.nombre}}
+                </md-chip>
+              </md-chip-list>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="turno">
+              <h4>Observaciones: </h4><p style="display:inline">{{turno.obvservaciones}}</p>
+              <h4>Reservado por: </h4><p style="display:inline">{{turno.usuario}}</p>
+              <h4>Costo total:</h4><p style="display:inline">{{turno.costo}}</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-checkbox [checked]="turno.presente" (click)="editarTurno()">Paciente asistió</md-checkbox>
+          </td>
+          <td>
+            <button md-raised-button *ngIf="edicion" (click)="pacientePresente()">Guardar cambio</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button md-raised-button (click)="borrarTurno()">Cancelar Turno</button>
+          </td>
+        </tr>
+      </table>
 
-  </md-card-content>
-</md-card>
+    </md-card-content>
+  </md-card>
+</md-dialog-content>
+

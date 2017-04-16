@@ -139,6 +139,22 @@ export class DialogoTurnoComponent implements OnInit {
     }
   }
 
+  borrarTurno(){
+    this.spinner.start();
+    this.turnosService.borrar(this.turno.id).subscribe(() => {
+      this.notificationService.success("OK", "Turno borrado correctamente");
+      this.dialogRef.close();
+    }, error => {
+      if (error.status == 401){
+        this.notificationService.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
+  }
+
   private static fechaHoy(){
     let fechaObject = new Date();
     let mesString = (fechaObject.getMonth() + 1) < 10 ? "0" + (fechaObject.getMonth() +1).toString() : (fechaObject.getMonth() + 1).toString();

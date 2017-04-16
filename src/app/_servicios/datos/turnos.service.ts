@@ -67,4 +67,8 @@ export class TurnosService {
     return this.http.post('/turno-presente', body).map((response: Response) => response.json());
   }
 
+  borrar(turnoId: number){
+    return this.http.del('/turnos/' + turnoId).map((response: Response) => response.json());
+  }
+
 }
