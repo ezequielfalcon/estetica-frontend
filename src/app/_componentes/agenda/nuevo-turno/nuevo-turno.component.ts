@@ -143,6 +143,15 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       });
   }
 
+  sacarTratamiento(tratamientoId: number){
+    for (let tratamiento of this.tratamientosSeleccionados){
+      if (tratamiento.id == tratamientoId){
+        let indiceElemento = this.tratamientosSeleccionados.indexOf(tratamiento);
+        this.tratamientosSeleccionados.splice(indiceElemento, 1);
+      }
+    }
+  }
+
   crear(){
     this.spinner.start();
     if (!this.nuevoTurno.observaciones){
