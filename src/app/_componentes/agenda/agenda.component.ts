@@ -7,6 +7,9 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {DialogoTurnoService} from "../../_servicios/dialogos/dialogo-turno.service";
 import {Subject} from "rxjs";
 import {TurnoResumen} from "../../_modelos/turno-resumen";
+import {Consultorio} from "../../_modelos/consultorio";
+import {ConsultoriosService} from "../../_servicios/datos/consultorios.service";
+import {Horario} from "../../_modelos/horario";
 
 @Component({
   selector: 'app-agenda',
@@ -21,6 +24,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private spinner: SpinnerService,
     private notificationSerivce: NotificationsService,
     private turnosService: TurnosService,
+    private consultoriosService: ConsultoriosService,
     private router: Router,
     private viewContainerRef: ViewContainerRef,
     private dialogoTurno: DialogoTurnoService,
@@ -31,11 +35,15 @@ export class AgendaComponent implements OnInit, OnDestroy {
   fechaTurnos: string;
   suscripcionTurnos;
   suscripcionFecha: any;
+  consultorios: Consultorio[] = [];
+  horarios: Horario[] = [];
 
   ngOnInit() {
     this.suscripcionFecha = this.route.params.subscribe(params => {
       this.fechaTurnos = params['fecha'] || AgendaComponent.fechaHoy();
       this.traerTurnosResumen(this.fechaTurnos);
+      this.cargarConsultorios();
+      this.cargarHorarios();
     });
   }
 
@@ -44,6 +52,34 @@ export class AgendaComponent implements OnInit, OnDestroy {
     this.suscripcionTurnos.unsubscribe();
     this.suscripcionFecha.unsubscribe();
     this.spinner.start();
+  }
+
+  cargarConsultorios(){
+    this.consultoriosService.getAll().subscribe(consultoriosDb => {
+      this.consultorios = consultoriosDb;
+    }, error => {
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
+  }
+
+  cargarHorarios(){
+    this.turnosService.verHorarios().subscribe(horariosDb => {
+      this.horarios = horariosDb;
+    }, error => {
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
   }
 
   private static fechaHoy(){

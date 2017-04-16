@@ -71,4 +71,8 @@ export class TurnosService {
     return this.http.del('/turnos/' + turnoId).map((response: Response) => response.json());
   }
 
+  verHorarios(){
+    return this.http.get('/horarios').map((response: Response) => response.json().datos);
+  }
+
 }
