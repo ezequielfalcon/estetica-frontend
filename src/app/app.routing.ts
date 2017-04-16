@@ -25,7 +25,7 @@ import {EsMedicoGuard} from "./_guards/es-medico.guard";
 import {CuentaCorrienteComponent} from "./_componentes/cuenta-corriente/cuenta-corriente.component";
 
 const appRoutes: Routes = [
-  { path: '', component: TurnosComponent, canActivate: [AuthGuard, MedicoGuard] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'agenda/:fecha', component: AgendaComponent, canActivate: [AuthGuard, MedicoGuard] },
@@ -42,12 +42,13 @@ const appRoutes: Routes = [
   { path: 'nuevo-usuario', component: NuevoUsuarioComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'nuevo-turno/:consultorio/:turno/:fecha/:entreturno', component: NuevoTurnoComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'nuevo-tratamiento', component: NuevoTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'turnos', component: TurnosComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'tratamientos/:id', component: VerModificarTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'liquidaciones', component: LiquidacionesComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'medicos', component: MedicoHomeComponent, canActivate:[AuthGuard, EsMedicoGuard] },
   { path: 'cuenta-corriente', component: CuentaCorrienteComponent, canActivate: [AuthGuard, MedicoGuard] },
 
-  { path: '*', redirectTo: '/agenda' }
+  { path: '*', redirectTo: '' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
