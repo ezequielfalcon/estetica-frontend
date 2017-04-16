@@ -63,6 +63,8 @@ import { DialogoCtacteComponent } from './_directivas/dialogo-ctacte/dialogo-cta
 import {DialogoCtacteService} from "./_servicios/dialogos/dialogo-ctacte.service";
 import {SubsistemaMedicosService} from "./_servicios/datos/subsistema-medicos.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { TurnosPresentesPipe } from './_servicios/filtros/turnos-presentes.pipe';
+import { TurnosAtendidosPipe } from './_servicios/filtros/turnos-atendidos.pipe';
 
 @NgModule({
   declarations: [
@@ -99,7 +101,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     LiquidacionesComponent,
     MedicoHomeComponent,
     CuentaCorrienteComponent,
-    DialogoCtacteComponent
+    DialogoCtacteComponent,
+    TurnosPresentesPipe,
+    TurnosAtendidosPipe
   ],
   imports: [
     BrowserModule,
