@@ -57,6 +57,7 @@ import {CuentaCorrienteService} from "./_servicios/datos/cuenta-corriente.servic
 import { DialogoCtacteComponent } from './_directivas/dialogo-ctacte/dialogo-ctacte.component';
 import {DialogoCtacteService} from "./_servicios/dialogos/dialogo-ctacte.service";
 import {SubsistemaMedicosService} from "./_servicios/datos/subsistema-medicos.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -99,9 +100,10 @@ import {SubsistemaMedicosService} from "./_servicios/datos/subsistema-medicos.se
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule,
+    MaterialModule.forRoot(),
     routing,
-    SimpleNotificationsModule
+    SimpleNotificationsModule,
+    BrowserAnimationsModule
   ],
   exports: [
     DialogoComponent,
