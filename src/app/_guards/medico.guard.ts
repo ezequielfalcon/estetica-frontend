@@ -11,9 +11,7 @@ export class MedicoGuard implements CanActivate {
     private notif: NotificationsService
   ){}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (localStorage.getItem("rol") == "medico"){
       this.router.navigate(['/medicos']);
       return false;

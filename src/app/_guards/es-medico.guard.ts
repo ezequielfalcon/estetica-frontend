@@ -12,7 +12,7 @@ export class EsMedicoGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    state: RouterStateSnapshot){
     if (localStorage.getItem("rol") == "medico"){
       return true;
     }
