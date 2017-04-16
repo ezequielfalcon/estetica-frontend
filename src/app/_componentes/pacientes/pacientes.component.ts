@@ -7,7 +7,7 @@ import {PacientesService} from "../../_servicios/datos/pacientes.service";
 import {NotificationsService} from "angular2-notifications";
 import {Router} from "@angular/router";
 import {SpinnerService} from "../../_servicios/spinner.service";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'pacientes',

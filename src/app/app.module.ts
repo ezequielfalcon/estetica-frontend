@@ -101,8 +101,7 @@ import {SubsistemaMedicosService} from "./_servicios/datos/subsistema-medicos.se
     HttpModule,
     MaterialModule,
     routing,
-    SimpleNotificationsModule,
-    ReactiveFormsModule
+    SimpleNotificationsModule
   ],
   exports: [
     DialogoComponent,
