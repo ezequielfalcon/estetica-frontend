@@ -2,7 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import {
+  MdButtonModule, MdCardModule, MdCheckboxModule, MdChipsModule, MdCoreModule, MdDialogModule, MdGridListModule,
+  MdIconModule,
+  MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdProgressBarModule, MdSelectModule,
+  MdSliderModule, MdTabsModule, MdToolbarModule
+} from '@angular/material';
 import {SimpleNotificationsModule, NotificationsService} from "angular2-notifications";
 
 import { AppComponent } from './app.component';
@@ -99,11 +104,29 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
-    MaterialModule.forRoot(),
     routing,
     SimpleNotificationsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MdInputModule,
+    MdCardModule,
+    MdButtonModule,
+    MdSliderModule,
+    MdInputModule,
+    MdCoreModule,
+    MdDialogModule,
+    MdCheckboxModule,
+    MdChipsModule,
+    MdIconModule,
+    MdListModule,
+    MdLineModule,
+    MdMenuModule,
+    MdTabsModule,
+    MdToolbarModule,
+    MdSelectModule,
+    MdProgressBarModule,
+    MdGridListModule
   ],
   exports: [
     DialogoComponent,
