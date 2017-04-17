@@ -26,6 +26,7 @@ export class MedicoHomeComponent implements OnInit, OnDestroy {
   suscripcionTurnos;
 
   ngOnInit() {
+    this.cargarTurnos();
   }
 
   ngOnDestroy() {
