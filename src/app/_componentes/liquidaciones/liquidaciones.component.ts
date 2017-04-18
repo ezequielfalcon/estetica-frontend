@@ -121,6 +121,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       nuevoAdicional.adicional = this.adicional.adicional;
       nuevoAdicional.paciente = this.adicional.paciente;
       nuevoAdicional.hora = this.adicional.hora;
+      nuevoAdicional.id = Math.floor(Math.random() * 1000) + 1;
       this.adicionales.push(nuevoAdicional);
       this.adicional.adicional = "";
       this.adicional.paciente = "";

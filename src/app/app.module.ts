@@ -6,7 +6,7 @@ import {
   MdButtonModule, MdCardModule, MdCheckboxModule, MdChipsModule, MdCoreModule, MdDialogModule, MdGridListModule,
   MdIconModule,
   MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdProgressBarModule, MdSelectModule, MdSidenavModule,
-  MdSliderModule, MdTabsModule, MdToolbarModule
+  MdSliderModule, MdTabsModule, MdToolbarModule, MdTooltipModule
 } from '@angular/material';
 import {SimpleNotificationsModule, NotificationsService} from "angular2-notifications";
 
@@ -133,7 +133,8 @@ import {DarkThemeService} from "./_servicios/dark-theme.service";
     MdSelectModule,
     MdProgressBarModule,
     MdGridListModule,
-    MdSidenavModule
+    MdSidenavModule,
+    MdTooltipModule
   ],
   exports: [
     DialogoComponent,
