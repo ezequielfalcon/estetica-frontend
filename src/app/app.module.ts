@@ -19,6 +19,7 @@ import { FilterByPipe } from './_servicios/filtros/filter.pipe';
 
 import { LoginService, HttpAuthService, ConfirmService } from './_servicios/index';
 import 'hammerjs';
+import 'jspdf';
 import { routing } from './app.routing';
 import {PacientesService, ObrasSocialesService} from "./_servicios/datos/index";
 import {DialogoComponent} from "./_directivas/dialogo/dialogo.component";
