@@ -1,5 +1,15 @@
 @import "estetica.css";
 
+.estetica-dark {
+@include angular-material-theme(dark-theme);
+}
+
+body.estetica-dark {
+  margin: 0;
+  background-color: #212121;
+  font-family: Roboto, sans-serif;
+}
+
 .center-login {
   margin: auto;
   width: 50%;

@@ -4,13 +4,13 @@
     <table width="100%">
       <tr>
         <td>
-          <button md-raised-button [routerLink]="['/agenda']">
+          <button md-raised-button color="primary" [routerLink]="['/agenda']">
             <md-icon>reorder</md-icon>
             <span>Agenda</span>
           </button>
         </td>
         <td>
-          <button md-raised-button [routerLink]="['/turnos']">
+          <button md-raised-button color="primary" [routerLink]="['/turnos']">
             <md-icon>receipt</md-icon>
             <span>Turnos</span>
           </button>
@@ -18,13 +18,13 @@
       </tr>
       <tr>
         <td>
-          <button md-raised-button [routerLink]="['/pacientes']">
+          <button md-raised-button color="primary" [routerLink]="['/pacientes']">
             <md-icon>people</md-icon>
             <span>Pacientes</span>
           </button>
         </td>
         <td>
-          <button md-raised-button [routerLink]="['/liquidaciones']">
+          <button md-raised-button color="primary" [routerLink]="['/liquidaciones']">
             <md-icon>payment</md-icon>
             <span>Liquidaciones</span>
           </button>
@@ -32,13 +32,13 @@
       </tr>
       <tr>
         <td>
-          <button md-raised-button [routerLink]="['/cuenta-corriente']">
+          <button md-raised-button color="primary" [routerLink]="['/cuenta-corriente']">
             <md-icon>monetization_on</md-icon>
             <span>Cuenta Corriente</span>
           </button>
         </td>
         <td>
-          <button md-raised-button [routerLink]="['/configuracion']">
+          <button md-raised-button color="accent" [routerLink]="['/configuracion']">
             <md-icon>build</md-icon>
             <span>Configuración</span>
           </button>
@@ -46,9 +46,10 @@
       </tr>
     </table>
     <md-divider style="padding: 1px;"></md-divider>
-    <button md-button [routerLink]="['/login']">
+    <button md-button color="warn" [routerLink]="['/login']">
       <md-icon>exit_to_app</md-icon>
       <span>Salir</span>
     </button>
+    <!--<button style="float: right" type="button" (click)="oscuro()" md-button>MODO OSCURO</button>-->
   </md-card>
 </div>
