@@ -1,4 +1,4 @@
-<div class="center">
+<div class="center" id="liquidacion-body">
   <md-card>
     <md-card-header>
       <md-card-title>
@@ -8,13 +8,13 @@
     <md-card-content>
       <label *ngIf="!medicoSeleccionadoBool"><h4>Seleccione el Médico:</h4></label>
       <button md-raised-button color="primary" *ngIf="!medicoSeleccionadoBool" type="button" (click)="seleccionarMedico()">Seleccionar Médico</button>
-      <div *ngIf="medicoSeleccionadoBool" id="printArea">
+      <div *ngIf="medicoSeleccionadoBool" id="section-to-print">
         <md-grid-list cols="2" rowHeight="20px">
           <md-grid-tile>
             <h3>{{medicoSeleccionado.nombre + " " + medicoSeleccionado.apellido}}</h3>
           </md-grid-tile>
           <md-grid-tile rows="2">
-            <button md-button color="accent" (click)="otroMedico()">Elejir otro Médico</button>
+            <button md-button color="accent" (click)="otroMedico()" id="hide-elegir">Elejir otro Médico</button>
           </md-grid-tile>
           <md-grid-tile>
             <h5>{{"Email: " + medicoSeleccionado.mail}}</h5>
@@ -29,7 +29,7 @@
                 <input mdInput type="date" name="fechaActual" [(ngModel)]="fechaTurnos" #fechaActual="ngModel" (change)="cambiarFecha()">
               </md-input-container>
             </td>
-            <td>
+            <td id="hide-adicionales">
               <label><h4>Adicionales</h4></label>
               <table>
                 <tr>
@@ -77,8 +77,6 @@
           </tr>
         </table>
         <md-divider style="padding: 5px;"></md-divider>
-
-        <md-divider style="padding: 5px;"></md-divider>
         <md-list>
           <md-list-item>
             <md-icon md-list-avatar>subject</md-icon>
@@ -100,6 +98,7 @@
           </md-list-item>
         </md-list>
       </div>
+      <button *ngIf="medicoSeleccionadoBool" md-raised-button color="primary" (click)="imprimir()" type="button">Imprimir liquidación</button>
     </md-card-content>
   </md-card>
 </div>

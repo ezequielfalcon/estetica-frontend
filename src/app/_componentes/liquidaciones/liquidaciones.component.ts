@@ -147,6 +147,10 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     return monto;
   }
 
+  imprimir(){
+    window.print();
+  }
+
   turnoStringHora(turnoId: number) {
     let turnoString: string;
     switch (turnoId) {
