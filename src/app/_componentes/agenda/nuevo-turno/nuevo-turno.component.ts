@@ -112,7 +112,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     this.spinner.start();
     this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
       .subscribe(pacienteSeleccionado => {
-        this.cargarPaciente(pacienteSeleccionado);
+        if (pacienteSeleccionado) this.cargarPaciente(pacienteSeleccionado);
       });
   }
 
@@ -120,7 +120,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     this.spinner.start();
     this.dialogoMedicos.seleccionarMedico(this.viewContainerRef)
       .subscribe(medicoSeleccionado => {
-        this.cargarMedico(medicoSeleccionado);
+        if (medicoSeleccionado) this.cargarMedico(medicoSeleccionado);
       });
   }
 

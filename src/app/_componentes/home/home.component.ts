@@ -3,6 +3,7 @@
  */
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {SpinnerService} from "../../_servicios/spinner.service";
+import {DarkThemeService} from "../../_servicios/dark-theme.service";
 
 @Component({
   selector: 'home',
@@ -13,7 +14,8 @@ import {SpinnerService} from "../../_servicios/spinner.service";
 export class HomeComponent implements OnInit, OnDestroy {
 
   constructor (
-    private spinner: SpinnerService
+    private spinner: SpinnerService,
+    private dark: DarkThemeService
   ) {}
 
   ngOnInit(){
@@ -22,5 +24,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.spinner.start();
+  }
+
+  oscuro(){
+    this.dark.esDark = !this.dark.esDark;
   }
 }

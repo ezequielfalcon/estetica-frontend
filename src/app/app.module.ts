@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import {
   MdButtonModule, MdCardModule, MdCheckboxModule, MdChipsModule, MdCoreModule, MdDialogModule, MdGridListModule,
   MdIconModule,
-  MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdProgressBarModule, MdSelectModule,
+  MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdProgressBarModule, MdSelectModule, MdSidenavModule,
   MdSliderModule, MdTabsModule, MdToolbarModule
 } from '@angular/material';
 import {SimpleNotificationsModule, NotificationsService} from "angular2-notifications";
@@ -65,6 +65,7 @@ import {SubsistemaMedicosService} from "./_servicios/datos/subsistema-medicos.se
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { TurnosPresentesPipe } from './_servicios/filtros/turnos-presentes.pipe';
 import { TurnosAtendidosPipe } from './_servicios/filtros/turnos-atendidos.pipe';
+import {DarkThemeService} from "./_servicios/dark-theme.service";
 
 @NgModule({
   declarations: [
@@ -130,7 +131,8 @@ import { TurnosAtendidosPipe } from './_servicios/filtros/turnos-atendidos.pipe'
     MdToolbarModule,
     MdSelectModule,
     MdProgressBarModule,
-    MdGridListModule
+    MdGridListModule,
+    MdSidenavModule
   ],
   exports: [
     DialogoComponent,
@@ -162,7 +164,8 @@ import { TurnosAtendidosPipe } from './_servicios/filtros/turnos-atendidos.pipe'
     EsMedicoGuard,
     CuentaCorrienteService,
     DialogoCtacteService,
-    SubsistemaMedicosService
+    SubsistemaMedicosService,
+    DarkThemeService
   ],
   entryComponents: [
     DialogoComponent,

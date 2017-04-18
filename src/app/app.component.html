@@ -1,4 +1,7 @@
-<menu-estetica></menu-estetica>
-<spinner-component></spinner-component>
-<router-outlet></router-outlet>
-<simple-notifications [options]="options"></simple-notifications>
+<div [class.estetica-dark]="darkService.esDark">
+  <menu-estetica></menu-estetica>
+  <spinner-component></spinner-component>
+  <router-outlet></router-outlet>
+  <simple-notifications [options]="options"></simple-notifications>
+</div>
+
