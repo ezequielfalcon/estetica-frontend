@@ -5,14 +5,14 @@
     </md-card-header>
     <md-card-content>
       <label *ngIf="!pacienteSeleccionado"><h4>Seleccione el Paciente:</h4></label>
-      <button md-raised-button *ngIf="!pacienteSeleccionado" type="button" (click)="seleccionarPaciente()">Seleccionar Paciente</button>
+      <button md-raised-button color="primary" *ngIf="!pacienteSeleccionado" type="button" (click)="seleccionarPaciente()">Seleccionar Paciente</button>
       <div *ngIf="pacienteSeleccionado">
         <md-grid-list cols="2" rowHeight="20px">
           <md-grid-tile>
             <h3>{{paciente.nombre + " " + paciente.apellido}}</h3>
           </md-grid-tile>
           <md-grid-tile rows="2">
-            <button md-raised-button (click)="otroPaciente()">Elejir otro paciente</button>
+            <button md-button color="accent" (click)="otroPaciente()">Elejir otro paciente</button>
           </md-grid-tile>
           <md-grid-tile>
             <h5>{{"DNI: " + paciente.documento}}</h5>

@@ -7,14 +7,14 @@
     </md-card-header>
     <md-card-content>
       <label *ngIf="!medicoSeleccionadoBool"><h4>Seleccione el Médico:</h4></label>
-      <button md-raised-button *ngIf="!medicoSeleccionadoBool" type="button" (click)="seleccionarMedico()">Seleccionar Médico</button>
+      <button md-raised-button color="primary" *ngIf="!medicoSeleccionadoBool" type="button" (click)="seleccionarMedico()">Seleccionar Médico</button>
       <div *ngIf="medicoSeleccionadoBool">
         <md-grid-list cols="2" rowHeight="20px">
           <md-grid-tile>
             <h3>{{medicoSeleccionado.nombre + " " + medicoSeleccionado.apellido}}</h3>
           </md-grid-tile>
           <md-grid-tile rows="2">
-            <button md-raised-button (click)="otroMedico()">Elejir otro Médico</button>
+            <button md-button color="accent" (click)="otroMedico()">Elejir otro Médico</button>
           </md-grid-tile>
           <md-grid-tile>
             <h5>{{"Email: " + medicoSeleccionado.mail}}</h5>
@@ -55,7 +55,7 @@
         <md-input-container>
           <input mdInput placeholder="Costo" type="number" name="adicionalTurno" [(ngModel)]="adicional.adicional" #adicionalTurno="ngModel">
         </md-input-container>
-        <button md-raised-button type="button" (click)="agregarAdicional()">Agregar</button>
+        <button md-raised-button color="primary" type="button" (click)="agregarAdicional()">Agregar</button>
         <md-divider style="padding: 5px;"></md-divider>
         <md-list>
           <md-list-item>
