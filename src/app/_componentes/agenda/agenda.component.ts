@@ -159,14 +159,14 @@ export class AgendaComponent implements OnInit, OnDestroy {
     for (let turno of this.turnos){
       if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == false){
         if (turno.atendido == true){
-          return "#c0ca33";
+          return "warn";
         }
         else {
           if (turno.presente == true){
-            return "#009688";
+            return "accent";
           }
           else{
-            return "#3F51B5";
+            return "primary";
           }
         }
       }
