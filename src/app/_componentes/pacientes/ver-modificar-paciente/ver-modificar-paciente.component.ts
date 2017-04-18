@@ -101,7 +101,7 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
       if (res){
         this.pacientesService.del(this.pac.id).subscribe(() => {
           this.notif.success('OK', 'Paciente eliminado!');
-          this.router.navigate(['/medicos']);
+          this.router.navigate(['/pacientes']);
         }, error => {
           if (error.status == 401){
             this.notif.error("Error","Sesión expirada!");

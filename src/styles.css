@@ -1,4 +1,4 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "estetica.css";
 
 .center-login {
   margin: auto;
