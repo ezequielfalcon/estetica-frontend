@@ -112,7 +112,12 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     this.spinner.start();
     this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
       .subscribe(pacienteSeleccionado => {
-        if (pacienteSeleccionado) this.cargarPaciente(pacienteSeleccionado);
+        if (pacienteSeleccionado) {
+          if (pacienteSeleccionado == -1){
+            this.notificationSerivce.info("Nuevo", "Nuevo paciente");
+          }
+          else this.cargarPaciente(pacienteSeleccionado);
+        }
       });
   }
 
