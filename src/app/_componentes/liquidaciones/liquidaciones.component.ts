@@ -96,7 +96,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       this.medicoSeleccionado = medicoDb;
       this.medicoSeleccionadoBool = true;
     }, error => {
-      if (error.status === 401){
+      if (error.status === 401) {
         this.notificationService.error('Error', 'Sesión expirada!');
         this.router.navigate(['/login']);
       }
@@ -106,7 +106,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     });
   }
 
-  cargarTurnos(medicoId, fecha){
+  cargarTurnos(medicoId, fecha) {
     this.turnosService.traerTurnosPorMedico(medicoId, fecha).subscribe(turnosDb => {
       this.turnosMedico = turnosDb;
       this.spinner.stop();
@@ -122,8 +122,8 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   }
 
   agregarAdicional() {
-    if (this.adicional.adicional && this.adicional.paciente && this.adicional.hora){
-      if (this.adicional.adicional < 0.1){
+    if (this.adicional.adicional && this.adicional.paciente && this.adicional.hora) {
+      if (this.adicional.adicional < 0.1) {
         this.notificationService.alert('Alerta', 'Ingrese un monto mayor a 0.');
         return;
       }
@@ -136,8 +136,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       this.adicional.adicional = '';
       this.adicional.paciente = '';
       this.adicional.hora = '';
-    }
-    else {
+    } else {
       this.notificationService.alert('Advertencia', 'Complete todos los campos para agregar un adicional.');
     }
   }
