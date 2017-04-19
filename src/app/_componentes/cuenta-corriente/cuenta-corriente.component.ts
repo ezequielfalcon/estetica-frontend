@@ -8,6 +8,7 @@ import {PacientesService} from "../../_servicios/datos/pacientes.service";
 import {NotificationsService} from "angular2-notifications";
 import {Router} from "@angular/router";
 import {DialogoCtacteService} from "../../_servicios/dialogos/dialogo-ctacte.service";
+import {DialogoNuevoPacienteService} from '../../_servicios/dialogos/dialogo-nuevo-paciente.service';
 
 @Component({
   selector: 'app-cuenta-corriente',
@@ -24,7 +25,8 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
     private notificationSerivce: NotificationsService,
     private router: Router,
     private cteCtaService: CuentaCorrienteService,
-    private dialogoCtaCteService: DialogoCtacteService
+    private dialogoCtaCteService: DialogoCtacteService,
+    private dialogoNuevoPaciente: DialogoNuevoPacienteService
   ) { }
 
   cuentaCorriente: CuentaCorriente[] = [];
@@ -84,21 +86,43 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
     this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
       .subscribe(pacienteSeleccionado => {
         if (pacienteSeleccionado){
-          this.spinner.start();
-          this.pacientesService.getById(pacienteSeleccionado).subscribe(pacienteDb => {
-            this.paciente = pacienteDb;
-            this.pacienteSeleccionado = true;
-            this.traerCtaCte(this.paciente.id);
-          }, error => {
-            if (error.status == 401){
-              this.notificationSerivce.error("Error","Sesión expirada!");
-              this.router.navigate(['/login']);
-            }
-            let body = JSON.parse(error._body);
-            this.notificationSerivce.error('Error', body.mensaje);
-            this.spinner.stop();
-            return;
-          });
+          if (pacienteSeleccionado == -1){
+            this.dialogoNuevoPaciente.crearPaciente(this.viewContainerRef).subscribe(nuevoPacienteSeleccionado => {
+              if (nuevoPacienteSeleccionado){
+                this.pacientesService.getById(nuevoPacienteSeleccionado).subscribe(pacienteDb => {
+                  this.paciente = pacienteDb;
+                  this.pacienteSeleccionado = true;
+                  this.traerCtaCte(this.paciente.id);
+                }, error => {
+                  if (error.status == 401){
+                    this.notificationSerivce.error("Error","Sesión expirada!");
+                    this.router.navigate(['/login']);
+                  }
+                  let body = JSON.parse(error._body);
+                  this.notificationSerivce.error('Error', body.mensaje);
+                  this.spinner.stop();
+                  return;
+                });
+              }
+            });
+          }
+          else{
+            this.spinner.start();
+            this.pacientesService.getById(pacienteSeleccionado).subscribe(pacienteDb => {
+              this.paciente = pacienteDb;
+              this.pacienteSeleccionado = true;
+              this.traerCtaCte(this.paciente.id);
+            }, error => {
+              if (error.status == 401){
+                this.notificationSerivce.error("Error","Sesión expirada!");
+                this.router.navigate(['/login']);
+              }
+              let body = JSON.parse(error._body);
+              this.notificationSerivce.error('Error', body.mensaje);
+              this.spinner.stop();
+              return;
+            });
+          }
         }
       }, error => {
         if (error.status == 401){

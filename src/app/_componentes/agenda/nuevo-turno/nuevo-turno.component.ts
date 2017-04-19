@@ -12,6 +12,7 @@ import {DialogoMedicosService} from "../../../_servicios/dialogos/dialogo-medico
 import {Tratamiento} from "../../../_modelos/tratamiento";
 import {TratamientosService} from "../../../_servicios/datos/tratamientos.service";
 import {DialogoTratamientosService} from "../../../_servicios/dialogos/dialogo-tratamientos.service";
+import {DialogoNuevoPacienteService} from '../../../_servicios/dialogos/dialogo-nuevo-paciente.service';
 
 @Component({
   selector: 'app-nuevo-turno',
@@ -31,6 +32,7 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
     private viewContainerRef: ViewContainerRef,
     private dialogoPacientes: DialogoPacientesService,
     private dialogoMedicos: DialogoMedicosService,
+    private dialogoNuevoPaciente: DialogoNuevoPacienteService,
     private tratamientosService: TratamientosService,
     private dialogoTratamientos: DialogoTratamientosService
   ) { }
@@ -114,7 +116,11 @@ export class NuevoTurnoComponent implements OnInit, OnDestroy {
       .subscribe(pacienteSeleccionado => {
         if (pacienteSeleccionado) {
           if (pacienteSeleccionado == -1){
-            this.notificationSerivce.info("Nuevo", "Nuevo paciente");
+            this.dialogoNuevoPaciente.crearPaciente(this.viewContainerRef).subscribe(nuevoPacienteSeleccionado => {
+              if (nuevoPacienteSeleccionado){
+                this.cargarPaciente(nuevoPacienteSeleccionado);
+              }
+            });
           }
           else this.cargarPaciente(pacienteSeleccionado);
         }
