@@ -9,7 +9,6 @@
         <md-list-item class="clickVer" *ngFor="let tratamiento of tratamientos" (click)="detalles(tratamiento.id)">
           <md-icon md-list-avatar>work</md-icon>
           <h4 md-line>{{tratamiento.nombre}}</h4>
-          <p md-line>{{'ID: ' + tratamiento.id}}</p>
           <p md-line>{{'Costo: ' + tratamiento.costo}}</p>
         </md-list-item>
       </md-list>

@@ -29,7 +29,6 @@
         <md-list-item class="clickVer" *ngFor="let medico of medicos | filterBy: {nombre: search, apellido:searchApe}" (click)="detalles(medico.id)">
           <md-icon md-list-avatar>local_hospital</md-icon>
           <h4 md-line>{{medico.nombre + ' ' + medico.apellido}}</h4>
-          <p md-line>{{'E-mail: ' + medico.mail}}</p>
         </md-list-item>
       </md-list>
     </md-card-content>

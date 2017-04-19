@@ -1,4 +1,4 @@
-<div class="center">
+<div class="center" id="liquidacion-body">
   <md-card>
     <md-card-header>
       <md-card-title>
@@ -8,22 +8,54 @@
     <md-card-content>
       <label *ngIf="!medicoSeleccionadoBool"><h4>Seleccione el Médico:</h4></label>
       <button md-raised-button color="primary" *ngIf="!medicoSeleccionadoBool" type="button" (click)="seleccionarMedico()">Seleccionar Médico</button>
-      <div *ngIf="medicoSeleccionadoBool">
+      <div *ngIf="medicoSeleccionadoBool" id="section-to-print">
         <md-grid-list cols="2" rowHeight="20px">
           <md-grid-tile>
             <h3>{{medicoSeleccionado.nombre + " " + medicoSeleccionado.apellido}}</h3>
           </md-grid-tile>
           <md-grid-tile rows="2">
-            <button md-button color="accent" (click)="otroMedico()">Elejir otro Médico</button>
+            <button md-button color="accent" (click)="otroMedico()" id="hide-elegir">Elejir otro Médico</button>
           </md-grid-tile>
           <md-grid-tile>
             <h5>{{"Email: " + medicoSeleccionado.mail}}</h5>
           </md-grid-tile>
         </md-grid-list>
         <md-divider style="padding: 5px;"></md-divider>
-        <md-input-container>
-          <input mdInput placeholder="Fecha" type="date" name="fechaActual" [(ngModel)]="fechaTurnos" #fechaActual="ngModel" (change)="cambiarFecha()">
-        </md-input-container>
+        <table width="100%">
+          <tr>
+            <td>
+              <label><h4>Fecha</h4></label>
+              <md-input-container>
+                <input mdInput type="date" name="fechaActual" [(ngModel)]="fechaTurnos" #fechaActual="ngModel" (change)="cambiarFecha()">
+              </md-input-container>
+            </td>
+            <td id="hide-adicionales">
+              <label><h4>Adicionales</h4></label>
+              <table>
+                <tr>
+                  <td>
+                    <md-input-container>
+                      <input mdInput type="text" placeholder="Paciente" name="pacienteAdicional" [(ngModel)]="adicional.paciente">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container>
+                      <input mdInput type="text" placeholder="Hora" name="horaAdicional" [(ngModel)]="adicional.hora" #horaAdicional="ngModel">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container>
+                      <input mdInput placeholder="Costo" type="number" name="adicionalTurno" [(ngModel)]="adicional.adicional" #adicionalTurno="ngModel">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <button md-raised-button color="primary" type="button" (click)="agregarAdicional()">Agregar</button>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
         <md-divider style="padding: 5px;"></md-divider>
         <label><h4>Turnos</h4></label>
         <table width="100%">
@@ -40,22 +72,10 @@
           <tr>
             <th>Paciente</th><th>Hora</th><th>Monto</th>
           </tr>
-          <tr *ngFor="let adicionalesTurno of adicionales">
-            <td>{{adicionalesTurno.paciente}}</td><td>{{adicionalesTurno.hora}}</td><td>{{adicionalesTurno.adicional}}</td>
+          <tr *ngFor="let adicionalesTurno of adicionales" mdTooltip="Click para borrar!" mdTooltipPosition="right" class="clickVer" (click)="borrarAdicional(adicionalesTurno.id)">
+            <td><span >{{adicionalesTurno.paciente}}</span></td><td>{{adicionalesTurno.hora}}</td><td>{{adicionalesTurno.adicional}}</td>
           </tr>
         </table>
-        <md-divider style="padding: 5px;"></md-divider>
-        <label><h4>Adicionales</h4></label>
-        <md-input-container>
-          <input mdInput type="text" placeholder="Paciente" name="pacienteAdicional" [(ngModel)]="adicional.paciente">
-        </md-input-container>
-        <md-input-container>
-          <input mdInput type="text" placeholder="Hora" name="horaAdicional" [(ngModel)]="adicional.hora" #horaAdicional="ngModel">
-        </md-input-container>
-        <md-input-container>
-          <input mdInput placeholder="Costo" type="number" name="adicionalTurno" [(ngModel)]="adicional.adicional" #adicionalTurno="ngModel">
-        </md-input-container>
-        <button md-raised-button color="primary" type="button" (click)="agregarAdicional()">Agregar</button>
         <md-divider style="padding: 5px;"></md-divider>
         <md-list>
           <md-list-item>
@@ -78,6 +98,7 @@
           </md-list-item>
         </md-list>
       </div>
+      <button *ngIf="medicoSeleccionadoBool" md-raised-button color="primary" (click)="imprimir()" type="button">Imprimir liquidación</button>
     </md-card-content>
   </md-card>
 </div>
