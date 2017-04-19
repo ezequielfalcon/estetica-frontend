@@ -23,7 +23,7 @@
           </td>
           <td>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" placeholder="Apellido" name="apellido" [(ngModel)]="pac.apellido" #apellido="ngModel">
+              <input mdInput [disabled]="!edicion" placeholder="Apellido" name="apellido" [(ngModel)]="pac.apellido" #apellido="ngModel" required>
             </md-input-container>
           </td>
         </tr></table>
@@ -42,7 +42,7 @@
               <input mdInput [disabled]="!edicion" placeholder="Documento" name="documento" [(ngModel)]="pac.documento" #documento="ngModel" required>
             </md-input-container>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" type="date" placeholder="Nacimiento" name="fechaNac" [(ngModel)]="pac.fecha_nacimiento" #fechaNac="ngModel" required>
+              <input mdInput [disabled]="!edicion" type="date" placeholder="Nacimiento" name="fechaNac" [(ngModel)]="pac.fecha_nacimiento" #fechaNac="ngModel">
             </md-input-container>
           </td>
         </tr></table>

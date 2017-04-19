@@ -6,6 +6,9 @@
         Pacientes
       </md-card-title>
     </md-card-header>
+    <div class="boton-add">
+      <a md-fab (click)="dialogRef.close(-1)"><md-icon>add</md-icon></a>
+    </div>
     <md-card-content>
       <md-input-container>
         <input mdInput placeholder="Nombre..." [formControl]="nom">

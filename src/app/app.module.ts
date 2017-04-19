@@ -67,6 +67,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { TurnosPresentesPipe } from './_servicios/filtros/turnos-presentes.pipe';
 import { TurnosAtendidosPipe } from './_servicios/filtros/turnos-atendidos.pipe';
 import {DarkThemeService} from './_servicios/dark-theme.service';
+import { DialogoNuevoPacienteComponent } from './_directivas/dialogo-nuevo-paciente/dialogo-nuevo-paciente.component';
+import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-paciente.service';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,8 @@ import {DarkThemeService} from './_servicios/dark-theme.service';
     CuentaCorrienteComponent,
     DialogoCtacteComponent,
     TurnosPresentesPipe,
-    TurnosAtendidosPipe
+    TurnosAtendidosPipe,
+    DialogoNuevoPacienteComponent
   ],
   imports: [
     BrowserModule,
@@ -141,7 +144,8 @@ import {DarkThemeService} from './_servicios/dark-theme.service';
     DialogoPacientesComponent,
     DialogoMedicosComponent,
     DialogoTratamientosComponent,
-    DialogoCtacteComponent
+    DialogoCtacteComponent,
+    DialogoNuevoPacienteComponent
   ] ,
   providers: [
     LoginService,
@@ -167,7 +171,8 @@ import {DarkThemeService} from './_servicios/dark-theme.service';
     CuentaCorrienteService,
     DialogoCtacteService,
     SubsistemaMedicosService,
-    DarkThemeService
+    DarkThemeService,
+    DialogoNuevoPacienteService
   ],
   entryComponents: [
     DialogoComponent,
@@ -175,7 +180,8 @@ import {DarkThemeService} from './_servicios/dark-theme.service';
     DialogoMedicosComponent,
     DialogoTratamientosComponent,
     DialogoTurnoComponent,
-    DialogoCtacteComponent
+    DialogoCtacteComponent,
+    DialogoNuevoPacienteComponent
   ] ,
   bootstrap: [AppComponent]
 })
