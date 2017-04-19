@@ -72,7 +72,7 @@
           <tr>
             <th>Paciente</th><th>Hora</th><th>Monto</th>
           </tr>
-          <tr *ngFor="let adicionalesTurno of adicionales" mdTooltip="Click para borrar!" mdTooltipPosition="right" class="clickVer">
+          <tr *ngFor="let adicionalesTurno of adicionales" mdTooltip="Click para borrar!" mdTooltipPosition="right" class="clickVer" (click)="borrarAdicional(adicionalesTurno.id)">
             <td><span >{{adicionalesTurno.paciente}}</span></td><td>{{adicionalesTurno.hora}}</td><td>{{adicionalesTurno.adicional}}</td>
           </tr>
         </table>
