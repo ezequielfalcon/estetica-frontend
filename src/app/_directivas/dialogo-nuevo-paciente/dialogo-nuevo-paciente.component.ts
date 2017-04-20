@@ -42,7 +42,9 @@ export class DialogoNuevoPacienteComponent implements OnInit {
       if (osSeleccionadaDialogo) {
         if (osSeleccionadaDialogo === -1) {
           this.nuevaOsDialog.crearOs(this.viewContainerRef).subscribe(nuevaOsDialogo => {
-            this.cargarOs(nuevaOsDialogo);
+            if (nuevaOsDialogo) {
+              this.cargarOs(nuevaOsDialogo);
+            }
           });
         } else {
           this.cargarOs(osSeleccionadaDialogo);
