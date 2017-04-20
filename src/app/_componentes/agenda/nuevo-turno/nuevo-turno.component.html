@@ -51,13 +51,13 @@
           <button md-raised-button color="primary" type="button" (click)="agregarTratamiento()">Agregar tratamiento</button>
           <h3>Tratamientos:</h3>
           <md-chip-list class="mat-chip-list-stacked">
-            <md-chip *ngFor="let tratamientoChip of tratamientosSeleccionados" class="clickVer"
-                     color="primary" selected="true" (click)="sacarTratamiento(tratamientoChip.id)">
+            <md-chip *ngFor="let tratamientoChip of tratamientosSeleccionados" class="clickVer" mdTooltip="Click para borrar!"
+                     color="accent" selected="false" (click)="sacarTratamiento(tratamientoChip.id)">
               {{tratamientoChip.nombre}}
             </md-chip>
           </md-chip-list>
-        <md-divider style="padding: 1px;"></md-divider>
-        <md-input-container>
+        <md-divider style="padding: 2px 1px 1px;"></md-divider>
+        <md-input-container style="padding-top: 2px;">
           <input mdInput type="text" placeholder="Costo" [(ngModel)]="nuevoTurno.costoTurno" name="costoTurno" #costoTurno="ngModel">
         </md-input-container>
       </md-card-content>

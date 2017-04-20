@@ -1,8 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {NotificationsService} from "angular2-notifications";
-import {Router, ActivatedRoute} from "@angular/router";
-import {MedicosService} from "../../../../_servicios/datos/medicos.service";
-import {SpinnerService} from "../../../../_servicios/spinner.service";
+import {NotificationsService} from 'angular2-notifications';
+import {Router, ActivatedRoute} from '@angular/router';
+import {MedicosService} from '../../../../_servicios/datos/medicos.service';
+import {SpinnerService} from '../../../../_servicios/spinner.service';
 
 @Component({
   selector: 'app-nuevo-medico',
@@ -11,6 +11,9 @@ import {SpinnerService} from "../../../../_servicios/spinner.service";
 })
 export class NuevoMedicoComponent implements OnInit, OnDestroy {
 
+
+  returnUrl: string;
+  nuevoMedico: any = {};
 
   constructor(
     private medicosService: MedicosService,
@@ -21,27 +24,24 @@ export class NuevoMedicoComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  returnUrl: string;
-  nuevoMedico: any = {};
-
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/configuracion/medicos';
     this.spinner.stop();
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.spinner.start();
   }
 
-  cancelar(){
+  cancelar() {
     this.router.navigate([this.returnUrl]);
   }
 
-  crear(){
+  crear() {
     this.spinner.start();
-    if (this.nuevoMedico.clave != this.nuevoMedico.clave2){
+    if (this.nuevoMedico.clave !== this.nuevoMedico.clave2) {
       this.spinner.stop();
-      this.notif.error("Error", "Las contraseñas no coinciden");
+      this.notif.error('Error', 'Las contraseñas no coinciden');
       return;
     }
     this.medicosService.post(this.nuevoMedico.nombre, this.nuevoMedico.apellido,
@@ -49,8 +49,8 @@ export class NuevoMedicoComponent implements OnInit, OnDestroy {
       this.notif.success('OK', 'Médico creado con ID ' + nuevoM.id);
       this.router.navigate([this.returnUrl]);
     }, error => {
-      if (error.status == 401){
-        this.notif.error("Error","Sesión expirada!");
+      if (error.status === 401) {
+        this.notif.error('Error', 'Sesión expirada!');
         this.router.navigate(['/login']);
       }
       const body = JSON.parse(error._body);
