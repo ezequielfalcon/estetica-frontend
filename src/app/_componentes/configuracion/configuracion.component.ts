@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -9,14 +9,14 @@ import 'rxjs/add/operator/switchMap';
 })
 export class ConfiguracionComponent implements OnInit {
 
+  indiceTab: number;
+
   constructor(
     private route: ActivatedRoute,
   ) { }
 
-  indiceTab: number;
-
   ngOnInit() {
-    switch (this.route.snapshot.params['id']){
+    switch (this.route.snapshot.params['id']) {
       case 'obras-sociales':
         this.indiceTab = 0;
         break;

@@ -12,7 +12,7 @@
         </tr>
         <ng-container *ngFor="let horario of horarios">
           <tr>
-            <td>{{horario.hora}}</td>
+            <th>{{horario.hora}}</th>
             <td *ngFor="let consultorio of consultorios"><button md-raised-button (click)="clickCeldaTurno(consultorio.id, horario.id)" color="{{celdaTurnoColor(consultorio.id, horario.id)}}">{{celdaTurnoValor(consultorio.id, horario.id)}}</button></td>
           </tr>
           <tr style="height: 7px">

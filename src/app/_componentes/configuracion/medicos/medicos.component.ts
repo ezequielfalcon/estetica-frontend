@@ -1,9 +1,9 @@
 import {Component, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
-import {Router} from "@angular/router";
-import {NotificationsService} from "angular2-notifications";
-import {MedicosService} from "../../../_servicios/datos/medicos.service";
-import {SpinnerService} from "../../../_servicios/spinner.service";
-import {Medico} from "../../../_modelos/medico";
+import {Router} from '@angular/router';
+import {NotificationsService} from 'angular2-notifications';
+import {MedicosService} from '../../../_servicios/datos/medicos.service';
+import {SpinnerService} from '../../../_servicios/spinner.service';
+import {Medico} from '../../../_modelos/medico';
 
 @Component({
   selector: 'app-medicos',
@@ -11,6 +11,10 @@ import {Medico} from "../../../_modelos/medico";
   styleUrls: ['medicos.component.css']
 })
 export class MedicosComponent implements OnInit, OnDestroy {
+
+  medicos: Medico[] = [];
+  search = '';
+  searchApe = '';
 
   constructor(
     private medicosService: MedicosService,
@@ -20,35 +24,31 @@ export class MedicosComponent implements OnInit, OnDestroy {
     private spinner: SpinnerService
   ) { }
 
-  medicos: Medico[] = [];
-  search: string = "";
-  searchApe: string = "";
-
   ngOnInit() {
     this.cargarMedicos();
     this.ref.markForCheck();
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.spinner.start();
   }
 
-  cargarMedicos(){
+  cargarMedicos() {
     this.medicosService.getAll().subscribe(medicosDb => {
       this.medicos = medicosDb;
       this.spinner.stop();
     }, error => {
-      if (error.status == 401){
-        this.notificationService.error("Error","Sesión expirada!");
+      if (error.status === 401) {
+        this.notificationService.error('Error', 'Sesión expirada!');
         this.router.navigate(['/login']);
       }
-      let body = JSON.parse(error._body);
+      const body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }
 
-  detalles(id: number){
+  detalles(id: number) {
     this.router.navigate(['/medicos/' + id]);
   }
 
