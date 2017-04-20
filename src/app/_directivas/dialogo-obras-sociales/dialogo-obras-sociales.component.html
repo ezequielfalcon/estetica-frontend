@@ -10,7 +10,6 @@
     </md-card-content>
     <md-divider></md-divider>
     <md-card-content>
-      <md-progress-bar mode="indeterminate" *ngIf="cargando"></md-progress-bar>
       <md-list>
         <md-list-item class="clickVer" *ngFor="let obra of obras | filterBy: {nombre: search};" (click)="dialogRef.close(obra.id)">
           <md-icon md-list-avatar>chrome_reader_mode</md-icon>
