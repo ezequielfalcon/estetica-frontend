@@ -69,6 +69,8 @@ import { TurnosAtendidosPipe } from './_servicios/filtros/turnos-atendidos.pipe'
 import {DarkThemeService} from './_servicios/dark-theme.service';
 import { DialogoNuevoPacienteComponent } from './_directivas/dialogo-nuevo-paciente/dialogo-nuevo-paciente.component';
 import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-paciente.service';
+import { DialogoObrasSocialesComponent } from './_directivas/dialogo-obras-sociales/dialogo-obras-sociales.component';
+import {DialogoObrasSocialesService} from './_servicios/dialogos/dialogo-obras-sociales.service';
 
 @NgModule({
   declarations: [
@@ -108,7 +110,8 @@ import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-p
     DialogoCtacteComponent,
     TurnosPresentesPipe,
     TurnosAtendidosPipe,
-    DialogoNuevoPacienteComponent
+    DialogoNuevoPacienteComponent,
+    DialogoObrasSocialesComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +148,8 @@ import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-p
     DialogoMedicosComponent,
     DialogoTratamientosComponent,
     DialogoCtacteComponent,
-    DialogoNuevoPacienteComponent
+    DialogoNuevoPacienteComponent,
+    DialogoObrasSocialesComponent
   ] ,
   providers: [
     LoginService,
@@ -172,7 +176,8 @@ import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-p
     DialogoCtacteService,
     SubsistemaMedicosService,
     DarkThemeService,
-    DialogoNuevoPacienteService
+    DialogoNuevoPacienteService,
+    DialogoObrasSocialesService
   ],
   entryComponents: [
     DialogoComponent,
@@ -181,7 +186,8 @@ import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-p
     DialogoTratamientosComponent,
     DialogoTurnoComponent,
     DialogoCtacteComponent,
-    DialogoNuevoPacienteComponent
+    DialogoNuevoPacienteComponent,
+    DialogoObrasSocialesComponent
   ] ,
   bootstrap: [AppComponent]
 })
