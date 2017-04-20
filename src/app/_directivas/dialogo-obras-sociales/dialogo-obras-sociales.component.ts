@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {SpinnerService} from '../../_servicios/spinner.service';
 import {Router} from '@angular/router';
 import {ObrasSocialesService} from '../../_servicios/datos/obras-sociales.service';
-import {NotificationsService} from 'angular2-notifications/dist';
+import {NotificationsService} from 'angular2-notifications';
 import {ObraSocial} from '../../_modelos/obra_social';
 import {MdDialogRef} from '@angular/material';
 
