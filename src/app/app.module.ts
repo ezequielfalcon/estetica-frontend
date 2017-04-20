@@ -69,6 +69,10 @@ import { TurnosAtendidosPipe } from './_servicios/filtros/turnos-atendidos.pipe'
 import {DarkThemeService} from './_servicios/dark-theme.service';
 import { DialogoNuevoPacienteComponent } from './_directivas/dialogo-nuevo-paciente/dialogo-nuevo-paciente.component';
 import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-paciente.service';
+import { DialogoObrasSocialesComponent } from './_directivas/dialogo-obras-sociales/dialogo-obras-sociales.component';
+import {DialogoObrasSocialesService} from './_servicios/dialogos/dialogo-obras-sociales.service';
+import { DialogoNuevaObraSocialComponent } from './_directivas/dialogo-nueva-obra-social/dialogo-nueva-obra-social.component';
+import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva-obra-social.service";
 
 @NgModule({
   declarations: [
@@ -108,7 +112,9 @@ import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-p
     DialogoCtacteComponent,
     TurnosPresentesPipe,
     TurnosAtendidosPipe,
-    DialogoNuevoPacienteComponent
+    DialogoNuevoPacienteComponent,
+    DialogoObrasSocialesComponent,
+    DialogoNuevaObraSocialComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +151,9 @@ import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-p
     DialogoMedicosComponent,
     DialogoTratamientosComponent,
     DialogoCtacteComponent,
-    DialogoNuevoPacienteComponent
+    DialogoNuevoPacienteComponent,
+    DialogoObrasSocialesComponent,
+    DialogoNuevaObraSocialComponent
   ] ,
   providers: [
     LoginService,
@@ -172,7 +180,9 @@ import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-p
     DialogoCtacteService,
     SubsistemaMedicosService,
     DarkThemeService,
-    DialogoNuevoPacienteService
+    DialogoNuevoPacienteService,
+    DialogoObrasSocialesService,
+    DialogoNuevaObraSocialService
   ],
   entryComponents: [
     DialogoComponent,
@@ -181,7 +191,9 @@ import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-p
     DialogoTratamientosComponent,
     DialogoTurnoComponent,
     DialogoCtacteComponent,
-    DialogoNuevoPacienteComponent
+    DialogoNuevoPacienteComponent,
+    DialogoObrasSocialesComponent,
+    DialogoNuevaObraSocialComponent
   ] ,
   bootstrap: [AppComponent]
 })

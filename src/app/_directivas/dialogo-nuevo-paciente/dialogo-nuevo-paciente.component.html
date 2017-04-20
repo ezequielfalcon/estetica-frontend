@@ -21,11 +21,10 @@
         </tr></table>
         <table cellspacing="0" class="tablaUsuarios"><tr>
           <td>
-            <md-select placeholder="Obra Social" [(ngModel)]="nuevoPac.id_os" name="os">
-              <md-option *ngFor="let osSelect of obras" [value]="osSelect.id">
-                {{osSelect.nombre}}
-              </md-option>
-            </md-select>
+            <button md-raised-button color="primary" type="button" *ngIf="!osSeleccionada" (click)="seleccionarOs()">Seleccionar OS</button>
+            <md-input-container *ngIf="osSeleccionada" (click)="seleccionarOs()" class="clickVer">
+              <input mdInput class="clickVer" disabled placeholder="Obra social" [(ngModel)]="osSeleccionada.nombre" name="osSel" #osSel="ngModel">
+            </md-input-container>
           </td>
         </tr></table>
         <table cellspacing="0" class="tablaUsuarios"><tr>
@@ -33,16 +32,20 @@
             <md-input-container>
               <input mdInput placeholder="Documento" name="documento" [(ngModel)]="nuevoPac.documento" #documento="ngModel" required>
             </md-input-container>
+          </td>
+          <td>
             <md-input-container>
               <input mdInput type="date" placeholder="Nacimiento" name="fechaNac" [(ngModel)]="nuevoPac.fechaNac" #fechaNac="ngModel">
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput type="tel" placeholder="Teléfono" name="tel" [(ngModel)]="nuevoPac.tel" #tel="ngModel">
             </md-input-container>
           </td>
         </tr></table>
         <table cellspacing="0" class="tablaUsuarios"><tr>
           <td>
-            <md-input-container>
-              <input mdInput type="tel" placeholder="Teléfono" name="tel" [(ngModel)]="nuevoPac.tel" #tel="ngModel">
-            </md-input-container>
             <md-input-container>
               <input mdInput type="email" placeholder="Correo electrónico" name="email" [(ngModel)]="nuevoPac.email" #email="ngModel">
             </md-input-container>
@@ -56,19 +59,17 @@
               </md-option>
             </md-select>
           </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Número de OS" name="numos" [(ngModel)]="nuevoPac.numero_os" #numos="ngModel">
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Domicilio" name="domicilio" [(ngModel)]="nuevoPac.domicilio" #domicilio="ngModel">
+            </md-input-container>
+          </td>
         </tr>
-          <tr>
-            <td>
-              <md-input-container>
-                <input mdInput placeholder="Número de OS" name="numos" [(ngModel)]="nuevoPac.numero_os" #numos="ngModel">
-              </md-input-container>
-            </td>
-            <td>
-              <md-input-container>
-                <input mdInput placeholder="Domicilio" name="domicilio" [(ngModel)]="nuevoPac.domicilio" #domicilio="ngModel">
-              </md-input-container>
-            </td>
-          </tr>
           <tr>
             <md-input-container>
               <textarea mdInput placeholder="Observaciones" name="observaciones" [(ngModel)]="nuevoPac.obvservaciones" #observaciones="ngModel"></textarea>

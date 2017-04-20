@@ -1,0 +1,24 @@
+<md-dialog-content>
+  <md-card>
+    <div class="boton-add">
+      <a md-fab (click)="dialogRef.close(-1)"><md-icon>add</md-icon></a>
+    </div>
+    <md-card-content>
+      <md-input-container>
+        <input mdInput #input placeholder="Búsqueda..." [(ngModel)]="search">
+      </md-input-container>
+    </md-card-content>
+    <md-divider></md-divider>
+    <md-card-content>
+      <md-progress-bar mode="indeterminate" *ngIf="cargando"></md-progress-bar>
+      <md-list>
+        <md-list-item class="clickVer" *ngFor="let obra of obras | filterBy: {nombre: search};" (click)="dialogRef.close(obra.id)">
+          <md-icon md-list-avatar>chrome_reader_mode</md-icon>
+          <h4 md-line>{{obra?.nombre}}</h4>
+          <p md-line>{{'ID: ' + obra.id}}</p>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>
+</md-dialog-content>

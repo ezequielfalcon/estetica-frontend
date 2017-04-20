@@ -11,7 +11,7 @@ export class DialogoNuevoPacienteService {
   public crearPaciente(viewContainerRef: ViewContainerRef): Observable<number> {
 
     let dialogRef: MdDialogRef<DialogoNuevoPacienteComponent>;
-    let config = new MdDialogConfig();
+    const config = new MdDialogConfig();
     config.viewContainerRef = viewContainerRef;
     dialogRef = this.dialog.open(DialogoNuevoPacienteComponent, config);
     return dialogRef.afterClosed();

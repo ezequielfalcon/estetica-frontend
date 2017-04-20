@@ -1,10 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {PacientesService} from "../../../_servicios/datos/pacientes.service";
-import {NotificationsService} from "angular2-notifications";
-import {ObrasSocialesService} from "../../../_servicios/datos/obras-sociales.service";
-import {ObraSocial} from "../../../_modelos/obra_social";
-import {Router, ActivatedRoute} from "@angular/router";
-import {SpinnerService} from "../../../_servicios/spinner.service";
+import {Component, OnInit, OnDestroy, ViewContainerRef} from '@angular/core';
+import {PacientesService} from '../../../_servicios/datos/pacientes.service';
+import {NotificationsService} from 'angular2-notifications';
+import {ObrasSocialesService} from '../../../_servicios/datos/obras-sociales.service';
+import {ObraSocial} from '../../../_modelos/obra_social';
+import {Router, ActivatedRoute} from '@angular/router';
+import {SpinnerService} from '../../../_servicios/spinner.service';
+import {DialogoObrasSocialesService} from '../../../_servicios/dialogos/dialogo-obras-sociales.service';
 
 @Component({
   selector: 'app-nuevo-paciente',
@@ -16,16 +17,18 @@ export class NuevoPacienteComponent implements OnInit, OnDestroy {
   constructor(
     private pacientesService: PacientesService,
     private notif: NotificationsService,
-    private os: ObrasSocialesService,
+    private osService: ObrasSocialesService,
+    private osDialog: DialogoObrasSocialesService,
+    private viewContainerRef: ViewContainerRef,
     private router: Router,
     private route: ActivatedRoute,
     private spinner: SpinnerService
   ) { }
 
-  obras: ObraSocial[] = [];
   returnUrl: string;
 
   nuevoPac: any = {};
+  osSeleccionada: ObraSocial;
 
   sexos = [
     {valor: 'M', nombre: 'Masculino'},
@@ -34,40 +37,48 @@ export class NuevoPacienteComponent implements OnInit, OnDestroy {
     ];
 
   ngOnInit() {
-    this.cargarObras();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/pacientes';
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.spinner.start();
   }
 
-  cargarObras(){
-    this.os.getAll().subscribe(obrasDb => { this.obras = obrasDb; this.spinner.stop() }, error => {
-      if (error.status == 401){
-        this.notif.error("Error","Sesión expirada!");
-        this.router.navigate(['/login']);
+  seleccionarOs() {
+    this.osDialog.seleccionarOs(this.viewContainerRef).subscribe(osSeleccionadaDialogo => {
+      if (osSeleccionadaDialogo) {
+        this.cargarOs(osSeleccionadaDialogo);
       }
-      let body = JSON.parse(error._body);
-      this.notif.error('Error', body.mensaje);
-      this.spinner.stop();
     });
   }
 
-  crear(){
+  cargarOs(idOs: number) {
+    this.osService.get(idOs).subscribe( osDb => {
+      this.osSeleccionada = osDb;
+    }, error => {
+      if (error.status === 401) {
+        this.notif.error('Error', 'Sesión expirada!');
+        this.router.navigate(['/login']);
+      }
+      const body = JSON.parse(error._body);
+      this.notif.error('Error', body.mensaje);
+    });
+  }
+
+  crear() {
     this.pacientesService.post(this.nuevoPac.nombre, this.nuevoPac.apellido,
       this.nuevoPac.documento, this.nuevoPac.tel || ' ', this.nuevoPac.email || ' ',
-      this.nuevoPac.fechaNac || '1901-01-01', this.nuevoPac.sexo || 'N', this.nuevoPac.id_os || 7359,
+      this.nuevoPac.fechaNac || '1901-01-01', this.nuevoPac.sexo || 'N', this.osSeleccionada.id || 7359,
       this.nuevoPac.numero_os || ' ', this.nuevoPac.domicilio || ' ', this.nuevoPac.obvservaciones || ' ')
       .subscribe(nuevoP => {
         this.notif.success('OK', 'Paciente creado con ID ' + nuevoP.id);
         this.router.navigate([this.returnUrl]);
     }, error => {
       if (error.status == 401){
-        this.notif.error("Error","Sesión expirada!");
+        this.notif.error('Error', 'Sesión expirada!');
         this.router.navigate(['/login']);
       }
-      let body = JSON.parse(error._body);
+      const body = JSON.parse(error._body);
       this.notif.error('Error', body.mensaje);
     });
   }
