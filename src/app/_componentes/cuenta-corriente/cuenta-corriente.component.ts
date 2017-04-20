@@ -45,6 +45,7 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
 
   otroPaciente(){
     this.pacienteSeleccionado = false;
+    this.cargarSaldos();
     this.seleccionarPaciente();
   }
 
@@ -106,39 +107,13 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
           if (pacienteSeleccionado == -1){
             this.dialogoNuevoPaciente.crearPaciente(this.viewContainerRef).subscribe(nuevoPacienteSeleccionado => {
               if (nuevoPacienteSeleccionado){
-                this.pacientesService.getById(nuevoPacienteSeleccionado).subscribe(pacienteDb => {
-                  this.paciente = pacienteDb;
-                  this.pacienteSeleccionado = true;
-                  this.traerCtaCte(this.paciente.id);
-                }, error => {
-                  if (error.status == 401){
-                    this.notificationSerivce.error("Error","Sesión expirada!");
-                    this.router.navigate(['/login']);
-                  }
-                  let body = JSON.parse(error._body);
-                  this.notificationSerivce.error('Error', body.mensaje);
-                  this.spinner.stop();
-                  return;
-                });
+                this.cargarPaciente(nuevoPacienteSeleccionado);
               }
             });
           }
           else{
             this.spinner.start();
-            this.pacientesService.getById(pacienteSeleccionado).subscribe(pacienteDb => {
-              this.paciente = pacienteDb;
-              this.pacienteSeleccionado = true;
-              this.traerCtaCte(this.paciente.id);
-            }, error => {
-              if (error.status == 401){
-                this.notificationSerivce.error("Error","Sesión expirada!");
-                this.router.navigate(['/login']);
-              }
-              let body = JSON.parse(error._body);
-              this.notificationSerivce.error('Error', body.mensaje);
-              this.spinner.stop();
-              return;
-            });
+            this.cargarPaciente(pacienteSeleccionado);
           }
         }
       }, error => {
@@ -150,6 +125,24 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
         this.notificationSerivce.error('Error', body.mensaje);
         this.spinner.stop();
       });
+  }
+
+  cargarPaciente(pacienteId){
+    if (!this.spinner.status) this.spinner.start();
+    this.pacientesService.getById(pacienteId).subscribe(pacienteDb => {
+      this.paciente = pacienteDb;
+      this.pacienteSeleccionado = true;
+      this.traerCtaCte(this.paciente.id);
+    }, error => {
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
+      this.spinner.stop();
+      return;
+    });
   }
 
 }

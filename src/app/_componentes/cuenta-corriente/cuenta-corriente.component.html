@@ -4,8 +4,18 @@
       <md-card-title><h3>Cuenta Corriente</h3></md-card-title>
     </md-card-header>
     <md-card-content>
-      <label *ngIf="!pacienteSeleccionado"><h4>Seleccione el Paciente:</h4></label>
       <button md-raised-button color="primary" *ngIf="!pacienteSeleccionado" type="button" (click)="seleccionarPaciente()">Seleccionar Paciente</button>
+      <md-divider style="padding: 2px"></md-divider>
+      <div *ngIf="!pacienteSeleccionado">
+        <table width="100%">
+          <tr>
+            <th>Paciente</th><th>Último movimiento</th><th>Saldo</th>
+          </tr>
+          <tr *ngFor="let saldo of saldos" class="clickVer" mdTooltip="Click para ver el detalle" (click)="cargarPaciente(saldo.id)">
+            <td>{{saldo.paciente}}</td><td>{{saldo.ultimo_movimiento.substr(0, 10)}}</td><td>{{saldo.monto}}</td>
+          </tr>
+        </table>
+      </div>
       <div *ngIf="pacienteSeleccionado">
         <md-grid-list cols="2" rowHeight="20px">
           <md-grid-tile>
