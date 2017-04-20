@@ -11,6 +11,10 @@ export class CuentaCorrienteService {
     return this.http.get('/cuenta-corriente/' +pacienteId).map((response: Response) => response.json().datos);
   }
 
+  traerSlados(){
+    return this.http.get('/cuenta-corriente').map((response: Response) => response.json().datos);
+  }
+
   nuevoMovimiento(pacienteId:number, concepto:string, monto:number){
     let body = new URLSearchParams();
     body.set('id_paciente', ""+pacienteId);
