@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {ObraSocial} from '../../_modelos/obra_social';
-import {SpinnerService} from '../../_servicios/spinner.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {ObrasSocialesService} from '../../_servicios/datos/obras-sociales.service';
 import {NotificationsService} from 'angular2-notifications';
 import {PacientesService} from '../../_servicios/datos/pacientes.service';
 import {MdDialogRef} from '@angular/material';
+import {DialogoObrasSocialesService} from '../../_servicios/dialogos/dialogo-obras-sociales.service';
+import {DialogoNuevaObraSocialService} from '../../_servicios/dialogos/dialogo-nueva-obra-social.service';
 
 @Component({
   selector: 'app-dialogo-nuevo-paciente',
@@ -14,43 +15,56 @@ import {MdDialogRef} from '@angular/material';
 })
 export class DialogoNuevoPacienteComponent implements OnInit {
 
-  constructor(
-    private pacientesService: PacientesService,
-    private notif: NotificationsService,
-    private os: ObrasSocialesService,
-    private router: Router,
-    private spinner: SpinnerService,
-    public dialogRef: MdDialogRef<DialogoNuevoPacienteComponent>
-  ) { }
-
-  obras: ObraSocial[] = [];
-  returnUrl: string;
-
+  osSeleccionada: ObraSocial;
   nuevoPac: any = {};
-
   sexos = [
     {valor: 'M', nombre: 'Masculino'},
     {valor: 'F', nombre: 'Femenino'},
     {valor: 'N', nombre: 'N/A'}
   ];
 
+  constructor(
+    private pacientesService: PacientesService,
+    private notif: NotificationsService,
+    private osService: ObrasSocialesService,
+    private osDialog: DialogoObrasSocialesService,
+    private nuevaOsDialog: DialogoNuevaObraSocialService,
+    private viewContainerRef: ViewContainerRef,
+    private router: Router,
+    public dialogRef: MdDialogRef<DialogoNuevoPacienteComponent>
+  ) { }
+
   ngOnInit() {
-    this.cargarObras();
   }
 
-  cargarObras(){
-    this.os.getAll().subscribe(obrasDb => { this.obras = obrasDb; this.spinner.stop() }, error => {
-      if (error.status == 401){
-        this.notif.error("Error","Sesión expirada!");
-        this.router.navigate(['/login']);
+  seleccionarOs() {
+    this.osDialog.seleccionarOs(this.viewContainerRef).subscribe(osSeleccionadaDialogo => {
+      if (osSeleccionadaDialogo) {
+        if (osSeleccionadaDialogo === -1) {
+          this.nuevaOsDialog.crearOs(this.viewContainerRef).subscribe(nuevaOsDialogo => {
+            this.cargarOs(nuevaOsDialogo);
+          });
+        } else {
+          this.cargarOs(osSeleccionadaDialogo);
+        }
       }
-      let body = JSON.parse(error._body);
-      this.notif.error('Error', body.mensaje);
-      this.spinner.stop();
     });
   }
 
-  crear(){
+  cargarOs(idOs: number) {
+    this.osService.get(idOs).subscribe( osDb => {
+      this.osSeleccionada = osDb;
+    }, error => {
+      if (error.status === 401) {
+        this.notif.error('Error', 'Sesión expirada!');
+        this.router.navigate(['/login']);
+      }
+      const body = JSON.parse(error._body);
+      this.notif.error('Error', body.mensaje);
+    });
+  }
+
+  crear() {
     this.pacientesService.post(this.nuevoPac.nombre, this.nuevoPac.apellido,
       this.nuevoPac.documento, this.nuevoPac.tel || ' ', this.nuevoPac.email || ' ',
       this.nuevoPac.fechaNac || '1901-01-01', this.nuevoPac.sexo || 'N', this.nuevoPac.id_os || 7359,
@@ -59,11 +73,11 @@ export class DialogoNuevoPacienteComponent implements OnInit {
         this.notif.success('OK', 'Paciente creado con ID ' + nuevoP.id);
         this.dialogRef.close(nuevoP.id);
       }, error => {
-        if (error.status == 401){
-          this.notif.error("Error","Sesión expirada!");
+        if (error.status === 401) {
+          this.notif.error('Error', 'Sesión expirada!');
           this.router.navigate(['/login']);
         }
-        let body = JSON.parse(error._body);
+        const body = JSON.parse(error._body);
         this.notif.error('Error', body.mensaje);
       });
   }

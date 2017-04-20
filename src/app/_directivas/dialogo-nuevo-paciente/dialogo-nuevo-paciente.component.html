@@ -21,11 +21,10 @@
         </tr></table>
         <table cellspacing="0" class="tablaUsuarios"><tr>
           <td>
-            <md-select placeholder="Obra Social" [(ngModel)]="nuevoPac.id_os" name="os">
-              <md-option *ngFor="let osSelect of obras" [value]="osSelect.id">
-                {{osSelect.nombre}}
-              </md-option>
-            </md-select>
+            <button md-raised-button color="primary" type="button" *ngIf="!osSeleccionada" (click)="seleccionarOs()">Seleccionar OS</button>
+            <md-input-container *ngIf="osSeleccionada" (click)="seleccionarOs()" class="clickVer">
+              <input mdInput class="clickVer" disabled placeholder="Obra social" [(ngModel)]="osSeleccionada.nombre" name="osSel" #osSel="ngModel">
+            </md-input-container>
           </td>
         </tr></table>
         <table cellspacing="0" class="tablaUsuarios"><tr>
