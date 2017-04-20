@@ -9,6 +9,7 @@ import {NotificationsService} from "angular2-notifications";
 import {Router} from "@angular/router";
 import {DialogoCtacteService} from "../../_servicios/dialogos/dialogo-ctacte.service";
 import {DialogoNuevoPacienteService} from '../../_servicios/dialogos/dialogo-nuevo-paciente.service';
+import {SaldoCuentaCorriente} from '../../_modelos/saldo-cuenta-corriente';
 
 @Component({
   selector: 'app-cuenta-corriente',
@@ -32,9 +33,10 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
   cuentaCorriente: CuentaCorriente[] = [];
   paciente: Paciente;
   pacienteSeleccionado: boolean = false;
+  saldos: SaldoCuentaCorriente[] = [];
 
   ngOnInit() {
-    this.spinner.stop();
+    this.cargarSaldos();
   }
 
   ngOnDestroy(){
@@ -44,6 +46,21 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
   otroPaciente(){
     this.pacienteSeleccionado = false;
     this.seleccionarPaciente();
+  }
+
+  cargarSaldos(){
+    this.cteCtaService.traerSlados().subscribe(saldosDb => {
+      this.saldos = saldosDb;
+      this.spinner.stop();
+    }, error => {
+      if (error.status == 401){
+        this.notificationSerivce.error("Error","Sesión expirada!");
+        this.router.navigate(['/login']);
+      }
+      let body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
   }
 
   saldo(){
