@@ -93,7 +93,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
     for (let turno of this.turnos){
       if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == true){
         if (turno.atendido == true){
-          return "#c0ca33";
+          return "#009688";
         }
         else {
           if (turno.presente == true){
@@ -159,7 +159,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
     for (let turno of this.turnos){
       if (turno.turno == turnoId && turno.consultorio == consultorioId && turno.entreturno == false){
         if (turno.atendido == true){
-          return "warn";
+          return "accent";
         }
         else {
           if (turno.presente == true){
