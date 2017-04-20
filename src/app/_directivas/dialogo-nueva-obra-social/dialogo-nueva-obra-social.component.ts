@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SpinnerService} from '../../_servicios/spinner.service';
 import {Router} from '@angular/router';
 import {NotificationsService} from 'angular2-notifications';
