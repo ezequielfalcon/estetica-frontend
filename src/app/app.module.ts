@@ -73,6 +73,7 @@ import { DialogoObrasSocialesComponent } from './_directivas/dialogo-obras-socia
 import {DialogoObrasSocialesService} from './_servicios/dialogos/dialogo-obras-sociales.service';
 import { DialogoNuevaObraSocialComponent } from './_directivas/dialogo-nueva-obra-social/dialogo-nueva-obra-social.component';
 import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva-obra-social.service";
+import { DialogoAnulacionesComponent } from './_directivas/dialogo-anulaciones/dialogo-anulaciones.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva
     TurnosAtendidosPipe,
     DialogoNuevoPacienteComponent,
     DialogoObrasSocialesComponent,
-    DialogoNuevaObraSocialComponent
+    DialogoNuevaObraSocialComponent,
+    DialogoAnulacionesComponent
   ],
   imports: [
     BrowserModule,
