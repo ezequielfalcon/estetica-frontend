@@ -10,6 +10,8 @@ import {TurnoResumen} from '../../_modelos/turno-resumen';
 import {Consultorio} from '../../_modelos/consultorio';
 import {ConsultoriosService} from '../../_servicios/datos/consultorios.service';
 import {Horario} from '../../_modelos/horario';
+import {Anulacion} from '../../_modelos/anulacion';
+import {MedicosService} from '../../_servicios/datos/medicos.service';
 
 @Component({
   selector: 'app-agenda',
@@ -25,6 +27,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   suscripcionFecha: any;
   consultorios: Consultorio[] = [];
   horarios: Horario[] = [];
+  anulaciones: Anulacion[] = [];
 
   private static fechaHoy() {
     const fechaObject = new Date();
@@ -39,6 +42,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private notificationSerivce: NotificationsService,
     private turnosService: TurnosService,
     private consultoriosService: ConsultoriosService,
+    private medicosService: MedicosService,
     private router: Router,
     private viewContainerRef: ViewContainerRef,
     private dialogoTurno: DialogoTurnoService,
@@ -52,6 +56,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
       this.traerTurnosResumen(this.fechaTurnos);
       this.cargarConsultorios();
       this.cargarHorarios();
+      this.cargarAnulaciones(this.fechaTurnos);
     });
   }
 
@@ -60,6 +65,21 @@ export class AgendaComponent implements OnInit, OnDestroy {
     this.suscripcionTurnos.unsubscribe();
     this.suscripcionFecha.unsubscribe();
     this.spinner.start();
+  }
+
+  cargarAnulaciones(fecha) {
+    this.medicosService.verAnulaciones(fecha).subscribe( anulacionesDb => {
+      this.anulaciones = anulacionesDb;
+      console.log(this.anulaciones);
+    }, error => {
+      if (error.status === 401) {
+        this.notificationSerivce.error('Error', 'Sesión expirada!');
+        this.router.navigate(['/login']);
+      }
+      const body = JSON.parse(error._body);
+      this.notificationSerivce.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
   }
 
   cargarConsultorios() {
