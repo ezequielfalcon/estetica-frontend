@@ -4,6 +4,7 @@
       <md-input-container>
         <input mdInput placeholder="Fecha" (change)="cambiarFecha(fechaTurnos)" type="date" name="fechaActual" [(ngModel)]="fechaTurnos" #fechaActual="ngModel">
       </md-input-container>
+      <a md-fab color="warn" *ngIf="anulaciones.length > 0" style="position: fixed; top: 90px; right: 30px;" (click)="verAnulacionesDialogo()" mdTooltip="Hay médicos ausentes!"><md-icon>warning</md-icon></a>
       <md-divider></md-divider>
       <table width="100%">
         <tr>

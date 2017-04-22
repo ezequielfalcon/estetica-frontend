@@ -73,6 +73,8 @@ import { DialogoObrasSocialesComponent } from './_directivas/dialogo-obras-socia
 import {DialogoObrasSocialesService} from './_servicios/dialogos/dialogo-obras-sociales.service';
 import { DialogoNuevaObraSocialComponent } from './_directivas/dialogo-nueva-obra-social/dialogo-nueva-obra-social.component';
 import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva-obra-social.service";
+import { DialogoAnulacionesComponent } from './_directivas/dialogo-anulaciones/dialogo-anulaciones.component';
+import {DialogoAnulacionesService} from "./_servicios/dialogos/dialogo-anulaciones.service";
 
 @NgModule({
   declarations: [
@@ -114,7 +116,8 @@ import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva
     TurnosAtendidosPipe,
     DialogoNuevoPacienteComponent,
     DialogoObrasSocialesComponent,
-    DialogoNuevaObraSocialComponent
+    DialogoNuevaObraSocialComponent,
+    DialogoAnulacionesComponent
   ],
   imports: [
     BrowserModule,
@@ -153,7 +156,8 @@ import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva
     DialogoCtacteComponent,
     DialogoNuevoPacienteComponent,
     DialogoObrasSocialesComponent,
-    DialogoNuevaObraSocialComponent
+    DialogoNuevaObraSocialComponent,
+    DialogoAnulacionesComponent
   ] ,
   providers: [
     LoginService,
@@ -182,7 +186,8 @@ import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva
     DarkThemeService,
     DialogoNuevoPacienteService,
     DialogoObrasSocialesService,
-    DialogoNuevaObraSocialService
+    DialogoNuevaObraSocialService,
+    DialogoAnulacionesService
   ],
   entryComponents: [
     DialogoComponent,
@@ -193,7 +198,8 @@ import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva
     DialogoCtacteComponent,
     DialogoNuevoPacienteComponent,
     DialogoObrasSocialesComponent,
-    DialogoNuevaObraSocialComponent
+    DialogoNuevaObraSocialComponent,
+    DialogoAnulacionesComponent
   ] ,
   bootstrap: [AppComponent]
 })
