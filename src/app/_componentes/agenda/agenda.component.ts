@@ -70,7 +70,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
 
   cargarAnulaciones(fecha) {
-    this.medicosService.verAnulaciones(fecha).subscribe( anulacionesDb => {
+    this.medicosService.verAnulacionesFecha(fecha).subscribe(anulacionesDb => {
       this.anulaciones = anulacionesDb;
       console.log(this.anulaciones);
     }, error => {
