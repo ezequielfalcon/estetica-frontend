@@ -5,13 +5,14 @@ import {NotificationsService} from 'angular2-notifications';
 import {TurnosService} from '../../_servicios/datos/turnos.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {DialogoTurnoService} from '../../_servicios/dialogos/dialogo-turno.service';
-import {Subject} from 'rxjs';
+import {Subject} from 'rxjs/Subject';
 import {TurnoResumen} from '../../_modelos/turno-resumen';
 import {Consultorio} from '../../_modelos/consultorio';
 import {ConsultoriosService} from '../../_servicios/datos/consultorios.service';
 import {Horario} from '../../_modelos/horario';
 import {Anulacion} from '../../_modelos/anulacion';
 import {MedicosService} from '../../_servicios/datos/medicos.service';
+import {DialogoAnulacionesService} from '../../_servicios/dialogos/dialogo-anulaciones.service';
 
 @Component({
   selector: 'app-agenda',
@@ -46,6 +47,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private router: Router,
     private viewContainerRef: ViewContainerRef,
     private dialogoTurno: DialogoTurnoService,
+    private dialogoAnulaciones: DialogoAnulacionesService,
     private route: ActivatedRoute
   ) { this.pararActualizarTurnos = new Subject(); }
 
@@ -80,6 +82,11 @@ export class AgendaComponent implements OnInit, OnDestroy {
       this.notificationSerivce.error('Error', body.mensaje);
       this.spinner.stop();
     });
+  }
+
+  verAnulacionesDialogo() {
+    this.spinner.start();
+    this.dialogoAnulaciones.verAnulaciones(this.viewContainerRef, this.fechaTurnos);
   }
 
   cargarConsultorios() {
