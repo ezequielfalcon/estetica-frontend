@@ -4,6 +4,7 @@
       <md-input-container>
         <input mdInput placeholder="Fecha" (change)="cambiarFecha(fechaTurnos)" type="date" name="fechaActual" [(ngModel)]="fechaTurnos" #fechaActual="ngModel">
       </md-input-container>
+      <a md-fab color="warn" *ngIf="anulaciones" style="position: fixed; top: 90px; right: 30px;" [mdMenuTriggerFor]="menuAnulados"><md-icon>warning</md-icon></a>
       <md-divider></md-divider>
       <table width="100%">
         <tr>
@@ -24,3 +25,14 @@
     </md-card-content>
   </md-card>
 </div>
+<md-menu #menuAnulados="mdMenu">
+  <p>
+    Médicos ausentes:
+  </p>
+  <md-divider></md-divider>
+  <div *ngFor="let anulado of anulaciones">
+    <p>{{anulado.medico}}</p>
+    <p>{{'Horario: de ' + anulado.id_horario_desde + ' a ' + anulado.id_horario_hasta}}</p>
+    <p>{{'Observaciones: ' + anulado.observaciones}}</p>
+  </div>
+</md-menu>

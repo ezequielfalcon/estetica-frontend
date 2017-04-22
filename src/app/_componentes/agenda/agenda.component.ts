@@ -70,7 +70,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
   cargarAnulaciones(fecha) {
     this.medicosService.verAnulaciones(fecha).subscribe( anulacionesDb => {
       this.anulaciones = anulacionesDb;
-      console.log(this.anulaciones);
     }, error => {
       if (error.status === 401) {
         this.notificationSerivce.error('Error', 'Sesión expirada!');
