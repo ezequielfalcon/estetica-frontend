@@ -213,13 +213,4 @@ export class AgendaComponent implements OnInit, OnDestroy {
     this.router.navigate(['/redir-agenda/' + fecha]);
   }
 
-  convertirHora(horarioId: number) {
-    for (const horario of this.horarios) {
-      if (horario.id === horarioId) {
-        return horario.hora;
-      }
-    }
-    return 'error';
-  }
-
 }
