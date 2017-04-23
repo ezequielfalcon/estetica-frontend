@@ -1,3 +1,56 @@
-<p>
-  dialogo-nueva-anulacion works!
-</p>
+<md-dialog-content>
+  <md-card>
+    <md-card-header>
+      <md-card-title>
+        Crear ausencia
+      </md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <button md-raised-button color="primary" *ngIf="!medicoSeleccionadoBool" type="button" (click)="seleccionarMedico()">Seleccionar Médico</button>
+      <div *ngIf="medicoSeleccionadoBool" id="section-to-print">
+        <md-grid-list cols="2" rowHeight="20px">
+          <md-grid-tile>
+            <h3>{{medicoSeleccionado.nombre + " " + medicoSeleccionado.apellido}}</h3>
+          </md-grid-tile>
+          <md-grid-tile rows="2">
+            <button md-button color="accent" (click)="otroMedico()" id="hide-elegir">Elejir otro Médico</button>
+          </md-grid-tile>
+        </md-grid-list>
+        <table>
+          <tr>
+            <td>
+              <md-select placeholder="Desde" required>
+                <md-option *ngFor="let horario of horarios" [value]="horario.id" ([ngModel])="nuevaAnulacion.desde">
+                  {{ horario.hora }}
+                </md-option>
+              </md-select>
+            </td>
+            <td>
+              <md-select placeholder="Hasta" required>
+                <md-option *ngFor="let horario of horarios" [value]="horario.id" ([ngModel])="nuevaAnulacion.hasta">
+                  {{ horario.hora }}
+                </md-option>
+              </md-select>
+            </td>
+          </tr>
+        </table>
+        <md-input-container>
+          <textarea mdInput placeholder="Observaciones" ([ngModel])="nuevaAnulacion.observaciones"></textarea>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="Fecha" type="date" ([ngModel])="nuevaAnulacion.fecha" required>
+        </md-input-container>
+        <table>
+          <tr>
+            <td>
+              <button md-raised-button color="accent" type="button" (click)="crear()">Guardar</button>
+            </td>
+            <td>
+              <button md-raised-button color="primary" type="button" (click)="dialogRef.close()">Cancelar</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </md-card-content>
+  </md-card>
+</md-dialog-content>

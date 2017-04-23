@@ -34,7 +34,7 @@ export class DialogoAnulacionesComponent implements OnInit {
   }
 
   cargarAnulaciones(fecha) {
-    this.medicosService.verAnulaciones(fecha).subscribe( anulacionesDb => {
+    this.medicosService.verAnulacionesFecha(fecha).subscribe(anulacionesDb => {
       this.anulaciones = anulacionesDb;
       this.spinner.stop();
     }, error => {

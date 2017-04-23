@@ -70,7 +70,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
 
   cargarAnulaciones(fecha) {
-    this.medicosService.verAnulaciones(fecha).subscribe( anulacionesDb => {
+    this.medicosService.verAnulacionesFecha(fecha).subscribe(anulacionesDb => {
       this.anulaciones = anulacionesDb;
       console.log(this.anulaciones);
     }, error => {
@@ -211,15 +211,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
   cambiarFecha(fecha: string) {
     this.router.navigate(['/redir-agenda/' + fecha]);
-  }
-
-  convertirHora(horarioId: number) {
-    for (const horario of this.horarios) {
-      if (horario.id === horarioId) {
-        return horario.hora;
-      }
-    }
-    return 'error';
   }
 
 }
