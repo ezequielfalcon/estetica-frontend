@@ -43,7 +43,7 @@ export class MedicosService {
     return this.http.get('/anulaciones/' + fecha).map((response: Response) => response.json().datos);
   }
 
-  verAnulaciones(){
+  verAnulaciones() {
     return this.http.get('/anulaciones').map((response: Response) => response.json().datos);
   }
 
@@ -57,7 +57,7 @@ export class MedicosService {
     return this.http.post('/anulaciones', body).map((response: Response) => response.json());
   }
 
-  borrarAnulacion(anulacionId: number){
+  borrarAnulacion(anulacionId: number) {
     return this.http.del('/anulaciones/' + anulacionId).map((response: Response) => response.json());
   }
 
