@@ -19,7 +19,7 @@ export class DialogoNuevaAnulacionComponent implements OnInit {
   medicoSeleccionado: Medico;
   medicoSeleccionadoBool = false;
   horarios: Horario[] = [];
-  nuevaAnulacion: any = {};
+  nuevaAusencia: any = {};
 
   constructor(
     private notificationService: NotificationsService,
@@ -54,8 +54,16 @@ export class DialogoNuevaAnulacionComponent implements OnInit {
 
   crear() {
     this.spinner.start();
-    this.medicosService.nuevaAnulacion(this.medicoSeleccionado.id, this.nuevaAnulacion.fecha,
-      this.nuevaAnulacion.desde, this.nuevaAnulacion.hasta, this.nuevaAnulacion.observaciones)
+    if (!this.nuevaAusencia.observaciones) {
+      this.nuevaAusencia.observaciones = ' ';
+    }
+    console.log(this.medicoSeleccionado.id);
+    console.log(this.nuevaAusencia.fechaAnul);
+    console.log(this.nuevaAusencia.horaDesde);
+    console.log(this.nuevaAusencia.horaHasta);
+    console.log(this.nuevaAusencia.observaciones);
+    this.medicosService.nuevaAnulacion(this.medicoSeleccionado.id, this.nuevaAusencia.fechaAnul,
+      this.nuevaAusencia.horaDesde, this.nuevaAusencia.horaHasta, this.nuevaAusencia.observaciones)
       .subscribe(nuevaAnulDb => {
         this.spinner.stop();
         this.notificationService.success('OK', 'Anulación creada');

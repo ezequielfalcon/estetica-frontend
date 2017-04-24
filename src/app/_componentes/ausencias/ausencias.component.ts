@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {Horario} from '../../_modelos/horario';
 import {TurnosService} from '../../_servicios/datos/turnos.service';
 import {ConfirmService} from '../../_servicios/confirm.service';
+import {DialogoNuevaAnulacionService} from "../../_servicios/dialogos/dialogo-nueva-anulacion.service";
 
 @Component({
   selector: 'app-ausencias',
@@ -25,7 +26,8 @@ export class AusenciasComponent implements OnInit, OnDestroy {
     private turnosService: TurnosService,
     private confirmar: ConfirmService,
     private router: Router,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private nuevaAusenciaDialog: DialogoNuevaAnulacionService
   ) { }
 
   ngOnInit() {
@@ -96,6 +98,14 @@ export class AusenciasComponent implements OnInit, OnDestroy {
       }
     }
     return 'error';
+  }
+
+  crearAusencia() {
+    this.nuevaAusenciaDialog.crearAnulacion(this.viewContainerRef).subscribe(nuevaAusenciaDb => {
+      if (nuevaAusenciaDb) {
+        this.cargarAnulaciones();
+      }
+    });
   }
 
 }
