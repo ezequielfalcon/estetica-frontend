@@ -78,6 +78,8 @@ import {DialogoAnulacionesService} from "./_servicios/dialogos/dialogo-anulacion
 import { DialogoNuevaAnulacionComponent } from './_directivas/dialogo-nueva-anulacion/dialogo-nueva-anulacion.component';
 import {DialogoNuevaAnulacionService} from "./_servicios/dialogos/dialogo-nueva-anulacion.service";
 import { AusenciasComponent } from './_componentes/ausencias/ausencias.component';
+import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/dialogo-nuevo-turno.component';
+import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turno.service";
 
 @NgModule({
   declarations: [
@@ -122,7 +124,8 @@ import { AusenciasComponent } from './_componentes/ausencias/ausencias.component
     DialogoNuevaObraSocialComponent,
     DialogoAnulacionesComponent,
     DialogoNuevaAnulacionComponent,
-    AusenciasComponent
+    AusenciasComponent,
+    DialogoNuevoTurnoComponent
   ],
   imports: [
     BrowserModule,
@@ -163,7 +166,8 @@ import { AusenciasComponent } from './_componentes/ausencias/ausencias.component
     DialogoObrasSocialesComponent,
     DialogoNuevaObraSocialComponent,
     DialogoAnulacionesComponent,
-    DialogoNuevaAnulacionComponent
+    DialogoNuevaAnulacionComponent,
+    DialogoNuevoTurnoComponent
   ] ,
   providers: [
     LoginService,
@@ -194,7 +198,8 @@ import { AusenciasComponent } from './_componentes/ausencias/ausencias.component
     DialogoObrasSocialesService,
     DialogoNuevaObraSocialService,
     DialogoAnulacionesService,
-    DialogoNuevaAnulacionService
+    DialogoNuevaAnulacionService,
+    DialogoNuevoTurnoService
   ],
   entryComponents: [
     DialogoComponent,
@@ -207,7 +212,8 @@ import { AusenciasComponent } from './_componentes/ausencias/ausencias.component
     DialogoObrasSocialesComponent,
     DialogoNuevaObraSocialComponent,
     DialogoAnulacionesComponent,
-    DialogoNuevaAnulacionComponent
+    DialogoNuevaAnulacionComponent,
+    DialogoNuevoTurnoComponent
   ] ,
   bootstrap: [AppComponent]
 })

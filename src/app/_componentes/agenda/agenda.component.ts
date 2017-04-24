@@ -13,6 +13,7 @@ import {Horario} from '../../_modelos/horario';
 import {Anulacion} from '../../_modelos/anulacion';
 import {MedicosService} from '../../_servicios/datos/medicos.service';
 import {DialogoAnulacionesService} from '../../_servicios/dialogos/dialogo-anulaciones.service';
+import {DialogoNuevoTurnoService} from "../../_servicios/dialogos/dialogo-nuevo-turno.service";
 
 @Component({
   selector: 'app-agenda',
@@ -48,7 +49,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private viewContainerRef: ViewContainerRef,
     private dialogoTurno: DialogoTurnoService,
     private dialogoAnulaciones: DialogoAnulacionesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialogoNuevoTurno: DialogoNuevoTurnoService
   ) { this.pararActualizarTurnos = new Subject(); }
 
 
@@ -139,7 +141,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
         this.notificationSerivce.error('Error', 'Está intentando reservar un turno para una fecha anterior a la actual!');
         return;
       }
-      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.fechaTurnos + '/' + false]);
+      // this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.fechaTurnos + '/' + false]);
+      this.dialogoNuevoTurno.nuevoTurno(this.viewContainerRef, turnoId, consultorioId, this.fechaTurnos, false);
     } else {
       this.spinner.start();
       this.dialogoTurno.verTurno(this.fechaTurnos, consultorioId, turnoId, false, this.viewContainerRef);
@@ -152,7 +155,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
         this.notificationSerivce.error('Error', 'Está intentando reservar un entreturno para una fecha anterior a la actual!');
         return;
       }
-      this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.fechaTurnos + '/' + true]);
+      // this.router.navigate(['/nuevo-turno/' + consultorioId + '/' + turnoId + '/' + this.fechaTurnos + '/' + true]);
+      this.dialogoNuevoTurno.nuevoTurno(this.viewContainerRef, turnoId, consultorioId, this.fechaTurnos, true);
     } else {
       this.spinner.start();
       this.dialogoTurno.verTurno(this.fechaTurnos, consultorioId, turnoId, true, this.viewContainerRef);
