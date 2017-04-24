@@ -2,7 +2,7 @@ import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {MedicosService} from '../../_servicios/datos/medicos.service';
 import {SpinnerService} from '../../_servicios/spinner.service';
-import {NotificationsService} from 'angular2-notifications/dist';
+import {NotificationsService} from 'angular2-notifications';
 import {MdDialogRef} from '@angular/material';
 import {Medico} from '../../_modelos/medico';
 import {DialogoMedicosService} from '../../_servicios/dialogos/dialogo-medicos.service';
