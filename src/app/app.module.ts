@@ -73,6 +73,13 @@ import { DialogoObrasSocialesComponent } from './_directivas/dialogo-obras-socia
 import {DialogoObrasSocialesService} from './_servicios/dialogos/dialogo-obras-sociales.service';
 import { DialogoNuevaObraSocialComponent } from './_directivas/dialogo-nueva-obra-social/dialogo-nueva-obra-social.component';
 import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva-obra-social.service";
+import { DialogoAnulacionesComponent } from './_directivas/dialogo-anulaciones/dialogo-anulaciones.component';
+import {DialogoAnulacionesService} from "./_servicios/dialogos/dialogo-anulaciones.service";
+import { DialogoNuevaAnulacionComponent } from './_directivas/dialogo-nueva-anulacion/dialogo-nueva-anulacion.component';
+import {DialogoNuevaAnulacionService} from "./_servicios/dialogos/dialogo-nueva-anulacion.service";
+import { AusenciasComponent } from './_componentes/ausencias/ausencias.component';
+import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/dialogo-nuevo-turno.component';
+import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turno.service";
 
 @NgModule({
   declarations: [
@@ -114,7 +121,11 @@ import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva
     TurnosAtendidosPipe,
     DialogoNuevoPacienteComponent,
     DialogoObrasSocialesComponent,
-    DialogoNuevaObraSocialComponent
+    DialogoNuevaObraSocialComponent,
+    DialogoAnulacionesComponent,
+    DialogoNuevaAnulacionComponent,
+    AusenciasComponent,
+    DialogoNuevoTurnoComponent
   ],
   imports: [
     BrowserModule,
@@ -153,7 +164,10 @@ import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva
     DialogoCtacteComponent,
     DialogoNuevoPacienteComponent,
     DialogoObrasSocialesComponent,
-    DialogoNuevaObraSocialComponent
+    DialogoNuevaObraSocialComponent,
+    DialogoAnulacionesComponent,
+    DialogoNuevaAnulacionComponent,
+    DialogoNuevoTurnoComponent
   ] ,
   providers: [
     LoginService,
@@ -182,7 +196,10 @@ import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva
     DarkThemeService,
     DialogoNuevoPacienteService,
     DialogoObrasSocialesService,
-    DialogoNuevaObraSocialService
+    DialogoNuevaObraSocialService,
+    DialogoAnulacionesService,
+    DialogoNuevaAnulacionService,
+    DialogoNuevoTurnoService
   ],
   entryComponents: [
     DialogoComponent,
@@ -193,7 +210,10 @@ import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva
     DialogoCtacteComponent,
     DialogoNuevoPacienteComponent,
     DialogoObrasSocialesComponent,
-    DialogoNuevaObraSocialComponent
+    DialogoNuevaObraSocialComponent,
+    DialogoAnulacionesComponent,
+    DialogoNuevaAnulacionComponent,
+    DialogoNuevoTurnoComponent
   ] ,
   bootstrap: [AppComponent]
 })

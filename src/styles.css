@@ -58,6 +58,11 @@ body.estetica-dark {
   margin-top: 1%;
 }
 
+.boton-add-red{
+  float:right;
+  margin-bottom: 1%;
+}
+
 .botones-derecha {
   right: auto;
   float: right;

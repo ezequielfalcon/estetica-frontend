@@ -38,18 +38,30 @@
           </button>
         </td>
         <td>
+          <button md-raised-button color="primary" [routerLink]="['/ausencias']">
+            <md-icon>warning</md-icon>
+            <span>Ausencias programadas</span>
+          </button>
+        </td>
+      </tr>
+      <md-divider style="padding-top: 2px;"></md-divider>
+      <tr style="padding-top: 1px;">
+        <td>
           <button md-raised-button color="accent" [routerLink]="['/configuracion']">
             <md-icon>build</md-icon>
             <span>Configuración</span>
           </button>
         </td>
+        <td>
+          <button md-raised-button color="warn" [routerLink]="['/login']">
+            <md-icon>exit_to_app</md-icon>
+            <span>Salir</span>
+          </button>
+        </td>
       </tr>
     </table>
     <md-divider style="padding: 1px;"></md-divider>
-    <button md-button color="warn" [routerLink]="['/login']">
-      <md-icon>exit_to_app</md-icon>
-      <span>Salir</span>
-    </button>
+
     <!--<button style="float: right" type="button" (click)="oscuro()" md-button>MODO OSCURO</button>-->
   </md-card>
 </div>
