@@ -80,6 +80,8 @@ import {DialogoNuevaAnulacionService} from "./_servicios/dialogos/dialogo-nueva-
 import { AusenciasComponent } from './_componentes/ausencias/ausencias.component';
 import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/dialogo-nuevo-turno.component';
 import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turno.service";
+import { DialogoModificarCostoTurnoComponent } from './_directivas/dialogo-modificar-costo-turno/dialogo-modificar-costo-turno.component';
+import {DialogoModificarCostoTurnoService} from "./_servicios/dialogos/dialogo-modificar-costo-turno.service";
 
 @NgModule({
   declarations: [
@@ -125,7 +127,8 @@ import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turn
     DialogoAnulacionesComponent,
     DialogoNuevaAnulacionComponent,
     AusenciasComponent,
-    DialogoNuevoTurnoComponent
+    DialogoNuevoTurnoComponent,
+    DialogoModificarCostoTurnoComponent
   ],
   imports: [
     BrowserModule,
@@ -167,7 +170,8 @@ import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turn
     DialogoNuevaObraSocialComponent,
     DialogoAnulacionesComponent,
     DialogoNuevaAnulacionComponent,
-    DialogoNuevoTurnoComponent
+    DialogoNuevoTurnoComponent,
+    DialogoModificarCostoTurnoComponent
   ] ,
   providers: [
     LoginService,
@@ -199,7 +203,8 @@ import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turn
     DialogoNuevaObraSocialService,
     DialogoAnulacionesService,
     DialogoNuevaAnulacionService,
-    DialogoNuevoTurnoService
+    DialogoNuevoTurnoService,
+    DialogoModificarCostoTurnoService
   ],
   entryComponents: [
     DialogoComponent,
@@ -213,7 +218,8 @@ import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turn
     DialogoNuevaObraSocialComponent,
     DialogoAnulacionesComponent,
     DialogoNuevaAnulacionComponent,
-    DialogoNuevoTurnoComponent
+    DialogoNuevoTurnoComponent,
+    DialogoModificarCostoTurnoComponent
   ] ,
   bootstrap: [AppComponent]
 })

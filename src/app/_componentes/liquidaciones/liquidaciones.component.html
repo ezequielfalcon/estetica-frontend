@@ -62,7 +62,7 @@
           <tr>
             <th>Paciente</th><th>Consultorio</th><th>Turno</th><th>Costo</th>
           </tr>
-          <tr *ngFor="let turnoMedico of turnosMedico">
+          <tr *ngFor="let turnoMedico of turnosMedico" class="clickVer" mdTooltip="Click para modificar costo" (click)="cambiarCosto(turnoMedico.id, turnoMedico.costo)">
             <td>{{turnoMedico.paciente}}</td><td>{{turnoMedico.id_consultorio}}</td>
             <td>{{turnoStringHora(turnoMedico.id_turno)}}</td><td>{{turnoMedico.costo}}</td>
           </tr>

@@ -8,6 +8,7 @@ import {Medico} from '../../_modelos/medico';
 import {TurnoResumenMedico} from '../../_modelos/turno-resumen-medico';
 import {AdicionalTurno} from '../../_modelos/adicional-turno';
 import {DialogoMedicosService} from '../../_servicios/dialogos/dialogo-medicos.service';
+import {DialogoModificarCostoTurnoService} from "../../_servicios/dialogos/dialogo-modificar-costo-turno.service";
 
 @Component({
   selector: 'app-liquidaciones',
@@ -40,6 +41,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     private dialogoMedicos: DialogoMedicosService,
     private turnosService: TurnosService,
     private viewContainerRef: ViewContainerRef,
+    private costoDialog: DialogoModificarCostoTurnoService
   ) {
   }
 
@@ -59,6 +61,12 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
         this.adicionales.splice(indiceAdd, 1);
       }
     }
+  }
+
+  cambiarCosto(agendaId: number, costoOriginal: number) {
+    this.costoDialog.modificarCosto(this.viewContainerRef, agendaId, costoOriginal).subscribe(() => {
+      this.cargarTurnos(this.medicoSeleccionado.id, this.fechaTurnos);
+    });
   }
 
   seleccionarMedico() {
