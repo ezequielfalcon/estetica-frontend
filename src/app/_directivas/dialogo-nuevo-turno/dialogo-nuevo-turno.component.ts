@@ -33,6 +33,7 @@ export class DialogoNuevoTurnoComponent implements OnInit {
   medicoSelecionado: Medico;
   tratamientosSeleccionados: Tratamiento[] = [];
   horarios: Horario[] = [];
+  horarioString: string;
   nuevoTurno: any = {};
 
   constructor(
@@ -49,7 +50,7 @@ export class DialogoNuevoTurnoComponent implements OnInit {
     private tratamientosService: TratamientosService,
     private dialogoTratamientos: DialogoTratamientosService,
     public dialogRef: MdDialogRef<DialogoNuevoTurnoComponent>
-  ) { }
+  ) {  }
 
   ngOnInit() {
     this.cargarHorarios();
@@ -58,11 +59,13 @@ export class DialogoNuevoTurnoComponent implements OnInit {
     this.nuevoTurno.consultorioId = this.consultorioId;
     this.nuevoTurno.fechaTurno = this.fechaTurno;
     this.nuevoTurno.entreturno = this.entreturno;
+    this.nuevoTurno.costoTurno = 0;
   }
 
   cargarHorarios() {
     this.turnosService.verHorarios().subscribe(horariosDb => {
       this.horarios = horariosDb;
+      this.horarioString = this.convertirHora(this.turnoId);
       this.spinner.stop();
     }, error => {
       if (error.status === 401) {
@@ -102,6 +105,15 @@ export class DialogoNuevoTurnoComponent implements OnInit {
       const body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
     });
+  }
+
+  convertirHora(horarioId: number) {
+    for (const horario of this.horarios) {
+      if (horario.id === horarioId) {
+        return horario.hora;
+      }
+    }
+    return 'error';
   }
 
   seleccionarPaciente() {
@@ -171,6 +183,7 @@ export class DialogoNuevoTurnoComponent implements OnInit {
       if (tratamiento.id === tratamientoId) {
         const indiceElemento = this.tratamientosSeleccionados.indexOf(tratamiento);
         this.tratamientosSeleccionados.splice(indiceElemento, 1);
+        this.nuevoTurno.costoTurno = this.nuevoTurno.costoTurno - +tratamiento.costo;
       }
     }
   }

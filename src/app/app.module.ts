@@ -79,6 +79,7 @@ import { DialogoNuevaAnulacionComponent } from './_directivas/dialogo-nueva-anul
 import {DialogoNuevaAnulacionService} from "./_servicios/dialogos/dialogo-nueva-anulacion.service";
 import { AusenciasComponent } from './_componentes/ausencias/ausencias.component';
 import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/dialogo-nuevo-turno.component';
+import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turno.service";
 
 @NgModule({
   declarations: [
@@ -197,7 +198,8 @@ import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/di
     DialogoObrasSocialesService,
     DialogoNuevaObraSocialService,
     DialogoAnulacionesService,
-    DialogoNuevaAnulacionService
+    DialogoNuevaAnulacionService,
+    DialogoNuevoTurnoService
   ],
   entryComponents: [
     DialogoComponent,
