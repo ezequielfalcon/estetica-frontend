@@ -2,32 +2,26 @@
   <md-card>
     <md-card-header>
       <md-card-title>
-        Crear ausencia
+        <h3>Nueva ausencia programada</h3>
       </md-card-title>
     </md-card-header>
     <md-card-content>
       <button md-raised-button color="primary" *ngIf="!medicoSeleccionadoBool" type="button" (click)="seleccionarMedico()">Seleccionar Médico</button>
-      <div *ngIf="medicoSeleccionadoBool" id="section-to-print">
-        <md-grid-list cols="2" rowHeight="20px">
-          <md-grid-tile>
-            <h3>{{medicoSeleccionado.nombre + " " + medicoSeleccionado.apellido}}</h3>
-          </md-grid-tile>
-          <md-grid-tile rows="2">
-            <button md-button color="accent" (click)="otroMedico()" id="hide-elegir">Elejir otro Médico</button>
-          </md-grid-tile>
-        </md-grid-list>
+      <div *ngIf="medicoSeleccionadoBool">
+        <h3>{{medicoSeleccionado.nombre + " " + medicoSeleccionado.apellido}}</h3>
+        <button md-button color="accent" (click)="otroMedico()" id="hide-elegir">Elejir otro Médico</button>
         <table>
           <tr>
             <td>
-              <md-select placeholder="Desde" required>
-                <md-option *ngFor="let horario of horarios" [value]="horario.id" ([ngModel])="nuevaAnulacion.desde">
+              <md-select placeholder="Desde" required  [(ngModel)]="nuevaAusencia.horaDesde">
+                <md-option *ngFor="let horario of horarios" [value]="horario.id">
                   {{ horario.hora }}
                 </md-option>
               </md-select>
             </td>
             <td>
-              <md-select placeholder="Hasta" required>
-                <md-option *ngFor="let horario of horarios" [value]="horario.id" ([ngModel])="nuevaAnulacion.hasta">
+              <md-select placeholder="Hasta" required [(ngModel)]="nuevaAusencia.horaHasta">
+                <md-option *ngFor="let horario of horarios" [value]="horario.id">
                   {{ horario.hora }}
                 </md-option>
               </md-select>
@@ -35,10 +29,10 @@
           </tr>
         </table>
         <md-input-container>
-          <textarea mdInput placeholder="Observaciones" ([ngModel])="nuevaAnulacion.observaciones"></textarea>
+          <textarea mdInput placeholder="Observaciones" [(ngModel)]="nuevaAusencia.observaciones"></textarea>
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Fecha" type="date" ([ngModel])="nuevaAnulacion.fecha" required>
+          <input mdInput placeholder="Fecha" type="date" name="fechaAnul"  [(ngModel)]="nuevaAusencia.fechaAnul">
         </md-input-container>
         <table>
           <tr>
