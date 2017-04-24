@@ -78,6 +78,7 @@ import {DialogoAnulacionesService} from "./_servicios/dialogos/dialogo-anulacion
 import { DialogoNuevaAnulacionComponent } from './_directivas/dialogo-nueva-anulacion/dialogo-nueva-anulacion.component';
 import {DialogoNuevaAnulacionService} from "./_servicios/dialogos/dialogo-nueva-anulacion.service";
 import { AusenciasComponent } from './_componentes/ausencias/ausencias.component';
+import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/dialogo-nuevo-turno.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { AusenciasComponent } from './_componentes/ausencias/ausencias.component
     DialogoNuevaObraSocialComponent,
     DialogoAnulacionesComponent,
     DialogoNuevaAnulacionComponent,
-    AusenciasComponent
+    AusenciasComponent,
+    DialogoNuevoTurnoComponent
   ],
   imports: [
     BrowserModule,
