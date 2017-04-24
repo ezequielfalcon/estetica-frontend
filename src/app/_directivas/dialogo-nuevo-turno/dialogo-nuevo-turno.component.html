@@ -1,3 +1,70 @@
-<p>
-  dialogo-nuevo-turno works!
-</p>
+<md-dialog-content>
+  <form name="nuevoTurno" (ngSubmit)="crear()">
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <md-icon>receipt</md-icon>
+          Nuevo Turno
+        </md-card-title>
+        <md-card-subtitle *ngIf="entreturno">
+          Entreturno
+        </md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <table cellspacing="0" class="tablaUsuarios">
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput disabled placeholder="Fecha" [(ngModel)]="nuevoTurno.fechaTurno" name="fecha" #fecha="ngModel">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput disabled placeholder="Horario" [(ngModel)]="nuevoTurno.turnoString" name="turnoString" #turnoString="ngModel">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput disabled placeholder="Consultorio" [(ngModel)]="nuevoTurno.consultorioId" name="consultorioId" #consultorioId="ngModel">
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button md-raised-button color="primary" type="button" *ngIf="!pacienteSeleccionado" (click)="seleccionarPaciente()">Seleccionar paciente</button>
+              <md-input-container *ngIf="pacienteSeleccionado" (click)="seleccionarPaciente()" class="clickVer">
+                <input mdInput class="clickVer" disabled placeholder="Paciente" [(ngModel)]="pacienteSeleccionado.nombre + ' ' + pacienteSeleccionado.apellido" name="pacienteSel" #pacienteSel="ngModel">
+              </md-input-container>
+            </td>
+            <td>
+              <button md-raised-button color="primary" type="button" *ngIf="!medicoSelecionado" (click)="seleccionarMedico()">Seleccionar médico</button>
+              <md-input-container *ngIf="medicoSelecionado" (click)="seleccionarMedico()" class="clickVer">
+                <input mdInput class="clickVer" disabled placeholder="Medico" [(ngModel)]="medicoSelecionado.nombre + ' ' + medicoSelecionado.apellido" name="medicoSel" #medicoSel="ngModel">
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
+        <md-input-container style="width: 100%">
+          <textarea mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones"></textarea>
+        </md-input-container>
+        <br>
+        <button md-raised-button color="primary" type="button" (click)="agregarTratamiento()">Agregar tratamiento</button>
+        <h3>Tratamientos:</h3>
+        <md-chip-list class="mat-chip-list-stacked">
+          <md-chip *ngFor="let tratamientoChip of tratamientosSeleccionados" class="clickVer" mdTooltip="Click para borrar!"
+                   color="accent" selected="false" (click)="sacarTratamiento(tratamientoChip.id)">
+            {{tratamientoChip.nombre}}
+          </md-chip>
+        </md-chip-list>
+        <md-divider style="padding: 2px 1px 1px;"></md-divider>
+        <md-input-container style="padding-top: 2px;">
+          <input mdInput type="text" placeholder="Costo" [(ngModel)]="nuevoTurno.costoTurno" name="costoTurno" #costoTurno="ngModel">
+        </md-input-container>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button type="submit" color="accent"><md-icon>receipt</md-icon>Crear</button>
+        <button md-button type="button" color="primary" (click)="dialogRef.close()"><md-icon>clear</md-icon>Cancelar</button>
+      </md-card-actions>
+    </md-card>
+  </form>
+</md-dialog-content>

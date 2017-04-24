@@ -165,7 +165,8 @@ import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/di
     DialogoObrasSocialesComponent,
     DialogoNuevaObraSocialComponent,
     DialogoAnulacionesComponent,
-    DialogoNuevaAnulacionComponent
+    DialogoNuevaAnulacionComponent,
+    DialogoNuevoTurnoComponent
   ] ,
   providers: [
     LoginService,
@@ -209,7 +210,8 @@ import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/di
     DialogoObrasSocialesComponent,
     DialogoNuevaObraSocialComponent,
     DialogoAnulacionesComponent,
-    DialogoNuevaAnulacionComponent
+    DialogoNuevaAnulacionComponent,
+    DialogoNuevoTurnoComponent
   ] ,
   bootstrap: [AppComponent]
 })
