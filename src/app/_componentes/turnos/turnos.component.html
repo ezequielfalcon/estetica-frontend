@@ -16,8 +16,8 @@
           <th>Horario</th><th>Consultorio</th><th>Paciente</th><th>Entreturno</th>
         </tr>
         <tr *ngFor="let turno of turnosMedico">
-          <td>{{turnoStringHora(turno.id_turno)}}</td>
-          <td>{{turno.id_consultorio}}</td>
+          <td>{{convertirHora(turno.id_turno)}}</td>
+          <td>{{convertirConsultorio(turno.id_consultorio)}}</td>
           <td>{{turno.paciente}}</td>
           <td><md-checkbox disabled [checked]="turno.entreturno == true"></md-checkbox></td>
         </tr>
