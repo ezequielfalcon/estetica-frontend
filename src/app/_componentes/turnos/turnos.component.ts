@@ -24,13 +24,14 @@ export class TurnosComponent implements OnInit, OnDestroy {
     private turnosService: TurnosService,
     private consultoriosService: ConsultoriosService,
     private router: Router
-  ) { }
+  ) { this.fechaTurnos = TurnosComponent.fechaHoy() }
 
   medicos: Medico[] = [];
   medicoSeleccionado: number;
   turnosMedico: TurnoResumenMedico[] = [];
   horarios: Horario[] = [];
   consultorios: Consultorio[] = [];
+  fechaTurnos: string;
 
   ngOnInit() {
     this.cargarMedicos();
@@ -40,6 +41,11 @@ export class TurnosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.spinner.start();
+  }
+
+  cambiarFecha(){
+    this.spinner.start();
+    this.cargarTurnos(this.medicoSeleccionado, this.fechaTurnos);
   }
 
   cargarHorarios() {
@@ -87,7 +93,11 @@ export class TurnosComponent implements OnInit, OnDestroy {
 
   medicoSeleccionadoList(medicoId: number){
     this.spinner.start();
-    this.turnosService.traerTurnosPorMedico(medicoId, TurnosComponent.fechaHoy()).subscribe(turnosDb => {
+    this.cargarTurnos(medicoId, this.fechaTurnos);
+  }
+
+  cargarTurnos(medicoId: number, fecha: string){
+    this.turnosService.traerTurnosPorMedico(medicoId, fecha).subscribe(turnosDb => {
       this.turnosMedico = turnosDb;
       this.spinner.stop();
     }, error => {
