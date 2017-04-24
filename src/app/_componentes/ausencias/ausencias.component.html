@@ -11,7 +11,7 @@
     <md-divider style="padding: 5px;"></md-divider>
     <md-card-content>
       <md-list>
-        <md-list-item class="clickVer" mdTooltip="Click para borrar!" *ngFor="let ausencia of anulaciones">
+        <md-list-item class="clickVer" mdTooltip="Click para borrar!" *ngFor="let ausencia of anulaciones" (click)="borrar(ausencia.id)">
           <h2 md-line>{{ausencia.medico}}</h2>
           <h3 md-line>{{ausencia.fecha.substr(0,10)}}</h3>
           <p md-line>{{'Desde: ' + convertirHora(ausencia.id_horario_desde) + ' hasta ' + convertirHora(ausencia.id_horario_hasta)}}</p>
