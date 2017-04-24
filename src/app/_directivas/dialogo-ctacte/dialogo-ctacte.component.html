@@ -8,6 +8,7 @@
   </md-input-container>
 </div>
 <div md-dialog-actions>
-  <button md-button type="button" (click)="guardarMovimiento()"><md-icon>archive</md-icon>Guardar</button>
+  <button md-button type="button" color="accent" (click)="guardarMovimiento(true)"><md-icon>archive</md-icon>Pago</button>
+  <button md-button type="button" color="warn" (click)="guardarMovimiento(false)"><md-icon>archive</md-icon>Deuda</button>
   <button md-button type="button" (click)="dialogRef.close()"><md-icon>clear</md-icon>Cancelar</button>
 </div>
