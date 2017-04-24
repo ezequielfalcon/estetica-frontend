@@ -1,0 +1,13 @@
+<h1 md-dialog-title>Modificar costo de turno</h1>
+<div md-dialog-content>
+  <md-input-container>
+    <input mdInput placeholder="Costo original" disabled [(ngModel)]="costoAnterior">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="Nuevo costo" [(ngModel)]="nuevoCosto">
+  </md-input-container>
+</div>
+<div md-dialog-actions>
+  <button md-button type="button" color="accent" (click)="modificar()"><md-icon>archive</md-icon>Guardar</button>
+  <button md-button type="button" (click)="dialogRef.close()"><md-icon>clear</md-icon>Cancelar</button>
+</div>
