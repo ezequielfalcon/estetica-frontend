@@ -1,10 +1,10 @@
 <div class="center-agenda">
   <md-card>
     <md-card-content>
-      <md-input-container>
-        <input mdInput placeholder="Fecha" (change)="cambiarFecha(fechaTurnos)" type="date" name="fechaActual" [(ngModel)]="fechaTurnos" #fechaActual="ngModel">
-      </md-input-container>
-      <a md-fab color="warn" *ngIf="anulaciones.length > 0" style="position: fixed; top: 90px; right: 30px;" (click)="verAnulacionesDialogo()" mdTooltip="Hay médicos ausentes!"><md-icon>warning</md-icon></a>
+      <form #fechaForm="ngForm" novalidate>
+        <my-date-picker name="fecha" (dateChanged)="cambiarFecha($event)" locale="es" style="position: fixed; top: 90px; left: 20px; width: 120px" [options]="opcionesFecha" [(ngModel)]="fechaPicker" required></my-date-picker>
+      </form>
+      <a md-fab color="warn" *ngIf="anulaciones.length > 0" style="position: absolute; top: 90px; right: 30px;" (click)="verAnulacionesDialogo()" mdTooltip="Hay médicos ausentes!"><md-icon>warning</md-icon></a>
       <md-divider></md-divider>
       <table width="100%">
         <tr>
@@ -16,7 +16,7 @@
             <th>{{horario.hora}}</th>
             <td *ngFor="let consultorio of consultorios"><button md-raised-button (click)="clickCeldaTurno(consultorio.id, horario.id)" color="{{celdaTurnoColor(consultorio.id, horario.id)}}">{{celdaTurnoValor(consultorio.id, horario.id)}}</button></td>
           </tr>
-          <tr style="height: 7px">
+          <tr style="height: 10px">
             <td></td>
             <td class="clickVer" *ngFor="let consultorio of consultorios" [style.background]="entreturno(consultorio.id, horario.id)" (click)="clickEntreturno(consultorio.id, horario.id)"></td>
           </tr>
