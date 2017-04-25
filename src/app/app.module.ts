@@ -82,6 +82,7 @@ import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/di
 import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turno.service";
 import { DialogoModificarCostoTurnoComponent } from './_directivas/dialogo-modificar-costo-turno/dialogo-modificar-costo-turno.component';
 import {DialogoModificarCostoTurnoService} from "./_servicios/dialogos/dialogo-modificar-costo-turno.service";
+import {MyDatePickerModule} from 'mydatepicker';
 
 @NgModule({
   declarations: [
@@ -157,7 +158,8 @@ import {DialogoModificarCostoTurnoService} from "./_servicios/dialogos/dialogo-m
     MdProgressBarModule,
     MdGridListModule,
     MdSidenavModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MyDatePickerModule
   ],
   exports: [
     DialogoComponent,
