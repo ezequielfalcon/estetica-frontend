@@ -14,6 +14,7 @@ import {Anulacion} from '../../_modelos/anulacion';
 import {MedicosService} from '../../_servicios/datos/medicos.service';
 import {DialogoAnulacionesService} from '../../_servicios/dialogos/dialogo-anulaciones.service';
 import {DialogoNuevoTurnoService} from "../../_servicios/dialogos/dialogo-nuevo-turno.service";
+import {IMyDateModel, IMyOptions} from 'mydatepicker';
 
 @Component({
   selector: 'app-agenda',
@@ -30,6 +31,17 @@ export class AgendaComponent implements OnInit, OnDestroy {
   consultorios: Consultorio[] = [];
   horarios: Horario[] = [];
   anulaciones: Anulacion[] = [];
+  opcionesFecha: IMyOptions = {
+    dateFormat: 'yyyy-mm-dd',
+    firstDayOfWeek: 'mo',
+    showClearDateBtn: false,
+    disableWeekends: true,
+    showWeekNumbers: true,
+    editableDateField: false,
+    openSelectorOnInputClick: true,
+  };
+  fechaPicker: Object;
+
 
   private static fechaHoy() {
     const fechaObject = new Date();
@@ -57,6 +69,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.suscripcionFecha = this.route.params.subscribe(params => {
       this.fechaTurnos = params['fecha'] || AgendaComponent.fechaHoy();
+      this.fechaPicker= { date: this.fechaTurnos };
       this.traerTurnosResumen(this.fechaTurnos);
       this.cargarConsultorios();
       this.cargarHorarios();
@@ -74,7 +87,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
   cargarAnulaciones(fecha) {
     this.medicosService.verAnulacionesFecha(fecha).subscribe(anulacionesDb => {
       this.anulaciones = anulacionesDb;
-      console.log(this.anulaciones);
     }, error => {
       if (error.status === 401) {
         this.notificationSerivce.error('Error', 'Sesión expirada!');
@@ -213,8 +225,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
     });
   }
 
-  cambiarFecha(fecha: string) {
-    this.router.navigate(['/redir-agenda/' + fecha]);
+  cambiarFecha(event: IMyDateModel) {
+    this.router.navigate(['/redir-agenda/' + event.formatted]);
   }
 
 }

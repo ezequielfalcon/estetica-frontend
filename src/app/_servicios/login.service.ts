@@ -19,16 +19,16 @@ export class LoginService{
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post(apiUrl + '/login', body, {headers: headers})
       .map((response: Response) => {
-        localStorage.setItem('usuario', usuario);
-        localStorage.setItem('token', response.json().token);
+        sessionStorage.setItem('usuario', usuario);
+        sessionStorage.setItem('token', response.json().token);
         let usuarioResponse = response.json().usuario;
-        localStorage.setItem('rol', usuarioResponse.rol);
+        sessionStorage.setItem('rol', usuarioResponse.rol);
       });
   }
 
   static logout() {
-    localStorage.removeItem('usuario');
-    localStorage.removeItem('token');
-    localStorage.removeItem('rol');
+    sessionStorage.removeItem('usuario');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('rol');
   }
 }

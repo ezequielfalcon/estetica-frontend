@@ -9,7 +9,7 @@ export class MedicoGuard implements CanActivate {
   ){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (localStorage.getItem("rol") == "medico"){
+    if (sessionStorage.getItem("rol") == "medico"){
       this.router.navigate(['/medicos']);
       return false;
     }

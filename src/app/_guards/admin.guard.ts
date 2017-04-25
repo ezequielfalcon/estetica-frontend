@@ -14,7 +14,7 @@ export class AdminGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    if (localStorage.getItem('token') && localStorage.getItem('rol') == 'admin'){
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('rol') == 'admin'){
       return true;
     }
     this.notif.error('Error de acceso', 'No tiene permiso para acceder a esa opción');

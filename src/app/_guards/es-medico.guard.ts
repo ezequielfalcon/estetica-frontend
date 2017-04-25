@@ -12,7 +12,7 @@ export class EsMedicoGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot){
-    if (localStorage.getItem("rol") == "medico"){
+    if (sessionStorage.getItem("rol") == "medico"){
       return true;
     }
     this.notif.error("Error de acceso", "Sólo los médicos pueden acceder a esta página!");
