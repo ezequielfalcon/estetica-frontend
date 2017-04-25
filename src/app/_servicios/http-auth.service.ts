@@ -3,6 +3,7 @@
  */
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class HttpAuthService {
@@ -10,7 +11,7 @@ export class HttpAuthService {
 
   constructor(private http: Http) {
     this.http = http;
-    this.urlPrefix = 'https://estetica-backend.herokuapp.com/api';
+    this.urlPrefix = environment.apiUrl + '/api';
   }
 
 
