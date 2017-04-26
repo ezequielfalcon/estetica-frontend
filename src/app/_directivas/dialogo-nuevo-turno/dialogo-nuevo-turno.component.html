@@ -41,27 +41,39 @@
                 <input mdInput class="clickVer" disabled placeholder="Medico" [(ngModel)]="medicoSelecionado.nombre + ' ' + medicoSelecionado.apellido" name="medicoSel" #medicoSel="ngModel">
               </md-input-container>
             </td>
+            <td>
+              <button md-raised-button color="primary" type="button" (click)="agregarTratamiento()">Agregar tratamiento</button>
+            </td>
           </tr>
         </table>
-        <md-input-container style="width: 100%">
-          <textarea mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones"></textarea>
-        </md-input-container>
-        <br>
-        <button md-raised-button color="primary" type="button" (click)="agregarTratamiento()">Agregar tratamiento</button>
-        <h3>Tratamientos:</h3>
-        <md-chip-list class="mat-chip-list-stacked">
-          <md-chip *ngFor="let tratamientoChip of tratamientosSeleccionados" class="clickVer" mdTooltip="Click para borrar!"
-                   color="accent" selected="false" (click)="sacarTratamiento(tratamientoChip.id)">
-            {{tratamientoChip.nombre}}
-          </md-chip>
-        </md-chip-list>
-        <md-divider style="padding: 2px 1px 1px;"></md-divider>
-        <md-input-container style="padding-top: 2px;">
-          <input mdInput type="text" placeholder="Costo" [(ngModel)]="nuevoTurno.costoTurno" name="costoTurno" #costoTurno="ngModel">
-        </md-input-container>
-        <md-input-container *ngIf="!entreturno">
-          <input mdInput type="number" [min]="0" [max]="6" placeholder="Turnos adicionales" [(ngModel)]="adicionalesTurno" name="adicionales" #adicionales="ngModel">
-        </md-input-container>
+        <div *ngIf="tratamientosSeleccionados.length > 0">
+          <h3>Tratamientos:</h3>
+          <md-chip-list>
+            <md-chip *ngFor="let tratamientoChip of tratamientosSeleccionados" class="clickVer" mdTooltip="Click para borrar!"
+                     color="accent" selected="true" (click)="sacarTratamiento(tratamientoChip.id)">
+              {{tratamientoChip.nombre}}
+            </md-chip>
+          </md-chip-list>
+        </div>
+        <table width="100%">
+          <tr>
+            <td>
+              <md-input-container style="padding-top: 2px;">
+                <input mdInput type="text" placeholder="Costo" [(ngModel)]="nuevoTurno.costoTurno" name="costoTurno" #costoTurno="ngModel">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container *ngIf="!entreturno">
+                <input mdInput type="number" [min]="0" [max]="6" placeholder="Adicionales" [(ngModel)]="adicionalesTurno" name="adicionales" #adicionales="ngModel">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones">
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
       </md-card-content>
       <md-card-actions>
         <button md-button type="button" color="accent" (click)="crear()"><md-icon>receipt</md-icon>Crear</button>
