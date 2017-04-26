@@ -1,9 +1,9 @@
 <div class="center-agenda">
   <md-card>
     <md-card-content>
-      <form #fechaForm="ngForm" novalidate>
-        <my-date-picker name="fecha" (dateChanged)="cambiarFecha($event)" locale="es" style="position: fixed; top: 90px; left: 20px; width: 120px" [options]="opcionesFecha" [(ngModel)]="fechaPicker" required></my-date-picker>
-      </form>
+      <md-input-container>
+        <input mdInput type="date" id="fechaT" [(ngModel)]="fechaTurnos" (change)="cambiarFecha()">
+      </md-input-container>
       <a md-fab color="warn" *ngIf="anulaciones.length > 0" style="position: absolute; top: 90px; right: 30px;" (click)="verAnulacionesDialogo()" mdTooltip="Hay médicos ausentes!"><md-icon>warning</md-icon></a>
       <md-divider></md-divider>
       <table width="100%">

@@ -13,8 +13,7 @@ import {Horario} from '../../_modelos/horario';
 import {Anulacion} from '../../_modelos/anulacion';
 import {MedicosService} from '../../_servicios/datos/medicos.service';
 import {DialogoAnulacionesService} from '../../_servicios/dialogos/dialogo-anulaciones.service';
-import {DialogoNuevoTurnoService} from "../../_servicios/dialogos/dialogo-nuevo-turno.service";
-import {IMyDateModel, IMyOptions} from 'mydatepicker';
+import {DialogoNuevoTurnoService} from '../../_servicios/dialogos/dialogo-nuevo-turno.service';
 
 @Component({
   selector: 'app-agenda',
@@ -31,16 +30,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
   consultorios: Consultorio[] = [];
   horarios: Horario[] = [];
   anulaciones: Anulacion[] = [];
-  opcionesFecha: IMyOptions = {
-    dateFormat: 'yyyy-mm-dd',
-    firstDayOfWeek: 'mo',
-    showClearDateBtn: false,
-    disableWeekends: true,
-    showWeekNumbers: true,
-    editableDateField: false,
-    openSelectorOnInputClick: true,
-  };
-  fechaPicker: Object;
 
 
   private static fechaHoy() {
@@ -69,7 +58,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.suscripcionFecha = this.route.params.subscribe(params => {
       this.fechaTurnos = params['fecha'] || AgendaComponent.fechaHoy();
-      this.fechaPicker= { date: this.fechaTurnos };
       this.traerTurnosResumen(this.fechaTurnos);
       this.cargarConsultorios();
       this.cargarHorarios();
@@ -225,8 +213,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
     });
   }
 
-  cambiarFecha(event: IMyDateModel) {
-    this.router.navigate(['/redir-agenda/' + event.formatted]);
+  cambiarFecha() {
+    this.router.navigate(['/redir-agenda/' + this.fechaTurnos]);
   }
 
 }
