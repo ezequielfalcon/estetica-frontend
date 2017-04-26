@@ -13,7 +13,9 @@ import {DialogoMedicosService} from '../../_servicios/dialogos/dialogo-medicos.s
 import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
 import {DialogoTratamientosService} from '../../_servicios/dialogos/dialogo-tratamientos.service';
 import {MdDialogRef} from '@angular/material';
-import {DialogoNuevoPacienteRapidoService} from "../../_servicios/dialogos/dialogo-nuevo-paciente-rapido.service";
+import {DialogoNuevoPacienteRapidoService} from '../../_servicios/dialogos/dialogo-nuevo-paciente-rapido.service';
+import {Consultorio} from '../../_modelos/consultorio';
+import {ConsultoriosService} from 'app/_servicios/datos/consultorios.service';
 
 @Component({
   selector: 'app-dialogo-nuevo-turno',
@@ -35,6 +37,7 @@ export class DialogoNuevoTurnoComponent implements OnInit {
   horarioString: string;
   nuevoTurno: any = {};
   adicionalesTurno = 0;
+  consultorioString: string;
 
   constructor(
     private medicosService: MedicosService,
@@ -42,6 +45,7 @@ export class DialogoNuevoTurnoComponent implements OnInit {
     private notificationService: NotificationsService,
     private turnosService: TurnosService,
     private pacientesService: PacientesService,
+    private consultoriosService: ConsultoriosService,
     private router: Router,
     private viewContainerRef: ViewContainerRef,
     private dialogoMedicos: DialogoMedicosService,
@@ -54,6 +58,7 @@ export class DialogoNuevoTurnoComponent implements OnInit {
   ngOnInit() {
     this.cargarHorarios();
     this.cargarTratamientos();
+    this.convertirConsultorio(this.consultorioId);
     this.nuevoTurno.turnoId = this.turnoId;
     this.nuevoTurno.consultorioId = this.consultorioId;
     this.nuevoTurno.fechaTurno = this.fechaTurno;
@@ -66,6 +71,20 @@ export class DialogoNuevoTurnoComponent implements OnInit {
       this.horarios = horariosDb;
       this.horarioString = this.convertirHora(this.turnoId);
       this.spinner.stop();
+    }, error => {
+      if (error.status === 401) {
+        this.notificationService.error('Error', 'Sesión expirada!');
+        this.router.navigate(['/login']);
+      }
+      const body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
+  }
+
+  convertirConsultorio(consultorioId: number) {
+    this.consultoriosService.getById(consultorioId).subscribe(consultorioDb => {
+      this.consultorioString = consultorioDb.nombre;
     }, error => {
       if (error.status === 401) {
         this.notificationService.error('Error', 'Sesión expirada!');
