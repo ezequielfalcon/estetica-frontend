@@ -14,29 +14,29 @@
         <tr>
           <td>
             <md-input-container>
-              <input mdInput placeholder="Apellido..." [formControl]="ape">
+              <input mdInput placeholder="Apellido..." [formControl]="ape" #campo1 (keyup.enter)="campo2.focus()">
             </md-input-container>
           </td>
           <td>
             <md-input-container>
-              <input mdInput placeholder="Nombre..." [formControl]="nom">
+              <input mdInput placeholder="Nombre..." [formControl]="nom" #campo2 (keyup.enter)="campo3.focus()">
             </md-input-container>
           </td>
           <td>
             <md-input-container>
-              <input mdInput placeholder="Documento..." [formControl]="dni">
+              <input mdInput placeholder="Documento..." [formControl]="dni" #campo3 (keyup.enter)="campo4.focus()">
             </md-input-container>
           </td>
         </tr>
         <tr>
           <td>
             <md-input-container>
-              <input mdInput placeholder="Teléfono" name="tel" [(ngModel)]="nuevoPac.tel" #tel="ngModel">
+              <input mdInput placeholder="Teléfono" name="tel" [(ngModel)]="nuevoPac.tel" #tel="ngModel" #campo4  (keyup.enter)="campo5.focus()">
             </md-input-container>
           </td>
           <td>
             <md-input-container>
-              <input mdInput placeholder="Celular" name="celular" [(ngModel)]="nuevoPac.celular" #celular="ngModel" (keyup.enter)="crear()">
+              <input mdInput placeholder="Celular" name="celular" [(ngModel)]="nuevoPac.celular" #celular="ngModel" #campo5 (keyup.enter)="crear()">
             </md-input-container>
           </td>
         </tr>

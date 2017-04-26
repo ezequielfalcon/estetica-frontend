@@ -51,6 +51,7 @@ export class DialogoNuevoPacienteRapidoComponent implements OnInit {
 
   ngOnInit() {
     this.cargarPacientes();
+
   }
 
   busqueda() {
@@ -82,12 +83,6 @@ export class DialogoNuevoPacienteRapidoComponent implements OnInit {
       this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
-  }
-
-  apretarEnter($event) {
-    if ($event.keyCode === 'Enter'){
-
-    }
   }
 
   crear() {
