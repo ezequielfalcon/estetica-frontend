@@ -43,6 +43,10 @@ export class TurnosComponent implements OnInit, OnDestroy {
     this.spinner.start();
   }
 
+  imprimir() {
+    window.print();
+  }
+
   cambiarFecha(){
     this.spinner.start();
     this.cargarTurnos(this.medicoSeleccionado, this.fechaTurnos);

@@ -60,6 +60,9 @@
         <md-input-container style="padding-top: 2px;">
           <input mdInput type="text" placeholder="Costo" [(ngModel)]="nuevoTurno.costoTurno" name="costoTurno" #costoTurno="ngModel">
         </md-input-container>
+        <md-input-container *ngIf="!entreturno">
+          <input mdInput type="number" [min]="0" [max]="6" placeholder="Turnos adicionales" [(ngModel)]="adicionalesTurno" name="adicionales" #adicionales="ngModel">
+        </md-input-container>
       </md-card-content>
       <md-card-actions>
         <button md-button type="submit" color="accent"><md-icon>receipt</md-icon>Crear</button>

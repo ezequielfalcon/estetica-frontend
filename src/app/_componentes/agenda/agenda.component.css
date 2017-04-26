@@ -7,3 +7,14 @@ th{
 td{
   padding: 1px;
 }
+
+#fechaT {
+  position: fixed;
+  top: 90px;
+  left: 20px;
+  width: 140px;
+  font-size: medium;
+  font-weight: bold;
+  background-color: whitesmoke;
+
+}
