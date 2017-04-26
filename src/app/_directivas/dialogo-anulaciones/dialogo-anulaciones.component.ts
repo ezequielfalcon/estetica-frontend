@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Anulacion} from '../../_modelos/anulacion';
 import {Horario} from '../../_modelos/horario';
 import {TurnosService} from '../../_servicios/datos/turnos.service';
-import {NotificationsService} from 'angular2-notifications/dist';
+import {NotificationsService} from 'angular2-notifications';
 import {SpinnerService} from '../../_servicios/spinner.service';
 import {MedicosService} from '../../_servicios/datos/medicos.service';
 import {Router} from '@angular/router';
