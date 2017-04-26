@@ -67,7 +67,9 @@ export class DialogoNuevoPacienteComponent implements OnInit {
   }
 
   crear() {
-    this.pacientesService.post(this.nuevoPac.nombre, this.nuevoPac.apellido,
+    let capNombre = DialogoNuevoPacienteComponent.capitalize(this.nuevoPac.nombre);
+    let capApellido = DialogoNuevoPacienteComponent.capitalize(this.nuevoPac.apellido);
+    this.pacientesService.post(capNombre, capApellido,
       this.nuevoPac.documento, this.nuevoPac.tel || ' ', this.nuevoPac.email || ' ',
       this.nuevoPac.fechaNac || '1901-01-01', this.nuevoPac.sexo || 'N', this.nuevoPac.id_os || 7886,
       this.nuevoPac.numero_os || ' ', this.nuevoPac.domicilio || ' ', this.nuevoPac.obvservaciones || ' ', this.nuevoPac.celular || ' ')
@@ -82,6 +84,11 @@ export class DialogoNuevoPacienteComponent implements OnInit {
         const body = JSON.parse(error._body);
         this.notif.error('Error', body.mensaje);
       });
+  }
+
+  static capitalize(texto: string)
+  {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
   }
 
 }
