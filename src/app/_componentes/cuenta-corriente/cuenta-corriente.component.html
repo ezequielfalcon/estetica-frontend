@@ -19,7 +19,7 @@
       <div *ngIf="pacienteSeleccionado">
         <md-grid-list cols="2" rowHeight="20px">
           <md-grid-tile>
-            <h3>{{paciente.nombre + " " + paciente.apellido}}</h3>
+            <h3>{{paciente.apellido + " " + paciente.nombre}}</h3>
           </md-grid-tile>
           <md-grid-tile rows="2">
             <button md-button color="accent" (click)="otroPaciente()">Elejir otro paciente</button>
