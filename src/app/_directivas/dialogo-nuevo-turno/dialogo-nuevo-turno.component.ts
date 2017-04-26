@@ -183,6 +183,17 @@ export class DialogoNuevoTurnoComponent implements OnInit {
 
   crear() {
     this.spinner.start();
+    if (!this.nuevoTurno.observaciones) {
+      this.nuevoTurno.observaciones = ' ';
+    }
+    if (!this.medicoSelecionado) {
+        this.notificationService.alert('Error', 'Debe seleccionar un Médico.');
+        return;
+    }
+    if (!this.pacienteSeleccionado) {
+        this.notificationService.alert('Error', 'Debe seleccionar un Paciente.');
+        return;
+    }
     switch (this.adicionalesTurno){
       case 0:
         this.crearTurnoAtom(this.nuevoTurno.turnoId, this.entreturno, true);
@@ -245,19 +256,6 @@ export class DialogoNuevoTurnoComponent implements OnInit {
   }
 
   crearTurnoAtom(horarioId: number, entreturnoMas: boolean, primero: boolean) {
-    if (!this.nuevoTurno.observaciones) {
-      this.nuevoTurno.observaciones = ' ';
-    }
-    if (!this.medicoSelecionado.id) {
-      if (primero) {
-        this.notificationService.alert('Error', 'Debe seleccionar un Médico.');
-      }
-    }
-    if (!this.pacienteSeleccionado.id) {
-      if (primero) {
-        this.notificationService.alert('Error', 'Debe seleccionar un Paciente.');
-      }
-    }
     this.turnosService.nuevoTurno(horarioId,
       this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
       this.medicoSelecionado.id,
