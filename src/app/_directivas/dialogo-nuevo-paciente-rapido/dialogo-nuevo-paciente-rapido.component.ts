@@ -84,6 +84,12 @@ export class DialogoNuevoPacienteRapidoComponent implements OnInit {
     });
   }
 
+  apretarEnter($event) {
+    if ($event.keyCode === 'Enter'){
+
+    }
+  }
+
   crear() {
     this.pacientesService.post(this.seachNom, this.searchApe, this.searchDni,
       this.nuevoPac.tel || ' ', this.nuevoPac.email || ' ',

@@ -36,7 +36,7 @@
           </td>
           <td>
             <md-input-container>
-              <input mdInput placeholder="Celular" name="celular" [(ngModel)]="nuevoPac.celular" #celular="ngModel">
+              <input mdInput placeholder="Celular" name="celular" [(ngModel)]="nuevoPac.celular" #celular="ngModel" (keyup.enter)="crear()">
             </md-input-container>
           </td>
         </tr>
