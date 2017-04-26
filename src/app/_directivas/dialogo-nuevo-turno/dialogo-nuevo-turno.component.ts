@@ -252,13 +252,11 @@ export class DialogoNuevoTurnoComponent implements OnInit {
       if (primero) {
         this.notificationService.alert('Error', 'Debe seleccionar un Médico.');
       }
-      return;
     }
     if (!this.pacienteSeleccionado.id) {
       if (primero) {
         this.notificationService.alert('Error', 'Debe seleccionar un Paciente.');
       }
-      return;
     }
     this.turnosService.nuevoTurno(horarioId,
       this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
