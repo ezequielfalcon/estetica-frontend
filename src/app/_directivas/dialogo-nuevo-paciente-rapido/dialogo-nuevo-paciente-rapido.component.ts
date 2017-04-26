@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {PacientesService} from '../../_servicios/datos/pacientes.service';
 import {NotificationsService} from 'angular2-notifications';
@@ -24,7 +24,6 @@ export class DialogoNuevoPacienteRapidoComponent implements OnInit {
   nuevoPac: any = {};
 
   constructor(
-    private ref: ChangeDetectorRef,
     private pacientesService: PacientesService,
     private notificationService: NotificationsService,
     public dialogRef: MdDialogRef<DialogoNuevoPacienteRapidoComponent>,
@@ -51,7 +50,6 @@ export class DialogoNuevoPacienteRapidoComponent implements OnInit {
 
   ngOnInit() {
     this.cargarPacientes();
-
   }
 
   busqueda() {

@@ -14,6 +14,6 @@ export class AppComponent {
 
   public options = {
     position: ["bottom", "right"],
-    timeOut: 9000,
+    timeOut: 2500,
   }
 }
