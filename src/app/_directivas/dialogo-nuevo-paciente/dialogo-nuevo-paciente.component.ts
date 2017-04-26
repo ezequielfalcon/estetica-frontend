@@ -70,7 +70,7 @@ export class DialogoNuevoPacienteComponent implements OnInit {
     this.pacientesService.post(this.nuevoPac.nombre, this.nuevoPac.apellido,
       this.nuevoPac.documento, this.nuevoPac.tel || ' ', this.nuevoPac.email || ' ',
       this.nuevoPac.fechaNac || '1901-01-01', this.nuevoPac.sexo || 'N', this.nuevoPac.id_os || 7886,
-      this.nuevoPac.numero_os || ' ', this.nuevoPac.domicilio || ' ', this.nuevoPac.obvservaciones || ' ')
+      this.nuevoPac.numero_os || ' ', this.nuevoPac.domicilio || ' ', this.nuevoPac.obvservaciones || ' ', this.nuevoPac.celular || ' ')
       .subscribe(nuevoP => {
         this.notif.success('OK', 'Paciente creado con ID ' + nuevoP.id);
         this.dialogRef.close(nuevoP.id);

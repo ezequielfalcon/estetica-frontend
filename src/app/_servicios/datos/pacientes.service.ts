@@ -28,7 +28,7 @@ export class PacientesService {
   }
 
   post(nombre, apellido, documento, telefono, mail, fecha, sexo: string,
-       id_os: number, numero_os, domicilio, observaciones){
+       id_os: number, numero_os, domicilio, observaciones, celular){
     let body = new URLSearchParams();
     body.set('nombre', nombre);
     body.set('apellido', apellido);
@@ -41,11 +41,12 @@ export class PacientesService {
     body.set('numero_os', numero_os);
     body.set('domicilio', domicilio);
     body.set('obs', observaciones);
+    body.set('celular', celular);
     return this.http.post('/pacientes', body).map((response: Response) => response.json());
   }
 
   put(id: number, nombre, apellido, documento, telefono, mail, fecha, sexo:
-    string, id_os: number, numero_os, domicilio, observaciones){
+    string, id_os: number, numero_os, domicilio, observaciones, celular){
     let body = new URLSearchParams();
     body.set('nombre', nombre);
     body.set('apellido', apellido);
@@ -58,6 +59,7 @@ export class PacientesService {
     body.set('numero_os', numero_os);
     body.set('domicilio', domicilio);
     body.set('obs', observaciones);
+    body.set('celular', celular);
     return this.http.put('/pacientes/' +id, body).map((response: Response) => response.json());
   }
 

@@ -15,4 +15,5 @@ export class Paciente {
   domicilio: string;
   obvservaciones: string;
   fecha_alta: string;
+  celular: string;
 }

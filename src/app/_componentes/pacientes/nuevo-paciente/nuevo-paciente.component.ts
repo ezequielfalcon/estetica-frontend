@@ -68,8 +68,8 @@ export class NuevoPacienteComponent implements OnInit, OnDestroy {
   crear() {
     this.pacientesService.post(this.nuevoPac.nombre, this.nuevoPac.apellido,
       this.nuevoPac.documento, this.nuevoPac.tel || ' ', this.nuevoPac.email || ' ',
-      this.nuevoPac.fechaNac || '1901-01-01', this.nuevoPac.sexo || 'N', this.osSeleccionada.id || 7359,
-      this.nuevoPac.numero_os || ' ', this.nuevoPac.domicilio || ' ', this.nuevoPac.obvservaciones || ' ')
+      this.nuevoPac.fechaNac || '1901-01-01', this.nuevoPac.sexo || 'N', this.osSeleccionada.id || 7886,
+      this.nuevoPac.numero_os || ' ', this.nuevoPac.domicilio || ' ', this.nuevoPac.obvservaciones || ' ', this.nuevoPac.celular || ' ')
       .subscribe(nuevoP => {
         this.notif.success('OK', 'Paciente creado con ID ' + nuevoP.id);
         this.router.navigate([this.returnUrl]);
