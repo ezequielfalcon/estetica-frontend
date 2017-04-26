@@ -51,6 +51,13 @@
             <md-input-container>
               <input mdInput [disabled]="!edicion" type="tel" placeholder="Teléfono" name="tel" [(ngModel)]="pac.telefono" #tel="ngModel">
             </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput [disabled]="!edicion" type="tel" placeholder="Celular" name="cel" [(ngModel)]="pac.celular" #cel="ngModel">
+            </md-input-container>
+          </td>
+          <td>
             <md-input-container>
               <input mdInput [disabled]="!edicion" type="email" placeholder="Correo electrónico" name="email" [(ngModel)]="pac.mail" #email="ngModel">
             </md-input-container>

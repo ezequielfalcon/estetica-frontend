@@ -15,6 +15,7 @@ import {DialogoNuevoPacienteService} from '../../_servicios/dialogos/dialogo-nue
 import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
 import {DialogoTratamientosService} from '../../_servicios/dialogos/dialogo-tratamientos.service';
 import {MdDialogRef} from '@angular/material';
+import {DialogoNuevoPacienteRapidoService} from "../../_servicios/dialogos/dialogo-nuevo-paciente-rapido.service";
 
 @Component({
   selector: 'app-dialogo-nuevo-turno',
@@ -35,6 +36,7 @@ export class DialogoNuevoTurnoComponent implements OnInit {
   horarios: Horario[] = [];
   horarioString: string;
   nuevoTurno: any = {};
+  adicionalesTurno = 0;
 
   constructor(
     private medicosService: MedicosService,
@@ -44,12 +46,11 @@ export class DialogoNuevoTurnoComponent implements OnInit {
     private pacientesService: PacientesService,
     private router: Router,
     private viewContainerRef: ViewContainerRef,
-    private dialogoPacientes: DialogoPacientesService,
     private dialogoMedicos: DialogoMedicosService,
-    private dialogoNuevoPaciente: DialogoNuevoPacienteService,
     private tratamientosService: TratamientosService,
     private dialogoTratamientos: DialogoTratamientosService,
-    public dialogRef: MdDialogRef<DialogoNuevoTurnoComponent>
+    public dialogRef: MdDialogRef<DialogoNuevoTurnoComponent>,
+    private dialogoNuevoPacRapido: DialogoNuevoPacienteRapidoService
   ) {  }
 
   ngOnInit() {
@@ -118,18 +119,10 @@ export class DialogoNuevoTurnoComponent implements OnInit {
 
   seleccionarPaciente() {
     this.spinner.start();
-    this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
+    this.dialogoNuevoPacRapido.seleccionarCearPaciente(this.viewContainerRef)
       .subscribe(pacienteSeleccionado => {
         if (pacienteSeleccionado) {
-          if (pacienteSeleccionado === -1) {
-            this.dialogoNuevoPaciente.crearPaciente(this.viewContainerRef).subscribe(nuevoPacienteSeleccionado => {
-              if (nuevoPacienteSeleccionado) {
-                this.cargarPaciente(nuevoPacienteSeleccionado);
-              }
-            });
-          } else {
-            this.cargarPaciente(pacienteSeleccionado);
-          }
+          this.cargarPaciente(pacienteSeleccionado);
         }
       });
   }
@@ -190,14 +183,62 @@ export class DialogoNuevoTurnoComponent implements OnInit {
 
   crear() {
     this.spinner.start();
+    switch (this.adicionalesTurno){
+      case 0:
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, this.entreturno);
+        break;
+      case 1:
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
+        break;
+      case 2:
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false);
+        break;
+      case 3:
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false);
+        break;
+      case 4:
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false);
+        break;
+      case 5:
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, false);
+        break;
+    }
+  }
+
+  crearTurnoAtom(horarioId: number, entreturnoMas: boolean) {
     if (!this.nuevoTurno.observaciones) {
       this.nuevoTurno.observaciones = ' ';
     }
-    this.turnosService.nuevoTurno(this.nuevoTurno.turnoId,
+    this.turnosService.nuevoTurno(horarioId,
       this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
       this.medicoSelecionado.id,
       this.nuevoTurno.observaciones, this.nuevoTurno.costoTurno,
-      this.nuevoTurno.fechaTurno, this.entreturno).subscribe((agendaId) => {
+      this.nuevoTurno.fechaTurno, entreturnoMas).subscribe((agendaId) => {
       for (const tratamientosSeleccionadosList of this.tratamientosSeleccionados){
         this.turnosService.agregarTratamiento(agendaId, tratamientosSeleccionadosList.id).subscribe(() => {
         }, error => {
