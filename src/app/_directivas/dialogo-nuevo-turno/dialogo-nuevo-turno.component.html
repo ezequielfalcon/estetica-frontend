@@ -1,5 +1,4 @@
 <md-dialog-content>
-  <form name="nuevoTurno" (ngSubmit)="crear()">
     <md-card>
       <md-card-header>
         <md-card-title>
@@ -65,9 +64,8 @@
         </md-input-container>
       </md-card-content>
       <md-card-actions>
-        <button md-button type="submit" color="accent"><md-icon>receipt</md-icon>Crear</button>
+        <button md-button type="button" color="accent" (click)="crear()"><md-icon>receipt</md-icon>Crear</button>
         <button md-button type="button" color="primary" (click)="dialogRef.close()"><md-icon>clear</md-icon>Cancelar</button>
       </md-card-actions>
     </md-card>
-  </form>
 </md-dialog-content>

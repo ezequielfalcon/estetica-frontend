@@ -183,71 +183,79 @@ export class DialogoNuevoTurnoComponent implements OnInit {
 
   crear() {
     this.spinner.start();
+    if (!this.nuevoTurno.observaciones) {
+      this.nuevoTurno.observaciones = ' ';
+    }
+    if (!this.medicoSelecionado) {
+        this.notificationService.alert('Error', 'Debe seleccionar un Médico.');
+        return;
+    }
+    if (!this.pacienteSeleccionado) {
+        this.notificationService.alert('Error', 'Debe seleccionar un Paciente.');
+        return;
+    }
     switch (this.adicionalesTurno){
       case 0:
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, this.entreturno);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, this.entreturno, true);
         break;
       case 1:
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false, false);
         break;
       case 2:
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false, false);
         break;
       case 3:
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false, false);
         break;
       case 4:
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false, false);
         break;
       case 5:
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, false, false);
         break;
       case 6:
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, false);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 5, true);
-        this.crearTurnoAtom(this.nuevoTurno.turnoId + 5, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 5, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 5, false, false);
         break;
     }
   }
 
-  crearTurnoAtom(horarioId: number, entreturnoMas: boolean) {
-    if (!this.nuevoTurno.observaciones) {
-      this.nuevoTurno.observaciones = ' ';
-    }
+  crearTurnoAtom(horarioId: number, entreturnoMas: boolean, primero: boolean) {
     this.turnosService.nuevoTurno(horarioId,
       this.pacienteSeleccionado.id, this.nuevoTurno.consultorioId,
       this.medicoSelecionado.id,
@@ -261,12 +269,16 @@ export class DialogoNuevoTurnoComponent implements OnInit {
             this.router.navigate(['/login']);
           }
           const body = JSON.parse(error._body);
-          this.notificationService.error('Error', body.mensaje);
+          if (primero) {
+            this.notificationService.error('Error', body.mensaje);
+          }
           this.spinner.stop();
           return;
         });
       }
-      this.notificationService.success('OK', 'Nuevo turno creado con ID: ' + agendaId);
+      if (primero) {
+        this.notificationService.success('OK', 'Nuevo turno creado con ID: ' + agendaId);
+      }
       this.dialogRef.close();
     }, error => {
       if (error.status === 401) {
@@ -274,7 +286,9 @@ export class DialogoNuevoTurnoComponent implements OnInit {
         this.router.navigate(['/login']);
       }
       const body = JSON.parse(error._body);
-      this.notificationService.error('Error', body.mensaje);
+      if (primero) {
+        this.notificationService.error('Error', body.mensaje);
+      }
       this.spinner.stop();
     });
   }
