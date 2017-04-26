@@ -1,3 +1,56 @@
-<p>
-  dialogo-nuevo-paciente-rapido works!
-</p>
+<md-dialog-content>
+  <md-card>
+    <md-card-header>
+      <md-card-title>
+        <md-icon>people</md-icon>
+        Pacientes
+      </md-card-title>
+    </md-card-header>
+    <div class="boton-add">
+      <a md-fab (click)="crear()"><md-icon>add</md-icon></a>
+    </div>
+    <md-card-content>
+      <table>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Apellido..." [formControl]="ape">
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Nombre..." [formControl]="nom">
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Documento..." [formControl]="dni">
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Teléfono" name="tel" [(ngModel)]="nuevoPac.tel" #tel="ngModel">
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput placeholder="Celular" name="celular" [(ngModel)]="nuevoPac.celular" #celular="ngModel">
+            </md-input-container>
+          </td>
+        </tr>
+      </table>
+    </md-card-content>
+    <md-divider></md-divider>
+    <md-card-content>
+      <md-list>
+        <md-list-item class="clickVer" *ngFor="let paciente of pacientes">
+          <md-icon md-list-avatar (click)="dialogRef.close(paciente.id)">person</md-icon>
+          <h4 md-line (click)="dialogRef.close(paciente.id)">{{paciente.nombre + ' ' + paciente.apellido}}</h4>
+          <p md-line (click)="dialogRef.close(paciente.id)">{{'Documento: ' + paciente.documento}}</p>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>
+</md-dialog-content>

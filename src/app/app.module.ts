@@ -84,6 +84,7 @@ import { DialogoModificarCostoTurnoComponent } from './_directivas/dialogo-modif
 import {DialogoModificarCostoTurnoService} from "./_servicios/dialogos/dialogo-modificar-costo-turno.service";
 import {MyDatePickerModule} from 'mydatepicker';
 import { DialogoNuevoPacienteRapidoComponent } from './_directivas/dialogo-nuevo-paciente-rapido/dialogo-nuevo-paciente-rapido.component';
+import {DialogoNuevoPacienteRapidoService} from "./_servicios/dialogos/dialogo-nuevo-paciente-rapido.service";
 
 @NgModule({
   declarations: [
@@ -175,7 +176,8 @@ import { DialogoNuevoPacienteRapidoComponent } from './_directivas/dialogo-nuevo
     DialogoAnulacionesComponent,
     DialogoNuevaAnulacionComponent,
     DialogoNuevoTurnoComponent,
-    DialogoModificarCostoTurnoComponent
+    DialogoModificarCostoTurnoComponent,
+    DialogoNuevoPacienteRapidoComponent
   ] ,
   providers: [
     LoginService,
@@ -208,7 +210,8 @@ import { DialogoNuevoPacienteRapidoComponent } from './_directivas/dialogo-nuevo
     DialogoAnulacionesService,
     DialogoNuevaAnulacionService,
     DialogoNuevoTurnoService,
-    DialogoModificarCostoTurnoService
+    DialogoModificarCostoTurnoService,
+    DialogoNuevoPacienteRapidoService
   ],
   entryComponents: [
     DialogoComponent,
@@ -223,7 +226,8 @@ import { DialogoNuevoPacienteRapidoComponent } from './_directivas/dialogo-nuevo
     DialogoAnulacionesComponent,
     DialogoNuevaAnulacionComponent,
     DialogoNuevoTurnoComponent,
-    DialogoModificarCostoTurnoComponent
+    DialogoModificarCostoTurnoComponent,
+    DialogoNuevoPacienteRapidoComponent
   ] ,
   bootstrap: [AppComponent]
 })

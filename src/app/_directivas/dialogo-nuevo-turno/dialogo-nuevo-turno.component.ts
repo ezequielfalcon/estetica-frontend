@@ -15,6 +15,7 @@ import {DialogoNuevoPacienteService} from '../../_servicios/dialogos/dialogo-nue
 import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
 import {DialogoTratamientosService} from '../../_servicios/dialogos/dialogo-tratamientos.service';
 import {MdDialogRef} from '@angular/material';
+import {DialogoNuevoPacienteRapidoService} from "../../_servicios/dialogos/dialogo-nuevo-paciente-rapido.service";
 
 @Component({
   selector: 'app-dialogo-nuevo-turno',
@@ -49,7 +50,8 @@ export class DialogoNuevoTurnoComponent implements OnInit {
     private dialogoNuevoPaciente: DialogoNuevoPacienteService,
     private tratamientosService: TratamientosService,
     private dialogoTratamientos: DialogoTratamientosService,
-    public dialogRef: MdDialogRef<DialogoNuevoTurnoComponent>
+    public dialogRef: MdDialogRef<DialogoNuevoTurnoComponent>,
+    private dialogoNuevoPacRapido: DialogoNuevoPacienteRapidoService
   ) {  }
 
   ngOnInit() {
@@ -118,18 +120,10 @@ export class DialogoNuevoTurnoComponent implements OnInit {
 
   seleccionarPaciente() {
     this.spinner.start();
-    this.dialogoPacientes.seleccionarPaciente(this.viewContainerRef)
+    this.dialogoNuevoPacRapido.seleccionarCearPaciente(this.viewContainerRef)
       .subscribe(pacienteSeleccionado => {
         if (pacienteSeleccionado) {
-          if (pacienteSeleccionado === -1) {
-            this.dialogoNuevoPaciente.crearPaciente(this.viewContainerRef).subscribe(nuevoPacienteSeleccionado => {
-              if (nuevoPacienteSeleccionado) {
-                this.cargarPaciente(nuevoPacienteSeleccionado);
-              }
-            });
-          } else {
-            this.cargarPaciente(pacienteSeleccionado);
-          }
+          this.cargarPaciente(pacienteSeleccionado);
         }
       });
   }
