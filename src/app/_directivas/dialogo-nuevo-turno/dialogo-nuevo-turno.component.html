@@ -24,7 +24,7 @@
             </td>
             <td>
               <md-input-container>
-                <input mdInput disabled placeholder="Consultorio" [(ngModel)]="nuevoTurno.consultorioId" name="consultorioId" #consultorioId="ngModel">
+                <input mdInput disabled placeholder="Consultorio" [(ngModel)]="consultorioString" name="consultorioId" #consultorioId="ngModel">
               </md-input-container>
             </td>
           </tr>
@@ -59,17 +59,17 @@
           <tr>
             <td>
               <md-input-container style="padding-top: 2px;">
-                <input mdInput type="text" placeholder="Costo" [(ngModel)]="nuevoTurno.costoTurno" name="costoTurno" #costoTurno="ngModel">
+                <input mdInput style="width: 40px" type="text" placeholder="Costo" [(ngModel)]="nuevoTurno.costoTurno" name="costoTurno" #costoTurno="ngModel">
               </md-input-container>
             </td>
             <td>
               <md-input-container *ngIf="!entreturno">
-                <input mdInput type="number" [min]="0" [max]="6" placeholder="Adicionales" [(ngModel)]="adicionalesTurno" name="adicionales" #adicionales="ngModel">
+                <input mdInput style="width: 100px" type="number" [min]="0" [max]="6" placeholder="Turnos adicionales" [(ngModel)]="adicionalesTurno" name="adicionales" #adicionales="ngModel">
               </md-input-container>
             </td>
             <td>
               <md-input-container>
-                <input mdInput placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones">
+                <input mdInput style="width: 100%" placeholder="Observaciones" name="observaciones" #observaciones="ngModel" [(ngModel)]="nuevoTurno.observaciones">
               </md-input-container>
             </td>
           </tr>
