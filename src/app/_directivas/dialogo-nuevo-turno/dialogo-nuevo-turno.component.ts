@@ -218,12 +218,16 @@ export class DialogoNuevoTurnoComponent implements OnInit {
       case 1:
         this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
         this.crearTurnoAtom(this.nuevoTurno.turnoId, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false, false);
         break;
       case 2:
         this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
         this.crearTurnoAtom(this.nuevoTurno.turnoId, false, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, true, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false, false);
         break;
       case 3:
         this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
@@ -232,6 +236,8 @@ export class DialogoNuevoTurnoComponent implements OnInit {
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 1, false, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, true, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false, false);
         break;
       case 4:
         this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
@@ -242,6 +248,8 @@ export class DialogoNuevoTurnoComponent implements OnInit {
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 2, false, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, true, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, false, false);
         break;
       case 5:
         this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
@@ -254,6 +262,8 @@ export class DialogoNuevoTurnoComponent implements OnInit {
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 3, false, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, true, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 5, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 5, false, false);
         break;
       case 6:
         this.crearTurnoAtom(this.nuevoTurno.turnoId, true, true);
@@ -268,6 +278,8 @@ export class DialogoNuevoTurnoComponent implements OnInit {
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 4, false, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 5, true, false);
         this.crearTurnoAtom(this.nuevoTurno.turnoId + 5, false, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 6, true, false);
+        this.crearTurnoAtom(this.nuevoTurno.turnoId + 6, false, false);
         break;
     }
   }
