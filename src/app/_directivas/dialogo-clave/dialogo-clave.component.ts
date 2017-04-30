@@ -40,6 +40,7 @@ export class DialogoClaveComponent implements OnInit {
     this.usuariosService.cambiarClave(this.claveOriginal, this.claveNueva).subscribe( () => {
       this.notificationsService.success('OK', 'Clave cambiada correctamente!');
       this.spinner.stop();
+      this.dialogRef.close();
       this.router.navigate(['/login']);
     }, error => {
       if (error.status === 401) {

@@ -86,6 +86,7 @@ import {MyDatePickerModule} from 'mydatepicker';
 import { DialogoNuevoPacienteRapidoComponent } from './_directivas/dialogo-nuevo-paciente-rapido/dialogo-nuevo-paciente-rapido.component';
 import {DialogoNuevoPacienteRapidoService} from "./_servicios/dialogos/dialogo-nuevo-paciente-rapido.service";
 import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave.component';
+import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
 
 @NgModule({
   declarations: [
@@ -179,7 +180,8 @@ import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave
     DialogoNuevaAnulacionComponent,
     DialogoNuevoTurnoComponent,
     DialogoModificarCostoTurnoComponent,
-    DialogoNuevoPacienteRapidoComponent
+    DialogoNuevoPacienteRapidoComponent,
+    DialogoClaveComponent
   ] ,
   providers: [
     LoginService,
@@ -213,7 +215,8 @@ import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave
     DialogoNuevaAnulacionService,
     DialogoNuevoTurnoService,
     DialogoModificarCostoTurnoService,
-    DialogoNuevoPacienteRapidoService
+    DialogoNuevoPacienteRapidoService,
+    DialogoClaveService
   ],
   entryComponents: [
     DialogoComponent,
@@ -229,7 +232,8 @@ import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave
     DialogoNuevaAnulacionComponent,
     DialogoNuevoTurnoComponent,
     DialogoModificarCostoTurnoComponent,
-    DialogoNuevoPacienteRapidoComponent
+    DialogoNuevoPacienteRapidoComponent,
+    DialogoClaveComponent
   ] ,
   bootstrap: [AppComponent]
 })
