@@ -1,7 +1,8 @@
 <div class="center">
   <md-card>
     <div class="boton-add">
-      <a md-fab [routerLink]="['/nuevo-usuario']"><md-icon>add</md-icon></a>
+      <a md-fab [routerLink]="['/nuevo-usuario']" mdTooltip="Nuevo usuario"><md-icon>add</md-icon></a>
+      <a md-fab mdTooltip="Cambiar contraseña" (click)="cambiarClave()"><md-icon>edit</md-icon></a>
     </div>
     <md-card-content>
     </md-card-content>

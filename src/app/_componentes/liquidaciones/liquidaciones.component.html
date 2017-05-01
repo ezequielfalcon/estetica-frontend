@@ -60,11 +60,14 @@
         <label><h4>Turnos</h4></label>
         <table width="100%">
           <tr>
-            <th>Paciente</th><th>Consultorio</th><th>Turno</th><th>Costo</th>
+            <th>Paciente</th><th>Teléfono | Celular</th><th>Tratamientos</th><th>Consultorio</th><th>Turno</th><th>Costo</th>
           </tr>
           <tr *ngFor="let turnoMedico of turnosMedico" class="clickVer" mdTooltip="Click para modificar costo" (click)="cambiarCosto(turnoMedico.id, turnoMedico.costo)">
-            <td>{{turnoMedico.paciente}}</td><td>{{turnoMedico.id_consultorio}}</td>
-            <td>{{turnoStringHora(turnoMedico.id_turno)}}</td><td>{{turnoMedico.costo}}</td>
+            <td>{{turnoMedico.paciente}}</td>
+            <td>{{turnoMedico.telefono}}</td>
+            <td>{{turnoMedico.tratamientos}}</td>
+            <td>{{turnoMedico.id_consultorio}}</td>
+            <td>{{convertirHora(turnoMedico.id_turno)}}</td><td>{{turnoMedico.costo}}</td>
           </tr>
         </table>
         <md-divider style="padding: 5px;"></md-divider>
