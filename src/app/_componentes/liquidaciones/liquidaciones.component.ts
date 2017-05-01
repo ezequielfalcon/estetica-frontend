@@ -8,7 +8,8 @@ import {Medico} from '../../_modelos/medico';
 import {TurnoResumenMedico} from '../../_modelos/turno-resumen-medico';
 import {AdicionalTurno} from '../../_modelos/adicional-turno';
 import {DialogoMedicosService} from '../../_servicios/dialogos/dialogo-medicos.service';
-import {DialogoModificarCostoTurnoService} from "../../_servicios/dialogos/dialogo-modificar-costo-turno.service";
+import {DialogoModificarCostoTurnoService} from '../../_servicios/dialogos/dialogo-modificar-costo-turno.service';
+import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
 
 @Component({
   selector: 'app-liquidaciones',
@@ -41,7 +42,8 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     private dialogoMedicos: DialogoMedicosService,
     private turnosService: TurnosService,
     private viewContainerRef: ViewContainerRef,
-    private costoDialog: DialogoModificarCostoTurnoService
+    private costoDialog: DialogoModificarCostoTurnoService,
+    private tratamientosService: TratamientosService
   ) {
   }
 
@@ -117,6 +119,31 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   cargarTurnos(medicoId, fecha) {
     this.turnosService.traerTurnosPorMedico(medicoId, fecha).subscribe(turnosDb => {
       this.turnosMedico = turnosDb;
+      for (const turnoMedico of this.turnosMedico) {
+        this.cargarTratamientosPorTurno(turnoMedico);
+      }
+      this.spinner.stop();
+    }, error => {
+      if (error.status === 401) {
+        this.notificationService.error('Error', 'Sesión expirada!');
+        this.router.navigate(['/login']);
+      }
+      const body = JSON.parse(error._body);
+      this.notificationService.error('Error', body.mensaje);
+      this.spinner.stop();
+    });
+  }
+
+  cargarTratamientosPorTurno(turnoMedico: TurnoResumenMedico) {
+    this.tratamientosService.traerAgenda(turnoMedico.id).subscribe(tratamientosDb => {
+      if (tratamientosDb.length === 1 && tratamientosDb[0].nombre === 'Consulta') {
+        turnoMedico.tratamientos = ' ';
+      } else {
+        turnoMedico.tratamientos = '';
+        for (const tratamientoDb of tratamientosDb) {
+          turnoMedico.tratamientos = turnoMedico.tratamientos + tratamientoDb.nombre + ' ';
+        }
+      }
       this.spinner.stop();
     }, error => {
       if (error.status === 401) {

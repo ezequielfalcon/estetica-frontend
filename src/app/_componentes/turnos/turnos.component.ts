@@ -10,8 +10,7 @@ import {Horario} from '../../_modelos/horario';
 import {Consultorio} from '../../_modelos/consultorio';
 import {ConsultoriosService} from '../../_servicios/datos/consultorios.service';
 import {DialogoMedicosService} from '../../_servicios/dialogos/dialogo-medicos.service';
-import {Tratamiento} from '../../_modelos/tratamiento';
-import {TratamientosService} from "../../_servicios/datos/tratamientos.service";
+import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
 
 @Component({
   selector: 'app-turnos',
@@ -25,7 +24,6 @@ export class TurnosComponent implements OnInit, OnDestroy {
   turnosMedico: TurnoResumenMedico[] = [];
   horarios: Horario[] = [];
   consultorios: Consultorio[] = [];
-  tratamientos: Tratamiento[] = [];
   fechaTurnos: string;
 
   private static fechaHoy() {
