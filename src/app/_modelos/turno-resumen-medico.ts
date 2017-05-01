@@ -10,4 +10,5 @@ export class TurnoResumenMedico {
   atendido: boolean;
   hora_llegada: string;
   costo: string;
+  tratamientos: string;
 }

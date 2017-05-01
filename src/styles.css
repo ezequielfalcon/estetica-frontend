@@ -23,6 +23,11 @@ body.estetica-dark {
   width: 80%;
 }
 
+.center-print{
+  margin: auto;
+  max-width: 95%;
+}
+
 .center-agenda{
   margin: auto;
   max-width: 98%;
@@ -48,6 +53,10 @@ body.estetica-dark {
     width: 40%;
   }
   .center-agenda{
+    margin: auto;
+    max-width: 85%;
+  }
+  .center-print{
     margin: auto;
     max-width: 85%;
   }
