@@ -39,7 +39,7 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
-  private cambiarClave() {
+  cambiarClave() {
     this.cambiarClaveService.cambiarClave(this.viewContainerRef);
   }
 
