@@ -9,7 +9,6 @@ export class Turno {
   id_paciente: number;
   id_consultorio: number;
   usuario: string;
-  id_tratamiento: number;
   id_turno: number;
   fecha: string;
   entreturno: boolean;
