@@ -1,4 +1,4 @@
-import {Component, OnInit, state} from '@angular/core';
+import {Component, OnInit, state, ViewContainerRef} from '@angular/core';
 import {NotificationsService} from "angular2-notifications";
 import {MdDialogRef} from "@angular/material";
 import {SpinnerService} from "../../_servicios/spinner.service";
@@ -8,6 +8,7 @@ import {MedicosService} from "../../_servicios/datos/medicos.service";
 import {TurnosService} from "../../_servicios/datos/turnos.service";
 import {TratamientosService} from "../../_servicios/datos/tratamientos.service";
 import {Router} from "@angular/router";
+import {ConfirmService} from '../../_servicios/confirm.service';
 
 @Component({
   selector: 'app-dialogo-turno',
@@ -24,7 +25,9 @@ export class DialogoTurnoComponent implements OnInit {
     private medicosService: MedicosService,
     private turnosService: TurnosService,
     private tratamientosService: TratamientosService,
-    private router: Router
+    private router: Router,
+    private confirmar: ConfirmService,
+    private viewContainerRef: ViewContainerRef
   ) { }
 
   public consultorioId: number;
@@ -140,18 +143,22 @@ export class DialogoTurnoComponent implements OnInit {
   }
 
   borrarTurno(){
-    this.spinner.start();
-    this.turnosService.borrar(this.turno.id).subscribe(() => {
-      this.notificationService.success("OK", "Turno borrado correctamente");
-      this.dialogRef.close();
-    }, error => {
-      if (error.status == 401){
-        this.notificationService.error("Error","Sesión expirada!");
-        this.router.navigate(['/login']);
+    this.confirmar.confirm('Confirmar', 'Está seguro que desea cancelar el turno?', this.viewContainerRef).subscribe(confirmo => {
+      if (confirmo) {
+        this.spinner.start();
+        this.turnosService.borrar(this.turno.id).subscribe(() => {
+          this.notificationService.success("OK", "Turno borrado correctamente");
+          this.dialogRef.close();
+        }, error => {
+          if (error.status == 401){
+            this.notificationService.error("Error","Sesión expirada!");
+            this.router.navigate(['/login']);
+          }
+          let body = JSON.parse(error._body);
+          this.notificationService.error('Error', body.mensaje);
+          this.spinner.stop();
+        });
       }
-      let body = JSON.parse(error._body);
-      this.notificationService.error('Error', body.mensaje);
-      this.spinner.stop();
     });
   }
 

@@ -47,17 +47,13 @@
           <td>
             <md-checkbox [checked]="turno.presente" (click)="editarTurno()">Paciente asistió</md-checkbox>
           </td>
-        </tr>
-        <tr>
-          <td>
-            <button md-raised-button color="warn" (click)="borrarTurno()">Cancelar Turno</button>
-          </td>
           <td>
             <button md-raised-button color="accent" [disabled]="!edicion" (click)="pacientePresente()">Guardar cambio</button>
           </td>
         </tr>
       </table>
-
+      <md-divider style="padding: 25px"></md-divider>
+      <button md-raised-button color="warn" (click)="borrarTurno()">Cancelar Turno</button>
     </md-card-content>
   </md-card>
 </md-dialog-content>
