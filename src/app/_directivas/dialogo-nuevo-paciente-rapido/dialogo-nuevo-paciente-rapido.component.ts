@@ -105,7 +105,7 @@ export class DialogoNuevoPacienteRapidoComponent implements OnInit {
 
   static capitalize(texto: string)
   {
-    return texto.charAt(0).toUpperCase() + texto.slice(1);
+    return texto.replace(/\b\w/g, l => l.toUpperCase())
   }
 
 }
