@@ -116,10 +116,10 @@ export class MedicoHomeComponent implements OnInit, OnDestroy {
   }
 
   clickCeldaTurno(consultorioId, turnoId: number) {
-    this.spinner.start();
     if (this.celdaTurnoValor(consultorioId, turnoId) === '-') {
       return;
     }
+    this.spinner.start();
     this.dialogoTurno.verTurno(MedicoHomeComponent.fechaHoy(), consultorioId, turnoId, false, this.viewContainerRef);
   }
 
