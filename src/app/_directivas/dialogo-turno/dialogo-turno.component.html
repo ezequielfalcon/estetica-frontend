@@ -43,7 +43,7 @@
             </div>
           </td>
         </tr>
-        <tr>
+        <tr *ngIf="!esMedico()">
           <td>
             <md-checkbox [checked]="turno.presente" (click)="editarTurno()">Paciente asistió</md-checkbox>
           </td>
@@ -53,7 +53,7 @@
         </tr>
       </table>
       <md-divider style="padding: 25px"></md-divider>
-      <button md-raised-button color="warn" (click)="borrarTurno()">Cancelar Turno</button>
+      <button *ngIf="!esMedico()" md-raised-button color="warn" (click)="borrarTurno()">Cancelar Turno</button>
     </md-card-content>
   </md-card>
 </md-dialog-content>
