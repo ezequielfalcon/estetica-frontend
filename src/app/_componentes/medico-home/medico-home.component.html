@@ -1,19 +1,18 @@
 <div class="center">
   <md-card>
     <md-card-content>
-      <md-grid-list cols="2">
-        <md-grid-tile>
-          <h3>Lista de Turnos</h3>
-          <table width="100%">
-            <tr>
-              <th>Horario</th><th>Consultorio</th><th>Paciente</th>
-            </tr>
-            <tr *ngFor="let turno of turnos">
-              <td>{{turno.id_turno}}</td><td>{{turno.id_consultorio}}</td><td>{{turno.paciente}}</td>
-            </tr>
-          </table>
-        </md-grid-tile>
-      </md-grid-list>
+      <table width="100%">
+        <tr>
+          <th>Horario</th>
+          <th *ngFor="let consutorioMedico of consultoriosMedico">{{consutorioMedico.nombre}}</th>
+        </tr>
+        <ng-container *ngFor="let horario of horariosMedico">
+          <tr>
+            <th>{{horario.hora}}</th>
+            <td *ngFor="let consultorio of consultoriosMedico"><button md-raised-button (click)="clickCeldaTurno(consultorio.id, horario.id)" color="{{celdaTurnoColor(consultorio.id, horario.id)}}">{{celdaTurnoValor(consultorio.id, horario.id)}}</button></td>
+          </tr>
+        </ng-container>
+      </table>
     </md-card-content>
   </md-card>
 </div>

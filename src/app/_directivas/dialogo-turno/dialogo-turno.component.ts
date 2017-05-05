@@ -162,6 +162,11 @@ export class DialogoTurnoComponent implements OnInit {
     });
   }
 
+  esMedico(): boolean {
+    const rol = sessionStorage.getItem('rol');
+    return rol === 'medico';
+  }
+
   private static fechaHoy(){
     let fechaObject = new Date();
     let mesString = (fechaObject.getMonth() + 1) < 10 ? "0" + (fechaObject.getMonth() +1).toString() : (fechaObject.getMonth() + 1).toString();
