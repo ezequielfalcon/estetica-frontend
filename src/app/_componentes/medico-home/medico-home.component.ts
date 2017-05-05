@@ -4,7 +4,7 @@ import {TurnoResumenMedico} from '../../_modelos/turno-resumen-medico';
 import {SpinnerService} from '../../_servicios/spinner.service';
 import {Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
-import {NotificationsService} from 'angular2-notifications/dist';
+import {NotificationsService} from 'angular2-notifications';
 import {Consultorio} from '../../_modelos/consultorio';
 import {ConsultoriosService} from '../../_servicios/datos/consultorios.service';
 import {Horario} from '../../_modelos/horario';
