@@ -10,29 +10,29 @@
         <table cellspacing="0"><tr>
           <td>
             <md-input-container>
-              <input mdInput placeholder="Nombre" name="nombre" [(ngModel)]="nuevoPac.nombre" #nombre="ngModel" required>
+              <input mdInput placeholder="Nombre" name="nombre" [(ngModel)]="nuevoPac.nombre" #nombre="ngModel" required (keyup.enter)="ape.focus()">
             </md-input-container>
           </td>
           <td>
             <md-input-container>
-              <input mdInput placeholder="Apellido" name="apellido" [(ngModel)]="nuevoPac.apellido" #apellido="ngModel" required>
+              <input mdInput placeholder="Apellido" name="apellido" [(ngModel)]="nuevoPac.apellido" #apellido="ngModel" #ape required (keyup.enter)="doc.focus()">
             </md-input-container>
           </td>
         </tr>
           <tr>
             <td>
               <md-input-container>
-                <input mdInput placeholder="Documento" name="documento" [(ngModel)]="nuevoPac.documento" #documento="ngModel" required>
+                <input mdInput placeholder="Documento" name="documento" [(ngModel)]="nuevoPac.documento" #documento="ngModel" #doc required (keyup.enter)="telForm.focus()">
               </md-input-container>
             </td>
             <td>
               <md-input-container>
-                <input mdInput placeholder="Teléfono" name="tel" [(ngModel)]="nuevoPac.tel" #tel="ngModel">
+                <input mdInput placeholder="Teléfono" name="tel" [(ngModel)]="nuevoPac.tel" #tel="ngModel" #telForm (keyup.enter)="cel.focus()">
               </md-input-container>
             </td>
             <td>
               <md-input-container>
-                <input mdInput placeholder="Celular" name="celular" [(ngModel)]="nuevoPac.celular" #celular="ngModel">
+                <input mdInput placeholder="Celular" name="celular" [(ngModel)]="nuevoPac.celular" #celular="ngModel" #cel (keyup.enter)="crear()">
               </md-input-container>
             </td>
           </tr>
