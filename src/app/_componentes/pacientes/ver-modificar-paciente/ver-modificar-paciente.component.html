@@ -1,5 +1,4 @@
 <div class="center-form">
-  <form name="nuevoPac" (ngSubmit)="modificar()">
     <md-card>
       <md-card-header>
         <md-card-title>
@@ -18,12 +17,12 @@
         <table cellspacing="0"><tr>
           <td>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" placeholder="Nombre" name="nombre" [(ngModel)]="pac.nombre" #nombre="ngModel" required>
+              <input mdInput [disabled]="!edicion" placeholder="Nombre" name="nombre" [(ngModel)]="pac.nombre" #nombre="ngModel" required (keyup.enter)="apellidoForm.focus()">
             </md-input-container>
           </td>
           <td>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" placeholder="Apellido" name="apellido" [(ngModel)]="pac.apellido" #apellido="ngModel" required>
+              <input mdInput [disabled]="!edicion" placeholder="Apellido" name="apellido" [(ngModel)]="pac.apellido" #apellido="ngModel" #apellidoForm required (keyup.enter)="documentoForm.focus()">
             </md-input-container>
           </td>
         </tr></table>
@@ -39,33 +38,33 @@
         <table cellspacing="0" class="tablaUsuarios"><tr>
           <td>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" placeholder="Documento" name="documento" [(ngModel)]="pac.documento" #documento="ngModel" required>
+              <input mdInput [disabled]="!edicion" placeholder="Documento" name="documento" [(ngModel)]="pac.documento" #documento="ngModel" #documentoForm required (keyup.enter)="fechaNacForm.focus()">
             </md-input-container>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" type="date" placeholder="Nacimiento" name="fechaNac" [(ngModel)]="pac.fecha_nacimiento" #fechaNac="ngModel">
+              <input mdInput [disabled]="!edicion" type="date" placeholder="Nacimiento" name="fechaNac" [(ngModel)]="pac.fecha_nacimiento" #fechaNac="ngModel" #fechaNacForm (keyup.enter)="telForm.focus()">
             </md-input-container>
           </td>
         </tr></table>
         <table cellspacing="0" class="tablaUsuarios"><tr>
           <td>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" type="tel" placeholder="Teléfono" name="tel" [(ngModel)]="pac.telefono" #tel="ngModel">
+              <input mdInput [disabled]="!edicion" type="tel" placeholder="Teléfono" name="tel" [(ngModel)]="pac.telefono" #tel="ngModel" #telForm (keyup.enter)="celForm.focus()">
             </md-input-container>
           </td>
           <td>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" type="tel" placeholder="Celular" name="cel" [(ngModel)]="pac.celular" #cel="ngModel">
+              <input mdInput [disabled]="!edicion" type="tel" placeholder="Celular" name="cel" [(ngModel)]="pac.celular" #cel="ngModel" #celForm (keyup.enter)="emailForm.focus()">
             </md-input-container>
           </td>
           <td>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" type="email" placeholder="Correo electrónico" name="email" [(ngModel)]="pac.mail" #email="ngModel">
+              <input mdInput [disabled]="!edicion" type="email" placeholder="Correo electrónico" name="email" [(ngModel)]="pac.mail" #email="ngModel" #emailForm (keyup.enter)="numero_osForm.focus()">
             </md-input-container>
           </td>
         </tr></table>
         <table cellspacing="0" class="tablaUsuarios"><tr>
           <td>
-            <md-select [disabled]="!edicion" placeholder="Sexo" [(ngModel)]="pac.sexo" name="sexo">
+            <md-select [disabled]="!edicion" placeholder="Sexo" [(ngModel)]="pac.sexo" name="sexo" #sexoSelect>
               <md-option *ngFor="let sex of sexos" [value]="sex.valor">
                 {{sex.nombre}}
               </md-option>
@@ -75,19 +74,19 @@
           <tr>
             <td>
               <md-input-container>
-                <input mdInput [disabled]="!edicion" placeholder="Numero OS" name="numero_os" [(ngModel)]="pac.numero_os" #numero_os="ngModel">
+                <input mdInput [disabled]="!edicion" placeholder="Numero OS" name="numero_os" [(ngModel)]="pac.numero_os" #numero_os="ngModel" #numero_osForm (keyup.enter)="domicilioForm.focus()">
               </md-input-container>
             </td>
             <td>
               <md-input-container>
-                <input mdInput [disabled]="!edicion" placeholder="Domicilio" name="domicilio" [(ngModel)]="pac.domicilio" #domicilio="ngModel">
+                <input mdInput [disabled]="!edicion" placeholder="Domicilio" name="domicilio" [(ngModel)]="pac.domicilio" #domicilio="ngModel" #domicilioForm (keyup.enter)="obvservacionesCampoForm.focus()">
               </md-input-container>
             </td>
           </tr>
           <tr>
             <td>
               <md-input-container>
-                <textarea mdInput [disabled]="!edicion" placeholder="Observaciones" name="obvservaciones" [(ngModel)]="pac.obvservaciones" #obvservaciones="ngModel"></textarea>
+                <input mdInput [disabled]="!edicion" placeholder="Observaciones" name="obvservaciones" [(ngModel)]="pac.obvservaciones" #obvservacionesCampo="ngModel" #obvservacionesCampoForm (keyup.enter)="modificar()">
               </md-input-container>
             </td>
           </tr>
@@ -95,7 +94,7 @@
       </md-card-content>
       <md-card-actions>
         <button md-button color="primary" (click)="editar(true)" *ngIf="!edicion" type="button"><md-icon>create</md-icon>Modificar</button>
-        <button *ngIf="edicion" md-button color="accent" type="submit"><md-icon>archive</md-icon>Guardar</button>
+        <button *ngIf="edicion" md-button color="accent" type="button" (click)="modificar()"><md-icon>archive</md-icon>Guardar</button>
         <button md-button type="button" *ngIf="!edicion" color="primary" [routerLink]="[returnUrl]"><md-icon>undo</md-icon>Volver</button>
         <button md-button color="primary" (click)="editar(false)" type="button" *ngIf="edicion"><md-icon>clear</md-icon>Cancelar</button>
         <div class="botones-derecha">
@@ -103,5 +102,4 @@
         </div>
       </md-card-actions>
     </md-card>
-  </form>
 </div>
