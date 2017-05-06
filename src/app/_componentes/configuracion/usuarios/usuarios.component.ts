@@ -17,9 +17,7 @@ export class UsuariosComponent implements OnInit {
   constructor(
     private notificationService: NotificationsService,
     private usuariosService: UsuariosService,
-    private router: Router,
-    private cambiarClaveService: DialogoClaveService,
-    private viewContainerRef: ViewContainerRef
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,10 +35,6 @@ export class UsuariosComponent implements OnInit {
       const body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
     });
-  }
-
-  cambiarClave() {
-    this.cambiarClaveService.cambiarClave(this.viewContainerRef);
   }
 
 }

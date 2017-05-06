@@ -1,7 +1,7 @@
 <div class="center">
   <md-card>
     <h2 style="text-align: center">Consultorios Dermatológicos y Centro de Estética</h2>
-    <table width="100%">
+    <table style="width: 100%; table-layout: fixed">
       <tr>
         <td>
           <button md-raised-button color="primary" [routerLink]="['/agenda']">
@@ -44,24 +44,26 @@
           </button>
         </td>
       </tr>
-      <md-divider style="padding-top: 2px;"></md-divider>
-      <tr style="padding-top: 1px;">
+      <tr>
         <td>
           <button md-raised-button color="accent" [routerLink]="['/configuracion']">
             <md-icon>build</md-icon>
             <span>Configuración</span>
           </button>
         </td>
-        <td>
-          <button md-raised-button color="warn" [routerLink]="['/login']">
-            <md-icon>exit_to_app</md-icon>
-            <span>Salir</span>
-          </button>
-        </td>
       </tr>
     </table>
     <md-divider style="padding: 1px;"></md-divider>
-
+    <div style="float: right">
+      <button md-button color="accent" (click)="cambiarClave()">
+        <md-icon>security</md-icon>
+        <span>Cambiar contraseña</span>
+      </button>
+      <button md-button color="warn" [routerLink]="['/login']">
+        <md-icon>exit_to_app</md-icon>
+        <span>Salir</span>
+      </button>
+    </div>
     <!--<button style="float: right" type="button" (click)="oscuro()" md-button>MODO OSCURO</button>-->
   </md-card>
 </div>
