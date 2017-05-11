@@ -53,7 +53,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private dialogoAnulaciones: DialogoAnulacionesService,
     private route: ActivatedRoute,
     private dialogoNuevoTurno: DialogoNuevoTurnoService,
-    private darkService: DarkThemeService
+    public darkService: DarkThemeService
   ) { this.pararActualizarTurnos = new Subject(); }
 
 
