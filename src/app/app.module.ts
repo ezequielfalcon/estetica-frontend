@@ -86,6 +86,7 @@ import { DialogoNuevoPacienteRapidoComponent } from './_directivas/dialogo-nuevo
 import {DialogoNuevoPacienteRapidoService} from "./_servicios/dialogos/dialogo-nuevo-paciente-rapido.service";
 import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave.component';
 import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
+import {EsMedicoService} from './_servicios/es-medico.service';
 
 @NgModule({
   declarations: [
@@ -214,7 +215,8 @@ import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
     DialogoNuevoTurnoService,
     DialogoModificarCostoTurnoService,
     DialogoNuevoPacienteRapidoService,
-    DialogoClaveService
+    DialogoClaveService,
+    EsMedicoService
   ],
   entryComponents: [
     DialogoComponent,

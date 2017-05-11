@@ -48,7 +48,7 @@
       </button>
     </md-sidenav>
     <md-toolbar color="primary">
-      <button md-button (click)="sidenav.toggle()">
+      <button md-button (click)="sidenav.toggle()" *ngIf="!esMedico.esMedico">
         <md-icon class="icono-toolbar">more_vert</md-icon>
       </button>
       <span>CONDES</span>

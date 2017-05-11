@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {DarkThemeService} from "./_servicios/dark-theme.service";
+import {EsMedicoService} from './_servicios/es-medico.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import {DarkThemeService} from "./_servicios/dark-theme.service";
 })
 export class AppComponent {
 
-  constructor(public darkService: DarkThemeService){}
+  constructor(
+    public darkService: DarkThemeService,
+    public esMedico: EsMedicoService
+  ){}
 
   public options = {
     position: ["bottom", "right"],
