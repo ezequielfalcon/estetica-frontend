@@ -1,143 +1,170 @@
 @import "estetica.css";
-
 .estetica-dark {
-@include angular-material-theme(dark-theme);
+    @include angular-material-theme(dark-theme);
 }
 
-body.estetica-dark {
-  margin: 0;
-  background-color: #212121;
-  font-family: Roboto, sans-serif;
-}
-
-.center-login {
-  margin: auto;
-  width: 50%;
-}
-.center {
-  margin: auto;
-  width: 90%;
-}
-.center-form {
-  margin: auto;
-  width: 80%;
-}
-
-.center-print{
-  margin: auto;
-  max-width: 95%;
-}
-
-.center-agenda{
-  margin: auto;
-  max-width: 98%;
-}
-
-
-  th, td{
-    padding: 5px;
-  }
-
-
-@media only screen and (min-width: 768px){
-  .center-login {
-    margin: auto;
-    width: 20%;
-  }
-  .center {
-    margin: auto;
-    width: 60%;
-  }
-  .center-form {
-    margin: auto;
-    width: 40%;
-  }
-  .center-agenda{
-    margin: auto;
-    max-width: 85%;
-  }
-  .center-print{
-    margin: auto;
-    max-width: 85%;
-  }
-}
-
-.boton-add{
-  float: right;
-  margin-top: 1%;
-}
-
-.boton-add-red{
-  float:right;
-  margin-bottom: 1%;
-}
-
-.botones-derecha {
-  right: auto;
-  float: right;
-}
-
-.clickVer {
-  cursor: pointer;
-}
-
-.app-input-icon {
-  font-size: 16px;
-}
-
-
-body {
-  margin: 0;
-  font-family: Roboto, sans-serif;
-}
-
-md-toolbar-row {
-  justify-content: space-between;
-}
-
-p {
-  margin: 16px;
-}
-
-[md-raised-button] {
-  width: 100%;
-}
-
-md-grid-list {
-  max-width: 1403px;
-  margin: 16px;
+body,
+html {
+    margin: 0;
+    height: 100%;
+    font-family: Roboto, sans-serif;
 }
 
 md-sidenav-layout {
-  height: 100vh;
+    height: 100%;
+}
+
+md-sidenav-layout /deep/ .md-sidenav-content {
+    overflow: hidden;
 }
 
 md-sidenav {
-  width: 320px;
+    width: 250px;
+    height: 100%;
+    padding: 0;
+    background-color: lightgray;
 }
 
-.icon-20 {
-  font-size: 20px;
+.sidenav-title {
+    color: white;
+    background-color: darkblue;
+    line-height: 64px;
+    text-indent: 20px;
+    margin-top: -20px;
 }
 
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.sidenav-menu {
+    text-indent: 20px;
+}
+
+.app-content {
+    padding: 20px;
+    height: calc(100% - 64px);
+    overflow: auto;
+}
+
+.app-toolbar-menu {
+    padding: 0 14px 0 14px;
+    color: white;
 }
 
 .app-icon-button {
-  box-shadow: none;
-  user-select: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  filter: none;
-  font-weight: normal;
-  height: auto;
-  line-height: inherit;
-  margin: 0;
-  min-width: 0;
-  padding: 0;
-  text-align: left;
-  text-decoration: none;
+    box-shadow: none;
+    user-select: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    filter: none;
+    font-weight: normal;
+    height: auto;
+    line-height: inherit;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+}
+
+body.estetica-dark {
+    margin: 0;
+    background-color: #212121;
+    font-family: Roboto, sans-serif;
+}
+
+.center-login {
+    margin: auto;
+    width: 50%;
+}
+
+.center {
+    margin: auto;
+    width: 90%;
+}
+
+.center-form {
+    margin: auto;
+    width: 80%;
+}
+
+.center-print {
+    margin: auto;
+    max-width: 95%;
+}
+
+.center-agenda {
+    margin: auto;
+    max-width: 98%;
+}
+
+th,
+td {
+    padding: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+    .center-login {
+        margin: auto;
+        width: 20%;
+    }
+    .center {
+        margin: auto;
+        width: 60%;
+    }
+    .center-form {
+        margin: auto;
+        width: 40%;
+    }
+    .center-agenda {
+        margin: auto;
+        max-width: 85%;
+    }
+    .center-print {
+        margin: auto;
+        max-width: 85%;
+    }
+}
+
+.boton-add {
+    float: right;
+    margin-top: 1%;
+}
+
+.boton-add-red {
+    float: right;
+    margin-bottom: 1%;
+}
+
+.botones-derecha {
+    right: auto;
+    float: right;
+}
+
+.clickVer {
+    cursor: pointer;
+}
+
+.app-input-icon {
+    font-size: 16px;
+}
+
+p {
+    margin: 16px;
+}
+
+[md-raised-button] {
+    width: 100%;
+}
+
+md-grid-list {
+    max-width: 1403px;
+    margin: 16px;
+}
+
+.icon-20 {
+    font-size: 20px;
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
