@@ -6,6 +6,7 @@ import { LoginService } from "../../_servicios/index";
 import { NotificationsService } from "angular2-notifications";
 import { Router, ActivatedRoute } from '@angular/router';
 import {SpinnerService} from "../../_servicios/spinner.service";
+import {CurrentRouteService} from '../../_servicios/current-route.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private currentRoute: CurrentRouteService,
     private router: Router,
     private loginService: LoginService,
     private notificationSerivce: NotificationsService,
@@ -31,10 +33,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginService.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.spinner.stop();
+    this.currentRoute.rutaActual = 'login';
   }
 
   ngOnDestroy(){
     this.spinner.start();
+    this.currentRoute.rutaActual = 'nop';
   }
 
   login() {

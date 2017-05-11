@@ -87,6 +87,7 @@ import {DialogoNuevoPacienteRapidoService} from "./_servicios/dialogos/dialogo-n
 import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave.component';
 import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
 import {EsMedicoService} from './_servicios/es-medico.service';
+import {CurrentRouteService} from './_servicios/current-route.service';
 
 @NgModule({
   declarations: [
@@ -216,7 +217,8 @@ import {EsMedicoService} from './_servicios/es-medico.service';
     DialogoModificarCostoTurnoService,
     DialogoNuevoPacienteRapidoService,
     DialogoClaveService,
-    EsMedicoService
+    EsMedicoService,
+    CurrentRouteService
   ],
   entryComponents: [
     DialogoComponent,
