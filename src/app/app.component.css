@@ -1,3 +1,54 @@
 .estetica-dark {
-  background: #212121;
+    background: #212121;
+}
+
+md-sidenav-container /deep/ md-sidenav {
+  overflow: hidden;
+}
+
+.boton-sidenav {
+  width: 100%;
+  text-align: left;
+}
+
+.contenido-app {
+  padding: 20px;
+  height: calc(100% - 124px);
+  overflow: auto;
+}
+
+.espacio-toolbar {
+  flex: 1 1 auto;
+}
+
+md-sidenav-container {
+  height: 100%;
+}
+
+md-sidenav {
+  width: 200px;
+  height: 100%;
+  padding: 0;
+  background-color: lightgray;
+}
+
+.icono-toolbar {
+  padding: 0 14px;
+}
+
+.app-icon-button {
+  box-shadow: none;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: none;
+  font-weight: normal;
+  height: auto;
+  line-height: inherit;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
 }

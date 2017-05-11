@@ -10,10 +10,12 @@ export class AppComponent {
 
   constructor(public darkService: DarkThemeService){}
 
-  private esDarkTheme = this.darkService.esDark;
-
   public options = {
     position: ["bottom", "right"],
     timeOut: 2500,
+  };
+
+  public temaOscuro() {
+    this.darkService.esDark = !this.darkService.esDark;
   }
 }

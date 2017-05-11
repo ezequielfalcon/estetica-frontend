@@ -1,7 +1,8 @@
 tr:nth-child(even){background-color: rgba(188, 188, 188, 0.39)
 }
 th{
-  background-color: #9fa8da;
+  background-color: #3f51b5;
+  color: #fafafa;
   padding: 1px;
 }
 td{
@@ -15,6 +16,8 @@ td{
   width: 140px;
   font-size: medium;
   font-weight: bold;
-  background-color: whitesmoke;
+}
 
+.fecha-dark {
+  background-color: #212121;
 }

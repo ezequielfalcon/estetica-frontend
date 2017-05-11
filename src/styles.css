@@ -10,64 +10,9 @@ html {
     font-family: Roboto, sans-serif;
 }
 
-md-sidenav-layout {
-    height: 100%;
-}
-
-md-sidenav-layout /deep/ .md-sidenav-content {
-    overflow: hidden;
-}
-
-md-sidenav {
-    width: 250px;
-    height: 100%;
-    padding: 0;
-    background-color: lightgray;
-}
-
-.sidenav-title {
-    color: white;
-    background-color: darkblue;
-    line-height: 64px;
-    text-indent: 20px;
-    margin-top: -20px;
-}
-
-.sidenav-menu {
-    text-indent: 20px;
-}
-
-.app-content {
-    padding: 20px;
-    height: calc(100% - 64px);
-    overflow: auto;
-}
-
-.app-toolbar-menu {
-    padding: 0 14px 0 14px;
-    color: white;
-}
-
-.app-icon-button {
-    box-shadow: none;
-    user-select: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    filter: none;
-    font-weight: normal;
-    height: auto;
-    line-height: inherit;
-    margin: 0;
-    min-width: 0;
-    padding: 0;
-    text-align: left;
-    text-decoration: none;
-}
-
 body.estetica-dark {
     margin: 0;
-    background-color: #212121;
+    height: 100%;
     font-family: Roboto, sans-serif;
 }
 
@@ -141,14 +86,6 @@ td {
 
 .clickVer {
     cursor: pointer;
-}
-
-.app-input-icon {
-    font-size: 16px;
-}
-
-p {
-    margin: 16px;
 }
 
 [md-raised-button] {

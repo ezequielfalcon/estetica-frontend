@@ -15,7 +15,6 @@ import { LoginComponent, HomeComponent, PacientesComponent, ObrasSocialesCompone
   NuevaObraSocialComponent, VerModificarObraSocial } from './_componentes/index';
 
 import { AuthGuard } from './_guards/index';
-import { MenuComponent } from './_directivas/menu/menu.component';
 import { FilterByPipe } from './_servicios/filtros/filter.pipe';
 
 import { LoginService, HttpAuthService, ConfirmService } from './_servicios/index';
@@ -94,7 +93,6 @@ import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
     LoginComponent,
     HomeComponent,
     PacientesComponent,
-    MenuComponent,
     ObrasSocialesComponent,
     NuevaObraSocialComponent,
     VerModificarObraSocial,

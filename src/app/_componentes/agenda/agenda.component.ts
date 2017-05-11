@@ -14,6 +14,7 @@ import {Anulacion} from '../../_modelos/anulacion';
 import {MedicosService} from '../../_servicios/datos/medicos.service';
 import {DialogoAnulacionesService} from '../../_servicios/dialogos/dialogo-anulaciones.service';
 import {DialogoNuevoTurnoService} from '../../_servicios/dialogos/dialogo-nuevo-turno.service';
+import {DarkThemeService} from '../../_servicios/dark-theme.service';
 
 @Component({
   selector: 'app-agenda',
@@ -51,7 +52,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
     private dialogoTurno: DialogoTurnoService,
     private dialogoAnulaciones: DialogoAnulacionesService,
     private route: ActivatedRoute,
-    private dialogoNuevoTurno: DialogoNuevoTurnoService
+    private dialogoNuevoTurno: DialogoNuevoTurnoService,
+    private darkService: DarkThemeService
   ) { this.pararActualizarTurnos = new Subject(); }
 
 

@@ -2,7 +2,7 @@
   <md-card>
     <md-card-content>
       <md-input-container>
-        <input mdInput type="date" id="fechaT" [(ngModel)]="fechaTurnos" (change)="cambiarFecha()">
+        <input mdInput type="date" id="fechaT" [class.fecha-dark]="this.darkService.esDark" [(ngModel)]="fechaTurnos" (change)="cambiarFecha()">
       </md-input-container>
       <a md-fab color="warn" *ngIf="anulaciones.length > 0" style="position: fixed; top: 85px; right: 20px;" (click)="verAnulacionesDialogo()" mdTooltip="Hay médicos ausentes!"><md-icon>warning</md-icon></a>
       <md-divider></md-divider>
