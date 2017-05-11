@@ -15,7 +15,6 @@ import { LoginComponent, HomeComponent, PacientesComponent, ObrasSocialesCompone
   NuevaObraSocialComponent, VerModificarObraSocial } from './_componentes/index';
 
 import { AuthGuard } from './_guards/index';
-import { MenuComponent } from './_directivas/menu/menu.component';
 import { FilterByPipe } from './_servicios/filtros/filter.pipe';
 
 import { LoginService, HttpAuthService, ConfirmService } from './_servicios/index';
@@ -87,6 +86,8 @@ import { DialogoNuevoPacienteRapidoComponent } from './_directivas/dialogo-nuevo
 import {DialogoNuevoPacienteRapidoService} from "./_servicios/dialogos/dialogo-nuevo-paciente-rapido.service";
 import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave.component';
 import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
+import {EsMedicoService} from './_servicios/es-medico.service';
+import {CurrentRouteService} from './_servicios/current-route.service';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,6 @@ import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
     LoginComponent,
     HomeComponent,
     PacientesComponent,
-    MenuComponent,
     ObrasSocialesComponent,
     NuevaObraSocialComponent,
     VerModificarObraSocial,
@@ -216,7 +216,9 @@ import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
     DialogoNuevoTurnoService,
     DialogoModificarCostoTurnoService,
     DialogoNuevoPacienteRapidoService,
-    DialogoClaveService
+    DialogoClaveService,
+    EsMedicoService,
+    CurrentRouteService
   ],
   entryComponents: [
     DialogoComponent,

@@ -1,7 +1,63 @@
-<div [class.estetica-dark]="darkService.esDark">
-  <menu-estetica></menu-estetica>
-  <spinner-component></spinner-component>
-  <router-outlet></router-outlet>
-  <simple-notifications [options]="options"></simple-notifications>
-</div>
-
+  <md-sidenav-container class="mat-app-background" [class.estetica-dark]="darkService.esDark">
+    <md-sidenav #sidenav mode="over">
+      <button md-button class="boton-sidenav" [routerLink]="['/']" (click)="sidenav.toggle()">
+        <md-icon>home</md-icon>
+        <span>Inicio</span>
+      </button>
+      <br>
+      <button md-button class="boton-sidenav" [routerLink]="['/agenda']" (click)="sidenav.toggle()">
+        <md-icon>reorder</md-icon>
+        <span>Agenda</span>
+      </button>
+      <br>
+      <button md-button class="boton-sidenav" [routerLink]="['/turnos']" (click)="sidenav.toggle()">
+        <md-icon>receipt</md-icon>
+        <span>Turnos</span>
+      </button>
+      <br>
+      <button md-button class="boton-sidenav" [routerLink]="['/pacientes']" (click)="sidenav.toggle()">
+        <md-icon>people</md-icon>
+        <span>Pacientes</span>
+      </button>
+      <br>
+      <button md-button class="boton-sidenav" [routerLink]="['/liquidaciones']" (click)="sidenav.toggle()">
+        <md-icon>payment</md-icon>
+        <span>Liquidaciones</span>
+      </button>
+      <br>
+      <button md-button class="boton-sidenav" [routerLink]="['/cuenta-corriente']" (click)="sidenav.toggle()">
+        <md-icon>monetization_on</md-icon>
+        <span>Cuenta Corriente</span>
+      </button>
+      <br>
+      <button md-button class="boton-sidenav" [routerLink]="['/ausencias']" (click)="sidenav.toggle()">
+        <md-icon>warning</md-icon>
+        <span>Ausencias programadas</span>
+      </button>
+      <br>
+      <md-divider></md-divider>
+      <button md-button class="boton-sidenav" color="accent" [routerLink]="['/configuracion']" (click)="sidenav.toggle()">
+        <md-icon>build</md-icon>
+        <span>Configuración</span>
+      </button>
+      <br>
+      <md-divider></md-divider>
+      <button md-button class="boton-sidenav" color="warn" [routerLink]="['/login']" (click)="sidenav.toggle()">
+        <md-icon>exit_to_app</md-icon>
+        <span>Salir</span>
+      </button>
+    </md-sidenav>
+    <md-toolbar color="primary">
+      <button md-button (click)="sidenav.toggle()" *ngIf="!esconderMenu()">
+        <md-icon class="icono-toolbar">more_vert</md-icon>
+      </button>
+      <span>CONDES</span>
+      <span class="espacio-toolbar"></span>
+      <button md-button (click)="temaOscuro()">Modo oscuro</button>
+    </md-toolbar>
+    <spinner-component></spinner-component>
+    <div class="contenido-app">
+      <router-outlet></router-outlet>
+    </div>
+  </md-sidenav-container>
+<simple-notifications [options]="options"></simple-notifications>

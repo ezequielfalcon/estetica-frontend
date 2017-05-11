@@ -4,11 +4,16 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, Response, URLSearchParams} from '@angular/http';
 import 'rxjs/add/operator/map'
+import {DarkThemeService} from './dark-theme.service';
+import {EsMedicoService} from './es-medico.service';
 
 
 @Injectable()
 export class LoginService{
-  constructor(private http: Http){}
+  constructor(
+    private http: Http,
+    private esMedico: EsMedicoService
+  ){}
 
   login(usuario: string, clave: string){
     let body = new URLSearchParams();
@@ -23,10 +28,12 @@ export class LoginService{
         sessionStorage.setItem('token', response.json().token);
         let usuarioResponse = response.json().usuario;
         sessionStorage.setItem('rol', usuarioResponse.rol);
+        if (usuarioResponse.rol == 'medico') this.esMedico.esMedico = true;
       });
   }
 
-  static logout() {
+  logout() {
+    this.esMedico.esMedico = false;
     sessionStorage.removeItem('usuario');
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('rol');
