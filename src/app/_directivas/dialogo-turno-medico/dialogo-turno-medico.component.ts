@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PacientesService} from '../../_servicios/datos/pacientes.service';
 import {MdDialogRef} from '@angular/material';
-import {NotificationsService} from 'angular2-notifications/dist';
+import {NotificationsService} from 'angular2-notifications';
 import {SpinnerService} from '../../_servicios/spinner.service';
 import {TurnosService} from '../../_servicios/datos/turnos.service';
 import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
