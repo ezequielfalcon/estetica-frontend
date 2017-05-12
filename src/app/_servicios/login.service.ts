@@ -20,7 +20,7 @@ export class LoginService{
     body.set('usuario', usuario);
     body.set('clave', clave);
     let headers = new Headers();
-    let apiUrl = 'https://estetica-backend.herokuapp.com/api';
+    let apiUrl = 'https://estetica-backend-testing.herokuapp.com/api';
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post(apiUrl + '/login', body, {headers: headers})
       .map((response: Response) => {
