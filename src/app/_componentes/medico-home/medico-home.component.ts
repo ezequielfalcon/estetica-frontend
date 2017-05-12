@@ -9,7 +9,7 @@ import {Consultorio} from '../../_modelos/consultorio';
 import {ConsultoriosService} from '../../_servicios/datos/consultorios.service';
 import {Horario} from '../../_modelos/horario';
 import {TurnosService} from '../../_servicios/datos/turnos.service';
-import {DialogoTurnoService} from '../../_servicios/dialogos/dialogo-turno.service';
+import {DialogoTurnoMedicoService} from '../../_servicios/dialogos/dialogo-turno-medico.service';
 
 @Component({
   selector: 'app-medico-home',
@@ -40,7 +40,7 @@ export class MedicoHomeComponent implements OnInit, OnDestroy {
     private notificationsService: NotificationsService,
     private consultoriosService: ConsultoriosService,
     private turnosService: TurnosService,
-    private dialogoTurno: DialogoTurnoService,
+    private dialogoTurno: DialogoTurnoMedicoService,
     private viewContainerRef: ViewContainerRef
   ) { this.pararActualizarTurnos = new Subject(); }
 
@@ -147,6 +147,40 @@ export class MedicoHomeComponent implements OnInit, OnDestroy {
       }
     }
     return '';
+  }
+
+  celdaEntreTurnoValor(consultorioId, turnoId: number) {
+    for (const turno of this.turnos){
+      if (turno.id_turno === turnoId && turno.id_consultorio === consultorioId && turno.entreturno === true) {
+        return turno.paciente;
+      }
+    }
+    return '-';
+  }
+
+  clickEntreturno(consultorioId, turnoId: number) {
+    if (this.celdaEntreTurnoValor(consultorioId, turnoId) === '-') {
+      return;
+    } else {
+      this.spinner.start();
+      this.dialogoTurno.verTurno(MedicoHomeComponent.fechaHoy(), consultorioId, turnoId, true, this.viewContainerRef);
+    }
+  }
+
+  entreturno(consultorioId, turnoId: number) {
+    for (const turno of this.turnos){
+      if (turno.id_turno === turnoId && turno.id_consultorio === consultorioId && turno.entreturno === true) {
+        if (turno.atendido === true) {
+          return '#009688';
+        } else {
+          if (turno.presente === true) {
+            return '#009688';
+          } else {
+            return '#3F51B5';
+          }
+        }
+      }
+    }
   }
 
   orderByArray(values: any[], orderType: any) {

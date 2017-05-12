@@ -88,6 +88,8 @@ import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave
 import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
 import {EsMedicoService} from './_servicios/es-medico.service';
 import {CurrentRouteService} from './_servicios/current-route.service';
+import { DialogoTurnoMedicoComponent } from './_directivas/dialogo-turno-medico/dialogo-turno-medico.component';
+import {DialogoTurnoMedicoService} from "./_servicios/dialogos/dialogo-turno-medico.service";
 
 @NgModule({
   declarations: [
@@ -135,7 +137,8 @@ import {CurrentRouteService} from './_servicios/current-route.service';
     DialogoNuevoTurnoComponent,
     DialogoModificarCostoTurnoComponent,
     DialogoNuevoPacienteRapidoComponent,
-    DialogoClaveComponent
+    DialogoClaveComponent,
+    DialogoTurnoMedicoComponent
   ],
   imports: [
     BrowserModule,
@@ -181,7 +184,8 @@ import {CurrentRouteService} from './_servicios/current-route.service';
     DialogoNuevoTurnoComponent,
     DialogoModificarCostoTurnoComponent,
     DialogoNuevoPacienteRapidoComponent,
-    DialogoClaveComponent
+    DialogoClaveComponent,
+    DialogoTurnoMedicoComponent
   ] ,
   providers: [
     LoginService,
@@ -218,7 +222,8 @@ import {CurrentRouteService} from './_servicios/current-route.service';
     DialogoNuevoPacienteRapidoService,
     DialogoClaveService,
     EsMedicoService,
-    CurrentRouteService
+    CurrentRouteService,
+    DialogoTurnoMedicoService
   ],
   entryComponents: [
     DialogoComponent,
@@ -235,7 +240,8 @@ import {CurrentRouteService} from './_servicios/current-route.service';
     DialogoNuevoTurnoComponent,
     DialogoModificarCostoTurnoComponent,
     DialogoNuevoPacienteRapidoComponent,
-    DialogoClaveComponent
+    DialogoClaveComponent,
+    DialogoTurnoMedicoComponent
   ] ,
   bootstrap: [AppComponent]
 })
