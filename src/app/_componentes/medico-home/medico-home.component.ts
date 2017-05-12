@@ -149,6 +149,40 @@ export class MedicoHomeComponent implements OnInit, OnDestroy {
     return '';
   }
 
+  celdaEntreTurnoValor(consultorioId, turnoId: number) {
+    for (const turno of this.turnos){
+      if (turno.id_turno === turnoId && turno.id_consultorio === consultorioId && turno.entreturno === true) {
+        return turno.paciente;
+      }
+    }
+    return '-';
+  }
+
+  clickEntreturno(consultorioId, turnoId: number) {
+    if (this.celdaEntreTurnoValor(consultorioId, turnoId) === '-') {
+      return;
+    } else {
+      this.spinner.start();
+      this.dialogoTurno.verTurno(MedicoHomeComponent.fechaHoy(), consultorioId, turnoId, true, this.viewContainerRef);
+    }
+  }
+
+  entreturno(consultorioId, turnoId: number) {
+    for (const turno of this.turnos){
+      if (turno.id_turno === turnoId && turno.id_consultorio === consultorioId && turno.entreturno === true) {
+        if (turno.atendido === true) {
+          return '#009688';
+        } else {
+          if (turno.presente === true) {
+            return '#009688';
+          } else {
+            return '#3F51B5';
+          }
+        }
+      }
+    }
+  }
+
   orderByArray(values: any[], orderType: any) {
     return values.sort((a, b) => {
       if (a[orderType] < b[orderType]) {
