@@ -9,7 +9,7 @@ import {Consultorio} from '../../_modelos/consultorio';
 import {ConsultoriosService} from '../../_servicios/datos/consultorios.service';
 import {Horario} from '../../_modelos/horario';
 import {TurnosService} from '../../_servicios/datos/turnos.service';
-import {DialogoTurnoService} from '../../_servicios/dialogos/dialogo-turno.service';
+import {DialogoTurnoMedicoService} from '../../_servicios/dialogos/dialogo-turno-medico.service';
 
 @Component({
   selector: 'app-medico-home',
@@ -40,7 +40,7 @@ export class MedicoHomeComponent implements OnInit, OnDestroy {
     private notificationsService: NotificationsService,
     private consultoriosService: ConsultoriosService,
     private turnosService: TurnosService,
-    private dialogoTurno: DialogoTurnoService,
+    private dialogoTurno: DialogoTurnoMedicoService,
     private viewContainerRef: ViewContainerRef
   ) { this.pararActualizarTurnos = new Subject(); }
 
