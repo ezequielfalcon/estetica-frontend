@@ -90,6 +90,7 @@ import {EsMedicoService} from './_servicios/es-medico.service';
 import {CurrentRouteService} from './_servicios/current-route.service';
 import { DialogoTurnoMedicoComponent } from './_directivas/dialogo-turno-medico/dialogo-turno-medico.component';
 import {DialogoTurnoMedicoService} from "./_servicios/dialogos/dialogo-turno-medico.service";
+import {JsreportService} from "./_servicios/jsreport.service";
 
 @NgModule({
   declarations: [
@@ -223,7 +224,8 @@ import {DialogoTurnoMedicoService} from "./_servicios/dialogos/dialogo-turno-med
     DialogoClaveService,
     EsMedicoService,
     CurrentRouteService,
-    DialogoTurnoMedicoService
+    DialogoTurnoMedicoService,
+    JsreportService
   ],
   entryComponents: [
     DialogoComponent,
