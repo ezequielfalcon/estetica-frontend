@@ -14,7 +14,9 @@ import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
 import {JsreportService} from '../../_servicios/jsreport.service';
 import {TurnoReporte} from '../../_modelos/reportes/turno-reporte';
 import {ListadoTurnos} from '../../_modelos/reportes/listado-turnos';
-import {Turno} from '../../_modelos/turno';
+import * as FileSaver from 'file-saver';
+import {win32} from 'path';
+import {escape} from 'querystring';
 
 @Component({
   selector: 'app-turnos',
@@ -61,6 +63,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
   }
 
   imprimir() {
+    this.spinner.start();
     const listadoTurnos = new ListadoTurnos();
     listadoTurnos.turnos = [];
     listadoTurnos.medico = this.medicoSeleccionado.nombre + ' ' + this.medicoSeleccionado.apellido;
@@ -72,7 +75,8 @@ export class TurnosComponent implements OnInit, OnDestroy {
       listadoTurnos.turnos.push(turnoRep);
     }
     this.jsreports.generarListadoTurnos(listadoTurnos).subscribe(reporte => {
-      console.log(reporte);
+      this.spinner.stop();
+      window.open('data:application/pdf,' + encodeURI(reporte.text()));
     });
   }
 
