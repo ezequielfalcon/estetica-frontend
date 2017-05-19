@@ -11,6 +11,10 @@ import {Consultorio} from '../../_modelos/consultorio';
 import {ConsultoriosService} from '../../_servicios/datos/consultorios.service';
 import {DialogoMedicosService} from '../../_servicios/dialogos/dialogo-medicos.service';
 import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
+import {JsreportService} from '../../_servicios/jsreport.service';
+import {TurnoReporte} from '../../_modelos/reportes/turno-reporte';
+import {ListadoTurnos} from '../../_modelos/reportes/listado-turnos';
+import {Turno} from '../../_modelos/turno';
 
 @Component({
   selector: 'app-turnos',
@@ -43,7 +47,8 @@ export class TurnosComponent implements OnInit, OnDestroy {
     private consultoriosService: ConsultoriosService,
     private dialogoMedicos: DialogoMedicosService,
     private tratamientosService: TratamientosService,
-    private router: Router
+    private router: Router,
+    private jsreports: JsreportService
   ) { this.fechaTurnos = TurnosComponent.fechaHoy(); }
 
   ngOnInit() {
@@ -56,7 +61,19 @@ export class TurnosComponent implements OnInit, OnDestroy {
   }
 
   imprimir() {
-    window.print();
+    const listadoTurnos = new ListadoTurnos();
+    listadoTurnos.turnos = [];
+    listadoTurnos.medico = this.medicoSeleccionado.nombre + ' ' + this.medicoSeleccionado.apellido;
+    listadoTurnos.fecha = this.fechaTurnos;
+    for (const turno of this.turnosMedico) {
+      const turnoRep = new TurnoReporte();
+      turnoRep.paciente = turno.paciente;
+      turnoRep.horario = this.convertirHora(turno.id_turno);
+      listadoTurnos.turnos.push(turnoRep);
+    }
+    this.jsreports.generarListadoTurnos(listadoTurnos).subscribe(reporte => {
+      console.log(reporte);
+    });
   }
 
   otroMedico() {
