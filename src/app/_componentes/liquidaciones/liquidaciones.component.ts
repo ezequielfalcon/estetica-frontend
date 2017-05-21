@@ -13,6 +13,7 @@ import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
 import {Horario} from '../../_modelos/horario';
 import {Liquidacion} from '../../_modelos/reportes/liquidacion';
 import {TurnoReporte} from '../../_modelos/reportes/turno-reporte';
+import {JsreportService} from '../../_servicios/jsreport.service';
 
 @Component({
   selector: 'app-liquidaciones',
@@ -47,7 +48,8 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     private turnosService: TurnosService,
     private viewContainerRef: ViewContainerRef,
     private costoDialog: DialogoModificarCostoTurnoService,
-    private tratamientosService: TratamientosService
+    private tratamientosService: TratamientosService,
+    private jsreport: JsreportService
   ) {
   }
 
@@ -234,7 +236,20 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       const nuevoTurno = new TurnoReporte();
       nuevoTurno.horario = this.convertirHora(turno.id_turno);
       nuevoTurno.paciente = turno.paciente;
-      nuevoTurno.costo = turno.costo || 0;
+      nuevoTurno.costo = turno.costo;
+      nuevoTurno.costo2 = turno.costo2;
+      nuevoTurno.costo3 = turno.costo3;
+      liquidacion.turnos.push(nuevoTurno);
     }
+    for (const adicional of this.adicionales) {
+      const nuevoAdicional = new TurnoReporte();
+      nuevoAdicional.horario = adicional.hora;
+      nuevoAdicional.paciente = 'ADICIONAL: ' + adicional.paciente;
+      nuevoAdicional.costo = +adicional.adicional;
+      nuevoAdicional.costo2 = 0;
+      nuevoAdicional.costo3 = 0;
+      liquidacion.turnos.push(nuevoAdicional);
+    }
+    this.jsreport.generarLiquidacion(liquidacion);
   }
 }
