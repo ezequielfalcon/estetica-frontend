@@ -74,10 +74,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
       turnoRep.horario = this.convertirHora(turno.id_turno);
       listadoTurnos.turnos.push(turnoRep);
     }
-    this.jsreports.generarListadoTurnos(listadoTurnos).subscribe(reporte => {
-      this.spinner.stop();
-      window.open('data:application/pdf,' + encodeURI(reporte.text()));
-    });
+    this.jsreports.generarListadoTurnos(listadoTurnos);
   }
 
   otroMedico() {

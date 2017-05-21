@@ -10,7 +10,9 @@ import {AdicionalTurno} from '../../_modelos/adicional-turno';
 import {DialogoMedicosService} from '../../_servicios/dialogos/dialogo-medicos.service';
 import {DialogoModificarCostoTurnoService} from '../../_servicios/dialogos/dialogo-modificar-costo-turno.service';
 import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
-import {Horario} from "../../_modelos/horario";
+import {Horario} from '../../_modelos/horario';
+import {Liquidacion} from '../../_modelos/reportes/liquidacion';
+import {TurnoReporte} from '../../_modelos/reportes/turno-reporte';
 
 @Component({
   selector: 'app-liquidaciones',
@@ -220,6 +222,19 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   }
 
   imprimir() {
-    window.print();
+    this.spinner.start();
+    const liquidacion = new Liquidacion();
+    liquidacion.turnos = [];
+    liquidacion.medico = this.medicoSeleccionado.nombre + ' ' + this.medicoSeleccionado.apellido;
+    liquidacion.fecha = this.fechaTurnos;
+    liquidacion.subtotal = this.subtotalTurnos() + this.subtotalAdicionales();
+    liquidacion.descuentos = this.descuentos;
+    liquidacion.total = this.subtotalTurnos() +  this.subtotalAdicionales() - this.descuentos;
+    for (const turno of this.turnosMedico) {
+      const nuevoTurno = new TurnoReporte();
+      nuevoTurno.horario = this.convertirHora(turno.id_turno);
+      nuevoTurno.paciente = turno.paciente;
+      nuevoTurno.costo = turno.costo || 0;
+    }
   }
 }
