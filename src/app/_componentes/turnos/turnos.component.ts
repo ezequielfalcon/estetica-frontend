@@ -14,9 +14,6 @@ import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
 import {JsreportService} from '../../_servicios/jsreport.service';
 import {TurnoReporte} from '../../_modelos/reportes/turno-reporte';
 import {ListadoTurnos} from '../../_modelos/reportes/listado-turnos';
-import * as FileSaver from 'file-saver';
-import {win32} from 'path';
-import {escape} from 'querystring';
 
 @Component({
   selector: 'app-turnos',
