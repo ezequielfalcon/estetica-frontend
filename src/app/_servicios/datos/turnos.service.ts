@@ -66,9 +66,11 @@ export class TurnosService {
     return this.http.get('/horarios').map((response: Response) => response.json().datos);
   }
 
-  modificarCosto(turnoId: number, costo: number) {
+  modificarCosto(turnoId: number, costo: number, costo2: number, costo3: number) {
     const body = new URLSearchParams();
     body.set('costo', '' + costo);
+    body.set('costo2', '' + costo2);
+    body.set('costo3', '' + costo3);
     return this.http.put('/agenda/modificar-costo/' + turnoId, body).map((response: Response) => response.json());
   }
 
