@@ -208,7 +208,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   subtotalTurnos() {
     let monto = 0;
     for (const turno of this.turnosMedico){
-      monto = monto + +turno.costo;
+      monto = monto + +turno.costo + +turno.costo2 + +turno.costo3;
     }
     return monto;
   }
