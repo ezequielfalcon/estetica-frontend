@@ -10,7 +10,10 @@ import {AdicionalTurno} from '../../_modelos/adicional-turno';
 import {DialogoMedicosService} from '../../_servicios/dialogos/dialogo-medicos.service';
 import {DialogoModificarCostoTurnoService} from '../../_servicios/dialogos/dialogo-modificar-costo-turno.service';
 import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
-import {Horario} from "../../_modelos/horario";
+import {Horario} from '../../_modelos/horario';
+import {Liquidacion} from '../../_modelos/reportes/liquidacion';
+import {TurnoReporte} from '../../_modelos/reportes/turno-reporte';
+import {JsreportService} from '../../_servicios/jsreport.service';
 
 @Component({
   selector: 'app-liquidaciones',
@@ -45,7 +48,8 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     private turnosService: TurnosService,
     private viewContainerRef: ViewContainerRef,
     private costoDialog: DialogoModificarCostoTurnoService,
-    private tratamientosService: TratamientosService
+    private tratamientosService: TratamientosService,
+    private jsreport: JsreportService
   ) {
   }
 
@@ -206,7 +210,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   subtotalTurnos() {
     let monto = 0;
     for (const turno of this.turnosMedico){
-      monto = monto + +turno.costo;
+      monto = monto + +turno.costo + +turno.costo2 + +turno.costo3;
     }
     return monto;
   }
@@ -220,6 +224,32 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   }
 
   imprimir() {
-    window.print();
+    this.spinner.start();
+    const liquidacion = new Liquidacion();
+    liquidacion.turnos = [];
+    liquidacion.medico = this.medicoSeleccionado.nombre + ' ' + this.medicoSeleccionado.apellido;
+    liquidacion.fecha = this.fechaTurnos;
+    liquidacion.subtotal = this.subtotalTurnos() + this.subtotalAdicionales();
+    liquidacion.descuentos = this.descuentos;
+    liquidacion.total = this.subtotalTurnos() +  this.subtotalAdicionales() - this.descuentos;
+    for (const turno of this.turnosMedico) {
+      const nuevoTurno = new TurnoReporte();
+      nuevoTurno.horario = this.convertirHora(turno.id_turno);
+      nuevoTurno.paciente = turno.paciente;
+      nuevoTurno.costo = turno.costo;
+      nuevoTurno.costo2 = turno.costo2;
+      nuevoTurno.costo3 = turno.costo3;
+      liquidacion.turnos.push(nuevoTurno);
+    }
+    for (const adicional of this.adicionales) {
+      const nuevoAdicional = new TurnoReporte();
+      nuevoAdicional.horario = adicional.hora;
+      nuevoAdicional.paciente = 'ADICIONAL: ' + adicional.paciente;
+      nuevoAdicional.costo = +adicional.adicional;
+      nuevoAdicional.costo2 = 0;
+      nuevoAdicional.costo3 = 0;
+      liquidacion.turnos.push(nuevoAdicional);
+    }
+    this.jsreport.generarLiquidacion(liquidacion);
   }
 }

@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {MdDialogRef} from '@angular/material';
 import {TurnosService} from '../../_servicios/datos/turnos.service';
 import {TurnoResumenMedico} from '../../_modelos/turno-resumen-medico';
-import {Horario} from "../../_modelos/horario";
+import {Horario} from '../../_modelos/horario';
 
 @Component({
   selector: 'app-dialogo-modificar-costo-turno',
@@ -18,6 +18,8 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
   public costoAnterior: number;
 
   nuevoCosto: any = {};
+  nuevoCosto2: any = {};
+  nuevoCosto3: any = {};
   turno: TurnoResumenMedico;
   horarios: Horario[] = [];
   turnoCargado = false;
@@ -41,6 +43,9 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
     this.turnosService.traerTurnoPorId(agendaId).subscribe(turnoDb => {
       this.turno = turnoDb[0];
       this.turnoCargado = true;
+      this.nuevoCosto = this.turno.costo;
+      this.nuevoCosto2 = this.turno.costo2;
+      this.nuevoCosto3 = this.turno.costo3;
     }, error => {
       if (error.status === 401) {
         this.notificationService.error('Error', 'Sesión expirada!');
@@ -78,7 +83,7 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
 
   modificar() {
     this.spinner.start();
-    this.turnosService.modificarCosto(this.agendaId, this.nuevoCosto).subscribe(() => {
+    this.turnosService.modificarCosto(this.agendaId, this.nuevoCosto, this.nuevoCosto2, this.nuevoCosto3).subscribe(() => {
       this.dialogRef.close();
       this.spinner.stop();
     }, error => {

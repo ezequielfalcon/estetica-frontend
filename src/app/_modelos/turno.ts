@@ -4,7 +4,9 @@
 export class Turno {
   id: number;
   observaciones: string;
-  costo: string;
+  costo: number;
+  costo2: number;
+  costo3: number;
   id_medico: number;
   id_paciente: number;
   id_consultorio: number;
