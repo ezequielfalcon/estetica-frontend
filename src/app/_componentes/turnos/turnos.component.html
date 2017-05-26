@@ -24,7 +24,7 @@
         <md-divider></md-divider>
         <table width="100%">
           <tr>
-            <th>Horario</th><th>Consultorio</th><th>Paciente</th><th>Teléfono | Celular</th><th>Tratamientos</th><th>Entreturno</th>
+            <th>Horario</th><th>Consultorio</th><th>Paciente</th><th>Teléfono | Celular</th><th>Tratamientos</th>
           </tr>
           <tr *ngFor="let turno of turnosMedico">
             <td>{{convertirHora(turno.id_turno)}}</td>
@@ -32,7 +32,6 @@
             <td>{{turno.paciente}}</td>
             <td>{{turno.telefono}}</td>
             <td>{{turno.tratamientos}}</td>
-            <td><md-checkbox disabled [checked]="turno.entreturno == true"></md-checkbox></td>
           </tr>
         </table>
         <md-divider></md-divider>

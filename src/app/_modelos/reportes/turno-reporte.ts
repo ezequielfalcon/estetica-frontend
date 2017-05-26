@@ -7,4 +7,5 @@ export class TurnoReporte {
   costo: any;
   costo2: any;
   costo3: any;
+  tel: string;
 }

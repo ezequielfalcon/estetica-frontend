@@ -69,6 +69,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
       const turnoRep = new TurnoReporte();
       turnoRep.paciente = turno.paciente;
       turnoRep.horario = this.convertirHora(turno.id_turno);
+      turnoRep.tel = turno.telefono;
       listadoTurnos.turnos.push(turnoRep);
     }
     this.jsreports.generarListadoTurnos(listadoTurnos);
