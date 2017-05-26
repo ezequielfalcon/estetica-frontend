@@ -223,6 +223,21 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     return monto;
   }
 
+  mostrarCostoOguion(turno: TurnoResumenMedico, numCosto: number) {
+    if (turno.presente || (turno.costo != 0 || turno.costo2 != 0 || turno.costo3 != 0)) {
+      switch (numCosto) {
+        case 1:
+          return turno.costo;
+        case 2:
+          return turno.costo2;
+        case 3:
+          return turno.costo3;
+      }
+    } else {
+      return '-';
+    }
+  }
+
   imprimir() {
     this.spinner.start();
     const liquidacion = new Liquidacion();
@@ -236,9 +251,15 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       const nuevoTurno = new TurnoReporte();
       nuevoTurno.horario = this.convertirHora(turno.id_turno);
       nuevoTurno.paciente = turno.paciente;
-      nuevoTurno.costo = turno.costo;
-      nuevoTurno.costo2 = turno.costo2;
-      nuevoTurno.costo3 = turno.costo3;
+      if (turno.presente || (turno.costo != 0 || turno.costo2 != 0 || turno.costo3 != 0)) {
+        nuevoTurno.costo = turno.costo;
+        nuevoTurno.costo2 = turno.costo2;
+        nuevoTurno.costo3 = turno.costo3;
+      } else {
+        nuevoTurno.costo = '-';
+        nuevoTurno.costo2 = '-';
+        nuevoTurno.costo3 = '-';
+      }
       liquidacion.turnos.push(nuevoTurno);
     }
     for (const adicional of this.adicionales) {
