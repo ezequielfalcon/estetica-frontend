@@ -4,7 +4,8 @@
 export class TurnoReporte {
   horario: string;
   paciente: string;
-  costo: number;
-  costo2: number;
-  costo3: number;
+  costo: any;
+  costo2: any;
+  costo3: any;
+  tel: string;
 }
