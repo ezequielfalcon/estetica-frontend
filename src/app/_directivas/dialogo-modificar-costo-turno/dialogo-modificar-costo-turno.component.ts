@@ -23,6 +23,7 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
   turno: TurnoResumenMedico;
   horarios: Horario[] = [];
   turnoCargado = false;
+  asistioCambiado = false;
 
   constructor(
     private notificationService: NotificationsService,
@@ -37,6 +38,10 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
   ngOnInit() {
     this.cargarHorarios();
     this.cargarTurno(this.agendaId);
+  }
+
+  cambiarAsistio() {
+    this.asistioCambiado = !this.turno.presente;
   }
 
   cargarTurno(agendaId: number) {
@@ -85,7 +90,17 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
     this.spinner.start();
     this.turnosService.modificarCosto(this.agendaId, this.nuevoCosto, this.nuevoCosto2, this.nuevoCosto3).subscribe(() => {
       this.dialogRef.close();
-      this.spinner.stop();
+        this.turnosService.confirmarPresencia(this.agendaId, this.asistioCambiado).subscribe(() => {
+          this.spinner.stop();
+        }, error => {
+          if (error.status === 401) {
+            this.notificationService.error('Error', 'Sesión expirada!');
+            this.router.navigate(['/login']);
+          }
+          const body = JSON.parse(error._body);
+          this.notificationService.error('Error', body.mensaje);
+          this.spinner.stop();
+        });
     }, error => {
       if (error.status === 401) {
         this.notificationService.error('Error', 'Sesión expirada!');

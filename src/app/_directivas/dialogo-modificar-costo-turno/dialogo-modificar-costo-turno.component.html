@@ -27,6 +27,7 @@
       </td>
     </tr>
   </table>
+  <md-checkbox *ngIf="turno" [checked]="turno.presente" (click)="cambiarAsistio()">Asistió</md-checkbox>
 </div>
 <div md-dialog-actions>
   <button md-button type="button" color="accent" (click)="modificar()"><md-icon>archive</md-icon>Guardar</button>
