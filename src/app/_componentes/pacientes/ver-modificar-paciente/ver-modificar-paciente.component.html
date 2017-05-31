@@ -41,8 +41,11 @@
               <input mdInput [disabled]="!edicion" placeholder="Documento" name="documento" [(ngModel)]="pac.documento" #documento="ngModel" #documentoForm required (keyup.enter)="fechaNacForm.focus()">
             </md-input-container>
             <md-input-container>
-              <input mdInput [disabled]="!edicion" type="date" placeholder="Nacimiento" name="fechaNac" [(ngModel)]="pac.fecha_nacimiento" #fechaNac="ngModel" #fechaNacForm (keyup.enter)="telForm.focus()">
+              <input mdInput [disabled]="!edicion" type="date" placeholder="Nacimiento" name="fechaNac" (change)="cambiarFecha()" [(ngModel)]="pac.fecha_nacimiento" #fechaNac="ngModel" #fechaNacForm (keyup.enter)="telForm.focus()">
             </md-input-container>
+          </td>
+          <td>
+            <p>{{'Edad: ' + edad}}</p>
           </td>
         </tr></table>
         <table cellspacing="0" class="tablaUsuarios"><tr>

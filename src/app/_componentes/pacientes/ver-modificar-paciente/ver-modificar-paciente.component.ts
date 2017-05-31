@@ -30,12 +30,24 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
   returnUrl: string;
   edicion: boolean = false;
   pac: any = {};
+  edad = 0;
 
   sexos = [
     {valor: 'M', nombre: 'Masculino'},
     {valor: 'F', nombre: 'Femenino'},
     {valor: 'N', nombre: 'N/A'}
   ];
+
+  calcularEdad(fecha: string) { // birthday is a date
+    let nuevaFecha = new Date(fecha);
+    let ageDifMs = Date.now() - nuevaFecha.getTime();
+    let ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  cambiarFecha() {
+    this.edad = this.calcularEdad(this.pac.fecha_nacimiento);
+  }
 
   ngOnInit() {
     this.cargarObras();
@@ -44,6 +56,7 @@ export class VerModificarPacienteComponent implements OnInit, OnDestroy {
       this.pac = pachiente;
       if (pachiente.fecha_nacimiento) this.pac.fecha_nacimiento = pachiente.fecha_nacimiento.substr(0,10);
       if (pachiente.fecha_alta) this.pac.fecha_alta = pachiente.fecha_alta.substr(0,10);
+      this.edad = this.calcularEdad(this.pac.fecha_nacimiento);
       this.spinner.stop();
       }, error => {
         if (error.status == 401){
