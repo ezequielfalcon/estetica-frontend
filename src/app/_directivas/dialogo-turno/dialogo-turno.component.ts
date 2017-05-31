@@ -129,7 +129,6 @@ export class DialogoTurnoComponent implements OnInit {
       this.turnosService.confirmarPresencia(this.turno.id, !this.turno.presente).subscribe(() => {
         this.edicion = false;
         this.spinner.stop();
-        this.dialogRef.close();
       }, error => {
         if (error.status == 401){
           this.notificationService.error("Error","Sesión expirada!");
