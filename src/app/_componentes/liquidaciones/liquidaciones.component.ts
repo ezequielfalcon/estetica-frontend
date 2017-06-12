@@ -148,8 +148,9 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   }
 
   cargarTurnos(medicoId, fecha) {
-    this.turnosService.traerTurnosPorMedico(medicoId, fecha).subscribe(turnosDb => {
+    this.turnosService.traerTurnosListado(medicoId, fecha).subscribe(turnosDb => {
       this.turnosMedico = turnosDb;
+      this.turnosMedico.sort(this.ordenarListado);
       for (const turnoMedico of this.turnosMedico) {
         this.cargarTratamientosPorTurno(turnoMedico);
       }
@@ -272,5 +273,11 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       liquidacion.turnos.push(nuevoAdicional);
     }
     this.jsreport.generarLiquidacion(liquidacion);
+  }
+
+  ordenarListado(a,b) {
+    if (a.id_turno < b.id_turno) return -1;
+    if (a.id_turno > b.id_turno) return 1;
+    return 0;
   }
 }
