@@ -172,8 +172,9 @@ export class TurnosComponent implements OnInit, OnDestroy {
   }
 
   cargarTurnos(medicoId: number, fecha: string) {
-    this.turnosService.traerTurnosPorMedico(medicoId, fecha).subscribe(turnosDb => {
+    this.turnosService.traerTurnosListado(medicoId, fecha).subscribe(turnosDb => {
       this.turnosMedico = turnosDb;
+      this.turnosMedico.sort(this.ordenarListado);
       for (const turnoMedico of this.turnosMedico) {
         this.cargarTratamientosPorTurno(turnoMedico);
       }
@@ -205,6 +206,12 @@ export class TurnosComponent implements OnInit, OnDestroy {
       }
     }
       return 'error';
+  }
+
+  ordenarListado(a,b) {
+    if (a.id_turno < b.id_turno) return -1;
+    if (a.id_turno > b.id_turno) return 1;
+    return 0;
   }
 
 }
