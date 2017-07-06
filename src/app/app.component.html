@@ -35,6 +35,11 @@
         <span>Ausencias programadas</span>
       </button>
       <br>
+      <button md-button class="boton-sidenav" [routerLink]="['/consultas']" (click)="sidenav.toggle()">
+        <md-icon>history</md-icon>
+        <span>Consultas - Historial</span>
+      </button>
+      <br>
       <md-divider></md-divider>
       <button md-button class="boton-sidenav" color="accent" [routerLink]="['/configuracion']" (click)="sidenav.toggle()">
         <md-icon>build</md-icon>
