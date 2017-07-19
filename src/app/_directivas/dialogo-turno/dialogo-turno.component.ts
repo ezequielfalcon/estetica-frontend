@@ -34,6 +34,7 @@ export class DialogoTurnoComponent implements OnInit {
   public turnoId: number;
   public fecha: string;
   public entreturno: boolean;
+  public agendaId: number;
 
   turno: any = {};
   paciente: any = {};
@@ -46,22 +47,47 @@ export class DialogoTurnoComponent implements OnInit {
   }
 
   cargarTurno(){
-    this.turnosService.traerTurno(this.consultorioId, this.turnoId, this.fecha, this.entreturno).subscribe(
-      turnoDb => {
-        this.turno = turnoDb;
-        this.turno.fecha = turnoDb.fecha.substr(0,10);
-        this.traerPaciente(this.turno.id_paciente);
-        this.traerMedico(this.turno.id_medico);
-        this.cargarTratamientosAgenda(this.turno.id);
-      }, error => {
-        if (error.status == 401){
-          this.notificationService.error("Error","Sesión expirada!");
-          this.router.navigate(['/login']);
+    if (this.agendaId) {
+      this.turnosService.traerTurnoPorId(this.agendaId).subscribe(
+        turnoDb => {
+          this.turno = turnoDb[0];
+          this.turnoId = this.turno.id_turno;
+          this.consultorioId = this.turno.id_consultorio;
+          this.entreturno = this.turno.entreturno;
+          this.turno.fecha = turnoDb[0].fecha.substr(0,10);
+          this.fecha = this.turno.fecha;
+          this.traerPaciente(this.turno.id_paciente);
+          this.traerMedico(this.turno.id_medico);
+          this.cargarTratamientosAgenda(this.agendaId);
+        }, error => {
+          if (error.status == 401){
+            this.notificationService.error("Error","Sesión expirada!");
+            this.router.navigate(['/login']);
+          }
+          let body = JSON.parse(error._body);
+          this.notificationService.error('Error', body.mensaje);
         }
-        let body = JSON.parse(error._body);
-        this.notificationService.error('Error', body.mensaje);
-      }
-    );
+      );
+    }
+    else {
+      this.turnosService.traerTurno(this.consultorioId, this.turnoId, this.fecha, this.entreturno).subscribe(
+        turnoDb => {
+          this.turno = turnoDb;
+          this.turno.fecha = turnoDb.fecha.substr(0,10);
+          this.traerPaciente(this.turno.id_paciente);
+          this.traerMedico(this.turno.id_medico);
+          this.cargarTratamientosAgenda(this.turno.id);
+        }, error => {
+          if (error.status == 401){
+            this.notificationService.error("Error","Sesión expirada!");
+            this.router.navigate(['/login']);
+          }
+          let body = JSON.parse(error._body);
+          this.notificationService.error('Error', body.mensaje);
+        }
+      );
+    }
+
   }
 
   traerPaciente(pacienteId: number){

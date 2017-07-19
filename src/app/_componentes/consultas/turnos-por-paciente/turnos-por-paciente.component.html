@@ -19,6 +19,53 @@
   </md-card>
   <md-divider style="padding: 5px;"></md-divider>
   <md-card *ngIf="pacienteSeleccionado">
-    asd
+    <h3>Turnos próximos:</h3>
+    <table width="100%">
+      <tr>
+        <th *ngFor="let columna of columnas">{{columna.nombre}}</th>
+      </tr>
+      <tr *ngFor="let turno of turnosFuturos" (click)="detalleTurno(turno.id)"
+          class="clickVer" mdTooltip="Click para ver detalles">
+        <td>
+          {{turno.fecha}}
+        </td>
+        <td>
+          {{convertirHora(turno.id_turno)}}
+        </td>
+        <td>
+          {{buscarMedico(turno.id_medico)}}
+        </td>
+        <td>
+          {{buscarConsultorio(turno.id_consultorio)}}
+        </td>
+        <td>
+          {{turno.usuario}}
+        </td>
+      </tr>
+    </table>
+    <md-divider></md-divider>
+    <h3>Turnos pasados:</h3>
+    <table width="100%">
+      <tr>
+        <th *ngFor="let columna of columnas">{{columna.nombre}}</th>
+      </tr>
+      <tr *ngFor="let turno of turnosAnteriores">
+        <td>
+          {{turno.fecha}}
+        </td>
+        <td>
+          {{convertirHora(turno.id_turno)}}
+        </td>
+        <td>
+          {{buscarMedico(turno.id_medico)}}
+        </td>
+        <td>
+          {{buscarConsultorio(turno.id_consultorio)}}
+        </td>
+        <td>
+          {{turno.usuario}}
+        </td>
+      </tr>
+    </table>
   </md-card>
 </div>
