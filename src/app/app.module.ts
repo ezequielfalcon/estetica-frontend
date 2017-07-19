@@ -81,7 +81,6 @@ import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/di
 import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turno.service";
 import { DialogoModificarCostoTurnoComponent } from './_directivas/dialogo-modificar-costo-turno/dialogo-modificar-costo-turno.component';
 import {DialogoModificarCostoTurnoService} from "./_servicios/dialogos/dialogo-modificar-costo-turno.service";
-import {MyDatePickerModule} from 'mydatepicker';
 import { DialogoNuevoPacienteRapidoComponent } from './_directivas/dialogo-nuevo-paciente-rapido/dialogo-nuevo-paciente-rapido.component';
 import {DialogoNuevoPacienteRapidoService} from "./_servicios/dialogos/dialogo-nuevo-paciente-rapido.service";
 import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave.component';
@@ -172,8 +171,7 @@ import { TurnosPorPacienteComponent } from './_componentes/consultas/turnos-por-
     MdProgressBarModule,
     MdGridListModule,
     MdSidenavModule,
-    MdTooltipModule,
-    MyDatePickerModule
+    MdTooltipModule
   ],
   exports: [
     DialogoComponent,

@@ -1,13 +1,7 @@
-@import "estetica.css";
-.estetica-dark {
-    @include angular-material-theme(dark-theme);
-}
-
 body,
 html {
     margin: 0;
     height: 100%;
-    font-family: Roboto, sans-serif;
 }
 
 body.estetica-dark {
