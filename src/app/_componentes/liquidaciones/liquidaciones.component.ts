@@ -148,7 +148,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   }
 
   cargarTurnos(medicoId, fecha) {
-    this.turnosService.traerTurnosListado(medicoId, fecha).subscribe(turnosDb => {
+    this.turnosService.traerTurnosListadoNew(medicoId, fecha).subscribe(turnosDb => {
       this.turnosMedico = turnosDb;
       this.turnosMedico.sort(this.ordenarListado);
       for (const turnoMedico of this.turnosMedico) {

@@ -1,0 +1,19 @@
+table {
+  font-family: Roboto, "Helvetica Neue", sans-serif, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.hover tr:hover {
+  background-color: #ffff99;
+}

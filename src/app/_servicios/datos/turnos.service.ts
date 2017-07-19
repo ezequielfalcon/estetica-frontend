@@ -30,8 +30,12 @@ export class TurnosService {
     return this.http.get('/turnos/' + fecha + '/' + medicoId).map((response: Response) => response.json().datos);
   }
 
-  traerTurnosListado(medicoId: number, fecha: string) {
+  traerTurnosListadoNew(medicoId: number, fecha: string) {
     return this.http.get('/listado-turnos/' + fecha + '/' + medicoId).map((response: Response) => response.json().datos);
+  }
+
+  traerTurnosPorPaciente(pacienteId: number) {
+    return this.http.get('/turnos-paciente/' + pacienteId).map((response: Response) => response.json().datos);
   }
 
   nuevoTurno(turnoId: number , pacienteId: number, consultorioId: number, medicoId: number,
