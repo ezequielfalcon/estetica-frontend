@@ -7,7 +7,6 @@ export class TurnoResumenMedico {
   telefono: string;
   id_consultorio: number;
   id_turno: number;
-  id_medico: number;
   entreturno: boolean;
   presente: boolean;
   atendido: boolean;
@@ -16,5 +15,4 @@ export class TurnoResumenMedico {
   costo2: number;
   costo3: number;
   tratamientos: string;
-  fecha: string;
 }

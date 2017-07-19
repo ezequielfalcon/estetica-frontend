@@ -91,8 +91,6 @@ import {CurrentRouteService} from './_servicios/current-route.service';
 import { DialogoTurnoMedicoComponent } from './_directivas/dialogo-turno-medico/dialogo-turno-medico.component';
 import {DialogoTurnoMedicoService} from "./_servicios/dialogos/dialogo-turno-medico.service";
 import {JsreportService} from "./_servicios/jsreport.service";
-import { ConsultasComponent } from './_componentes/consultas/consultas.component';
-import { TurnosPorPacienteComponent } from './_componentes/consultas/turnos-por-paciente/turnos-por-paciente.component';
 
 @NgModule({
   declarations: [
@@ -141,9 +139,7 @@ import { TurnosPorPacienteComponent } from './_componentes/consultas/turnos-por-
     DialogoModificarCostoTurnoComponent,
     DialogoNuevoPacienteRapidoComponent,
     DialogoClaveComponent,
-    DialogoTurnoMedicoComponent,
-    ConsultasComponent,
-    TurnosPorPacienteComponent
+    DialogoTurnoMedicoComponent
   ],
   imports: [
     BrowserModule,
