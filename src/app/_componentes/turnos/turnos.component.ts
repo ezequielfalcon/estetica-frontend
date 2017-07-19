@@ -172,7 +172,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
   }
 
   cargarTurnos(medicoId: number, fecha: string) {
-    this.turnosService.traerTurnosListado(medicoId, fecha).subscribe(turnosDb => {
+    this.turnosService.traerTurnosListadoNew(medicoId, fecha).subscribe(turnosDb => {
       this.turnosMedico = turnosDb;
       this.turnosMedico.sort(this.ordenarListado);
       for (const turnoMedico of this.turnosMedico) {

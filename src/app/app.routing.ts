@@ -24,6 +24,7 @@ import {MedicoGuard} from "./_guards/medico.guard";
 import {EsMedicoGuard} from "./_guards/es-medico.guard";
 import {CuentaCorrienteComponent} from "./_componentes/cuenta-corriente/cuenta-corriente.component";
 import {AusenciasComponent} from "./_componentes/ausencias/ausencias.component";
+import {ConsultasComponent} from './_componentes/consultas/consultas.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard, MedicoGuard] },
@@ -40,6 +41,8 @@ const appRoutes: Routes = [
   { path: 'nuevo-medico', component: NuevoMedicoComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'configuracion/:id', component: ConfiguracionComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'consultas', component: ConsultasComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'consultas/:id', component: ConsultasComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'nuevo-usuario', component: NuevoUsuarioComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'nuevo-turno/:consultorio/:turno/:fecha/:entreturno', component: NuevoTurnoComponent, canActivate: [AuthGuard, MedicoGuard] },
   { path: 'nuevo-tratamiento', component: NuevoTratamientoComponent, canActivate: [AuthGuard, AdminGuard] },
