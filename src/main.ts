@@ -9,4 +9,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule, [DarkThemeService]);
+platformBrowserDynamic()
+  .bootstrapModule(AppModule, [DarkThemeService])
+  .catch(err => console.error(err));
