@@ -18,17 +18,19 @@ export class UsuariosService {
   }
 
   crearUsuario(nombre: string, pass: string, rol: string) {
-    const body = new URLSearchParams();
-    body.set('usuario', nombre);
-    body.set('clave', pass);
-    body.set('rol', rol);
+    const body = {
+      usuario: nombre,
+      clave: pass,
+      rol: rol
+    };
     return this.http.post('/usuarios', body).map((response: Response) => response.json());
   }
 
   cambiarClave(claveOld: string, claveNew: string) {
-    const body = new URLSearchParams();
-    body.set('clave_old', claveOld);
-    body.set('clave_new', claveNew);
+    const body = {
+      clave_old: claveOld,
+      clave_new: claveNew
+    };
     return this.http.post('/usuario/clave', body).map((response: Response) => response.json());
   }
 

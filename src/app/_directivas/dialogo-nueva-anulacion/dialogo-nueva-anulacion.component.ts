@@ -57,11 +57,6 @@ export class DialogoNuevaAnulacionComponent implements OnInit {
     if (!this.nuevaAusencia.observaciones) {
       this.nuevaAusencia.observaciones = ' ';
     }
-    console.log(this.medicoSeleccionado.id);
-    console.log(this.nuevaAusencia.fechaAnul);
-    console.log(this.nuevaAusencia.horaDesde);
-    console.log(this.nuevaAusencia.horaHasta);
-    console.log(this.nuevaAusencia.observaciones);
     this.medicosService.nuevaAnulacion(this.medicoSeleccionado.id, this.nuevaAusencia.fechaAnul,
       this.nuevaAusencia.horaDesde, this.nuevaAusencia.horaHasta, this.nuevaAusencia.observaciones)
       .subscribe(nuevaAnulDb => {

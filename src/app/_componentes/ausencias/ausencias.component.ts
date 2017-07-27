@@ -76,6 +76,7 @@ export class AusenciasComponent implements OnInit, OnDestroy {
         if (resultado === true) {
           this.spinner.start();
           this.medicosService.borrarAnulacion(anulacionId).subscribe( () => {
+            this.cargarAnulaciones();
             this.spinner.stop();
             this.notificationSerivce.success('OK', 'Asistencia programada eliminada!');
           }, error => {
