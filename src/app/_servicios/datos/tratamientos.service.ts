@@ -20,16 +20,18 @@ export class TratamientosService {
   }
 
   post(nombre, costo: string){
-    let body = new URLSearchParams();
-    body.set('nombre', nombre);
-    body.set('costo', costo);
+    let body = {
+      nombre: nombre,
+      costo: costo
+    };
     return this.http.post('/tratamientos', body).map((response: Response) => response.json());
   }
 
   put(id: number, nombre, costo: string){
-    let body = new URLSearchParams();
-    body.set('nombre', nombre);
-    body.set('costo', costo);
+    let body = {
+      nombre: nombre,
+      costo: costo
+    };
     return this.http.put('/tratamientos/' +id, body).map((response: Response) => response.json());
   }
 

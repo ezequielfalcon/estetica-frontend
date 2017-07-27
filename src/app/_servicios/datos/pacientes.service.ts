@@ -20,46 +20,49 @@ export class PacientesService {
   }
 
   buscar(nombre: string, apellido: string, documento: string){
-    let body = new URLSearchParams();
-    body.set('nombre', nombre);
-    body.set('apellido', apellido);
-    body.set('documento', documento);
+    let body = {
+      nombre: nombre,
+      apellido: apellido,
+      documento: documento
+    };
     return this.http.post('/buscar-pacientes', body).map((response: Response) => response.json().datos);
   }
 
   post(nombre, apellido, documento, telefono, mail, fecha, sexo: string,
        id_os: number, numero_os, domicilio, observaciones, celular){
-    let body = new URLSearchParams();
-    body.set('nombre', nombre);
-    body.set('apellido', apellido);
-    body.set('documento', documento);
-    body.set('fecha', fecha);
-    body.set('telefono', telefono);
-    body.set('mail', mail);
-    body.set('sexo', sexo);
-    body.set('id_os', ""+id_os);
-    body.set('numero_os', numero_os);
-    body.set('domicilio', domicilio);
-    body.set('obs', observaciones);
-    body.set('celular', celular);
+    let body = {
+      nombre: nombre,
+      apelido: apellido,
+      documento: documento,
+      fecha: fecha,
+      telefono: telefono,
+      mail: mail,
+      sexo: sexo,
+      id_os: id_os,
+      numero_os: numero_os,
+      domicilio: domicilio,
+      obs: observaciones,
+      celular: celular
+    };
     return this.http.post('/pacientes', body).map((response: Response) => response.json());
   }
 
   put(id: number, nombre, apellido, documento, telefono, mail, fecha, sexo:
     string, id_os: number, numero_os, domicilio, observaciones, celular){
-    let body = new URLSearchParams();
-    body.set('nombre', nombre);
-    body.set('apellido', apellido);
-    body.set('documento', documento);
-    body.set('fecha', fecha);
-    body.set('telefono', telefono);
-    body.set('mail', mail);
-    body.set('sexo', sexo);
-    body.set('id_os', ""+id_os);
-    body.set('numero_os', numero_os);
-    body.set('domicilio', domicilio);
-    body.set('obs', observaciones);
-    body.set('celular', celular);
+    let body = {
+      nombre: nombre,
+      apelido: apellido,
+      documento: documento,
+      fecha: fecha,
+      telefono: telefono,
+      mail: mail,
+      sexo: sexo,
+      id_os: id_os,
+      numero_os: numero_os,
+      domicilio: domicilio,
+      obs: observaciones,
+      celular: celular
+    };
     return this.http.put('/pacientes/' +id, body).map((response: Response) => response.json());
   }
 

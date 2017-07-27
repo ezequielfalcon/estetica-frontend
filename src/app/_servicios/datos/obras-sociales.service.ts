@@ -20,14 +20,16 @@ export class ObrasSocialesService{
   }
 
   post(nombre: string){
-    let body = new URLSearchParams();
-    body.set('nombre', nombre);
+    let body = {
+      nombre: nombre
+    };
     return this.http.post('/obras_sociales', body).map((response: Response) => response.json());
   }
 
   put(id: number, nombre: string){
-    let body = new URLSearchParams();
-    body.set('nombre', nombre);
+    let body = {
+      nombre: nombre
+    };
     return this.http.put('/obras_sociales/' + id, body).map((response: Response) => response.json());
   }
 

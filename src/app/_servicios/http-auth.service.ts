@@ -15,7 +15,7 @@ export class HttpAuthService {
 
 
   static createAuthorizationHeader(headers: Headers) {
-    headers.append('x-access-token', sessionStorage.getItem('token'));
+    headers.append('x-access-token', sessionStorage.getItem('token'))
   }
 
   get(url) {

@@ -16,13 +16,12 @@ export class LoginService{
   ){}
 
   login(usuario: string, clave: string){
-    let body = new URLSearchParams();
-    body.set('usuario', usuario);
-    body.set('clave', clave);
-    let headers = new Headers();
+    let bodyForm = {
+      usuario: usuario,
+      clave: clave
+    };
     let apiUrl = 'https://estetica-backend.herokuapp.com/api';
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post(apiUrl + '/login', body, {headers: headers})
+    return this.http.post(apiUrl + '/login', bodyForm)
       .map((response: Response) => {
         sessionStorage.setItem('usuario', usuario);
         sessionStorage.setItem('token', response.json().token);

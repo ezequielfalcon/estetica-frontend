@@ -18,20 +18,22 @@ export class MedicosService {
   }
 
   post(nombre, apellido, mail, usuario, clave) {
-    const body = new URLSearchParams();
-    body.set('nombre', nombre);
-    body.set('apellido', apellido);
-    body.set('mail', mail);
-    body.set('usuario', usuario);
-    body.set('clave', clave);
+    const body = {
+      nombre: nombre,
+      apellido: apellido,
+      mail: mail,
+      usuario: usuario,
+      clave: clave
+    };
     return this.http.post('/medicos', body).map((response: Response) => response.json());
   }
 
   put(id: number, nombre, apellido, mail) {
-    const body = new URLSearchParams();
-    body.set('nombre', nombre);
-    body.set('apellido', apellido);
-    body.set('mail', mail);
+    const body = {
+      nombre: nombre,
+      apellido: apellido,
+      mail: mail
+    };
     return this.http.put('/medicos/' + id, body).map((response: Response) => response.json());
   }
 
@@ -48,12 +50,13 @@ export class MedicosService {
   }
 
   nuevaAnulacion(medicoId: number, fecha: string, horarioDesdeId: number, horarioHastaId: number, observaciones: string) {
-    const body = new URLSearchParams();
-    body.set('id_medico', '' + medicoId);
-    body.set('fecha', fecha);
-    body.set('desde', '' + horarioDesdeId);
-    body.set('hasta', '' + horarioHastaId);
-    body.set('observaciones', observaciones);
+    const body = {
+      id_medico: medicoId,
+      fecha: fecha,
+      desde: horarioDesdeId,
+      hasta: horarioHastaId,
+      observaciones: observaciones
+    };
     return this.http.post('/anulaciones', body).map((response: Response) => response.json());
   }
 
