@@ -20,7 +20,7 @@ export class LoginService{
       usuario: usuario,
       clave: clave
     };
-    let apiUrl = 'https://estetica-backend.herokuapp.com/api';
+    let apiUrl = 'https://estetica-backend-testing.herokuapp.com/api';
     return this.http.post(apiUrl + '/login', bodyForm)
       .map((response: Response) => {
         sessionStorage.setItem('usuario', usuario);
