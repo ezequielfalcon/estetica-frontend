@@ -256,7 +256,8 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       const nuevoTurno = new TurnoReporte();
       nuevoTurno.horario = this.convertirHora(turno.id_turno);
       nuevoTurno.paciente = turno.paciente;
-      if (turno.presente || (turno.costo !== 0 || turno.costo2 !== 0 || turno.costo3 !== 0)) {
+      // tslint:disable-next-line:triple-equals
+      if (turno.presente || (turno.costo != 0 || turno.costo2 != 0 || turno.costo3 != 0)) {
         nuevoTurno.costo = turno.costo;
         nuevoTurno.costo2 = turno.costo2;
         nuevoTurno.costo3 = turno.costo3;
