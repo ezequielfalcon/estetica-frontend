@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpAuthService} from "../http-auth.service";
-import {Response, URLSearchParams} from "@angular/http";
+import {Response} from "@angular/http";
 
 @Injectable()
 export class ConsultoriosService {
@@ -18,15 +18,17 @@ export class ConsultoriosService {
   }
 
   post(id: number, nombre: string){
-    let body = new URLSearchParams();
-    body.set('id', ""+id);
-    body.set('nombre', nombre);
+    let body = {
+      id: id,
+      nombre: nombre
+    };
     return this.http.post('/consultorios', body).map((response: Response) => response.json());
   }
 
   put(id: number, nombre: string){
-    let body = new URLSearchParams();
-    body.set('nombre', nombre);
+    let body = {
+      nombre: nombre
+    };
     return this.http.put('/consultorios/' +id, body).map((response: Response) => response.json());
   }
 

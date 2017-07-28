@@ -1,44 +1,50 @@
 <div class="center-print" id="liquidacion-body">
-  <md-card>
-    <md-card-header>
-      <md-card-title><h3>Turnos por médico</h3></md-card-title>
-    </md-card-header>
-    <md-card-content>
-      <button md-raised-button color="primary" *ngIf="!medicoSeleccionadoBool" type="button" (click)="seleccionarMedico()">Seleccionar Médico</button>
-      <div id="section-to-print" *ngIf="medicoSeleccionadoBool">
-        <md-grid-list cols="2" rowHeight="20px">
-          <md-grid-tile>
-            <h3>{{medicoSeleccionado.nombre + " " + medicoSeleccionado.apellido}}</h3>
-          </md-grid-tile>
-          <md-grid-tile rows="2">
-            <button md-button color="accent" (click)="otroMedico()" id="hide-elegir">Elegir otro Médico</button>
-          </md-grid-tile>
-          <md-grid-tile>
-            <h5>{{"Email: " + medicoSeleccionado.mail}}</h5>
-          </md-grid-tile>
-        </md-grid-list>
-        <md-divider style="padding: 5px;"></md-divider>
-        <md-input-container>
-          <input mdInput type="date" [(ngModel)]="fechaTurnos" (change)="cambiarFecha()">
-        </md-input-container>
-        <md-divider></md-divider>
-        <table width="100%">
-          <tr>
-            <th>Horario</th><th>Consultorio</th><th>Paciente</th><th>Teléfono | Celular</th><th>Tratamientos</th>
-          </tr>
-          <tr *ngFor="let turno of turnosMedico">
-            <td>{{convertirHora(turno.id_turno)}}</td>
-            <td>{{convertirConsultorio(turno.id_consultorio)}}</td>
-            <td>{{turno.paciente}}</td>
-            <td>{{turno.telefono}}</td>
-            <td>{{turno.tratamientos}}</td>
-          </tr>
-        </table>
-        <md-divider></md-divider>
-      </div>
-      <div id="hide-adicionales" *ngIf="medicoSeleccionadoBool">
-        <button md-raised-button color="primary" type="button" (click)="imprimir()">Imprimir listado de turnos</button>
-      </div>
-    </md-card-content>
-  </md-card>
+    <md-card>
+        <md-card-header>
+            <md-card-title>
+                <h3>Turnos por médico</h3>
+            </md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <button md-raised-button color="primary" *ngIf="!medicoSeleccionadoBool" type="button" (click)="seleccionarMedico()">Seleccionar Médico</button>
+            <div id="section-to-print" *ngIf="medicoSeleccionadoBool">
+                <md-grid-list cols="2" rowHeight="20px">
+                    <md-grid-tile>
+                        <h3>{{medicoSeleccionado.nombre + " " + medicoSeleccionado.apellido}}</h3>
+                    </md-grid-tile>
+                    <md-grid-tile rows="2">
+                        <button md-button color="accent" (click)="otroMedico()" id="hide-elegir">Elegir otro Médico</button>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <h5>{{"Email: " + medicoSeleccionado.mail}}</h5>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-divider style="padding: 5px;"></md-divider>
+                <md-input-container>
+                    <input mdInput type="date" [(ngModel)]="fechaTurnos" (change)="cambiarFecha()">
+                </md-input-container>
+                <md-divider></md-divider>
+                <table width="100%">
+                    <tr>
+                        <th>Horario</th>
+                        <th>Consultorio</th>
+                        <th>Paciente</th>
+                        <th>Teléfono | Celular</th>
+                        <th>Tratamientos</th>
+                    </tr>
+                    <tr *ngFor="let turno of turnosMedico">
+                        <td>{{convertirHora(turno.id_turno)}}</td>
+                        <td>{{convertirConsultorio(turno.id_consultorio)}}</td>
+                        <td>{{turno.paciente}}</td>
+                        <td>{{turno.telefono}}</td>
+                        <td>{{turno.tratamientos}}</td>
+                    </tr>
+                </table>
+                <md-divider></md-divider>
+            </div>
+            <div id="hide-adicionales" *ngIf="medicoSeleccionadoBool">
+                <button md-raised-button color="primary" type="button" (click)="imprimir()">Imprimir listado de turnos</button>
+            </div>
+        </md-card-content>
+    </md-card>
 </div>

@@ -17,4 +17,5 @@ export class TurnoResumenMedico {
   costo3: number;
   tratamientos: string;
   fecha: string;
+  fechaRoberto: string;
 }

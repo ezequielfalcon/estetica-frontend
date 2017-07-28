@@ -1,11 +1,11 @@
 import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
-import {Paciente} from "../../_modelos/paciente";
-import {PacientesService} from "../../_servicios/datos/pacientes.service";
-import {NotificationsService} from "angular2-notifications";
-import {MdDialogRef} from "@angular/material";
-import {SpinnerService} from "../../_servicios/spinner.service";
-import {Router} from "@angular/router";
-import {FormControl} from "@angular/forms";
+import {Paciente} from '../../_modelos/paciente';
+import {PacientesService} from '../../_servicios/datos/pacientes.service';
+import {NotificationsService} from 'angular2-notifications';
+import {MdDialogRef} from '@angular/material';
+import {SpinnerService} from '../../_servicios/spinner.service';
+import {Router} from '@angular/router';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-dialogo-pacientes',
@@ -45,9 +45,9 @@ export class DialogoPacientesComponent implements OnInit {
   }
 
   pacientes: Paciente[] = [];
-  seachNom = "";
-  searchApe = "";
-  searchDni = "";
+  seachNom = '';
+  searchApe = '';
+  searchDni = '';
 
   ngOnInit() {
     this.cargarPacientes();
@@ -60,11 +60,11 @@ export class DialogoPacientesComponent implements OnInit {
       this.pacientes = pacientesDb;
       this.spinner.stop();
     }, error => {
-      if (error.status == 401){
-        this.notificationService.error("Error","Sesión expirada!");
+      if (error.status === 401){
+        this.notificationService.error('Error','Sesión expirada!');
         this.router.navigate(['/login']);
       }
-      let body = JSON.parse(error._body);
+      const body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
@@ -75,11 +75,11 @@ export class DialogoPacientesComponent implements OnInit {
       this.pacientes = pacientesDb;
       this.spinner.stop();
     }, error => {
-      if (error.status == 401){
-        this.notificationService.error("Error","Sesión expirada!");
+      if (error.status === 401){
+        this.notificationService.error('Error', 'Sesión expirada!');
         this.router.navigate(['/login']);
       }
-      let body = JSON.parse(error._body);
+      const body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });

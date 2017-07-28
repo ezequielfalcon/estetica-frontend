@@ -80,6 +80,14 @@ export class CuentaCorrienteComponent implements OnInit, OnDestroy {
     return color;
   }
 
+  saldoSinSigno(saldoNum): number {
+    let saldoNuevo = saldoNum;
+    if (saldoNuevo < 0) {
+      saldoNuevo = saldoNuevo * -1;
+    }
+    return saldoNuevo;
+  }
+
   nuevoMovimiento() {
     this.dialogoCtaCteService.nuevoMovimiento(this.viewContainerRef, this.paciente.id).subscribe(() => {
       this.traerCtaCte(this.paciente.id);

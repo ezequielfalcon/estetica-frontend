@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpAuthService} from '../http-auth.service';
-import {Response, URLSearchParams} from '@angular/http';
+import {Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
@@ -40,29 +40,32 @@ export class TurnosService {
 
   nuevoTurno(turnoId: number , pacienteId: number, consultorioId: number, medicoId: number,
              obs, costo, fecha: string, entreturno: boolean) {
-    const body = new URLSearchParams();
-    body.set('id_turno', '' + turnoId);
-    body.set('id_paciente', '' + pacienteId);
-    body.set('id_consultorio', '' + consultorioId);
-    body.set('id_medico', '' + medicoId);
-    body.set('observaciones', obs);
-    body.set('costo', costo);
-    body.set('fecha', fecha);
-    body.set('entreturno', '' + entreturno);
+    const body = {
+      id_turno: turnoId,
+      id_paciente: pacienteId,
+      id_consultorio: consultorioId,
+      id_medico: medicoId,
+      observaciones: obs,
+      costo: costo,
+      fecha: fecha,
+      entreturno: entreturno
+    };
     return this.http.post('/nuevo-turno', body).map((response: Response) => response.json().id);
   }
 
   agregarTratamiento(agendaId: number, tratamientoId: number) {
-    const body = new URLSearchParams();
-    body.set('id_agenda', '' + agendaId);
-    body.set('id_tratamiento', '' + tratamientoId);
+    const body = {
+      id_agenda: agendaId,
+      id_tratamiento: tratamientoId
+    };
     return this.http.post('/agregar-tratamiento', body).map((response: Response) => response.json());
   }
 
   confirmarPresencia(agendaId: number, presencia: boolean) {
-    const body = new URLSearchParams();
-    body.set('id_agenda', '' + agendaId);
-    body.set('presente', '' + presencia);
+    const body = {
+      id_agenda: agendaId,
+      presente: presencia
+    };
     return this.http.post('/turno-presente', body).map((response: Response) => response.json());
   }
 
@@ -75,10 +78,11 @@ export class TurnosService {
   }
 
   modificarCosto(turnoId: number, costo: number, costo2: number, costo3: number) {
-    const body = new URLSearchParams();
-    body.set('costo', '' + costo);
-    body.set('costo2', '' + costo2);
-    body.set('costo3', '' + costo3);
+    const body = {
+      costo: costo,
+      costo2: costo2,
+      costo3: costo3
+    };
     return this.http.put('/agenda/modificar-costo/' + turnoId, body).map((response: Response) => response.json());
   }
 

@@ -16,10 +16,11 @@ export class CuentaCorrienteService {
   }
 
   nuevoMovimiento(pacienteId:number, concepto:string, monto:number){
-    let body = new URLSearchParams();
-    body.set('id_paciente', ""+pacienteId);
-    body.set('concepto', concepto);
-    body.set('monto', ''+monto);
+    let body = {
+      id_paciente: pacienteId,
+      concepto: concepto,
+      monto: monto
+    };
     return this.http.post('/cuenta-corriente', body).map((response: Response) => response.json());
   }
 

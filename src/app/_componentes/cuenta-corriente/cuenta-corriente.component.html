@@ -1,51 +1,63 @@
 <div class="center">
-  <md-card>
-    <md-card-header>
-      <md-card-title><h3>Cuenta Corriente</h3></md-card-title>
-    </md-card-header>
-    <md-card-content>
-      <button md-raised-button color="primary" *ngIf="!pacienteSeleccionado" type="button" (click)="seleccionarPaciente()">Seleccionar Paciente</button>
-      <md-divider style="padding: 2px"></md-divider>
-      <div *ngIf="!pacienteSeleccionado">
-        <table width="100%">
-          <tr>
-            <th>Paciente</th><th>Último movimiento</th><th>Saldo</th>
-          </tr>
-          <tr *ngFor="let saldo of saldos" class="clickVer" mdTooltip="Click para ver el detalle" (click)="cargarPaciente(saldo.id)">
-            <td>{{saldo.paciente}}</td><td>{{saldo.ultimo_movimiento.substr(0, 10)}}</td><td>{{saldo.monto}}</td>
-          </tr>
-        </table>
-      </div>
-      <div *ngIf="pacienteSeleccionado">
-        <md-grid-list cols="2" rowHeight="20px">
-          <md-grid-tile>
-            <h3>{{paciente.apellido + " " + paciente.nombre}}</h3>
-          </md-grid-tile>
-          <md-grid-tile rows="2">
-            <button md-button color="accent" (click)="otroPaciente()">Elegir otro paciente</button>
-          </md-grid-tile>
-          <md-grid-tile>
-            <h5>{{"DNI: " + paciente.documento}}</h5>
-          </md-grid-tile>
-        </md-grid-list>
-        <md-divider style="padding: 5px;"></md-divider>
-        <table width="100%">
-          <tr>
-            <th>Fecha</th><th>Concepto</th><th>Monto</th>
-          </tr>
-          <tr *ngFor="let cuenta of cuentaCorriente">
-            <td>{{cuenta.fecha.substr(0,10)}}</td><td>{{cuenta.concepto}}</td><td>{{cuenta.monto}}</td>
-          </tr>
-        </table>
-        <md-divider style="padding: 5px;"></md-divider>
-        <h3>Saldo:</h3>
-        <md-chip-list>
-          <md-chip color="{{saldoColor()}}" selected="true">{{saldo()}}</md-chip>
-        </md-chip-list>
-        <div class="boton-add">
-          <a md-fab (click)="nuevoMovimiento()"><md-icon>add</md-icon></a>
-        </div>
-      </div>
-    </md-card-content>
-  </md-card>
+    <md-card>
+        <md-card-header>
+            <md-card-title>
+                <h3>Cuenta Corriente</h3>
+            </md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <button md-raised-button color="primary" *ngIf="!pacienteSeleccionado" type="button" (click)="seleccionarPaciente()">Seleccionar Paciente</button>
+            <md-divider style="padding: 2px"></md-divider>
+            <div *ngIf="!pacienteSeleccionado">
+                <table width="100%">
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Último movimiento</th>
+                        <th>Saldo</th>
+                    </tr>
+                    <tr *ngFor="let saldo of saldos" class="clickVer" mdTooltip="Click para ver el detalle" (click)="cargarPaciente(saldo.id)">
+                        <td>{{saldo.paciente}}</td>
+                        <td>{{saldo.ultimo_movimiento.substr(0, 10)}}</td>
+                        <td>{{saldo.monto}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div *ngIf="pacienteSeleccionado">
+                <md-grid-list cols="2" rowHeight="20px">
+                    <md-grid-tile>
+                        <h3>{{paciente.apellido + " " + paciente.nombre}}</h3>
+                    </md-grid-tile>
+                    <md-grid-tile rows="2">
+                        <button md-button color="accent" (click)="otroPaciente()">Elegir otro paciente</button>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <h5>{{"DNI: " + paciente.documento}}</h5>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-divider style="padding: 5px;"></md-divider>
+                <table width="100%">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Concepto</th>
+                        <th>Monto</th>
+                    </tr>
+                    <tr *ngFor="let cuenta of cuentaCorriente">
+                        <td>{{cuenta.fecha.substr(0,10)}}</td>
+                        <td>{{cuenta.concepto}}</td>
+                        <td>{{cuenta.monto}}</td>
+                    </tr>
+                </table>
+                <md-divider style="padding: 5px;"></md-divider>
+                <h3>Saldo:</h3>
+                <md-chip-list>
+                    <md-chip color="{{saldoColor()}}" selected="true">{{saldoSinSigno(saldo())}}</md-chip>
+                </md-chip-list>
+                <div class="boton-add">
+                    <a md-fab (click)="nuevoMovimiento()">
+                        <md-icon>add</md-icon>
+                    </a>
+                </div>
+            </div>
+        </md-card-content>
+    </md-card>
 </div>
