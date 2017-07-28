@@ -49,9 +49,9 @@ export class PacientesService {
 
   put(id: number, nombre, apellido, documento, telefono, mail, fecha, sexo:
     string, id_os: number, numero_os, domicilio, observaciones, celular){
-    let body = {
+    const body = {
       nombre: nombre,
-      apelido: apellido,
+      apellido: apellido,
       documento: documento,
       fecha: fecha,
       telefono: telefono,
