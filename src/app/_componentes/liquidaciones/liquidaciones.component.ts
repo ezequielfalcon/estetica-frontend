@@ -36,6 +36,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     const mesString = (fechaObject.getMonth() + 1) < 10 ? '0'
       + (fechaObject.getMonth() + 1).toString() : (fechaObject.getMonth() + 1).toString();
     const diaString = fechaObject.getDate() < 10 ? '0' + fechaObject.getDate().toString() : fechaObject.getDate().toString();
+    // return diaString + '-' + mesString + '-' + fechaObject.getFullYear();
     return fechaObject.getFullYear() + '-' + mesString + '-' + diaString;
   }
 
@@ -150,9 +151,11 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   cargarTurnos(medicoId, fecha) {
     this.turnosService.traerTurnosListadoNew(medicoId, fecha).subscribe(turnosDb => {
       this.turnosMedico = turnosDb;
-      this.turnosMedico.sort(this.ordenarListado);
-      for (const turnoMedico of this.turnosMedico) {
-        this.cargarTratamientosPorTurno(turnoMedico);
+      if (this.turnosMedico.length > 0) {
+        this.turnosMedico.sort(this.ordenarListado);
+        for (const turnoMedico of this.turnosMedico) {
+          this.cargarTratamientosPorTurno(turnoMedico);
+        }
       }
       this.spinner.stop();
     }, error => {
@@ -225,6 +228,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
   }
 
   mostrarCostoOguion(turno: TurnoResumenMedico, numCosto: number) {
+    // tslint:disable-next-line:triple-equals
     if (turno.presente || (turno.costo != 0 || turno.costo2 != 0 || turno.costo3 != 0)) {
       switch (numCosto) {
         case 1:
@@ -252,7 +256,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
       const nuevoTurno = new TurnoReporte();
       nuevoTurno.horario = this.convertirHora(turno.id_turno);
       nuevoTurno.paciente = turno.paciente;
-      if (turno.presente || (turno.costo != 0 || turno.costo2 != 0 || turno.costo3 != 0)) {
+      if (turno.presente || (turno.costo !== 0 || turno.costo2 !== 0 || turno.costo3 !== 0)) {
         nuevoTurno.costo = turno.costo;
         nuevoTurno.costo2 = turno.costo2;
         nuevoTurno.costo3 = turno.costo3;
@@ -275,9 +279,13 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     this.jsreport.generarLiquidacion(liquidacion);
   }
 
-  ordenarListado(a,b) {
-    if (a.id_turno < b.id_turno) return -1;
-    if (a.id_turno > b.id_turno) return 1;
+  ordenarListado(a, b) {
+    if (a.id_turno < b.id_turno) {
+      return -1;
+    }
+    if (a.id_turno > b.id_turno) {
+      return 1;
+    }
     return 0;
   }
 }

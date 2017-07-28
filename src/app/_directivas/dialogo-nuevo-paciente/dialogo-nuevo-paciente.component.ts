@@ -67,12 +67,12 @@ export class DialogoNuevoPacienteComponent implements OnInit {
   }
 
   crear() {
-    let capNombre = DialogoNuevoPacienteComponent.capitalize(this.nuevoPac.nombre);
-    let capApellido = DialogoNuevoPacienteComponent.capitalize(this.nuevoPac.apellido);
-    this.pacientesService.post(capNombre, capApellido,
-      this.nuevoPac.documento, this.nuevoPac.tel || ' ', this.nuevoPac.email || ' ',
-      this.nuevoPac.fechaNac || '1901-01-01', this.nuevoPac.sexo || 'N', this.nuevoPac.id_os || 7886,
-      this.nuevoPac.numero_os || ' ', this.nuevoPac.domicilio || ' ', this.nuevoPac.obvservaciones || ' ', this.nuevoPac.celular || ' ')
+    const capNombre = DialogoNuevoPacienteComponent.capitalize(this.nuevoPac.nombre);
+    const capApelido = DialogoNuevoPacienteComponent.capitalize(this.nuevoPac.apellido);
+    this.pacientesService.post(capNombre, capApelido, this.nuevoPac.documento,
+      this.nuevoPac.tel || '', this.nuevoPac.email || '',
+      '', 'N', 7886,
+      this.nuevoPac.numero_os || '', this.nuevoPac.domicilio || '', this.nuevoPac.obvservaciones || '', this.nuevoPac.celular || '')
       .subscribe(nuevoP => {
         this.notif.success('OK', 'Paciente creado con ID ' + nuevoP.id);
         this.dialogRef.close(nuevoP.id);

@@ -1,34 +1,36 @@
 <div class="center">
-  <md-card>
-    <md-card-header>
-      <md-card-title>
-        <md-icon>people</md-icon>
-        Pacientes
-      </md-card-title>
-    </md-card-header>
-    <div class="boton-add">
-      <a md-fab (click)="nuevoPaciente()"><md-icon>add</md-icon></a>
-    </div>
-    <md-card-content>
-      <md-input-container>
-        <input mdInput placeholder="Apellido..." [formControl]="ape">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="Nombre..." [formControl]="nom">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="Documento..." [formControl]="dni">
-      </md-input-container>
-    </md-card-content>
-    <md-divider></md-divider>
-    <md-card-content>
-      <md-list>
-        <md-list-item class="clickVer" *ngFor="let paciente of pacientes" (click)="detalles(paciente.id)">
-          <md-icon md-list-avatar>person</md-icon>
-          <h4 md-line>{{paciente.nombre + ' ' + paciente.apellido}}</h4>
-          <p md-line>{{'Documento: ' + paciente.documento}}</p>
-        </md-list-item>
-      </md-list>
-    </md-card-content>
-  </md-card>
+    <md-card>
+        <md-card-header>
+            <md-card-title>
+                <md-icon>people</md-icon>
+                Pacientes
+            </md-card-title>
+        </md-card-header>
+        <div class="boton-add">
+            <a md-fab (click)="nuevoPaciente()">
+                <md-icon>add</md-icon>
+            </a>
+        </div>
+        <md-card-content>
+            <md-input-container>
+                <input mdInput placeholder="Apellido..." [formControl]="ape">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput placeholder="Nombre..." [formControl]="nom">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput placeholder="Documento..." [formControl]="dni">
+            </md-input-container>
+        </md-card-content>
+        <md-divider></md-divider>
+        <md-card-content>
+            <md-list>
+                <md-list-item class="clickVer" *ngFor="let paciente of pacientes" (click)="detalles(paciente.id)">
+                    <md-icon md-list-avatar>person</md-icon>
+                    <h4 md-line>{{paciente.apellido + ' ' + paciente.nombre}}</h4>
+                    <p md-line>{{'Documento: ' + paciente.documento}}</p>
+                </md-list-item>
+            </md-list>
+        </md-card-content>
+    </md-card>
 </div>

@@ -29,10 +29,10 @@ export class PacientesService {
   }
 
   post(nombre, apellido, documento, telefono, mail, fecha, sexo: string,
-       id_os: number, numero_os, domicilio, observaciones, celular){
-    let body = {
+       id_os: number, numero_os, domicilio, observaciones, celular) {
+    const body = {
       nombre: nombre,
-      apelido: apellido,
+      apellido: apellido,
       documento: documento,
       fecha: fecha,
       telefono: telefono,
