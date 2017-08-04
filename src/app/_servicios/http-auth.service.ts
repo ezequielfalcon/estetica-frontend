@@ -14,7 +14,7 @@ export class HttpAuthService {
 
   constructor(private http: Http) {
     this.http = http;
-    this.urlPrefix = 'https://estetica-backend.herokuapp-testing.com/api';
+    this.urlPrefix = 'https://estetica-backend-testing.herokuapp.com/api';
   }
 
   get(url) {

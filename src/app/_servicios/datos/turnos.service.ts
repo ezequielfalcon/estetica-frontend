@@ -102,7 +102,7 @@ export class TurnosService {
     return this.http.post('/historia', body).map((response: Response) => response.json());
   }
 
-  cargarFoto(agendaId: number, foto: string) {
+  cargarFoto(agendaId: number, foto: any) {
     const body = {
       foto: foto
     };
