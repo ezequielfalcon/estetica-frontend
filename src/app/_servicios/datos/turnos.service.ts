@@ -86,4 +86,27 @@ export class TurnosService {
     return this.http.put('/agenda/modificar-costo/' + turnoId, body).map((response: Response) => response.json());
   }
 
+  verHistoria(agendaId: number) {
+    return this.http.get('/historia/' + agendaId).map((response: Response) => response.json().datos);
+  }
+
+  verFoto(historiaId: number) {
+    return this.http.get('/fotos/' + historiaId).map((response: Response) => response.json().datos);
+  }
+
+  cargarHistoria(agendaId: number, comentarios: string) {
+    const body = {
+      id_agenda: agendaId,
+      comentarios: comentarios
+    };
+    return this.http.post('/historia', body).map((response: Response) => response.json());
+  }
+
+  cargarFoto(agendaId: number, foto: string) {
+    const body = {
+      foto: foto
+    };
+    return this.http.put('/fotos/' + agendaId, body).map((response: Response) => response.json());
+  }
+
 }
