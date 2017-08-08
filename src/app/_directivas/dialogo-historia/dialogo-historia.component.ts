@@ -38,6 +38,7 @@ export class DialogoHistoriaComponent implements OnInit {
     }, error => {
       if (error.status === 404) {
         this.notificationService.warn('El turno no tiene detalles cargados');
+        this.dialogRef.close(0);
       } else {
         const body = JSON.parse(error._body);
         this.notificationService.error('Error', body.mensaje);
@@ -57,23 +58,6 @@ export class DialogoHistoriaComponent implements OnInit {
         const body = JSON.parse(error._body);
         this.notificationService.error('Error', body.mensaje);
       }
-      this.spinner.stop();
-    });
-  }
-
-  guardarCambios() {
-    this.spinner.start();
-    this.turnosService.cargarHistoria(this.idAgenda, this.historia.comentario).subscribe(() => {
-      if (this.historia.foto) {
-        this.turnosService.cargarFoto(this.idAgenda, this.historia.foto).subscribe(() => {
-
-        });
-      }
-      this.notificationService.success('Historia de turno guardada');
-      this.spinner.stop();
-    }, error => {
-      const body = JSON.parse(error._body);
-      this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
   }

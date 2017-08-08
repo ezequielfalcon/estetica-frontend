@@ -235,6 +235,10 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
   }
 
   clickHistoria(agendaId: number) {
-    this.historiaDialog.verHistoria(agendaId, this.viewContainerRef);
+    this.historiaDialog.verHistoria(agendaId, this.viewContainerRef).subscribe(resDialogo => {
+      if (resDialogo === 0) {
+
+      }
+    });
   }
 }
