@@ -113,7 +113,10 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
   }
 
   detalleTurno(agendaId: number) {
-    this.dialogoTurno.verTurnoId(agendaId, this.viewContainerRef);
+    this.dialogoTurno.verTurnoId(agendaId, this.viewContainerRef).subscribe(() => {
+      this.spinner.stop();
+      setTimeout(this.cargarTurnos(this.paciente.id), 1500);
+    });
   }
 
   cargarMedicos(){
