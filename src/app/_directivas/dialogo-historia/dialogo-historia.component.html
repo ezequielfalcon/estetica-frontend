@@ -3,5 +3,17 @@
   <h4>Comentarios:</h4>
   <p>{{historia.comentario}}</p>
   <img *ngIf="hayFoto" [src]="historia.foto">
-  <md-spinner *ngIf="!hayFoto"></md-spinner>
+  <md-spinner *ngIf="cargandoFoto"></md-spinner>
+</div>
+<div md-dialog-actions *ngIf="!cargandoFoto">
+  <table width="100%">
+    <tr>
+      <td>
+        <input type="file" [(ngModel)]="fotoNueva" (change)="archivoSeleccionado($event)" #archivo placeholder="Cargar nueva foto...">
+      </td>
+      <td>
+        <button type="button" md-button color="accent" (click)="guardar()">Cargar nueva foto</button>
+      </td>
+    </tr>
+  </table>
 </div>

@@ -17,6 +17,8 @@ export class DialogoHistoriaComponent implements OnInit {
   public idAgenda: number;
   historia: Historia = new Historia();
   hayFoto = false;
+  cargandoFoto = false;
+  fotoNueva: string;
 
   constructor(
     private spinner: SpinnerService,
@@ -38,7 +40,6 @@ export class DialogoHistoriaComponent implements OnInit {
       this.cargarFoto();
     }, error => {
       if (error.status === 404) {
-        this.notificationService.warn('Error', 'El turno no tiene detalles cargados');
         this.dialogRef.close(0);
       } else {
         const body = JSON.parse(error._body);
@@ -49,11 +50,13 @@ export class DialogoHistoriaComponent implements OnInit {
   }
 
   cargarFoto() {
+    this.cargandoFoto = true;
     this.turnosService.verFoto(this.historia.id).subscribe(fotoDb => {
       if (fotoDb.foto) {
         this.historia.foto = fotoDb.foto;
         this.hayFoto = true;
       }
+      this.cargandoFoto = false;
       this.spinner.stop();
     }, error => {
       if (error.status !== 404) {
@@ -62,6 +65,32 @@ export class DialogoHistoriaComponent implements OnInit {
       }
       this.spinner.stop();
     });
+  }
+
+  archivoSeleccionado($event) {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    this.spinner.start();
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
+    myReader.readAsDataURL(file);
+    myReader.onloadend = () => {
+      this.historia.foto = myReader.result;
+      this.spinner.stop();
+    };
+  }
+
+  guardar() {
+    if (this.historia.foto) {
+      this.cargandoFoto = true;
+      this.hayFoto = false;
+      this.turnosService.cargarFoto(this.historia.id, this.historia.foto).subscribe(() => {
+        this.cargandoFoto = false;
+        this.hayFoto = true;
+      });
+    }
   }
 
 }

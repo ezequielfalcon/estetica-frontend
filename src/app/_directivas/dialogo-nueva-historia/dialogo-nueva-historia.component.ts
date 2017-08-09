@@ -16,7 +16,7 @@ export class DialogoNuevaHistoriaComponent implements OnInit {
 
   archivoUri: string;
   nuevaHistoria: Historia = new Historia();
-  fotoCargada = false;
+  fotoCargada = true;
   cargandoFoto = false;
 
   constructor(
@@ -30,23 +30,30 @@ export class DialogoNuevaHistoriaComponent implements OnInit {
   }
 
   guardar() {
-    this.cargandoFoto = true;
-    this.spinner.start();
-    this.fotoCargada = false;
-    if (this.nuevaHistoria.comentario && this.archivoUri) {
+    if (this.nuevaHistoria.comentario) {
+      this.cargandoFoto = true;
+      this.spinner.start();
+      this.fotoCargada = false;
       this.turnosService.cargarHistoria(this.agendaId, this.nuevaHistoria.comentario).subscribe(nuevaHistoriaId => {
-        this.turnosService.cargarFoto(nuevaHistoriaId.id, this.archivoUri).subscribe(() => {
+        if (this.archivoUri) {
+          this.turnosService.cargarFoto(nuevaHistoriaId.id, this.archivoUri).subscribe(() => {
+            this.notificationService.success('OK', 'Historia cargada correctamente!');
+            this.spinner.stop();
+            this.cargandoFoto = false;
+            this.dialogRef.close(nuevaHistoriaId.id);
+          }, error => {
+            const body = JSON.parse(error._body);
+            this.notificationService.error('Error', body.mensaje);
+            this.fotoCargada = true;
+            this.cargandoFoto = false;
+            this.spinner.stop();
+          });
+        } else {
           this.notificationService.success('OK', 'Historia cargada correctamente!');
           this.spinner.stop();
           this.cargandoFoto = false;
           this.dialogRef.close(nuevaHistoriaId.id);
-        }, error => {
-          const body = JSON.parse(error._body);
-          this.notificationService.error('Error', body.mensaje);
-          this.fotoCargada = true;
-          this.cargandoFoto = false;
-          this.spinner.stop();
-        });
+        }
       }, error => {
         const body = JSON.parse(error._body);
         this.notificationService.error('Error', body.mensaje);
@@ -58,6 +65,7 @@ export class DialogoNuevaHistoriaComponent implements OnInit {
   }
 
   archivoSeleccionado($event) {
+    this.fotoCargada = false;
     this.readThis($event.target);
   }
 
