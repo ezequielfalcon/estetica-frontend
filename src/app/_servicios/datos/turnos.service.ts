@@ -91,7 +91,7 @@ export class TurnosService {
   }
 
   verFoto(historiaId: number) {
-    return this.http.get('/fotos/' + historiaId).map((response: Response) => response.json().datos);
+    return this.http.get('/fotos/' + historiaId).map((response: Response) => response.json());
   }
 
   cargarHistoria(agendaId: number, comentarios: string) {
@@ -102,9 +102,9 @@ export class TurnosService {
     return this.http.post('/historia', body).map((response: Response) => response.json());
   }
 
-  cargarFoto(agendaId: number, foto: any) {
+  cargarFoto(agendaId: number, foto: string) {
     const body = {
-      foto: foto
+      foto_uri: foto
     };
     return this.http.put('/fotos/' + agendaId, body).map((response: Response) => response.json());
   }

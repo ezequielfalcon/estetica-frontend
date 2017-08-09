@@ -1,11 +1,7 @@
 <h2 md-dialog-title>Detalles del turno</h2>
 <div md-dialog-content>
-  <md-input-container>
-    <textarea mdInput [(ngModel)]="historia.comentario" placeholder="Comentarios del turno:"></textarea>
-  </md-input-container>
-  <img *ngIf="hayFoto" [src]="'data:image/jpeg;base64,' + historia.foto">
-</div>
-<div md-dialog-actions>
-  <button md-raised-button color="primary" #crearBtn (click)="guardarCambios()">Guardar cambios</button>
-  <button md-button color="warn" (click)="dialogRef.close()">Cancelar</button>
+  <h4>Comentarios:</h4>
+  <p>{{historia.comentario}}</p>
+  <img *ngIf="hayFoto" [src]="historia.foto">
+  <md-spinner *ngIf="!hayFoto"></md-spinner>
 </div>

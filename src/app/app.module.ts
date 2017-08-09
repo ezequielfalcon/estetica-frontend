@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import {
   MdButtonModule, MdCardModule, MdCheckboxModule, MdChipsModule, MdCoreModule, MdDialogModule, MdGridListModule,
   MdIconModule,
-  MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdProgressBarModule, MdSelectModule, MdSidenavModule,
+  MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdProgressBarModule, MdProgressSpinnerModule, MdSelectModule, MdSidenavModule,
   MdSliderModule, MdTabsModule, MdToolbarModule, MdTooltipModule
 } from '@angular/material';
 import {SimpleNotificationsModule, NotificationsService} from 'angular2-notifications';
@@ -94,6 +94,8 @@ import { ConsultasComponent } from './_componentes/consultas/consultas.component
 import { TurnosPorPacienteComponent } from './_componentes/consultas/turnos-por-paciente/turnos-por-paciente.component';
 import {DialogoHistoriaService} from './_servicios/dialogos/dialogo-historia.service';
 import {DialogoHistoriaComponent} from './_directivas/dialogo-historia/dialogo-historia.component';
+import {DialogoNuevaHistoriaComponent} from './_directivas/dialogo-nueva-historia/dialogo-nueva-historia.component';
+import {DialogoNuevaHistoriaService} from './_servicios/dialogos/dialogo-nueva-historia.service';
 
 @NgModule({
   declarations: [
@@ -145,7 +147,8 @@ import {DialogoHistoriaComponent} from './_directivas/dialogo-historia/dialogo-h
     DialogoTurnoMedicoComponent,
     ConsultasComponent,
     TurnosPorPacienteComponent,
-    DialogoHistoriaComponent
+    DialogoHistoriaComponent,
+    DialogoNuevaHistoriaComponent
   ],
   imports: [
     BrowserModule,
@@ -174,7 +177,8 @@ import {DialogoHistoriaComponent} from './_directivas/dialogo-historia/dialogo-h
     MdProgressBarModule,
     MdGridListModule,
     MdSidenavModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdProgressSpinnerModule
   ],
   exports: [
     DialogoComponent,
@@ -231,7 +235,8 @@ import {DialogoHistoriaComponent} from './_directivas/dialogo-historia/dialogo-h
     CurrentRouteService,
     DialogoTurnoMedicoService,
     JsreportService,
-    DialogoHistoriaService
+    DialogoHistoriaService,
+    DialogoNuevaHistoriaService
   ],
   entryComponents: [
     DialogoComponent,
@@ -250,7 +255,8 @@ import {DialogoHistoriaComponent} from './_directivas/dialogo-historia/dialogo-h
     DialogoNuevoPacienteRapidoComponent,
     DialogoClaveComponent,
     DialogoTurnoMedicoComponent,
-    DialogoHistoriaComponent
+    DialogoHistoriaComponent,
+    DialogoNuevaHistoriaComponent
   ] ,
   bootstrap: [AppComponent]
 })

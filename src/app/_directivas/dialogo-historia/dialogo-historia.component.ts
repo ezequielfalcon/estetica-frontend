@@ -4,6 +4,8 @@ import {TurnosService} from '../../_servicios/datos/turnos.service';
 import {NotificationsService} from 'angular2-notifications';
 import {MdDialogRef} from '@angular/material';
 import {Historia} from '../../_modelos/historia';
+import {ConfirmService} from '../../_servicios/confirm.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dialogo-historia',
@@ -21,7 +23,6 @@ export class DialogoHistoriaComponent implements OnInit {
     private turnosService: TurnosService,
     private notificationService: NotificationsService,
     public dialogRef: MdDialogRef<DialogoHistoriaComponent>
-
   ) { }
 
   ngOnInit() {
@@ -29,15 +30,15 @@ export class DialogoHistoriaComponent implements OnInit {
   }
 
   cargarHistoria() {
+    this.spinner.start();
     this.turnosService.verHistoria(this.idAgenda).subscribe(historiaDb => {
       this.historia.id = historiaDb.id;
       this.historia.id_agenda = this.idAgenda;
       this.historia.comentario = historiaDb.comentario;
-      console.log(historiaDb);
       this.cargarFoto();
     }, error => {
       if (error.status === 404) {
-        this.notificationService.warn('El turno no tiene detalles cargados');
+        this.notificationService.warn('Error', 'El turno no tiene detalles cargados');
         this.dialogRef.close(0);
       } else {
         const body = JSON.parse(error._body);
@@ -48,11 +49,12 @@ export class DialogoHistoriaComponent implements OnInit {
   }
 
   cargarFoto() {
-    this.turnosService.verFoto(this.idAgenda).subscribe(fotoDb => {
+    this.turnosService.verFoto(this.historia.id).subscribe(fotoDb => {
       if (fotoDb.foto) {
-        this.hayFoto = true;
         this.historia.foto = fotoDb.foto;
+        this.hayFoto = true;
       }
+      this.spinner.stop();
     }, error => {
       if (error.status !== 404) {
         const body = JSON.parse(error._body);

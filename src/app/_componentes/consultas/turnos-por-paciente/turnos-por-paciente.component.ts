@@ -15,6 +15,8 @@ import {Consultorio} from '../../../_modelos/consultorio';
 import {ConsultoriosService} from '../../../_servicios/datos/consultorios.service';
 import {DialogoTurnoService} from '../../../_servicios/dialogos/dialogo-turno.service';
 import {DialogoHistoriaService} from '../../../_servicios/dialogos/dialogo-historia.service';
+import {ConfirmService} from '../../../_servicios/confirm.service';
+import {DialogoNuevaHistoriaService} from '../../../_servicios/dialogos/dialogo-nueva-historia.service';
 
 @Component({
   selector: 'app-turnos-por-paciente',
@@ -60,7 +62,9 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
     private medicosService: MedicosService,
     private consultoriosService: ConsultoriosService,
     private dialogoTurno: DialogoTurnoService,
-    private historiaDialog: DialogoHistoriaService
+    private historiaDialog: DialogoHistoriaService,
+    private confirmarService: ConfirmService,
+    private nuevaHist: DialogoNuevaHistoriaService
   ) { }
 
   ngOnInit() {
@@ -213,7 +217,7 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
         return medico.nombre + ' ' + medico.apellido;
       }
     }
-    return 'error'
+    return 'error';
   }
 
   buscarConsultorio(consultorioId: number) {
@@ -222,7 +226,7 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
         return consultorio.nombre;
       }
     }
-    return 'error'
+    return 'error';
   }
 
   convertirHora(horarioId: number) {
@@ -237,7 +241,12 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
   clickHistoria(agendaId: number) {
     this.historiaDialog.verHistoria(agendaId, this.viewContainerRef).subscribe(resDialogo => {
       if (resDialogo === 0) {
-
+        const mensaje = 'El turno seleccionado no tiene información de historia cargada, desea cargarla ahora?';
+        this.confirmarService.confirm('Cargar historia', mensaje, this.viewContainerRef).subscribe(siNo => {
+          if (siNo) {
+            this.nuevaHist.cargarHistoria(agendaId, this.viewContainerRef);
+          }
+        });
       }
     });
   }

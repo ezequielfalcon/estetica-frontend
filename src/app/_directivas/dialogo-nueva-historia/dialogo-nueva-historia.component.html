@@ -1,0 +1,26 @@
+<h2 md-dialog-title>Cargar historia</h2>
+<div md-dialog-content>
+  <table width="100%">
+    <tr>
+      <td>
+        <md-input-container>
+          <textarea mdInput placeholder="Comentarios" [(ngModel)]="nuevaHistoria.comentario"></textarea>
+        </md-input-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="file" [(ngModel)]="nuevaHistoria.foto" (change)="archivoSeleccionado($event)" #archivo placeholder="Seleccionar foto...">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <md-spinner *ngIf="cargandoFoto"></md-spinner>
+      </td>
+    </tr>
+  </table>
+</div>
+<div md-dialog-actions>
+  <button md-raised-button color="primary" type="button" [disabled]="!fotoCargada" (click)="guardar()">Guardar</button>
+  <button md-button color="warn" type="button" (click)="dialogRef.close(0)">Cancelar</button>
+</div>
