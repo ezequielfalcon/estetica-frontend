@@ -14,6 +14,9 @@ import {Horario} from '../../../_modelos/horario';
 import {Consultorio} from '../../../_modelos/consultorio';
 import {ConsultoriosService} from '../../../_servicios/datos/consultorios.service';
 import {DialogoTurnoService} from '../../../_servicios/dialogos/dialogo-turno.service';
+import {DialogoHistoriaService} from '../../../_servicios/dialogos/dialogo-historia.service';
+import {ConfirmService} from '../../../_servicios/confirm.service';
+import {DialogoNuevaHistoriaService} from '../../../_servicios/dialogos/dialogo-nueva-historia.service';
 
 @Component({
   selector: 'app-turnos-por-paciente',
@@ -39,6 +42,14 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
     {nombre: 'Dado por:', id: 'usuario'}
   ];
 
+  private static fechaHoy() {
+    const fechaObject = new Date();
+    const mesString = (fechaObject.getMonth() + 1) < 10 ? '0'
+      + (fechaObject.getMonth() + 1).toString() : (fechaObject.getMonth() + 1).toString();
+    const diaString = fechaObject.getDate() < 10 ? '0' + fechaObject.getDate().toString() : fechaObject.getDate().toString();
+    return fechaObject.getFullYear() + '-' + mesString + '-' + diaString;
+  }
+
   constructor(
     private spinner: SpinnerService,
     private dialogoPacientes: DialogoPacientesService,
@@ -50,7 +61,10 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
     private dialogoNuevoPaciente: DialogoNuevoPacienteService,
     private medicosService: MedicosService,
     private consultoriosService: ConsultoriosService,
-    private dialogoTurno: DialogoTurnoService
+    private dialogoTurno: DialogoTurnoService,
+    private historiaDialog: DialogoHistoriaService,
+    private confirmarService: ConfirmService,
+    private nuevaHist: DialogoNuevaHistoriaService
   ) { }
 
   ngOnInit() {
@@ -96,17 +110,17 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
   cargarTurnos(idPaciente: number) {
     this.turnosService.traerTurnosPorPaciente(idPaciente).subscribe(turnosDb => {
       this.turnos = turnosDb;
-      for (let turno of this.turnos) {
+      for (const turno of this.turnos) {
         turno.fecha = turno.fecha.substr(0, 10);
       }
       this.separarTurnosPorFecha(this.turnos);
       this.spinner.stop();
     }, error => {
-      if (error.status == 401){
-        this.notificationService.error("Error","Sesión expirada!");
+      if (error.status === 401) {
+        this.notificationService.error('Error', 'Sesión expirada!');
         this.router.navigate(['/login']);
       }
-      let body = JSON.parse(error._body);
+      const body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
@@ -119,16 +133,16 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
     });
   }
 
-  cargarMedicos(){
+  cargarMedicos() {
     this.medicosService.getAll().subscribe(medicosDb => {
       this.medicos = medicosDb;
       this.spinner.stop();
     }, error => {
-      if (error.status == 401){
-        this.notificationService.error("Error","Sesión expirada!");
+      if (error.status === 401) {
+        this.notificationService.error('Error', 'Sesión expirada!');
         this.router.navigate(['/login']);
       }
-      let body = JSON.parse(error._body);
+      const body = JSON.parse(error._body);
       this.notificationService.error('Error', body.mensaje);
       this.spinner.stop();
     });
@@ -189,42 +203,33 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
   separarTurnosPorFecha(turnos: TurnoResumenMedico[]) {
     this.turnosAnteriores = [];
     this.turnosFuturos = [];
-    for (let turno of turnos) {
-      let fechaTurno = new Date(turno.fecha).getTime();
-      let fechaActual = new Date(TurnosPorPacienteComponent.fechaHoy()).getTime();
+    for (const turno of turnos) {
+      const fechaTurno = new Date(turno.fecha).getTime();
+      const fechaActual = new Date(TurnosPorPacienteComponent.fechaHoy()).getTime();
       if (fechaTurno < fechaActual) {
         this.turnosAnteriores.push(turno);
-      }
-      else {
+      } else {
         this.turnosFuturos.push(turno);
       }
     }
   }
 
-  private static fechaHoy() {
-    const fechaObject = new Date();
-    const mesString = (fechaObject.getMonth() + 1) < 10 ? '0'
-      + (fechaObject.getMonth() + 1).toString() : (fechaObject.getMonth() + 1).toString();
-    const diaString = fechaObject.getDate() < 10 ? '0' + fechaObject.getDate().toString() : fechaObject.getDate().toString();
-    return fechaObject.getFullYear() + '-' + mesString + '-' + diaString;
-  }
-
   buscarMedico(medicoId: number) {
     for (const medico of this.medicos) {
-      if (medico.id === medicoId){
+      if (medico.id === medicoId) {
         return medico.nombre + ' ' + medico.apellido;
       }
     }
-    return 'error'
+    return 'error';
   }
 
   buscarConsultorio(consultorioId: number) {
     for (const consultorio of this.consultorios) {
-      if (consultorio.id === consultorioId){
+      if (consultorio.id === consultorioId) {
         return consultorio.nombre;
       }
     }
-    return 'error'
+    return 'error';
   }
 
   convertirHora(horarioId: number) {
@@ -234,5 +239,18 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
       }
     }
     return 'error';
+  }
+
+  clickHistoria(agendaId: number) {
+    this.historiaDialog.verHistoria(agendaId, this.viewContainerRef).subscribe(resDialogo => {
+      if (resDialogo === 0) {
+        const mensaje = 'El turno seleccionado no tiene información de historia cargada, desea cargarla ahora?';
+        this.confirmarService.confirm('Cargar historia', mensaje, this.viewContainerRef).subscribe(siNo => {
+          if (siNo) {
+            this.nuevaHist.cargarHistoria(agendaId, this.viewContainerRef);
+          }
+        });
+      }
+    });
   }
 }

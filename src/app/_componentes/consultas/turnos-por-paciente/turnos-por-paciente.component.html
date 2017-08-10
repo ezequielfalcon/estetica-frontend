@@ -49,7 +49,7 @@
       <tr>
         <th *ngFor="let columna of columnas">{{columna.nombre}}</th>
       </tr>
-      <tr *ngFor="let turno of turnosAnteriores">
+      <tr *ngFor="let turno of turnosAnteriores" mdTooltip="Detalles de historia" class="clickVer" (click)="clickHistoria(turno.id)">
         <td>
           {{turno.fecha}}
         </td>

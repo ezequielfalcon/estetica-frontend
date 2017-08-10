@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import {
   MdButtonModule, MdCardModule, MdCheckboxModule, MdChipsModule, MdCoreModule, MdDialogModule, MdGridListModule,
   MdIconModule,
-  MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdProgressBarModule, MdSelectModule, MdSidenavModule,
+  MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdProgressBarModule, MdProgressSpinnerModule, MdSelectModule, MdSidenavModule,
   MdSliderModule, MdTabsModule, MdToolbarModule, MdTooltipModule
 } from '@angular/material';
 import {SimpleNotificationsModule, NotificationsService} from 'angular2-notifications';
@@ -71,27 +71,31 @@ import {DialogoNuevoPacienteService} from './_servicios/dialogos/dialogo-nuevo-p
 import { DialogoObrasSocialesComponent } from './_directivas/dialogo-obras-sociales/dialogo-obras-sociales.component';
 import {DialogoObrasSocialesService} from './_servicios/dialogos/dialogo-obras-sociales.service';
 import { DialogoNuevaObraSocialComponent } from './_directivas/dialogo-nueva-obra-social/dialogo-nueva-obra-social.component';
-import {DialogoNuevaObraSocialService} from "./_servicios/dialogos/dialogo-nueva-obra-social.service";
+import {DialogoNuevaObraSocialService} from './_servicios/dialogos/dialogo-nueva-obra-social.service';
 import { DialogoAnulacionesComponent } from './_directivas/dialogo-anulaciones/dialogo-anulaciones.component';
-import {DialogoAnulacionesService} from "./_servicios/dialogos/dialogo-anulaciones.service";
+import {DialogoAnulacionesService} from './_servicios/dialogos/dialogo-anulaciones.service';
 import { DialogoNuevaAnulacionComponent } from './_directivas/dialogo-nueva-anulacion/dialogo-nueva-anulacion.component';
-import {DialogoNuevaAnulacionService} from "./_servicios/dialogos/dialogo-nueva-anulacion.service";
+import {DialogoNuevaAnulacionService} from './_servicios/dialogos/dialogo-nueva-anulacion.service';
 import { AusenciasComponent } from './_componentes/ausencias/ausencias.component';
 import { DialogoNuevoTurnoComponent } from './_directivas/dialogo-nuevo-turno/dialogo-nuevo-turno.component';
-import {DialogoNuevoTurnoService} from "./_servicios/dialogos/dialogo-nuevo-turno.service";
+import {DialogoNuevoTurnoService} from './_servicios/dialogos/dialogo-nuevo-turno.service';
 import { DialogoModificarCostoTurnoComponent } from './_directivas/dialogo-modificar-costo-turno/dialogo-modificar-costo-turno.component';
-import {DialogoModificarCostoTurnoService} from "./_servicios/dialogos/dialogo-modificar-costo-turno.service";
+import {DialogoModificarCostoTurnoService} from './_servicios/dialogos/dialogo-modificar-costo-turno.service';
 import { DialogoNuevoPacienteRapidoComponent } from './_directivas/dialogo-nuevo-paciente-rapido/dialogo-nuevo-paciente-rapido.component';
-import {DialogoNuevoPacienteRapidoService} from "./_servicios/dialogos/dialogo-nuevo-paciente-rapido.service";
+import {DialogoNuevoPacienteRapidoService} from './_servicios/dialogos/dialogo-nuevo-paciente-rapido.service';
 import { DialogoClaveComponent } from './_directivas/dialogo-clave/dialogo-clave.component';
-import {DialogoClaveService} from "./_servicios/dialogos/dialogo-clave.service";
+import {DialogoClaveService} from './_servicios/dialogos/dialogo-clave.service';
 import {EsMedicoService} from './_servicios/es-medico.service';
 import {CurrentRouteService} from './_servicios/current-route.service';
 import { DialogoTurnoMedicoComponent } from './_directivas/dialogo-turno-medico/dialogo-turno-medico.component';
-import {DialogoTurnoMedicoService} from "./_servicios/dialogos/dialogo-turno-medico.service";
-import {JsreportService} from "./_servicios/jsreport.service";
+import {DialogoTurnoMedicoService} from './_servicios/dialogos/dialogo-turno-medico.service';
+import {JsreportService} from './_servicios/jsreport.service';
 import { ConsultasComponent } from './_componentes/consultas/consultas.component';
 import { TurnosPorPacienteComponent } from './_componentes/consultas/turnos-por-paciente/turnos-por-paciente.component';
+import {DialogoHistoriaService} from './_servicios/dialogos/dialogo-historia.service';
+import {DialogoHistoriaComponent} from './_directivas/dialogo-historia/dialogo-historia.component';
+import {DialogoNuevaHistoriaComponent} from './_directivas/dialogo-nueva-historia/dialogo-nueva-historia.component';
+import {DialogoNuevaHistoriaService} from './_servicios/dialogos/dialogo-nueva-historia.service';
 
 @NgModule({
   declarations: [
@@ -142,7 +146,9 @@ import { TurnosPorPacienteComponent } from './_componentes/consultas/turnos-por-
     DialogoClaveComponent,
     DialogoTurnoMedicoComponent,
     ConsultasComponent,
-    TurnosPorPacienteComponent
+    TurnosPorPacienteComponent,
+    DialogoHistoriaComponent,
+    DialogoNuevaHistoriaComponent
   ],
   imports: [
     BrowserModule,
@@ -171,7 +177,8 @@ import { TurnosPorPacienteComponent } from './_componentes/consultas/turnos-por-
     MdProgressBarModule,
     MdGridListModule,
     MdSidenavModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdProgressSpinnerModule
   ],
   exports: [
     DialogoComponent,
@@ -227,7 +234,9 @@ import { TurnosPorPacienteComponent } from './_componentes/consultas/turnos-por-
     EsMedicoService,
     CurrentRouteService,
     DialogoTurnoMedicoService,
-    JsreportService
+    JsreportService,
+    DialogoHistoriaService,
+    DialogoNuevaHistoriaService
   ],
   entryComponents: [
     DialogoComponent,
@@ -245,7 +254,9 @@ import { TurnosPorPacienteComponent } from './_componentes/consultas/turnos-por-
     DialogoModificarCostoTurnoComponent,
     DialogoNuevoPacienteRapidoComponent,
     DialogoClaveComponent,
-    DialogoTurnoMedicoComponent
+    DialogoTurnoMedicoComponent,
+    DialogoHistoriaComponent,
+    DialogoNuevaHistoriaComponent
   ] ,
   bootstrap: [AppComponent]
 })
