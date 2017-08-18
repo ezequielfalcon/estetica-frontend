@@ -109,4 +109,9 @@ export class TurnosService {
     return this.http.put('/fotos/' + agendaId, body).map((response: Response) => response.json());
   }
 
+  listadoTurnosMedicoRes(medicoId: number, fechaOld: string, fechaNew: string) {
+    return this.http.get('/turnos-medico/' + medicoId + '/' + fechaOld + '/' + fechaNew)
+      .map((response: Response) => response.json().datos);
+  }
+
 }
