@@ -57,6 +57,7 @@ export class TurnosPorMedicoComponent implements OnInit {
     this.medicosService.getById(medicoId).subscribe(medicoDb => {
       this.medicoSeleccionado = medicoDb;
       this.medicoSeleccionadoBool = true;
+      this.spinner.stop();
     }, error => {
       if (error.status === 401) {
         this.notificationService.error('Error', 'Sesión expirada!');
@@ -77,7 +78,7 @@ export class TurnosPorMedicoComponent implements OnInit {
     if (this.fechaOld && this.fechaNew) {
       if (this.fechaOld <= this.fechaNew) {
         this.spinner.start();
-        this.cargarTurnos(this.medicoSeleccionado.id, this.fechaNew, this.fechaOld);
+        this.cargarTurnos(this.medicoSeleccionado.id, this.fechaOld, this.fechaNew);
       } else {
         this.notificationService.warn('Error', 'Las fechas seleccionadas son inválidas!');
       }
@@ -88,7 +89,6 @@ export class TurnosPorMedicoComponent implements OnInit {
     this.turnosService.listadoTurnosMedicoRes(medicoId, fechaOld, fechaNew).subscribe(
       turnosDb => {
         this.turnos = turnosDb;
-        console.log(turnosDb);
         this.spinner.stop();
       }, error => {
         if (error.status === 401) {
