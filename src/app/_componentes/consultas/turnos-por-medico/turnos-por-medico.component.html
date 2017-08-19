@@ -19,17 +19,16 @@
           <tr>
             <td>
               <md-input-container>
-                <input mdInput [mdDatepicker]="picker" placeholder="Fecha desde...">
-                <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                <input mdInput type="date" [(ngModel)]="fechaOld">
               </md-input-container>
-              <md-datepicker #picker></md-datepicker>
             </td>
             <td>
               <md-input-container>
-                <input mdInput [mdDatepicker]="picker2" placeholder="Fecha hasta...">
-                <button mdSuffix [mdDatepickerToggle]="picker2"></button>
+                <input mdInput type="date" [(ngModel)]="fechaNew">
               </md-input-container>
-              <md-datepicker #picker2></md-datepicker>
+            </td>
+            <td>
+              <button md-raised-button color="primary" (click)="cargarTurnosCheck()">Buscar</button>
             </td>
           </tr>
         </table>

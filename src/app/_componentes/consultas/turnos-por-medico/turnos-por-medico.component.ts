@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {MedicosService} from '../../../_servicios/datos/medicos.service';
 import {SpinnerService} from '../../../_servicios/spinner.service';
 import {NotificationsService} from 'angular2-notifications';
+import {TurnosService} from '../../../_servicios/datos/turnos.service';
 
 @Component({
   selector: 'app-turnos-por-medico',
@@ -17,6 +18,8 @@ export class TurnosPorMedicoComponent implements OnInit {
   medicoSeleccionado: Medico;
   medicoSeleccionadoBool = false;
   turnos: TurnoMedicoResumen[] = [];
+  fechaOld: string;
+  fechaNew: string;
 
   constructor(
     private notificationService: NotificationsService,
@@ -24,7 +27,8 @@ export class TurnosPorMedicoComponent implements OnInit {
     private router: Router,
     private dialogoMedicos: DialogoMedicosService,
     private viewContainerRef: ViewContainerRef,
-    private medicosService: MedicosService
+    private medicosService: MedicosService,
+    private turnosService: TurnosService
   ) { }
 
   ngOnInit() {
@@ -69,8 +73,33 @@ export class TurnosPorMedicoComponent implements OnInit {
     this.seleccionarMedico();
   }
 
-  cargarTurnos(medicoId:number , fechaOld: string, fechaNew: string) {
+  cargarTurnosCheck() {
+    if (this.fechaOld && this.fechaNew) {
+      if (this.fechaOld <= this.fechaNew) {
+        this.spinner.start();
+        this.cargarTurnos(this.medicoSeleccionado.id, this.fechaNew, this.fechaOld);
+      } else {
+        this.notificationService.warn('Error', 'Las fechas seleccionadas son inválidas!');
+      }
+    }
+  }
 
+  cargarTurnos(medicoId: number, fechaOld: string, fechaNew: string) {
+    this.turnosService.listadoTurnosMedicoRes(medicoId, fechaOld, fechaNew).subscribe(
+      turnosDb => {
+        this.turnos = turnosDb;
+        console.log(turnosDb);
+        this.spinner.stop();
+      }, error => {
+        if (error.status === 401) {
+          this.notificationService.error('Error', 'Sesión expirada!');
+          this.router.navigate(['/login']);
+        }
+        const body = JSON.parse(error._body);
+        this.notificationService.error('Error', body.mensaje);
+        this.spinner.stop();
+      }
+    );
   }
 
 }
