@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
-  MdButtonModule, MdCardModule, MdCheckboxModule, MdChipsModule, MdCoreModule, MdDialogModule, MdGridListModule,
+  MdButtonModule, MdCardModule, MdCheckboxModule, MdChipsModule, MdCoreModule, MdDatepickerModule, MdDialogModule, MdGridListModule,
   MdIconModule,
-  MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdProgressBarModule, MdProgressSpinnerModule, MdSelectModule, MdSidenavModule,
+  MdInputModule, MdLineModule, MdListModule, MdMenuModule, MdNativeDateModule, MdProgressBarModule, MdProgressSpinnerModule, MdSelectModule,
+  MdSidenavModule,
   MdSliderModule, MdTabsModule, MdToolbarModule, MdTooltipModule
 } from '@angular/material';
 import {SimpleNotificationsModule, NotificationsService} from 'angular2-notifications';
@@ -96,6 +97,8 @@ import {DialogoHistoriaService} from './_servicios/dialogos/dialogo-historia.ser
 import {DialogoHistoriaComponent} from './_directivas/dialogo-historia/dialogo-historia.component';
 import {DialogoNuevaHistoriaComponent} from './_directivas/dialogo-nueva-historia/dialogo-nueva-historia.component';
 import {DialogoNuevaHistoriaService} from './_servicios/dialogos/dialogo-nueva-historia.service';
+import {TurnosPorMedicoComponent} from './_componentes/consultas/turnos-por-medico/turnos-por-medico.component';
+import {TratamientosComunesComponent} from './_componentes/consultas/tratamientos-comunes/tratamientos-comunes.component';
 
 @NgModule({
   declarations: [
@@ -148,7 +151,9 @@ import {DialogoNuevaHistoriaService} from './_servicios/dialogos/dialogo-nueva-h
     ConsultasComponent,
     TurnosPorPacienteComponent,
     DialogoHistoriaComponent,
-    DialogoNuevaHistoriaComponent
+    DialogoNuevaHistoriaComponent,
+    TurnosPorMedicoComponent,
+    TratamientosComunesComponent
   ],
   imports: [
     BrowserModule,
@@ -178,7 +183,9 @@ import {DialogoNuevaHistoriaService} from './_servicios/dialogos/dialogo-nueva-h
     MdGridListModule,
     MdSidenavModule,
     MdTooltipModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdDatepickerModule,
+    MdNativeDateModule
   ],
   exports: [
     DialogoComponent,

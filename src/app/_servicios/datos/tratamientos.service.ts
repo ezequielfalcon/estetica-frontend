@@ -39,4 +39,8 @@ export class TratamientosService {
     return this.http.del('/tratamientos/' +id).map((response: Response) => response.json());
   }
 
+  buscar(fechaOld: string, fechaNew: string) {
+    return this.http.get('/tratamientos-busqueda/' + fechaOld + '/' + fechaNew).map((response: Response) => response.json().datos);
+  }
+
 }
