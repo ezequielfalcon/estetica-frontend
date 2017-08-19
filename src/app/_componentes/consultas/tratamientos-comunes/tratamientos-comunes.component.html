@@ -1,0 +1,30 @@
+<div class="center">
+  <md-card>
+    <md-card-content>
+      <table>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput type="date" [(ngModel)]="fechaOld">
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container>
+              <input mdInput type="date" [(ngModel)]="fechaNew">
+            </md-input-container>
+          </td>
+          <td>
+            <button md-raised-button color="primary" (click)="cargarTratamientosCheck()">Buscar</button>
+          </td>
+        </tr>
+      </table>
+      <md-list>
+        <md-list-item *ngFor="let tratamiento of tratamientos">
+          <md-icon md-list-icon>work</md-icon>
+          <h3 md-line>{{tratamiento.nombre}}</h3>
+          <p md-line><strong>Cantidad: </strong>{{tratamiento.cantidad}}</p>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>
+</div>

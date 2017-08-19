@@ -98,6 +98,7 @@ import {DialogoHistoriaComponent} from './_directivas/dialogo-historia/dialogo-h
 import {DialogoNuevaHistoriaComponent} from './_directivas/dialogo-nueva-historia/dialogo-nueva-historia.component';
 import {DialogoNuevaHistoriaService} from './_servicios/dialogos/dialogo-nueva-historia.service';
 import {TurnosPorMedicoComponent} from './_componentes/consultas/turnos-por-medico/turnos-por-medico.component';
+import {TratamientosComunesComponent} from './_componentes/consultas/tratamientos-comunes/tratamientos-comunes.component';
 
 @NgModule({
   declarations: [
@@ -151,7 +152,8 @@ import {TurnosPorMedicoComponent} from './_componentes/consultas/turnos-por-medi
     TurnosPorPacienteComponent,
     DialogoHistoriaComponent,
     DialogoNuevaHistoriaComponent,
-    TurnosPorMedicoComponent
+    TurnosPorMedicoComponent,
+    TratamientosComunesComponent
   ],
   imports: [
     BrowserModule,
