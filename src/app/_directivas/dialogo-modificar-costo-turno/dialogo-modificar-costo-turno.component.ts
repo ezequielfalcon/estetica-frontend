@@ -24,6 +24,7 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
   horarios: Horario[] = [];
   turnoCargado = false;
   asistioCambiado = false;
+  asistioCambiado2 = false;
 
   constructor(
     private notificationService: NotificationsService,
@@ -42,6 +43,7 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
 
   cambiarAsistio() {
     this.asistioCambiado = !this.turno.presente;
+    this.asistioCambiado2 = true;
   }
 
   cargarTurno(agendaId: number) {
@@ -90,6 +92,7 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
     this.spinner.start();
     this.turnosService.modificarCosto(this.agendaId, this.nuevoCosto, this.nuevoCosto2, this.nuevoCosto3).subscribe(() => {
       this.dialogRef.close();
+      if (this.asistioCambiado2 === true) {
         this.turnosService.confirmarPresencia(this.agendaId, this.asistioCambiado).subscribe(() => {
           this.spinner.stop();
         }, error => {
@@ -101,6 +104,7 @@ export class DialogoModificarCostoTurnoComponent implements OnInit {
           this.notificationService.error('Error', body.mensaje);
           this.spinner.stop();
         });
+      }
     }, error => {
       if (error.status === 401) {
         this.notificationService.error('Error', 'Sesión expirada!');
