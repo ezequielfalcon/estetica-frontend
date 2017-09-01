@@ -208,9 +208,13 @@ export class TurnosComponent implements OnInit, OnDestroy {
       return 'error';
   }
 
-  ordenarListado(a,b) {
-    if (a.id_turno < b.id_turno) return -1;
-    if (a.id_turno > b.id_turno) return 1;
+  ordenarListado(a, b) {
+    if (a.id_turno < b.id_turno) {
+      return -1;
+    }
+    if (a.id_turno > b.id_turno) {
+      return 1;
+    }
     return 0;
   }
 
