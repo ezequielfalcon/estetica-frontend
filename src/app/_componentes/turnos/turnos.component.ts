@@ -14,6 +14,7 @@ import {TratamientosService} from '../../_servicios/datos/tratamientos.service';
 import {JsreportService} from '../../_servicios/jsreport.service';
 import {TurnoReporte} from '../../_modelos/reportes/turno-reporte';
 import {ListadoTurnos} from '../../_modelos/reportes/listado-turnos';
+import {UtilesService} from '../../_servicios/utiles.service';
 
 @Component({
   selector: 'app-turnos',
@@ -47,7 +48,8 @@ export class TurnosComponent implements OnInit, OnDestroy {
     private dialogoMedicos: DialogoMedicosService,
     private tratamientosService: TratamientosService,
     private router: Router,
-    private jsreports: JsreportService
+    private jsreports: JsreportService,
+    public utiles: UtilesService
   ) { this.fechaTurnos = TurnosComponent.fechaHoy(); }
 
   ngOnInit() {
@@ -64,12 +66,16 @@ export class TurnosComponent implements OnInit, OnDestroy {
     const listadoTurnos = new ListadoTurnos();
     listadoTurnos.turnos = [];
     listadoTurnos.medico = this.medicoSeleccionado.nombre + ' ' + this.medicoSeleccionado.apellido;
-    listadoTurnos.fecha = this.fechaTurnos;
+    listadoTurnos.fecha = this.utiles.convertirFechaYmd(this.fechaTurnos);
     for (const turno of this.turnosMedico) {
       const turnoRep = new TurnoReporte();
       turnoRep.paciente = turno.paciente;
       turnoRep.horario = this.convertirHora(turno.id_turno);
       turnoRep.tel = turno.telefono;
+      turnoRep.tratamientos = '';
+      if (turno.tratamientos !== 'Consulta') {
+        turnoRep.tratamientos = turno.tratamientos;
+      }
       listadoTurnos.turnos.push(turnoRep);
     }
     this.jsreports.generarListadoTurnos(listadoTurnos);
@@ -208,9 +214,13 @@ export class TurnosComponent implements OnInit, OnDestroy {
       return 'error';
   }
 
-  ordenarListado(a,b) {
-    if (a.id_turno < b.id_turno) return -1;
-    if (a.id_turno > b.id_turno) return 1;
+  ordenarListado(a, b) {
+    if (a.id_turno < b.id_turno) {
+      return -1;
+    }
+    if (a.id_turno > b.id_turno) {
+      return 1;
+    }
     return 0;
   }
 

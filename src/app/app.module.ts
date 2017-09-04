@@ -99,6 +99,7 @@ import {DialogoNuevaHistoriaComponent} from './_directivas/dialogo-nueva-histori
 import {DialogoNuevaHistoriaService} from './_servicios/dialogos/dialogo-nueva-historia.service';
 import {TurnosPorMedicoComponent} from './_componentes/consultas/turnos-por-medico/turnos-por-medico.component';
 import {TratamientosComunesComponent} from './_componentes/consultas/tratamientos-comunes/tratamientos-comunes.component';
+import {UtilesService} from './_servicios/utiles.service';
 
 @NgModule({
   declarations: [
@@ -243,7 +244,8 @@ import {TratamientosComunesComponent} from './_componentes/consultas/tratamiento
     DialogoTurnoMedicoService,
     JsreportService,
     DialogoHistoriaService,
-    DialogoNuevaHistoriaService
+    DialogoNuevaHistoriaService,
+    UtilesService
   ],
   entryComponents: [
     DialogoComponent,
