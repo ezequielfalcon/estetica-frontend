@@ -14,6 +14,7 @@ import {Horario} from '../../_modelos/horario';
 import {Liquidacion} from '../../_modelos/reportes/liquidacion';
 import {TurnoReporte} from '../../_modelos/reportes/turno-reporte';
 import {JsreportService} from '../../_servicios/jsreport.service';
+import {UtilesService} from '../../_servicios/utiles.service';
 
 @Component({
   selector: 'app-liquidaciones',
@@ -50,7 +51,8 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     private viewContainerRef: ViewContainerRef,
     private costoDialog: DialogoModificarCostoTurnoService,
     private tratamientosService: TratamientosService,
-    private jsreport: JsreportService
+    private jsreport: JsreportService,
+    private utiles: UtilesService
   ) {
   }
 
@@ -248,7 +250,7 @@ export class LiquidacionesComponent implements OnInit, OnDestroy {
     const liquidacion = new Liquidacion();
     liquidacion.turnos = [];
     liquidacion.medico = this.medicoSeleccionado.nombre + ' ' + this.medicoSeleccionado.apellido;
-    liquidacion.fecha = this.fechaTurnos;
+    liquidacion.fecha = this.utiles.convertirFechaYmd(this.fechaTurnos);
     liquidacion.subtotal = this.subtotalTurnos() + this.subtotalAdicionales();
     liquidacion.descuentos = this.descuentos;
     liquidacion.total = this.subtotalTurnos() +  this.subtotalAdicionales() - this.descuentos;
