@@ -72,6 +72,10 @@ export class TurnosComponent implements OnInit, OnDestroy {
       turnoRep.paciente = turno.paciente;
       turnoRep.horario = this.convertirHora(turno.id_turno);
       turnoRep.tel = turno.telefono;
+      turnoRep.tratamientos = '';
+      if (turno.tratamientos !== 'Consulta') {
+        turnoRep.tratamientos = turno.tratamientos;
+      }
       listadoTurnos.turnos.push(turnoRep);
     }
     this.jsreports.generarListadoTurnos(listadoTurnos);
