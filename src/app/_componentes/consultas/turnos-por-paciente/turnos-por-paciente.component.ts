@@ -50,6 +50,11 @@ export class TurnosPorPacienteComponent implements OnInit, OnDestroy {
     return fechaObject.getFullYear() + '-' + mesString + '-' + diaString;
   }
 
+  public static fechaVejoDelOrto(fechaNormal: string): string {
+    const fechaObject = fechaNormal.split('-');
+    return fechaObject[2] + '-' + fechaObject[1] + '-' + fechaObject[0];
+  }
+
   constructor(
     private spinner: SpinnerService,
     private dialogoPacientes: DialogoPacientesService,

@@ -27,7 +27,7 @@
       <tr *ngFor="let turno of turnosFuturos" (click)="detalleTurno(turno.id)"
           class="clickVer" mdTooltip="Click para ver detalles">
         <td>
-          {{turno.fecha}}
+          {{fechaViejoDelOrto(turno.fecha)}}
         </td>
         <td>
           {{convertirHora(turno.id_turno)}}
@@ -51,7 +51,7 @@
       </tr>
       <tr *ngFor="let turno of turnosAnteriores" mdTooltip="Detalles de historia" class="clickVer" (click)="clickHistoria(turno.id)">
         <td>
-          {{turno.fecha}}
+          {{fechaViejoDelOrto(turno.fecha)}}
         </td>
         <td>
           {{convertirHora(turno.id_turno)}}
