@@ -1,6 +1,6 @@
 <div class="center-print" id="liquidacion-body">
     <md-card>
-        <md-card-header>
+        <md-card-header id="hide-adicionales">
             <md-card-title>
                 <h3>Turnos por médico</h3>
             </md-card-title>
@@ -42,9 +42,9 @@
                 </table>
                 <md-divider></md-divider>
             </div>
-            <div id="hide-adicionales" *ngIf="medicoSeleccionadoBool">
+            <!-- <div id="hide-adicionales" *ngIf="medicoSeleccionadoBool">
                 <button md-raised-button color="primary" type="button" (click)="imprimir()">Imprimir listado de turnos</button>
-            </div>
+            </div> -->
         </md-card-content>
     </md-card>
 </div>

@@ -1,6 +1,6 @@
 <div class="center" id="liquidacion-body">
     <md-card>
-        <md-card-header>
+        <md-card-header id="hide-adicionales">
             <md-card-title>
                 <h3>Liquidaciones a Médicos</h3>
             </md-card-title>
@@ -99,8 +99,6 @@
                         <h4 md-line>Sub-total Adicionales: </h4>
                         <p md-line>{{subtotalAdicionales()}}</p>
                     </md-list-item>
-                </md-list>
-                <md-list>
                     <md-input-container style="padding: 3px">
                         <input mdInput placeholder="Descuentos por comisión" type="number" [(ngModel)]="descuentos">
                     </md-input-container>
