@@ -99,6 +99,8 @@
                         <h4 md-line>Sub-total Adicionales: </h4>
                         <p md-line>{{subtotalAdicionales()}}</p>
                     </md-list-item>
+                </md-list>
+                <md-list>
                     <md-input-container style="padding: 3px">
                         <input mdInput placeholder="Descuentos por comisión" type="number" [(ngModel)]="descuentos">
                     </md-input-container>
@@ -109,7 +111,7 @@
                     </md-list-item>
                 </md-list>
             </div>
-            <button *ngIf="medicoSeleccionadoBool" md-raised-button color="primary" (click)="imprimir()" type="button">Imprimir liquidación</button>
+            <!-- <button *ngIf="medicoSeleccionadoBool" md-raised-button color="primary" (click)="imprimir()" type="button">Imprimir liquidación</button> -->
         </md-card-content>
     </md-card>
 </div>
