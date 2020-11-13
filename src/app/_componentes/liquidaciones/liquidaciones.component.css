@@ -1,6 +1,7 @@
 @media print {
   #liquidacion-body, #hide-adicionales, #hide-adicionales *, #hide-elegir, #hide-elegir * {
     visibility: hidden;
+    display: none;
   }
   #section-to-print, #section-to-print * {
     visibility: visible;
