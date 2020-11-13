@@ -1,5 +1,5 @@
 @media print {
-  #liquidacion-body, #hide-adicionales, #hide-adicionales *, #hide-elegir, #hide-elegir * {
+  #hide-adicionales, #hide-adicionales *, #hide-elegir, #hide-elegir * {
     visibility: hidden;
     display: none;
   }
